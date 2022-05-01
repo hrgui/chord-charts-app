@@ -1,23 +1,13 @@
 import * as React from "react";
-import {
-  Drawer,
-  List,
-  ListItemIcon,
-  ListItemText,
-  Divider,
-} from "@material-ui/core";
+import { Drawer, List, ListItemIcon, ListItemText, Divider } from "@material-ui/core";
 import classnames from "classnames";
 import ListItemLink from "lib/layout/ListItemLink";
 import Home from "@material-ui/icons/Home";
 import { WithWidth } from "lib/layout/WithWidth";
 import styled from "styled-components/macro";
-import { isUserAdmin, isUserWorkingAs } from "../user/userUtils";
 import { useUserData } from "lib/hooks/useUserData";
-import AdminMenu from "app/admin/AdminMenu";
 import SongsNavMenu from "app/songs/menu/SongsNavMenu";
 import SetlistsNavMenu from "app/setlists/menu/SetlistsNavMenu";
-import LoginMenuList from "app/session/LoginMenuList";
-import OtherSettingsNavMenu from "app/user/OtherSettingsMenu";
 import { useAppBarActions } from "lib/hooks/useAppBarActions";
 import { useGetAppBarData } from "lib/hooks/useGetAppBarData";
 
@@ -54,7 +44,7 @@ const StyledDrawer = styled(Drawer)`
   }
 `;
 
-export function NavMenuItems({ user }) {
+export function NavMenuItems() {
   return (
     <>
       <HomeNavMenu />
@@ -63,8 +53,6 @@ export function NavMenuItems({ user }) {
       <SongsNavMenu />
       <Divider />
       <SetlistsNavMenu />
-      <Divider />
-      {isUserAdmin(user) && !isUserWorkingAs(user) && <AdminMenu />}
     </>
   );
 }
@@ -94,9 +82,7 @@ export function AppNavMenu(props: NavMenuProps) {
   return (
     <WithWidth>
       {({ width }) => {
-        const shouldDrawerBeTemporary =
-          width === "sm" || width === "xs" || width === "md";
-
+        const shouldDrawerBeTemporary = width === "sm" || width === "xs" || width === "md";
         const variant = shouldDrawerBeTemporary ? "temporary" : "permanent";
         return (
           <StyledDrawer
@@ -116,15 +102,7 @@ export function AppNavMenu(props: NavMenuProps) {
           >
             <NavMenuTitle>{config.appName}</NavMenuTitle>
             <Divider />
-            {user ? (
-              <NavMenuItems user={user} />
-            ) : (
-              <>
-                <LoginMenuList />
-                <Divider />
-                <OtherSettingsNavMenu />
-              </>
-            )}
+            <NavMenuItems />
           </StyledDrawer>
         );
       }}

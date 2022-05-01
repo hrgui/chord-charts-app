@@ -6,8 +6,6 @@ import SetlistTitleCell from "./cells/SetlistTitleCell";
 import MobileSetlistTitleCell from "./cells/MobileSetlistTitleCell";
 import SetlistActions from "./SetlistActions";
 import Link from "lib/layout/Link";
-import { useQuery, gql } from "@apollo/client";
-import SetlistFragment from "./SetlistFragment";
 import { useTranslation } from "react-i18next";
 import { Trans } from "react-i18next";
 
@@ -15,16 +13,6 @@ interface SetlistsListPageProps {
   path?: string;
   isAdmin?: boolean;
 }
-
-export const GET_SETLISTS_QUERY = gql`
-  query getSetlists {
-    setlists {
-      ...Setlist
-    }
-  }
-
-  ${SetlistFragment}
-`;
 
 export interface SetlistsTableProps {
   setlists;
@@ -122,10 +110,7 @@ export function SetlistTable({
           DateColumnDef(),
           ActionsColumnDef({ addToSetlistMode, song_id, onRequestClose }),
         ]
-      : [
-          MobileTitleColumnDef(),
-          ActionsColumnDef({ addToSetlistMode, song_id, onRequestClose }),
-        ];
+      : [MobileTitleColumnDef(), ActionsColumnDef({ addToSetlistMode, song_id, onRequestClose })];
   }, [addToSetlistMode, isMobile, onRequestClose, song_id]);
 
   const initialState = React.useMemo(() => {
@@ -137,8 +122,7 @@ export function SetlistTable({
   const emptyAction = React.useMemo(
     () => (
       <Trans i18nKey="setlist:list/emptyAction">
-        <Link to="/setlist/new">Create a new setlist</Link> and it will show up
-        here.
+        <Link to="/setlist/new">Create a new setlist</Link> and it will show up here.
       </Trans>
     ),
     []
@@ -167,7 +151,7 @@ export function SetlistListContainer({
   song_id?;
   onRequestClose?;
 }) {
-  const { error, loading, data } = useQuery(GET_SETLISTS_QUERY);
+  const { error, loading, data } = { error: null, loading: false, data: {} };
   const setlists = data?.setlists || [];
 
   return (

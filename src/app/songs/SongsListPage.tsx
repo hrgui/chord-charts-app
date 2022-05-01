@@ -2,8 +2,6 @@ import * as React from "react";
 import Link from "lib/layout/Link";
 import { Table } from "lib/table/Table";
 import { useTitle } from "lib/hooks/useTitle";
-import { useQuery, gql } from "@apollo/client";
-import SongFragment from "./SongFragment";
 import { Trans } from "react-i18next";
 import { useTranslation } from "react-i18next";
 import SongActions from "./SongActions";
@@ -33,16 +31,6 @@ class SongTitleCell extends React.Component<any, any> {
   }
 }
 
-export const GET_SONGS_QUERY = gql`
-  query getSongs {
-    songs {
-      ...Song
-    }
-  }
-
-  ${SongFragment}
-`;
-
 export function SongListContainer({
   addToSetlistMode,
   onAddSong,
@@ -51,7 +39,9 @@ export function SongListContainer({
   onAddSong?;
 }) {
   const { t } = useTranslation();
-  const { error, loading, data } = useQuery(GET_SONGS_QUERY);
+  const error = null;
+  const loading = false;
+  const data = [];
 
   const columns = React.useMemo(() => {
     return [
@@ -84,11 +74,7 @@ export function SongListContainer({
           },
         }) => {
           return (
-            <SongActions
-              onAddSong={onAddSong}
-              addToSetlistMode={addToSetlistMode}
-              song={data}
-            />
+            <SongActions onAddSong={onAddSong} addToSetlistMode={addToSetlistMode} song={data} />
           );
         },
       },
@@ -114,7 +100,7 @@ export function SongListContainer({
       columns={columns}
       isLoading={loading}
       isPageTable
-      data={data?.songs || []}
+      data={data}
     />
   );
 }

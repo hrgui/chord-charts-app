@@ -3,9 +3,7 @@ import { useSetPageLayout } from "lib/hooks/useSetPageLayout";
 import SetlistView from "./SetlistView";
 import { Loading } from "lib/layout/Loading";
 import { useTitle } from "lib/hooks/useTitle";
-import { useSaveSetlistMutation } from "./hooks/useSaveSetlistMutation";
 import { useSnackbar } from "notistack";
-import { useGetSetlistQuery } from "./hooks/useGetSetlistQuery";
 
 interface SetlistViewPageProps {
   path?: string;
@@ -28,15 +26,13 @@ function prepareValues({ id, __typename, ...other }) {
   return other;
 }
 
-const SetlistViewPage: React.SFC<SetlistViewPageProps> = props => {
+const SetlistViewPage: React.SFC<SetlistViewPageProps> = (props) => {
   const { enqueueSnackbar } = useSnackbar();
-  let { loading: isLoading, error: isError, data } = useGetSetlistQuery(
-    props.id
-  );
+  let { loading: isLoading, error: isError, data } = { loading: false, error: null, data: {} };
 
   data = data?.setlist;
 
-  const [saveSetlist] = useSaveSetlistMutation(props.id);
+  const saveSetlist = () => {};
   const curTitle =
     data && data.title
       ? `${data.title}${data.leader ? `: ${data.leader}` : ""}`
@@ -49,15 +45,15 @@ const SetlistViewPage: React.SFC<SetlistViewPageProps> = props => {
     setIsSavingSettings(true);
     const _data = {
       ...data,
-      settings: { ...data.settings, ...settings }
+      settings: { ...data.settings, ...settings },
     };
 
     await saveSetlist({
-      variables: { id: props.id, data: prepareValues(_data) }
+      variables: { id: props.id, data: prepareValues(_data) },
     });
 
     enqueueSnackbar(`Setlist ${data.title || data.id} has been saved.`, {
-      variant: "success"
+      variant: "success",
     });
     setIsSavingSettings(false);
   }
@@ -69,7 +65,7 @@ const SetlistViewPage: React.SFC<SetlistViewPageProps> = props => {
   let { songIndex = 0 } = props;
   songIndex = normalizeSongIndex(songIndex);
 
-  const onIndexChange = index => {
+  const onIndexChange = (index) => {
     if (index < 0) {
       index = data.songs.length - 1;
     }
@@ -97,7 +93,7 @@ const SetlistViewPage: React.SFC<SetlistViewPageProps> = props => {
   );
 };
 
-export default props => {
+export default (props) => {
   const { id, songIndex } = props.match.params;
   const [loading] = useSetPageLayout("setlist", [id]);
 

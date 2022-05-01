@@ -27,7 +27,6 @@ export function AppLayout({ children }: { children? }) {
           <ControlsBar />
         </ContentContainer>
       </AppContainer>
-      <WidthListener />
     </>
   );
 }

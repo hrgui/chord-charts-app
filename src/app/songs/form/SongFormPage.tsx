@@ -18,32 +18,12 @@ export interface SongFormPageProps {
 const SongEditPage: React.SFC<SongFormPageProps> = (props) => {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
-  const [updateSong] = useMutation(
-    gql`
-      mutation update($data: SongInput!, $id: ID!) {
-        song: updateSong(id: $id, record: $data) {
-          ...Song
-        }
-      }
-      ${SongFragment}
-    `,
-    { refetchQueries: ["getSongs"] }
-  );
-  let { loading: isLoading, error, data } = useQuery(
-    gql`
-      query getOne($id: ID!) {
-        song: song(id: $id) {
-          ...Song
-        }
-      }
-      ${SongFragment}
-    `,
-    {
-      variables: {
-        id: props.id,
-      },
-    }
-  );
+  const updateSong = () => {};
+  // TODO
+  const loading = false;
+  const error = null;
+  let data = {};
+
   data = data?.song || {};
 
   return (
@@ -96,21 +76,13 @@ export function getNewSongTemplate(currentGroupId) {
   };
 }
 
-export const CREATE_SONG_QUERY = gql`
-  mutation create($data: SongInput!) {
-    song: createSong(record: $data) {
-      ...Song
-    }
-  }
-  ${SongFragment}
-`;
-
 const SongNewPage: React.SFC<SongFormPageProps> = (props) => {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
-  const [createSong] = useMutation(CREATE_SONG_QUERY, {
-    refetchQueries: ["getSongs"],
-  });
+  // const [createSong] = useMutation(CREATE_SONG_QUERY, {
+  //   refetchQueries: ["getSongs"],
+  // });
+  const createSong = () => {};
   const newSongTemplate = getNewSongTemplate(props.currentGroupId);
   return (
     <SongForm

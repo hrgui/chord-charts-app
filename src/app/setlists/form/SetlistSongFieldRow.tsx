@@ -18,7 +18,7 @@ export interface ISetlistSongFieldRowProps {
 
 export default function SetlistSongFieldRow(props: ISetlistSongFieldRowProps) {
   const { index, songId, onSwap, onRemove, settings, onSongKeyChange } = props;
-  const { data, loading } = useGetSongQuery(songId);
+  const { data, loading } = { data: {}, loading: false };
 
   const song = data?.song || {};
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { render, act, wait } from "@testing-library/react";
 import AppController from "./AppController";
-import { useStoreActions, useStoreState } from "app/store";
+import { useStoreState } from "app/store";
 
 test("renders children as is, since its just a passthrough", async () => {
   let el;
@@ -16,7 +16,7 @@ test("renders children as is, since its just a passthrough", async () => {
 });
 
 export function TestAppNameDisplay() {
-  const { appName } = useStoreState(state => state.uiState);
+  const { appName } = useStoreState((state) => state.uiState);
   return <div>{appName}</div>;
 }
 

@@ -25,7 +25,6 @@ export function AppController({
   config = null,
   history,
   componentProviderOverrides = {},
-  apolloProviderProps = {},
 }: AppControllerProps) {
   if (config || initialState) {
     store = configureStore({

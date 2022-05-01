@@ -1,11 +1,9 @@
 import { createStore, createTypedHooks, EasyPeasyConfig } from "easy-peasy";
 import uiState from "./uiState";
-import auth, { AuthModel } from "./auth";
 import { UiStateModel, CHORD_CHARTS_DARK_MODE_KEY } from "./uiState";
 
 export interface RootStoreModel {
   uiState: UiStateModel;
-  auth: AuthModel;
 }
 
 const { useStoreActions, useStore, useStoreDispatch, useStoreState } =
@@ -14,7 +12,6 @@ const { useStoreActions, useStore, useStoreDispatch, useStoreState } =
 export function configureStore(config?: EasyPeasyConfig<any>) {
   let models = {
     uiState,
-    auth,
   };
 
   const initialState = {

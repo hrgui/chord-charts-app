@@ -1,19 +1,30 @@
 # @hrgui/chord-charts-manager
 
-- A chord chart is a composition with chord symbols (A B C D E F G ...) with lyrics. They are meant to signal the musician what chords to play.
-- Manages chord charts as songs (CRUD).
-- Setlists are composed of 1 or more chord charts
-- Groups can see a list of songs and setlists.
-- Users belong to groups.
+```ts
+export enum NavBarState {
+  main = "main",
+  setlist = "setlist",
+  song = "song",
+}
 
-# How to run this for development (WIP)
-
-1. yarn link `@hrgui/chord-charts`
-2. Place a `app-config.json` file that just consists of `{}`.
-3. Run the `chord-charts-manager-api` in port 4000.
-
-# How to run cypress tests
-
-```
-yarn cypress open
+export interface UiStateModel {
+  darkMode?: boolean;
+  appName;
+  page;
+  widthBreakpoint;
+  isSticky: boolean;
+  navBarState: NavBarState;
+  navMenuHidden: boolean;
+  controlsPanelHidden: boolean;
+  youtubeHidden: boolean;
+  toggleNavMenu: Action<any>;
+  toggleYoutube: Action<any>;
+  toggleControlsPanel: Action<any>;
+  setPageInfo: Action<any, { title?; subtitle? }>;
+  setNavBarState: Action<any, string>;
+  resetPageInfo: Action<any>;
+  setWidthBreakpoint: Action<any, string>;
+  setStickyState: Action<any, boolean>;
+  toggleDarkMode: Action<any>;
+}
 ```

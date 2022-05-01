@@ -1,16 +1,17 @@
 import "./polyfills";
 import "./setupDevEnv";
 import React from "react";
-import ReactDOM from "react-dom";
 import App from "app/App";
+import { createRoot } from "react-dom/client";
 import "./i18n";
 
 export async function bootstrap() {
-  ReactDOM.render(
+  const container = document.getElementById("root");
+  const root = createRoot(container as HTMLElement);
+  root.render(
     <React.StrictMode>
       <App />
-    </React.StrictMode>,
-    document.getElementById("root")
+    </React.StrictMode>
   );
 }
 

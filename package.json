@@ -1,13 +1,11 @@
 {
-  "name": "@hrgui/chord-charts-manager",
+  "name": "@hrgui/chord-charts-app",
   "version": "1.0.0-alpha.1",
   "private": true,
   "scripts": {
     "start": "vite",
     "build": "vite build",
-    "test": "jest",
-    "test:debug": "react-scripts --inspect-brk test --watch --runInBand --no-cache",
-    "eject": "react-scripts eject"
+    "test": "jest"
   },
   "eslintConfig": {
     "extends": "react-app"

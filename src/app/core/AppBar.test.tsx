@@ -1,5 +1,5 @@
 import * as React from "react";
-import { renderWithAppController as render } from "testUtils/renderWithAppProvider";
+import { renderWithAppController as render } from "testUtils/renderWithAppController";
 import AppBar from "./AppBar";
 import { fireEvent } from "@testing-library/react";
 import { useStoreState } from "app/store";

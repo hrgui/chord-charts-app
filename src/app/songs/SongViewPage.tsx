@@ -1,6 +1,4 @@
 import * as React from "react";
-import { useSetPageLayout } from "lib/hooks/useSetPageLayout";
-import { useTitle } from "lib/hooks/useTitle";
 import { useParams } from "react-router-dom";
 import Loading from "lib/layout/Loading";
 import SongView from "./SongView";
@@ -16,7 +14,6 @@ interface SongViewContainerProps {
 export const SongViewContainer: React.SFC<SongViewContainerProps> = (props) => {
   const { loading: isLoading, error: isError, data } = { loading: false, error: null, data: {} };
   const { isInSetlist, isActiveInSetlist, settings, onChangeSettings = () => null } = props;
-  useTitle(`View Song: ${isLoading ? props.id : data?.song.title}`);
 
   if (isInSetlist && !isActiveInSetlist) {
     return null;

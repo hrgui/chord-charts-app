@@ -1,7 +1,6 @@
 import * as React from "react";
 import Link from "lib/layout/Link";
 import { Table } from "lib/table/Table";
-import { useTitle } from "lib/hooks/useTitle";
 import { Trans } from "react-i18next";
 import { useTranslation } from "react-i18next";
 import SongActions from "./SongActions";
@@ -106,7 +105,6 @@ export function SongListContainer({
 }
 
 const SongsListPage: React.SFC<SongsListPageProps> = () => {
-  useTitle("All Songs", null);
   return <SongListContainer />;
 };
 

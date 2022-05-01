@@ -2,12 +2,10 @@ import React, { Suspense } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import { StylesProvider } from "@material-ui/styles";
 import { BrowserRouter } from "react-router-dom";
-import { StoreProvider } from "easy-peasy";
 
-import { store } from "app/store/store";
+import { store } from "store";
 import { Provider } from "react-redux";
 import { AppThemeProvider } from "./AppThemeProvider";
-import { configureStore } from "app/store";
 import PageLoading from "lib/layout/PageLoading";
 
 interface AppControllerProps {
@@ -22,19 +20,9 @@ interface AppControllerProps {
 
 export function AppProvider({
   children,
-  store = configureStore(),
-  initialState = null,
-  config = null,
   history,
   componentProviderOverrides = {},
 }: AppControllerProps) {
-  if (config || initialState) {
-    store = configureStore({
-      initialState: initialState || {
-        uiState: config,
-      },
-    });
-  }
   // const Router: any = history ? TestRouter : BrowserRouter;
 
   const Router = !componentProviderOverrides.Router
@@ -45,13 +33,11 @@ export function AppProvider({
     <Suspense fallback={<PageLoading />}>
       <StylesProvider injectFirst>
         <Provider store={store}>
-          <StoreProvider store={store}>
-            <HelmetProvider>
-              <Router history={history}>
-                <AppThemeProvider>{children}</AppThemeProvider>
-              </Router>
-            </HelmetProvider>
-          </StoreProvider>
+          <HelmetProvider>
+            <Router history={history}>
+              <AppThemeProvider>{children}</AppThemeProvider>
+            </Router>
+          </HelmetProvider>
         </Provider>
       </StylesProvider>
     </Suspense>

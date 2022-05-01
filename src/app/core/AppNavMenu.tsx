@@ -3,7 +3,6 @@ import { Drawer, List, ListItemIcon, ListItemText, Divider } from "@material-ui/
 import classnames from "classnames";
 import ListItemLink from "lib/layout/ListItemLink";
 import Home from "@material-ui/icons/Home";
-import { WithWidth } from "lib/layout/WithWidth";
 import styled from "styled-components/macro";
 import { useUserData } from "lib/hooks/useUserData";
 import SongsNavMenu from "app/songs/menu/SongsNavMenu";
@@ -80,33 +79,25 @@ export function AppNavMenu(props: NavMenuProps) {
   const { navMenuHidden } = config;
 
   return (
-    <WithWidth>
-      {({ width }) => {
-        const shouldDrawerBeTemporary = width === "sm" || width === "xs" || width === "md";
-        const variant = shouldDrawerBeTemporary ? "temporary" : "permanent";
-        return (
-          <StyledDrawer
-            anchor={shouldDrawerBeTemporary ? undefined : "left"}
-            open={!navMenuHidden}
-            onClose={toggleNavMenu}
-            variant={variant}
-            classes={{
-              paper: classnames("drawerPaper", {
-                drawerPaperHidden: navMenuHidden,
-              }),
-            }}
-            ModalProps={{ keepMounted: true }}
-            className={classnames("print-hidden", {
-              drawerHidden: navMenuHidden,
-            })}
-          >
-            <NavMenuTitle>{config.appName}</NavMenuTitle>
-            <Divider />
-            <NavMenuItems />
-          </StyledDrawer>
-        );
+    <StyledDrawer
+      anchor={"left"}
+      open={!navMenuHidden}
+      onClose={toggleNavMenu}
+      variant={"permanent"}
+      classes={{
+        paper: classnames("drawerPaper", {
+          drawerPaperHidden: navMenuHidden,
+        }),
       }}
-    </WithWidth>
+      ModalProps={{ keepMounted: true }}
+      className={classnames("print-hidden", {
+        drawerHidden: navMenuHidden,
+      })}
+    >
+      <NavMenuTitle>TODO change me</NavMenuTitle>
+      <Divider />
+      <NavMenuItems />
+    </StyledDrawer>
   );
 }
 

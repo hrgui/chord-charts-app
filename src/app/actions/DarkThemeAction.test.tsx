@@ -3,7 +3,7 @@ import { renderWithAppController as render } from "testUtils/renderWithAppProvid
 import DarkThemeAction from "./DarkThemeAction";
 import { fireEvent } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
-import { CHORD_CHARTS_DARK_MODE_KEY } from "app/store/uiState";
+import { CHORD_CHARTS_DARK_MODE_KEY } from "app/old-store/uiState";
 
 afterEach(() => {
   window.localStorage.setItem(CHORD_CHARTS_DARK_MODE_KEY, "false");

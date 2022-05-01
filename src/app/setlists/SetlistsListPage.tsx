@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Table } from "lib/table/Table";
-import { useTitle } from "lib/hooks/useTitle";
 import { WithWidth, isWidthMobile } from "lib/layout/WithWidth";
 import SetlistTitleCell from "./cells/SetlistTitleCell";
 import MobileSetlistTitleCell from "./cells/MobileSetlistTitleCell";
@@ -175,8 +174,6 @@ export function SetlistListContainer({
 }
 
 const SetlistsListPage: React.SFC<SetlistsListPageProps> = () => {
-  useTitle("All Setlists", null);
-
   return <SetlistListContainer />;
 };
 

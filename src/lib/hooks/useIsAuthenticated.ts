@@ -1,5 +1,3 @@
-import { useStoreActions } from "app/store";
-
 export function useIsAuthenticated(): [boolean, boolean, any] {
   const { isLoading, data } = { isLoading: false, data: {} };
 

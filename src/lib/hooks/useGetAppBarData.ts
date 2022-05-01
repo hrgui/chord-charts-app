@@ -1,7 +1,7 @@
-import { useStoreState } from "app/store";
-
 export function useGetAppBarData() {
-  return useStoreState(state => state.uiState);
+  return {
+    page: { title: "TODO change me", subtitle: "TODO change me" },
+  };
 }
 
 export default useGetAppBarData;

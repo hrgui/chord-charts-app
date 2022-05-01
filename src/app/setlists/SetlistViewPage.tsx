@@ -1,8 +1,6 @@
 import * as React from "react";
-import { useSetPageLayout } from "lib/hooks/useSetPageLayout";
 import SetlistView from "./SetlistView";
 import { Loading } from "lib/layout/Loading";
-import { useTitle } from "lib/hooks/useTitle";
 
 interface SetlistViewPageProps {
   path?: string;
@@ -94,11 +92,6 @@ const SetlistViewPage: React.SFC<SetlistViewPageProps> = (props) => {
 
 export default (props) => {
   const { id, songIndex } = props.match.params;
-  const [loading] = useSetPageLayout("setlist", [id]);
-
-  if (loading) {
-    return null;
-  }
 
   return <SetlistViewPage id={id} songIndex={songIndex} {...props} />;
 };

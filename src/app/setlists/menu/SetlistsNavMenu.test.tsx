@@ -1,5 +1,5 @@
 import * as React from "react";
-import { renderWithAppController as render } from "testUtils/renderWithAppController";
+import { renderWithAppController as render } from "testUtils/renderWithAppProvider";
 import SetlistNavMenu from "./SetlistsNavMenu";
 
 test("it renders a list with setlist actions", () => {

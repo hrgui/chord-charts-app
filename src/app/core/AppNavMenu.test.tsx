@@ -1,11 +1,11 @@
 import * as React from "react";
-import { renderWithAppController as render } from "testUtils/renderWithAppController";
+import { renderWithAppController as render } from "testUtils/renderWithAppProvider";
 import AppNavMenu from "./AppNavMenu";
 
 it("should at least have the Dark theme switch and the name of the app", () => {
   const APP_NAME = "Chord Charts";
   const { getByText } = render(<AppNavMenu />, {
-    config: { appName: APP_NAME }
+    config: { appName: APP_NAME },
   });
   const el = getByText(/Dark theme/);
   expect(el).toBeInTheDocument();

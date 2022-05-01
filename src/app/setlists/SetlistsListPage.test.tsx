@@ -1,5 +1,5 @@
 import React from "react";
-import { renderWithAppController as render } from "testUtils/renderWithAppController";
+import { renderWithAppController as render } from "testUtils/renderWithAppProvider";
 import SetlistsListPage, { GET_SETLISTS_QUERY } from "./SetlistsListPage";
 import { waitFor } from "@testing-library/react";
 

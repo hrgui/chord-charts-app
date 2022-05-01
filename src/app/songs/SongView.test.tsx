@@ -1,7 +1,7 @@
 import React from "react";
 import SongView, { SongViewKey } from "./SongView";
 import { act } from "@testing-library/react";
-import { renderWithAppController as render } from "testUtils/renderWithAppController";
+import { renderWithAppController as render } from "testUtils/renderWithAppProvider";
 
 describe("SongView", () => {
   it("should be able to render a song if provided normally", () => {
@@ -16,9 +16,9 @@ describe("SongView", () => {
             key: "A",
             sections: [
               {
-                body: "A B C \r\n TEST SECTION 1"
-              }
-            ]
+                body: "A B C \r\n TEST SECTION 1",
+              },
+            ],
           }}
         />
       );
@@ -48,9 +48,9 @@ describe("SongView", () => {
             key: "A",
             sections: [
               {
-                body: "A B C \r\n TEST SECTION 1"
-              }
-            ]
+                body: "A B C \r\n TEST SECTION 1",
+              },
+            ],
           }}
         />
       );
@@ -81,12 +81,12 @@ describe("SongView", () => {
               key: "A",
               sections: [
                 {
-                  body: "A B C \r\n TEST SECTION 1"
+                  body: "A B C \r\n TEST SECTION 1",
                 },
                 {
-                  body: "D C E \r\n TEST SECTION 2"
-                }
-              ]
+                  body: "D C E \r\n TEST SECTION 2",
+                },
+              ],
             }}
           />
         );
@@ -110,9 +110,7 @@ describe("SongView", () => {
 describe("SongViewKey", () => {
   it("should be able to render without crashing, if all props provided", () => {
     const changeEvent = jest.fn();
-    const { queryByText } = render(
-      <SongViewKey overrideKey={"A"} onChange={changeEvent} />
-    );
+    const { queryByText } = render(<SongViewKey overrideKey={"A"} onChange={changeEvent} />);
     expect(queryByText("A")).not.toBeNull();
   });
 });

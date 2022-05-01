@@ -1,22 +1,20 @@
 import * as React from "react";
-import { renderWithAppController as render } from "testUtils/renderWithAppController";
+import { renderWithAppController as render } from "testUtils/renderWithAppProvider";
 import AppBar from "./AppBar";
 import { fireEvent } from "@testing-library/react";
 import { useStoreState } from "app/store";
 
 const observeMock = {
   observe: () => null,
-  disconnect: () => null // maybe not needed
+  disconnect: () => null, // maybe not needed
 };
 
 beforeEach(() => {
-  (window as any).IntersectionObserver = jest
-    .fn()
-    .mockImplementation(() => observeMock);
+  (window as any).IntersectionObserver = jest.fn().mockImplementation(() => observeMock);
 });
 
 function TestMenuStateDisplay() {
-  const navMenuHidden = useStoreState(state => state.uiState.navMenuHidden);
+  const navMenuHidden = useStoreState((state) => state.uiState.navMenuHidden);
   return <>{navMenuHidden ? "nav_menu_off" : "nav_menu_open"}</>;
 }
 
@@ -45,10 +43,10 @@ test("should render the user if it is present, it should bring up a menu when cl
       initialState: {
         auth: {
           user: {
-            displayName: "Zara"
-          }
-        }
-      }
+            displayName: "Zara",
+          },
+        },
+      },
     }
   );
   const el = getByText("Z");

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { renderWithAppController as render } from "testUtils/renderWithAppController";
+import { renderWithAppController as render } from "testUtils/renderWithAppProvider";
 import SongForm from "./SongForm";
 import { act } from "react-dom/test-utils";
 import { wait, fireEvent } from "@testing-library/react";
@@ -12,9 +12,7 @@ test("it should render a form without any values if given none", () => {
 
 it("should not allow any submits with everything empty", async () => {
   const onSubmit = jest.fn();
-  const { getByText, debug } = render(
-    <SongForm data={{}} onSubmit={onSubmit} />
-  );
+  const { getByText, debug } = render(<SongForm data={{}} onSubmit={onSubmit} />);
   const saveBtn = getByText(/Save/);
   expect(saveBtn).toBeInTheDocument();
   act(() => {
@@ -26,18 +24,11 @@ it("should not allow any submits with everything empty", async () => {
 
 test("it should render a form with values if given none initially but after was given values, and you can click on submit", async () => {
   const onSubmit = jest.fn();
-  const { getByText, rerender, debug } = render(
-    <SongForm data={{}} onSubmit={onSubmit} />
-  );
+  const { getByText, rerender, debug } = render(<SongForm data={{}} onSubmit={onSubmit} />);
   const saveBtn = getByText(/Save/);
   expect(saveBtn).toBeInTheDocument();
 
-  rerender(
-    <SongForm
-      data={{ title: "My Song", key: "C", artist: "Me" }}
-      onSubmit={onSubmit}
-    />
-  );
+  rerender(<SongForm data={{ title: "My Song", key: "C", artist: "Me" }} onSubmit={onSubmit} />);
 
   act(() => {
     fireEvent.click(saveBtn);
@@ -48,6 +39,6 @@ test("it should render a form with values if given none initially but after was 
   expect(onSubmit.mock.calls[0][0]).toEqual({
     title: "My Song",
     key: "C",
-    artist: "Me"
+    artist: "Me",
   });
 });

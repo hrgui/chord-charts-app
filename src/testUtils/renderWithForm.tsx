@@ -1,6 +1,6 @@
 import { Form } from "lib/form/Form";
 import React from "react";
-import { renderWithAppController as render } from "./renderWithAppController";
+import { renderWithAppController as render } from "./renderWithAppProvider";
 
 interface FormProps {
   initialValues: any;

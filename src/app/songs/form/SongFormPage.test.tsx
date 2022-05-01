@@ -1,10 +1,7 @@
 import * as React from "react";
-import { renderWithAppController as render } from "testUtils/renderWithAppController";
+import { renderWithAppController as render } from "testUtils/renderWithAppProvider";
 import { Route } from "react-router-dom";
-import SongFormPage, {
-  getNewSongTemplate,
-  CREATE_SONG_QUERY,
-} from "./SongFormPage";
+import SongFormPage, { getNewSongTemplate, CREATE_SONG_QUERY } from "./SongFormPage";
 import { fireEvent, wait } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 

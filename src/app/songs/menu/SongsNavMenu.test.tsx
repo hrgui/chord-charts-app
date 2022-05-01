@@ -1,5 +1,5 @@
 import * as React from "react";
-import { renderWithAppController as render } from "testUtils/renderWithAppController";
+import { renderWithAppController as render } from "testUtils/renderWithAppProvider";
 import SongsNavMenu from "./SongsNavMenu";
 
 test("it renders a list with song actions", () => {

@@ -1,6 +1,6 @@
 import React from "react";
 import ChordChartView from "./ChordChartView";
-import { renderWithAppController as render } from "testUtils/renderWithAppController";
+import { renderWithAppController as render } from "testUtils/renderWithAppProvider";
 
 test("basic usage", () => {
   const { queryByText } = render(<ChordChartView value={`A B C \n Test`} />);

@@ -1,7 +1,7 @@
 import React from "react";
 import { fireEvent } from "@testing-library/react";
 import { SetlistSongPagination } from "./SetlistSongPagination";
-import { renderWithAppController as render } from "testUtils/renderWithAppController";
+import { renderWithAppController as render } from "testUtils/renderWithAppProvider";
 
 test("prev clicked - onChange receives -1 to signal upstream to wrap", () => {
   const onChange = jest.fn();
@@ -42,9 +42,7 @@ test("page clicked - 8 - should get 7 for upstream, with rerender to 7 then user
   fireEvent.click(nextEl);
   expect(onChange).toHaveBeenCalledWith(7);
 
-  rerender(
-    <SetlistSongPagination currentIndex={7} length={10} onChange={onChange} />
-  );
+  rerender(<SetlistSongPagination currentIndex={7} length={10} onChange={onChange} />);
   fireEvent.click(getByTestId("next"));
   expect(onChange).toHaveBeenCalledWith(8);
 });

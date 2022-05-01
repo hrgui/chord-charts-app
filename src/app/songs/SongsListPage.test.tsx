@@ -1,5 +1,5 @@
 import React from "react";
-import { renderWithAppController as render } from "testUtils/renderWithAppController";
+import { renderWithAppController as render } from "testUtils/renderWithAppProvider";
 import SongsListPage, { GET_SONGS_QUERY } from "./SongsListPage";
 import { waitFor } from "@testing-library/react";
 import { act } from "react-dom/test-utils";

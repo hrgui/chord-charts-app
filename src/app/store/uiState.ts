@@ -8,7 +8,7 @@ function getViewportWidth() {
 export enum NavBarState {
   main = "main",
   setlist = "setlist",
-  song = "song"
+  song = "song",
 }
 
 export interface UiStateModel {
@@ -37,7 +37,7 @@ const model: UiStateModel = {
   appName: "",
   page: {
     title: "",
-    subtitle: null
+    subtitle: null,
   },
   widthBreakpoint: null,
   isSticky: false,
@@ -80,23 +80,7 @@ const model: UiStateModel = {
     if (subtitle !== undefined) {
       state.page.subtitle = subtitle;
     }
-  })
+  }),
 };
-
-// TODO: the API changed for listen, I think I have to use actionOn
-// model.listeners = listen(on => {
-//   on(
-//     model.setWidthBreakpoint,
-//     action((state: any) => {
-//       if (
-//         state.widthBreakpoint === "sm" ||
-//         state.widthBreakpoint === "xs" ||
-//         state.widthBreakpoint === "md"
-//       ) {
-//         state.navMenuHidden = true;
-//       }
-//     })
-//   );
-// });
 
 export default model;

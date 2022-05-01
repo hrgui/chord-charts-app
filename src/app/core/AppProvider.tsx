@@ -1,10 +1,12 @@
 import React, { Suspense } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import { StylesProvider } from "@material-ui/styles";
-
 import { BrowserRouter } from "react-router-dom";
-import { AppThemeProvider } from "./AppThemeProvider";
 import { StoreProvider } from "easy-peasy";
+
+import { store } from "app/store/store";
+import { Provider } from "react-redux";
+import { AppThemeProvider } from "./AppThemeProvider";
 import { configureStore } from "app/store";
 import PageLoading from "lib/layout/PageLoading";
 
@@ -18,7 +20,7 @@ interface AppControllerProps {
   componentProviderOverrides?;
 }
 
-export function AppController({
+export function AppProvider({
   children,
   store = configureStore(),
   initialState = null,
@@ -42,16 +44,18 @@ export function AppController({
   return (
     <Suspense fallback={<PageLoading />}>
       <StylesProvider injectFirst>
-        <StoreProvider store={store}>
-          <HelmetProvider>
-            <Router history={history}>
-              <AppThemeProvider>{children}</AppThemeProvider>
-            </Router>
-          </HelmetProvider>
-        </StoreProvider>
+        <Provider store={store}>
+          <StoreProvider store={store}>
+            <HelmetProvider>
+              <Router history={history}>
+                <AppThemeProvider>{children}</AppThemeProvider>
+              </Router>
+            </HelmetProvider>
+          </StoreProvider>
+        </Provider>
       </StylesProvider>
     </Suspense>
   );
 }
 
-export default AppController;
+export default AppProvider;

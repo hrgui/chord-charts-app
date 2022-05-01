@@ -2,12 +2,11 @@ import React, { useEffect } from "react";
 import { Route, Redirect } from "react-router-dom";
 import Loading from "lib/layout/PageLoading";
 import { useIsAuthenticated } from "../hooks/useIsAuthenticated";
-import { useSnackbar } from "notistack";
 import { useTranslation } from "react-i18next";
 
 export function ProtectedRoute({ component: Component, ...rest }) {
   const [isLoading, hasAuth, user] = useIsAuthenticated();
-  const { enqueueSnackbar } = useSnackbar();
+  const enqueueSnackbar = () => {};
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -17,7 +16,7 @@ export function ProtectedRoute({ component: Component, ...rest }) {
 
     if (user.isNewUser) {
       enqueueSnackbar(t("newUser/sign_up_plz"), {
-        key: "auth"
+        key: "auth",
       });
     }
 
@@ -33,13 +32,13 @@ export function ProtectedRoute({ component: Component, ...rest }) {
   return (
     <Route
       {...rest}
-      render={props => {
+      render={(props) => {
         if (!hasAuth) {
           return (
             <Redirect
               to={{
                 pathname: "/login",
-                state: { redirect: props.location }
+                state: { redirect: props.location },
               }}
             />
           );
@@ -49,7 +48,7 @@ export function ProtectedRoute({ component: Component, ...rest }) {
           return (
             <Redirect
               to={{
-                pathname: "/group/signup"
+                pathname: "/group/signup",
               }}
             />
           );

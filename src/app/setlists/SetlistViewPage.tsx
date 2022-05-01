@@ -3,7 +3,6 @@ import { useSetPageLayout } from "lib/hooks/useSetPageLayout";
 import SetlistView from "./SetlistView";
 import { Loading } from "lib/layout/Loading";
 import { useTitle } from "lib/hooks/useTitle";
-import { useSnackbar } from "notistack";
 
 interface SetlistViewPageProps {
   path?: string;
@@ -27,7 +26,7 @@ function prepareValues({ id, __typename, ...other }) {
 }
 
 const SetlistViewPage: React.SFC<SetlistViewPageProps> = (props) => {
-  const { enqueueSnackbar } = useSnackbar();
+  const enqueueSnackbar = () => {};
   let { loading: isLoading, error: isError, data } = { loading: false, error: null, data: {} };
 
   data = data?.setlist;

@@ -9,7 +9,6 @@ import ConnectedYoutubeView from "../components/YoutubeView";
 import classnames from "classnames";
 import { WithWidth } from "lib/layout/WithWidth";
 import FormActions from "lib/form/FormActions";
-import ShareBarField from "app/share/ShareBarField";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import { ErrorMessage } from "formik";
@@ -85,16 +84,16 @@ const StyledConnectedYoutubeView = styled(ConnectedYoutubeView)`
 
 const useStyles = makeStyles((theme: Theme) => ({
   field: {
-    marginBottom: theme.spacing(1)
+    marginBottom: theme.spacing(1),
   },
   card: {
     padding: theme.spacing(2),
-    marginBottom: theme.spacing(2)
+    marginBottom: theme.spacing(2),
   },
   cardFirst: {
     padding: theme.spacing(2),
-    paddingBottom: 0
-  }
+    paddingBottom: 0,
+  },
 }));
 
 export const SongForm = (props: SongFormProps) => {
@@ -105,7 +104,7 @@ export const SongForm = (props: SongFormProps) => {
   const validationSchema = Yup.object({
     title: Yup.string().required(),
     artist: Yup.string().required(),
-    key: Yup.string().required()
+    key: Yup.string().required(),
   });
 
   if (isLoading) {
@@ -131,10 +130,9 @@ export const SongForm = (props: SongFormProps) => {
             <>
               <form>
                 <Container>
-                  <ShareBarField name="share" />
                   <SongFormCard
                     className={classnames(classes.cardFirst, {
-                      "SongFormCard-mobile": !(width === "lg" || width === "xl")
+                      "SongFormCard-mobile": !(width === "lg" || width === "xl"),
                     })}
                   >
                     <TitleAndArtistFieldSet>
@@ -164,11 +162,8 @@ export const SongForm = (props: SongFormProps) => {
                     <StyledConnectedYoutubeView
                       className={classnames({
                         "ConnectedYoutubeView-tablet": width === "md",
-                        "ConnectedYoutubeView-mobile":
-                          width === "sm" || width === "xs",
-                        "ConnectedYoutubeView-breakout": !(
-                          width === "lg" || width === "xl"
-                        )
+                        "ConnectedYoutubeView-mobile": width === "sm" || width === "xs",
+                        "ConnectedYoutubeView-breakout": !(width === "lg" || width === "xl"),
                       })}
                       value={values.youtube}
                     />
@@ -180,11 +175,7 @@ export const SongForm = (props: SongFormProps) => {
                       label={t("song:label/youtube")}
                       name="youtube"
                     />
-                    <ChipInputField
-                      fullWidth
-                      label={t("song:label/tags")}
-                      name="tags"
-                    />
+                    <ChipInputField fullWidth label={t("song:label/tags")} name="tags" />
                   </Paper>
                   <SongSectionsField name="sections" />
                   <FormActions>

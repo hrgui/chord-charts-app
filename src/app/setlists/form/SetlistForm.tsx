@@ -1,17 +1,9 @@
 import React from "react";
-import {
-  Button,
-  Paper,
-  DialogActions,
-  Table,
-  TableBody,
-  Dialog,
-} from "@material-ui/core";
+import { Button, Paper, DialogActions, Table, TableBody, Dialog } from "@material-ui/core";
 import { TextField } from "lib/form/TextField";
 import styled from "styled-components";
 import FormActions from "lib/form/FormActions";
 import { Form } from "lib/form/Form";
-import ShareBarField from "app/share/ShareBarField";
 import { FieldArray } from "formik";
 import SetlistSongFieldRow, { NoSongsRow } from "./SetlistSongFieldRow";
 import { useTranslation } from "react-i18next";
@@ -61,30 +53,11 @@ export const SetlistForm = (props: ISetlistFormProps) => {
     >
       {({ handleSubmit, values, setFieldValue }) => (
         <Container>
-          <ShareBarField name="share" />
           <FormCard>
-            <TextField
-              fullWidth
-              label={t("setlist:form/label/date")}
-              name="date"
-              type="date"
-            />
-            <TextField
-              fullWidth
-              label={t("setlist:form/label/title")}
-              name="title"
-            />
-            <TextField
-              fullWidth
-              label={t("setlist:form/label/leader")}
-              name="leader"
-            />
-            <TextField
-              multiline
-              fullWidth
-              label={t("setlist:form/label/notes")}
-              name="notes"
-            />
+            <TextField fullWidth label={t("setlist:form/label/date")} name="date" type="date" />
+            <TextField fullWidth label={t("setlist:form/label/title")} name="title" />
+            <TextField fullWidth label={t("setlist:form/label/leader")} name="leader" />
+            <TextField multiline fullWidth label={t("setlist:form/label/notes")} name="notes" />
           </FormCard>
           <FormCard>
             <FormHeader>{t("setlist:form/label/songs")}</FormHeader>

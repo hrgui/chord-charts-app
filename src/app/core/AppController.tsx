@@ -4,7 +4,6 @@ import { StylesProvider } from "@material-ui/styles";
 
 import { BrowserRouter } from "react-router-dom";
 import { AppThemeProvider } from "./AppThemeProvider";
-import { SnackbarProvider } from "notistack";
 import { StoreProvider } from "easy-peasy";
 import { configureStore } from "app/store";
 import PageLoading from "lib/layout/PageLoading";
@@ -47,9 +46,7 @@ export function AppController({
         <StoreProvider store={store}>
           <HelmetProvider>
             <Router history={history}>
-              <AppThemeProvider>
-                <SnackbarProvider>{children}</SnackbarProvider>
-              </AppThemeProvider>
+              <AppThemeProvider>{children}</AppThemeProvider>
             </Router>
           </HelmetProvider>
         </StoreProvider>

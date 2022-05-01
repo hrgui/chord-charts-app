@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, Redirect, useLocation } from "react-router-dom";
+import { Switch, Redirect, useLocation } from "react-router-dom";
 import { ProtectedRoute } from "lib/router/ProtectedRoute";
 import SongsListPage from "app/songs/SongsListPage";
 import SetlistsListPage from "app/setlists/SetlistsListPage";

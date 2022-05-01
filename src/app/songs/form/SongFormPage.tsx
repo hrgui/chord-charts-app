@@ -1,10 +1,7 @@
 import * as React from "react";
 import { SongForm } from "./SongForm";
 import { prepareInputForMutation } from "lib/form/prepareInputForMutation";
-import { useSnackbar } from "notistack";
 import { useUserData } from "lib/hooks/useUserData";
-import { useMutation, gql, useQuery } from "@apollo/client";
-import SongFragment from "../SongFragment";
 import { useTranslation } from "react-i18next";
 import { useParams, useHistory } from "react-router-dom";
 
@@ -17,7 +14,7 @@ export interface SongFormPageProps {
 
 const SongEditPage: React.SFC<SongFormPageProps> = (props) => {
   const { t } = useTranslation();
-  const { enqueueSnackbar } = useSnackbar();
+  const enqueueSnackbar = () => {};
   const updateSong = () => {};
   // TODO
   const loading = false;
@@ -78,7 +75,7 @@ export function getNewSongTemplate(currentGroupId) {
 
 const SongNewPage: React.SFC<SongFormPageProps> = (props) => {
   const { t } = useTranslation();
-  const { enqueueSnackbar } = useSnackbar();
+  const enqueueSnackbar = () => {};
   // const [createSong] = useMutation(CREATE_SONG_QUERY, {
   //   refetchQueries: ["getSongs"],
   // });

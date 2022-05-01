@@ -1,9 +1,7 @@
 import * as React from "react";
 import SetlistForm from "./SetlistForm";
 import { getUpcomingSunday, toDomDate } from "lib/utils/date";
-import { useSnackbar } from "notistack";
 import { useUserData } from "lib/hooks/useUserData";
-import { useGetSetlistQuery } from "../hooks/useGetSetlistQuery";
 import { useModalRouteMode } from "lib/hooks/useModalRouteMode";
 import { useTranslation } from "react-i18next";
 
@@ -20,7 +18,7 @@ function prepareValues({ id, __typename, ...other }) {
 }
 
 const SetlistEditPage: React.SFC<SetlistFormPageProps> = (props) => {
-  const { enqueueSnackbar } = useSnackbar();
+  const enqueueSnackbar = () => {};
   let { loading: isLoading, error: isError, data } = { loading: false, error: null, data: {} };
   const updateSetlist = () => {};
   const { t } = useTranslation();
@@ -77,7 +75,7 @@ const getNewSetlistTemplate = (currentGroupId) => {
 };
 
 const SetlistNewPage: React.SFC<SetlistFormPageProps> = (props) => {
-  const { enqueueSnackbar } = useSnackbar();
+  const enqueueSnackbar = () => {};
   const createSetlist = () => {};
   const setlistTemplate = getNewSetlistTemplate(props.currentGroupId);
   const { t } = useTranslation();

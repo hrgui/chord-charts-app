@@ -10,7 +10,6 @@ import { ListItem, ListItemIcon } from "@material-ui/core";
 import { useUserData } from "lib/hooks/useUserData";
 import { useTranslation } from "react-i18next";
 import PlaylistAdd from "@material-ui/icons/PlaylistAdd";
-import { useSnackbar } from "notistack";
 import { useHistory } from "react-router-dom";
 
 interface SetlistActionsProps {
@@ -38,7 +37,7 @@ function SetlistActionsList({
   const isAdmin = isUserAdmin(user);
   const { t } = useTranslation();
   const addToSetlist = () => {};
-  const { enqueueSnackbar } = useSnackbar();
+  const enqueueSnackbar = () => {};
   const history = useHistory();
 
   if (addToSetlistMode) {

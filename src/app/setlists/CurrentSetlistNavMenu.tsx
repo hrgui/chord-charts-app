@@ -1,23 +1,14 @@
 import * as React from "react";
-import {
-  List,
-  ListItemText,
-  ListItem,
-  ListItemIcon,
-  Divider,
-} from "@material-ui/core";
+import { List, ListItemText, ListItem, ListItemIcon, Divider } from "@material-ui/core";
 import Edit from "@material-ui/icons/Edit";
 import ListItemLink from "lib/layout/ListItemLink";
 import { ListSubheader } from "lib/layout/ListSubheader";
 import { isUserAdmin } from "../user/userUtils";
 import Delete from "@material-ui/icons/Delete";
 import { useUserData } from "lib/hooks/useUserData";
-import { useQuery } from "@apollo/client";
-import gql from "graphql-tag";
 import { Skeleton } from "@material-ui/lab";
 import ChordSelect from "app/songs/components/ChordSelect";
 import UntrackedSettings from "@material-ui/icons/CallMerge";
-import useDeleteSetlistMutation from "./hooks/useDeleteSetlistMutation";
 import { useTranslation } from "react-i18next";
 
 export function CurrentSetlistNavMenuPlaceholder() {
@@ -35,18 +26,7 @@ export interface CurrentSetlistNavMenuProps {
 
 export function SetlistNavigation({ id, songs, settings, onChangeSettings }) {
   const { t } = useTranslation();
-  const { data, loading } = useQuery(
-    gql`
-      query getSetlistSongs($id: ID!) {
-        songs: setlistSongs(id: $id) {
-          id
-          title
-          key
-        }
-      }
-    `,
-    { variables: { id } }
-  );
+  const { data, loading } = { data: {}, loading: false };
 
   const fetchedSongs = data && data.songs;
 
@@ -68,15 +48,10 @@ export function SetlistNavigation({ id, songs, settings, onChangeSettings }) {
               <Skeleton width={Math.floor(Math.random() * 426)} height={16} />
             ) : (
               <>
-                <ListItemText
-                  primary={`${hidx}. ${fetchedSong?.title}`}
-                ></ListItemText>
+                <ListItemText primary={`${hidx}. ${fetchedSong?.title}`}></ListItemText>
                 <ChordSelect
                   onChange={(e) => handleChangeSettings(e.target.value, sid)}
-                  value={
-                    (settings[sid] && settings[sid].overrideKey) ||
-                    fetchedSong.key
-                  }
+                  value={(settings[sid] && settings[sid].overrideKey) || fetchedSong.key}
                 />
               </>
             )}

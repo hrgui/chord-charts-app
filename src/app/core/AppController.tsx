@@ -1,7 +1,6 @@
 import React, { Suspense } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import { StylesProvider } from "@material-ui/styles";
-import { ApolloProvider as RealApolloProvider } from "@apollo/client";
 
 import { BrowserRouter } from "react-router-dom";
 import { AppThemeProvider } from "./AppThemeProvider";
@@ -41,10 +40,6 @@ export function AppController({
   const Router = !componentProviderOverrides.Router
     ? BrowserRouter
     : componentProviderOverrides.Router;
-
-  const ApolloProvider = !componentProviderOverrides.ApolloProvider
-    ? RealApolloProvider
-    : componentProviderOverrides.ApolloProvider;
 
   return (
     <Suspense fallback={<PageLoading />}>

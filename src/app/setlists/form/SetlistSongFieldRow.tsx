@@ -1,13 +1,5 @@
 import * as React from "react";
-import {
-  IconButton,
-  ButtonGroup,
-  TableRow,
-  TableCell,
-  makeStyles,
-  Theme,
-} from "@material-ui/core";
-import { useGetSongQuery } from "app/songs/hooks/useGetSongQuery";
+import { IconButton, ButtonGroup, TableRow, TableCell, makeStyles, Theme } from "@material-ui/core";
 import ChordSelect from "app/songs/components/ChordSelect";
 import { Skeleton } from "@material-ui/lab";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
@@ -34,12 +26,8 @@ export default function SetlistSongFieldRow(props: ISetlistSongFieldRowProps) {
     return (
       <TableRow>
         <TableCell>{index + 1}.</TableCell>
-        <TableCell>
-          {<Skeleton width={Math.floor(Math.random() * 100)} height={16} />}
-        </TableCell>
-        <TableCell>
-          {<Skeleton width={Math.floor(Math.random() * 75)} height={16} />}
-        </TableCell>
+        <TableCell>{<Skeleton width={Math.floor(Math.random() * 100)} height={16} />}</TableCell>
+        <TableCell>{<Skeleton width={Math.floor(Math.random() * 75)} height={16} />}</TableCell>
         <TableCell>{<Skeleton width={50} height={16} />}</TableCell>
         <TableCell>{<Skeleton width={200} height={16} />}</TableCell>
       </TableRow>
@@ -52,10 +40,7 @@ export default function SetlistSongFieldRow(props: ISetlistSongFieldRowProps) {
       <TableCell>{song?.title?.toUpperCase() || songId}</TableCell>
       <TableCell>{song?.artist}</TableCell>
       <TableCell>
-        <ChordSelect
-          value={settings?.overrideKey || song?.key}
-          onChange={onSongKeyChange}
-        />
+        <ChordSelect value={settings?.overrideKey || song?.key} onChange={onSongKeyChange} />
       </TableCell>
       <TableCell>
         <ButtonGroup>

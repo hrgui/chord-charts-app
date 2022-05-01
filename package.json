@@ -23,9 +23,6 @@
     ]
   },
   "devDependencies": {
-    "@apollo/client": "^3.0.0-beta.41",
-    "@apollo/link-context": "^2.0.0-beta.3",
-    "@apollo/react-hooks": "^3.1.3",
     "@firebase/component": "^0.1.8",
     "@hrgui/chord-charts": "^2.1.0",
     "@material-ui/core": "^4.11.3",

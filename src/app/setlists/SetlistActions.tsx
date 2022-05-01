@@ -8,10 +8,8 @@ import Pageview from "@material-ui/icons/Pageview";
 import { isUserAdmin } from "../user/userUtils";
 import { ListItem, ListItemIcon } from "@material-ui/core";
 import { useUserData } from "lib/hooks/useUserData";
-import useDeleteSetlistMutation from "./hooks/useDeleteSetlistMutation";
 import { useTranslation } from "react-i18next";
 import PlaylistAdd from "@material-ui/icons/PlaylistAdd";
-import useAddToSetlistMutation from "./hooks/useAddToSetlistMutation";
 import { useSnackbar } from "notistack";
 import { useHistory } from "react-router-dom";
 
@@ -36,10 +34,10 @@ function SetlistActionsList({
   onRequestClose?;
 }) {
   const user = useUserData();
-  const [deleteSetlist] = useDeleteSetlistMutation();
+  const deleteSetlist = () => {};
   const isAdmin = isUserAdmin(user);
   const { t } = useTranslation();
-  const [addToSetlist] = useAddToSetlistMutation(id, song_id);
+  const addToSetlist = () => {};
   const { enqueueSnackbar } = useSnackbar();
   const history = useHistory();
 

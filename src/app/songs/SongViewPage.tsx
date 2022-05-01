@@ -4,7 +4,6 @@ import { useTitle } from "lib/hooks/useTitle";
 import { useParams } from "react-router-dom";
 import Loading from "lib/layout/Loading";
 import SongView from "./SongView";
-import { useGetSongQuery } from "./hooks/useGetSongQuery";
 
 interface SongViewContainerProps {
   id?: string;
@@ -15,7 +14,7 @@ interface SongViewContainerProps {
 }
 
 export const SongViewContainer: React.SFC<SongViewContainerProps> = (props) => {
-  const { loading: isLoading, error: isError, data } = useGetSongQuery(props.id);
+  const { loading: isLoading, error: isError, data } = { loading: false, error: null, data: {} };
   const { isInSetlist, isActiveInSetlist, settings, onChangeSettings = () => null } = props;
   useTitle(`View Song: ${isLoading ? props.id : data?.song.title}`);
 

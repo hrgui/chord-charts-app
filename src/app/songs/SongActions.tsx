@@ -8,7 +8,6 @@ import Pageview from "@material-ui/icons/Pageview";
 import { isUserAdmin } from "../user/userUtils";
 import { ListItem, ListItemIcon } from "@material-ui/core";
 import { useUserData } from "lib/hooks/useUserData";
-import useDeleteSongMutation from "./hooks/useDeleteSongMutation";
 import { useTranslation } from "react-i18next";
 import PlaylistAdd from "@material-ui/icons/PlaylistAdd";
 import { useLocation } from "react-router-dom";
@@ -21,7 +20,7 @@ interface SongActionsProps {
 
 function SongActionsList({ id, addToSetlistMode }: { id?; addToSetlistMode? }) {
   const user = useUserData();
-  const [deleteSetlist] = useDeleteSongMutation();
+  const deleteSetlist = () => {};
   const isAdmin = isUserAdmin(user);
   const { t } = useTranslation();
   const location = useLocation();
@@ -85,10 +84,7 @@ const SongActions: React.SFC<SongActionsProps> = (props) => {
 
   return (
     <ActionsMenu>
-      <SongActionsList
-        id={props.song.id}
-        addToSetlistMode={props.addToSetlistMode}
-      />
+      <SongActionsList id={props.song.id} addToSetlistMode={props.addToSetlistMode} />
     </ActionsMenu>
   );
 };

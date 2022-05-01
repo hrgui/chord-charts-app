@@ -6,13 +6,6 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import classnames from "classnames";
 import styled from "styled-components/macro";
-import { UserAvatar } from "../user/UserAvatar";
-import ConnectedUserGroupSelector from "../user/UserGroupSelector";
-import UserMenu from "../user/UserMenu";
-import { Menu } from "lib/layout/Menu";
-import { WithWidth } from "lib/layout/WithWidth";
-import { useUserData } from "lib/hooks/useUserData";
-import useMenuSetup from "lib/hooks/useMenuSetup";
 import { useGetAppBarData } from "lib/hooks/useGetAppBarData";
 import { useAppBarActions } from "lib/hooks/useAppBarActions";
 
@@ -54,10 +47,7 @@ function useIntersection(options) {
       return;
     }
 
-    const observer = new IntersectionObserver(
-      entries => setEntry(entries[0]),
-      options
-    );
+    const observer = new IntersectionObserver((entries) => setEntry(entries[0]), options);
     observer.observe(elRef.current as any);
     return () => observer.disconnect();
   }, [options]);
@@ -97,14 +87,7 @@ const RightSide = styled.div`
 `;
 
 export const AppBar = (props: NavBarProps) => {
-  const {
-    navMenuHidden = false,
-    onShowNavMenu,
-    onHideNavMenu,
-    title,
-    userPanel,
-    state
-  } = props;
+  const { navMenuHidden = false, onShowNavMenu, onHideNavMenu, title, userPanel, state } = props;
   const hasDualBar = state === "song" || state === "setlist";
   const { observerEntry, elRef } = useIntersection({ threshold: 1 });
   const { setStickyState } = useAppBarActions();
@@ -134,7 +117,7 @@ export const AppBar = (props: NavBarProps) => {
         position={"sticky"}
         color="primary"
         className={classnames("print-hidden", {
-          "AppBar-isTopBar": hasDualBar
+          "AppBar-isTopBar": hasDualBar,
         })}
       >
         <div ref={elRef} />
@@ -156,57 +139,6 @@ export const AppBar = (props: NavBarProps) => {
   );
 };
 
-const UserMenuChildren = styled.div`
-  padding-left: ${({ theme }) => theme.spacing(2)}px;
-  padding-right: ${({ theme }) => theme.spacing(2)}px;
-`;
-
-const ConnectedUserPanel = styled((props: any) => {
-  const user = useUserData();
-  const { isOpen, anchorEl, handleClick, handleClose }: any = useMenuSetup();
-
-  if (!user) {
-    return null;
-  }
-
-  return (
-    <WithWidth>
-      {({ width }) => {
-        return (
-          <div className={props.className}>
-            <UserAvatar
-              style={{ cursor: "pointer" }}
-              onClick={handleClick}
-              photoURL={user.photoURL}
-              displayName={user.displayName}
-            />
-            <Menu anchorEl={anchorEl} open={isOpen} onClose={handleClose}>
-              <UserMenuChildren>
-                <ConnectedUserGroupSelector />
-              </UserMenuChildren>
-              <UserMenu onItemClick={handleClose} />
-            </Menu>
-          </div>
-        );
-      }}
-    </WithWidth>
-  );
-})`
-  display: flex;
-
-  & .groupSelectorInAppBar {
-    color: inherit;
-    border-bottom-color: inherit;
-    &:before {
-      border-bottom-color: inherit;
-    }
-
-    & svg {
-      color: inherit;
-    }
-  }
-`;
-
 const ConnectedAppBar = (props: NavBarProps) => {
   const config = useGetAppBarData();
   const { toggleNavMenu } = useAppBarActions();
@@ -216,7 +148,7 @@ const ConnectedAppBar = (props: NavBarProps) => {
   }
 
   const {
-    page: { title, subtitle }
+    page: { title, subtitle },
   } = config;
   return (
     <>
@@ -228,7 +160,6 @@ const ConnectedAppBar = (props: NavBarProps) => {
         navMenuHidden={config.navMenuHidden}
         onShowNavMenu={toggleNavMenu}
         onHideNavMenu={toggleNavMenu}
-        userPanel={<ConnectedUserPanel />}
       />
     </>
   );

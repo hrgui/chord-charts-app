@@ -3,7 +3,6 @@ import { List, ListItemText, ListItem, ListItemIcon, Divider } from "@material-u
 import Edit from "@material-ui/icons/Edit";
 import ListItemLink from "lib/layout/ListItemLink";
 import { ListSubheader } from "lib/layout/ListSubheader";
-import { isUserAdmin } from "../user/userUtils";
 import Delete from "@material-ui/icons/Delete";
 import { useUserData } from "lib/hooks/useUserData";
 import { Skeleton } from "@material-ui/lab";
@@ -73,8 +72,7 @@ export function CurrentSetlistNavMenu(props: CurrentSetlistNavMenuProps) {
   const { t } = useTranslation();
   const { id, songs = [] } = props.setlist;
   const user = useUserData();
-  const [deleteSetlist] = useDeleteSetlistMutation();
-  const isAdmin = isUserAdmin(user);
+  const deleteSetlist = () => {};
 
   return (
     <List dense>

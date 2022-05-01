@@ -5,7 +5,6 @@ import ActionsMenu from "lib/table/ActionsMenu";
 import Delete from "@material-ui/icons/Delete";
 import Edit from "@material-ui/icons/Edit";
 import Pageview from "@material-ui/icons/Pageview";
-import { isUserAdmin } from "../user/userUtils";
 import { ListItem, ListItemIcon } from "@material-ui/core";
 import { useUserData } from "lib/hooks/useUserData";
 import { useTranslation } from "react-i18next";
@@ -34,7 +33,6 @@ function SetlistActionsList({
 }) {
   const user = useUserData();
   const deleteSetlist = () => {};
-  const isAdmin = isUserAdmin(user);
   const { t } = useTranslation();
   const addToSetlist = () => {};
   const enqueueSnackbar = () => {};
@@ -91,27 +89,25 @@ function SetlistActionsList({
         </ListItemIcon>
         <ListItemText primary={t("edit")} />
       </ListItemLink>
-      {isAdmin && (
-        <ListItem
-          button
-          onClick={async () => {
-            const { extensions } = await deleteSetlist({
-              variables: { id: id },
-            });
+      <ListItem
+        button
+        onClick={async () => {
+          const { extensions } = await deleteSetlist({
+            variables: { id: id },
+          });
 
-            if (extensions && extensions.cancelled) {
-              return;
-            }
+          if (extensions && extensions.cancelled) {
+            return;
+          }
 
-            window.location.href = "/setlists";
-          }}
-        >
-          <ListItemIcon>
-            <Delete />
-          </ListItemIcon>
-          <ListItemText primary={t("delete")} />
-        </ListItem>
-      )}
+          window.location.href = "/setlists";
+        }}
+      >
+        <ListItemIcon>
+          <Delete />
+        </ListItemIcon>
+        <ListItemText primary={t("delete")} />
+      </ListItem>
     </List>
   );
 }

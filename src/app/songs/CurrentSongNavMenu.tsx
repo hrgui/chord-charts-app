@@ -6,7 +6,6 @@ import ToggleOff from "@material-ui/icons/ToggleOffOutlined";
 import ToggleOn from "@material-ui/icons/ToggleOn";
 import ListItemLink from "lib/layout/ListItemLink";
 import { ListSubheader } from "lib/layout/ListSubheader";
-import { isUserAdmin } from "../user/userUtils";
 import { useUserData } from "lib/hooks/useUserData";
 import { useGlobalSongSettings } from "lib/hooks/useGlobalSongSettings";
 import { useGlobalSongActions } from "lib/hooks/useGlobalSongActions";
@@ -74,7 +73,6 @@ export interface CurrentSongNavMenuProps {
 export function CurrentSongNavMenu(props: CurrentSongNavMenuProps) {
   const { t } = useTranslation();
   const user = useUserData() || {};
-  const isAdmin = isUserAdmin(user);
   const deleteSong = () => {};
   const { youtubeHidden: isVideoHidden } = useGlobalSongSettings() || {};
   const { toggleYoutube } = useGlobalSongActions() || {};
@@ -100,26 +98,24 @@ export function CurrentSongNavMenu(props: CurrentSongNavMenuProps) {
         </ListItemIcon>
         <ListItemText primary={t("edit")} />
       </ListItemLink>
-      {isAdmin && (
-        <ListItem
-          button
-          onClick={async () => {
-            const { extensions } = await deleteSong({ variables: { id: id } });
-            toggleControlsPanel();
+      <ListItem
+        button
+        onClick={async () => {
+          const { extensions } = await deleteSong({ variables: { id: id } });
+          toggleControlsPanel();
 
-            if (extensions && extensions.cancelled) {
-              return;
-            }
+          if (extensions && extensions.cancelled) {
+            return;
+          }
 
-            window.location.href = "/songs";
-          }}
-        >
-          <ListItemIcon>
-            <Delete />
-          </ListItemIcon>
-          <ListItemText primary={t("delete")} />
-        </ListItem>
-      )}
+          window.location.href = "/songs";
+        }}
+      >
+        <ListItemIcon>
+          <Delete />
+        </ListItemIcon>
+        <ListItemText primary={t("delete")} />
+      </ListItem>
       <Divider />
       <ListItem
         button

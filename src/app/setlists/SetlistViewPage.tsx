@@ -49,7 +49,7 @@ const SetlistViewPage: React.SFC<SetlistViewPageProps> = (props) => {
       variables: { id: props.id, data: prepareValues(_data) },
     });
 
-    enqueueSnackbar(`Setlist ${data.title || data.id} has been saved.`, {
+    enqueueSnackbar(`Setlist ${data.title || data._id} has been saved.`, {
       variant: "success",
     });
     setIsSavingSettings(false);

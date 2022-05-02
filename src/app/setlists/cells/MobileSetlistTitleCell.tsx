@@ -18,7 +18,7 @@ class MobileSetlistTitleCell extends React.Component<any, any> {
     const { data } = this.props;
     return (
       <Container>
-        <Link to={`/setlist/${data.id}`}>{data.title}</Link>
+        <Link to={`/setlist/${data._id}`}>{data.title}</Link>
         <div>{data.date && toDomDate(data.date)}</div>
         <div>{data.leader && data.leader}</div>
       </Container>

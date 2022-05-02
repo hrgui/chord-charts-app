@@ -9,7 +9,7 @@ interface SetlistTitleCellProps {
 class SetlistTitleCell extends React.Component<any, any> {
   render() {
     const { value, data } = this.props;
-    return <Link to={`/setlist/${data.id}`}>{value}</Link>;
+    return <Link to={`/setlist/${data._id}`}>{value}</Link>;
   }
 }
 

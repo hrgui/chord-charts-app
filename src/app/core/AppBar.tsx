@@ -89,16 +89,6 @@ const RightSide = styled.div`
 export const AppBar = (props: NavBarProps) => {
   const { navMenuHidden = false, onShowNavMenu, onHideNavMenu, title, userPanel, state } = props;
   const hasDualBar = state === "song" || state === "setlist";
-  const { observerEntry, elRef } = useIntersection({ threshold: 1 });
-  const { setStickyState } = useAppBarActions();
-  const isSingle = !(observerEntry as any).isIntersecting;
-
-  React.useEffect(() => {
-    setStickyState(isSingle);
-    return () => {
-      setStickyState(false);
-    };
-  }, [isSingle, setStickyState]);
 
   const leftIcon = (
     <StyledIconButton
@@ -120,7 +110,6 @@ export const AppBar = (props: NavBarProps) => {
           "AppBar-isTopBar": hasDualBar,
         })}
       >
-        <div ref={elRef} />
         <Toolbar>
           <TopBarContent>
             {leftIcon}

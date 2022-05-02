@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "app/counter/counterSlice";
+import uiStateReducer from "./core/uiStateSlice";
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
+    uiState: uiStateReducer,
   },
 });
 

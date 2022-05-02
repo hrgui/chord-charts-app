@@ -1,10 +1,21 @@
+import { useDispatch } from "react-redux";
+import {
+  toggleNavMenu,
+  toggleYoutube,
+  toggleControlsPanel,
+  setNavBarState,
+  toggleDarkMode,
+  NavBarState,
+} from "app/core/uiStateSlice";
+
 export function useAppBarActions() {
-  const noop = () => {};
+  const dispatch = useDispatch();
+
   return {
-    toggleNavMenu: noop,
-    toggleControlsPanel: noop,
-    setStickyState: noop,
-    setNavBarState: noop,
-    toggleYoutube: noop,
+    toggleNavMenu: () => dispatch(toggleNavMenu()),
+    toggleControlsPanel: () => dispatch(toggleControlsPanel()),
+    setNavBarState: (newState: NavBarState) => dispatch(setNavBarState(newState)),
+    toggleDarkMode: () => dispatch(toggleDarkMode()),
+    toggleYoutube: () => dispatch(toggleYoutube()),
   };
 }

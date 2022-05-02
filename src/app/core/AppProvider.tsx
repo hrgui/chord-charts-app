@@ -3,7 +3,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { StylesProvider } from "@material-ui/styles";
 import { BrowserRouter } from "react-router-dom";
 
-import { store } from "store";
+import { store } from "app/store";
 import { Provider } from "react-redux";
 import { AppThemeProvider } from "./AppThemeProvider";
 import PageLoading from "lib/layout/PageLoading";

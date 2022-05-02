@@ -1,4 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+export const CHORD_CHARTS_DARK_MODE_KEY = "CHORD_CHARTS_DARK_MODE";
+
+function getDarkModeInitialState() {
+  const prefersDarkModeInitially = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  const localStoragePreference = window.localStorage.getItem(CHORD_CHARTS_DARK_MODE_KEY);
+
+  if (localStoragePreference !== null) {
+    return localStoragePreference === "true";
+  } else {
+    return prefersDarkModeInitially;
+  }
+}
 
 export enum NavBarState {
   main = "main",
@@ -17,7 +30,7 @@ export interface UiState {
 
 const initialState: UiState = {
   appName: "Chord Charts",
-  darkMode: false, //
+  darkMode: getDarkModeInitialState(), //
   navBarState: NavBarState.main,
   navMenuHidden: false,
   controlsPanelHidden: true,

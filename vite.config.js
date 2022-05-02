@@ -21,6 +21,7 @@ const config = defineConfig(({ mode, command }) => {
   return {
     plugins: [reactRefreshPlugin(), viteTsConfigPathsPlugin(), macrosPlugin()],
     define: {
+      global: "window",
       ...envWithProcessPrefix,
       "process.env.DEV": mode === "development",
       "process.env.PROD": mode === "production",

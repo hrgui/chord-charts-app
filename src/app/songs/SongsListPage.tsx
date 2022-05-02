@@ -4,6 +4,7 @@ import { Table } from "lib/table/Table";
 import { Trans } from "react-i18next";
 import { useTranslation } from "react-i18next";
 import SongActions from "./SongActions";
+import { useGetSongsQuery } from "app/services/songs";
 
 interface SongsListPageProps {
   path?: string;
@@ -26,7 +27,7 @@ class SongTitleCell extends React.Component<any, any> {
       return null;
     }
 
-    return <Link to={`/song/${data.id}/view`}>{value}</Link>;
+    return <Link to={`/song/${data._id}/view`}>{value}</Link>;
   }
 }
 
@@ -38,9 +39,7 @@ export function SongListContainer({
   onAddSong?;
 }) {
   const { t } = useTranslation();
-  const error = null;
-  const loading = false;
-  const data = [];
+  const { isLoading: loading, data, error } = useGetSongsQuery();
 
   const columns = React.useMemo(() => {
     return [
@@ -90,6 +89,10 @@ export function SongListContainer({
       </Trans>
     );
   }, []);
+
+  if (!data) {
+    return null;
+  }
 
   return (
     <Table

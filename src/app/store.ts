@@ -3,15 +3,21 @@ import counterReducer from "app/counter/counterSlice";
 import uiStateReducer from "./core/uiStateSlice";
 import darkModeMiddlware from "app/actions/darkModeMiddleware";
 import { pokemonApi } from "./counter/pokemon";
+import { SongApi } from "./services/songs";
+import { SetlistApi } from "./services/setlists";
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
     uiState: uiStateReducer,
     [pokemonApi.reducerPath]: pokemonApi.reducer,
+    [SongApi.reducerPath]: SongApi.reducer,
+    [SetlistApi.reducerPath]: SongApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().prepend(darkModeMiddlware.middleware).concat(pokemonApi.middleware),
+    getDefaultMiddleware()
+      .prepend(darkModeMiddlware.middleware)
+      .concat(pokemonApi.middleware, SetlistApi.middleware as any, SongApi.middleware as any),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

@@ -4,6 +4,7 @@ import { prepareInputForMutation } from "lib/form/prepareInputForMutation";
 import { useUserData } from "lib/hooks/useUserData";
 import { useTranslation } from "react-i18next";
 import { useParams, useHistory } from "react-router-dom";
+import { useAddSongMutation, useUpdateSongMutation } from "app/services/songs";
 
 export interface SongFormPageProps {
   path?: string;
@@ -15,7 +16,7 @@ export interface SongFormPageProps {
 const SongEditPage: React.SFC<SongFormPageProps> = (props) => {
   const { t } = useTranslation();
   const enqueueSnackbar = () => {};
-  const updateSong = () => {};
+  const [updateSong, { isLoading }] = useUpdateSongMutation();
   // TODO
   const loading = false;
   const error = null;
@@ -26,14 +27,7 @@ const SongEditPage: React.SFC<SongFormPageProps> = (props) => {
   return (
     <SongForm
       isLoading={isLoading}
-      onSubmit={(values) =>
-        updateSong({
-          variables: {
-            id: props.id,
-            data: prepareInputForMutation(values),
-          },
-        })
-      }
+      onSubmit={(values) => updateSong(values)}
       onSubmitSuccess={(res, values) => {
         enqueueSnackbar(t(`song:message/saveSuccess`, { song: values.title || values.id }), {
           variant: "success",
@@ -76,10 +70,7 @@ export function getNewSongTemplate(currentGroupId) {
 const SongNewPage: React.SFC<SongFormPageProps> = (props) => {
   const { t } = useTranslation();
   const enqueueSnackbar = () => {};
-  // const [createSong] = useMutation(CREATE_SONG_QUERY, {
-  //   refetchQueries: ["getSongs"],
-  // });
-  const createSong = () => {};
+  const [createSong] = useAddSongMutation();
   const newSongTemplate = getNewSongTemplate(props.currentGroupId);
   return (
     <SongForm
@@ -87,9 +78,7 @@ const SongNewPage: React.SFC<SongFormPageProps> = (props) => {
       data={newSongTemplate}
       onSubmit={(values) =>
         createSong({
-          variables: {
-            data: values,
-          },
+          ...values,
         })
       }
       onSubmitSuccess={(_, values) => {

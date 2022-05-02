@@ -2,6 +2,7 @@ import * as React from "react";
 import { useParams } from "react-router-dom";
 import Loading from "lib/layout/Loading";
 import SongView from "./SongView";
+import { useGetSongQuery } from "app/services/songs";
 
 interface SongViewContainerProps {
   id?: string;
@@ -12,7 +13,7 @@ interface SongViewContainerProps {
 }
 
 export const SongViewContainer: React.SFC<SongViewContainerProps> = (props) => {
-  const { loading: isLoading, error: isError, data } = { loading: false, error: null, data: {} };
+  const { loading: isLoading, error: isError, data } = useGetSongQuery(props.id);
   const { isInSetlist, isActiveInSetlist, settings, onChangeSettings = () => null } = props;
 
   if (isInSetlist && !isActiveInSetlist) {
@@ -28,7 +29,7 @@ export const SongViewContainer: React.SFC<SongViewContainerProps> = (props) => {
       <SongView
         isLoading={isLoading}
         isError={isError}
-        data={data?.song}
+        data={data}
         settings={settings}
         onChangeSettings={onChangeSettings}
       />
@@ -38,12 +39,6 @@ export const SongViewContainer: React.SFC<SongViewContainerProps> = (props) => {
 
 const SongViewPage = () => {
   const { id } = useParams<any>();
-  const [loading] = useSetPageLayout("song", [id]);
-  useTitle(`View Song ${id}`); // HACK: this is to make mobile view work right, resetPageInfo causing issue
-
-  if (loading) {
-    return <Loading />;
-  }
 
   return <SongViewContainer id={id} />;
 };

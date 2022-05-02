@@ -1,0 +1,87 @@
+import { createApi } from "@reduxjs/toolkit/query/react";
+import pouchDbBaseQuery, { ApiMethod } from "lib/rtk-api/pouchDbBaseQuery";
+
+export interface Song {
+  id: number;
+  name: string;
+}
+
+type SongsResponse = Song[];
+
+export const apiType = "Song";
+export const SongApi = createApi({
+  reducerPath: `${apiType}Api`,
+  baseQuery: pouchDbBaseQuery,
+  tagTypes: [apiType],
+  endpoints: (build) => ({
+    getSongs: build.query<SongsResponse, void>({
+      query: () => ({ type: apiType, method: ApiMethod.list }),
+      transformResponse: (response) => {
+        console.log(response.docs);
+        return response.docs;
+      },
+      // Provides a list of `Songs` by `id`.
+      // If any mutation is executed that `invalidate`s any of these tags, this query will re-run to be always up-to-date.
+      // The `LIST` id is a "virtual id" we just made up to be able to invalidate this query specifically if a new `Songs` element was added.
+      providesTags: (result) =>
+        // is result available?
+        result
+          ? // successful query
+            [
+              ...result.map(({ _id: id }) => ({ type: apiType, id } as const)),
+              { type: apiType, id: ApiMethod.list },
+            ]
+          : // an error occurred, but we still want to refetch this query when `{ type: 'Songs', id: 'LIST' }` is invalidated
+            [{ type: apiType, id: ApiMethod.list }],
+    }),
+    addSong: build.mutation<Song, Partial<Song>>({
+      query(body) {
+        console.log(body);
+        return {
+          type: apiType,
+          method: ApiMethod.create,
+          body,
+        };
+      },
+      // Invalidates all Song-type queries providing the `LIST` id - after all, depending of the sort order,
+      // that newly created Song could show up in any lists.
+      invalidatesTags: [{ type: apiType, id: ApiMethod.list }],
+    }),
+    getSong: build.query<Song, string>({
+      query: (id) => ({ type: apiType, method: ApiMethod.get, id }),
+      providesTags: (result, error, id) => [{ type: apiType, id }],
+    }),
+    updateSong: build.mutation<Song, Partial<Song>>({
+      query(data) {
+        const { id, ...body } = data;
+        return {
+          type: apiType,
+          method: ApiMethod.update,
+          body,
+        };
+      },
+      // Invalidates all queries that subscribe to this Song `id` only.
+      // In this case, `getSong` will be re-run. `getSongs` *might*  rerun, if this id was under its results.
+      invalidatesTags: (result, error, { id }) => [{ type: apiType, id }],
+    }),
+    deleteSong: build.mutation<{ success: boolean; id: number }, number>({
+      query(id) {
+        return {
+          type: apiType,
+          method: ApiMethod.delete,
+          id: id,
+        };
+      },
+      // Invalidates all queries that subscribe to this Song `id` only.
+      invalidatesTags: (result, error, id) => [{ type: apiType, id }],
+    }),
+  }),
+});
+
+export const {
+  useAddSongMutation,
+  useGetSongQuery,
+  useGetSongsQuery,
+  useUpdateSongMutation,
+  useDeleteSongMutation,
+} = SongApi;

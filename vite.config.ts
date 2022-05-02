@@ -1,7 +1,7 @@
-const reactRefreshPlugin = require("@vitejs/plugin-react-refresh").default;
-const viteTsConfigPathsPlugin = require("vite-tsconfig-paths").default;
-const macrosPlugin = require("vite-plugin-babel-macros").default;
-const { defineConfig, loadEnv } = require("vite");
+import reactPlugin from "@vitejs/plugin-react";
+import viteTsConfigPathsPlugin from "vite-tsconfig-paths";
+import macrosPlugin from "vite-plugin-babel-macros";
+import { defineConfig, loadEnv } from "vite";
 
 /**
  * @type {import('vite').UserConfig}
@@ -19,7 +19,7 @@ const config = defineConfig(({ mode, command }) => {
   console.log(`mode=${mode} command=${command}`);
 
   return {
-    plugins: [reactRefreshPlugin(), viteTsConfigPathsPlugin(), macrosPlugin()],
+    plugins: [reactPlugin(), viteTsConfigPathsPlugin(), macrosPlugin()],
     define: {
       global: "window",
       ...envWithProcessPrefix,
@@ -29,4 +29,5 @@ const config = defineConfig(({ mode, command }) => {
     },
   };
 });
-module.exports = config;
+
+export default config;

@@ -1,10 +1,9 @@
 import * as React from "react";
 import { SongForm } from "./SongForm";
-import { prepareInputForMutation } from "lib/form/prepareInputForMutation";
 import { useUserData } from "lib/hooks/useUserData";
 import { useTranslation } from "react-i18next";
 import { useParams, useHistory } from "react-router-dom";
-import { useAddSongMutation, useUpdateSongMutation } from "app/services/songs";
+import { useAddSongMutation, useGetSongQuery, useUpdateSongMutation } from "app/services/songs";
 
 export interface SongFormPageProps {
   path?: string;
@@ -16,13 +15,8 @@ export interface SongFormPageProps {
 const SongEditPage: React.FC<SongFormPageProps> = (props) => {
   const { t } = useTranslation();
   const enqueueSnackbar = () => {};
-  const [updateSong, { isLoading }] = useUpdateSongMutation();
-  // TODO
-  const loading = false;
-  const error = null;
-  let data = {};
-
-  data = data?.song || {};
+  const [updateSong] = useUpdateSongMutation();
+  const { isLoading, data = {}, error } = useGetSongQuery(props.id!);
 
   return (
     <SongForm

@@ -4,6 +4,7 @@ import { useUserData } from "lib/hooks/useUserData";
 import { useTranslation } from "react-i18next";
 import { useParams, useHistory } from "react-router-dom";
 import { useAddSongMutation, useGetSongQuery, useUpdateSongMutation } from "app/services/songs";
+import { Song } from "app/services/songs";
 
 export interface SongFormPageProps {
   path?: string;
@@ -12,21 +13,22 @@ export interface SongFormPageProps {
   currentGroupId?: string;
 }
 
-const SongEditPage: React.FC<SongFormPageProps> = (props) => {
+const SongEditPage: React.FC<SongFormPageProps & { id: string }> = (props) => {
+  const { id } = props;
   const { t } = useTranslation();
   const enqueueSnackbar = () => {};
   const [updateSong] = useUpdateSongMutation();
-  const { isLoading, data = {}, error } = useGetSongQuery(props.id!);
+  const { isLoading, data = {}, error } = useGetSongQuery(id);
 
   return (
     <SongForm
       isLoading={isLoading}
       onSubmit={(values) => updateSong(values)}
-      onSubmitSuccess={(res, values) => {
+      onSubmitSuccess={(_, values) => {
         enqueueSnackbar(t(`song:message/saveSuccess`, { song: values.title || values.id }), {
           variant: "success",
         });
-        props.navigate(`/song/${props._id}/view`);
+        props.navigate(`/song/${id}/view`);
       }}
       onSubmitError={(e) => {
         enqueueSnackbar(t(`song:message/saveError`), { variant: "error" });
@@ -41,7 +43,7 @@ const SongEditPage: React.FC<SongFormPageProps> = (props) => {
   );
 };
 
-export function getNewSongTemplate(currentGroupId) {
+export function getNewSongTemplate(): Song {
   return {
     title: `Untitled Song ${new Date().toString()}`,
     key: "C",
@@ -55,9 +57,6 @@ export function getNewSongTemplate(currentGroupId) {
         body: "A B C \n Sample test",
       },
     ],
-    share: {
-      [currentGroupId]: "editor",
-    },
   };
 }
 
@@ -65,7 +64,8 @@ const SongNewPage: React.FC<SongFormPageProps> = (props) => {
   const { t } = useTranslation();
   const enqueueSnackbar = () => {};
   const [createSong] = useAddSongMutation();
-  const newSongTemplate = getNewSongTemplate(props.currentGroupId);
+  const newSongTemplate = getNewSongTemplate();
+
   return (
     <SongForm
       isNew

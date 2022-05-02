@@ -13,19 +13,7 @@ import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import { ErrorMessage } from "formik";
 import * as Yup from "yup";
-
-interface SongSection {
-  title?: string;
-  body?: string;
-}
-
-interface Song {
-  title?: string;
-  artist?: string;
-  key?: string;
-  youtube?: string;
-  sections?: SongSection[];
-}
+import { Song } from "app/services/songs";
 
 export interface SongFormProps {
   isNew?: boolean;
@@ -112,7 +100,6 @@ export const SongForm = (props: SongFormProps) => {
   }
 
   if (error) {
-    console.error(error);
     return null;
   }
 

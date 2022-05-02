@@ -1,9 +1,20 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import pouchDbBaseQuery, { ApiMethod } from "lib/rtk-api/pouchDbBaseQuery";
 
+export interface SongSection {
+  type: string;
+  title?: string;
+  body?: string;
+}
+
 export interface Song {
-  id: number;
-  name: string;
+  _id?: string;
+  title: string;
+  key: string;
+  artist: string;
+  youtube: string;
+  tags: string[];
+  sections: SongSection[];
 }
 
 type SongsResponse = Song[];
@@ -16,10 +27,7 @@ export const SongApi = createApi({
   endpoints: (build) => ({
     getSongs: build.query<SongsResponse, void>({
       query: () => ({ type: apiType, method: ApiMethod.list }),
-      transformResponse: (response) => {
-        console.log(response.docs);
-        return response.docs;
-      },
+      transformResponse: (response) => (response as any).docs,
       // Provides a list of `Songs` by `id`.
       // If any mutation is executed that `invalidate`s any of these tags, this query will re-run to be always up-to-date.
       // The `LIST` id is a "virtual id" we just made up to be able to invalidate this query specifically if a new `Songs` element was added.
@@ -36,7 +44,6 @@ export const SongApi = createApi({
     }),
     addSong: build.mutation<Song, Partial<Song>>({
       query(body) {
-        console.log(body);
         return {
           type: apiType,
           method: ApiMethod.create,
@@ -53,16 +60,15 @@ export const SongApi = createApi({
     }),
     updateSong: build.mutation<Song, Partial<Song>>({
       query(data) {
-        const { id, ...body } = data;
         return {
           type: apiType,
           method: ApiMethod.update,
-          body,
+          body: data,
         };
       },
       // Invalidates all queries that subscribe to this Song `id` only.
       // In this case, `getSong` will be re-run. `getSongs` *might*  rerun, if this id was under its results.
-      invalidatesTags: (result, error, { id }) => [{ type: apiType, id }],
+      invalidatesTags: (result, error, { _id: id }) => [{ type: apiType, id }],
     }),
     deleteSong: build.mutation<{ success: boolean; id: number }, number>({
       query(id) {

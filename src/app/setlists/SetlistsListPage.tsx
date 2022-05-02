@@ -173,7 +173,7 @@ export function SetlistListContainer({
   );
 }
 
-const SetlistsListPage: React.SFC<SetlistsListPageProps> = () => {
+const SetlistsListPage: React.FC<SetlistsListPageProps> = () => {
   return <SetlistListContainer />;
 };
 

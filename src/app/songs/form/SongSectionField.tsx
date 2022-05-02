@@ -17,20 +17,16 @@ interface SongSectionFieldPanelProps {
   isUpDisabled?: boolean;
 }
 
-export const SongSectionFieldPanel: React.SFC<SongSectionFieldPanelProps> = ({
+export const SongSectionFieldPanel: React.FC<SongSectionFieldPanelProps> = ({
   onMoveDown,
   onMoveUp,
   isDownDisabled,
   isUpDisabled,
-  onDelete
+  onDelete,
 }) => {
   return (
     <div>
-      <IconButton
-        onClick={onMoveDown}
-        disabled={isDownDisabled}
-        data-testid="down"
-      >
+      <IconButton onClick={onMoveDown} disabled={isDownDisabled} data-testid="down">
         <ArrowDownward />
       </IconButton>
       <IconButton onClick={onMoveUp} disabled={isUpDisabled} data-testid="up">
@@ -48,23 +44,19 @@ interface SongSectionFieldProps extends SongSectionFieldPanelProps {
   type?: string;
 }
 
-export const SongSectionField: React.SFC<SongSectionFieldProps> = ({
+export const SongSectionField: React.FC<SongSectionFieldProps> = ({
   name,
   type = "chords",
   onMoveDown,
   onMoveUp,
   isDownDisabled,
   isUpDisabled,
-  onDelete
+  onDelete,
 }) => {
   const { t } = useTranslation();
   return (
     <>
-      <TextField
-        fullWidth
-        label={t("song:label/section/title")}
-        name={`${name}.title`}
-      />
+      <TextField fullWidth label={t("song:label/section/title")} name={`${name}.title`} />
       <SongSectionFieldPanel
         onMoveDown={onMoveDown}
         onMoveUp={onMoveUp}
@@ -73,17 +65,10 @@ export const SongSectionField: React.SFC<SongSectionFieldProps> = ({
         onDelete={onDelete}
       />
       {type !== "abc" && (
-        <ChordChartTextField
-          label={t("song:label/section/body")}
-          name={`${name}.body`}
-        />
+        <ChordChartTextField label={t("song:label/section/body")} name={`${name}.body`} />
       )}
       {type === "abc" && (
-        <AbcTextField
-          fullWidth
-          label={t("song:label/section/body")}
-          name={`${name}.body`}
-        />
+        <AbcTextField fullWidth label={t("song:label/section/body")} name={`${name}.body`} />
       )}
     </>
   );

@@ -14,7 +14,7 @@ interface SetlistViewProps {
   title?: string;
 }
 
-const SetlistView: React.SFC<SetlistViewProps> = props => {
+const SetlistView: React.FC<SetlistViewProps> = (props) => {
   const {
     title = "",
     isLoading,
@@ -23,7 +23,7 @@ const SetlistView: React.SFC<SetlistViewProps> = props => {
     songIndex = 0,
     onSaveSetlistSettings,
     hasUnsavedSettings,
-    isLyrics
+    isLyrics,
   } = props;
   const { songs = [], settings = {} } = data || {};
 

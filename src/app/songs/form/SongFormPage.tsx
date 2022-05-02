@@ -13,7 +13,7 @@ export interface SongFormPageProps {
   currentGroupId?: string;
 }
 
-const SongEditPage: React.SFC<SongFormPageProps> = (props) => {
+const SongEditPage: React.FC<SongFormPageProps> = (props) => {
   const { t } = useTranslation();
   const enqueueSnackbar = () => {};
   const [updateSong, { isLoading }] = useUpdateSongMutation();
@@ -32,7 +32,7 @@ const SongEditPage: React.SFC<SongFormPageProps> = (props) => {
         enqueueSnackbar(t(`song:message/saveSuccess`, { song: values.title || values.id }), {
           variant: "success",
         });
-        props.navigate(`/song/${props.id}/view`);
+        props.navigate(`/song/${props._id}/view`);
       }}
       onSubmitError={(e) => {
         enqueueSnackbar(t(`song:message/saveError`), { variant: "error" });
@@ -67,7 +67,7 @@ export function getNewSongTemplate(currentGroupId) {
   };
 }
 
-const SongNewPage: React.SFC<SongFormPageProps> = (props) => {
+const SongNewPage: React.FC<SongFormPageProps> = (props) => {
   const { t } = useTranslation();
   const enqueueSnackbar = () => {};
   const [createSong] = useAddSongMutation();

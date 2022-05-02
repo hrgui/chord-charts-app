@@ -10,7 +10,7 @@ interface ChordSelectProps {
   classes?: any;
 }
 
-const ChordSelect: React.SFC<ChordSelectProps> = props => {
+const ChordSelect: React.FC<ChordSelectProps> = (props) => {
   return <NativeSelect {...props}>{getKeyAsOptions()}</NativeSelect>;
 };
 

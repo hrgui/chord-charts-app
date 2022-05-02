@@ -5,15 +5,16 @@ import SongView from "./SongView";
 import { useGetSongQuery } from "app/services/songs";
 
 interface SongViewContainerProps {
-  id?: string;
+  id: string;
   isInSetlist?: boolean;
   isActiveInSetlist?: boolean;
   settings?: any;
   onChangeSettings?: any;
 }
 
-export const SongViewContainer: React.SFC<SongViewContainerProps> = (props) => {
-  const { loading: isLoading, error: isError, data } = useGetSongQuery(props.id);
+export const SongViewContainer: React.FC<SongViewContainerProps> = (props) => {
+  const { id } = props;
+  const { isLoading, error: isError, data } = useGetSongQuery(id);
   const { isInSetlist, isActiveInSetlist, settings, onChangeSettings = () => null } = props;
 
   if (isInSetlist && !isActiveInSetlist) {

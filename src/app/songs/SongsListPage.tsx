@@ -107,7 +107,7 @@ export function SongListContainer({
   );
 }
 
-const SongsListPage: React.SFC<SongsListPageProps> = () => {
+const SongsListPage: React.FC<SongsListPageProps> = () => {
   return <SongListContainer />;
 };
 

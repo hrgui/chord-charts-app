@@ -4,7 +4,7 @@ import { useGetAppBarData } from "lib/hooks/useGetAppBarData";
 
 interface HeadProps {}
 
-const Head: React.SFC<HeadProps> = props => {
+const Head: React.FC<HeadProps> = (props) => {
   const config = useGetAppBarData();
 
   if (!config) {
@@ -13,11 +13,10 @@ const Head: React.SFC<HeadProps> = props => {
 
   const {
     page: { title },
-    appName
+    appName,
   } = config;
 
-  const titleHead =
-    title === appName || !title ? title : `${title} - ${appName}`;
+  const titleHead = title === appName || !title ? title : `${title} - ${appName}`;
 
   return <HeadView title={titleHead} />;
 };

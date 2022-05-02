@@ -3,7 +3,7 @@ import { InputLabel, FormControl } from "@material-ui/core";
 import { FastField as Field } from "formik";
 import ChordSelect from "../components/ChordSelect";
 
-export const ChordSelectField: React.SFC<any> = ({ name, label, ...props }) => {
+export const ChordSelectField: React.FC<any> = ({ name, label, ...props }) => {
   return (
     <FormControl>
       <InputLabel htmlFor={name}>{label}</InputLabel>

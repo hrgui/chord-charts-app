@@ -17,7 +17,7 @@ function prepareValues({ id, __typename, ...other }) {
   return other;
 }
 
-const SetlistEditPage: React.SFC<SetlistFormPageProps> = (props) => {
+const SetlistEditPage: React.FC<SetlistFormPageProps> = (props) => {
   const enqueueSnackbar = () => {};
   let { loading: isLoading, error: isError, data } = { loading: false, error: null, data: {} };
   const updateSetlist = () => {};
@@ -32,7 +32,7 @@ const SetlistEditPage: React.SFC<SetlistFormPageProps> = (props) => {
       onSubmit={(values) =>
         updateSetlist({
           variables: {
-            id: props.id,
+            id: props._id,
             data: prepareValues(values),
           },
         })
@@ -46,7 +46,7 @@ const SetlistEditPage: React.SFC<SetlistFormPageProps> = (props) => {
             variant: "success",
           }
         );
-        props.navigate(`/setlist/${props.id}`);
+        props.navigate(`/setlist/${props._id}`);
       }}
       onSubmitError={(e) => {
         enqueueSnackbar(t("setlist:message/saveError"), { variant: "error" });
@@ -74,7 +74,7 @@ const getNewSetlistTemplate = (currentGroupId) => {
   };
 };
 
-const SetlistNewPage: React.SFC<SetlistFormPageProps> = (props) => {
+const SetlistNewPage: React.FC<SetlistFormPageProps> = (props) => {
   const enqueueSnackbar = () => {};
   const createSetlist = () => {};
   const setlistTemplate = getNewSetlistTemplate(props.currentGroupId);

@@ -7,11 +7,7 @@ interface ChordChartTextFieldProps extends FieldConfig {
   label?;
 }
 
-const ChordChartTextField: React.SFC<ChordChartTextFieldProps> = ({
-  name,
-  label,
-  ...props
-}) => {
+const ChordChartTextField: React.FC<ChordChartTextFieldProps> = ({ name, label, ...props }) => {
   return (
     <FormControl fullWidth>
       <InputLabel shrink htmlFor={name}>

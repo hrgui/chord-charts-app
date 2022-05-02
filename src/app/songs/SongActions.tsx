@@ -73,7 +73,7 @@ function SongActionsList({ id, addToSetlistMode }: { id?; addToSetlistMode? }) {
   );
 }
 
-const SongActions: React.SFC<SongActionsProps> = (props) => {
+const SongActions: React.FC<SongActionsProps> = (props) => {
   if (props.addToSetlistMode) {
     return <Button onClick={(e) => props.onAddSong(props.song)}>Add</Button>;
   }

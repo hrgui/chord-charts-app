@@ -9,7 +9,7 @@ interface SetlistActionsProps {
   id?: any;
 }
 
-const ActionsMenu: React.SFC<SetlistActionsProps> = (props) => {
+const ActionsMenu: React.FC<SetlistActionsProps> = (props) => {
   const { id = "actions-menu", children } = props;
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -30,15 +30,8 @@ const ActionsMenu: React.SFC<SetlistActionsProps> = (props) => {
       >
         <MoreVert fontSize="small" />
       </IconButton>
-      <Menu
-        id={id}
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        {isFunction(children)
-          ? children({ ...props, onClose: handleClose })
-          : children}
+      <Menu id={id} anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
+        {isFunction(children) ? children({ ...props, onClose: handleClose }) : children}
       </Menu>
     </>
   );

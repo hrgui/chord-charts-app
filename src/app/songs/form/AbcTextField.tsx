@@ -9,7 +9,7 @@ interface AbcTextFieldProps extends FieldConfig {
   fullWidth?;
 }
 
-const AbcTextField: React.SFC<AbcTextFieldProps> = (props) => {
+const AbcTextField: React.FC<AbcTextFieldProps> = (props) => {
   const { name, ...otherProps } = props;
   return (
     <Field name={name} {...otherProps}>

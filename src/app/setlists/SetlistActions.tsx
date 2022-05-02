@@ -112,7 +112,7 @@ function SetlistActionsList({
   );
 }
 
-const SetlistActions: React.SFC<SetlistActionsProps> = (props) => {
+const SetlistActions: React.FC<SetlistActionsProps> = (props) => {
   return (
     <ActionsMenu>
       <SetlistActionsList

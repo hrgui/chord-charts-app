@@ -23,7 +23,7 @@ function prepareValues({ id, __typename, ...other }) {
   return other;
 }
 
-const SetlistViewPage: React.SFC<SetlistViewPageProps> = (props) => {
+const SetlistViewPage: React.FC<SetlistViewPageProps> = (props) => {
   const enqueueSnackbar = () => {};
   let { loading: isLoading, error: isError, data } = { loading: false, error: null, data: {} };
 
@@ -33,7 +33,7 @@ const SetlistViewPage: React.SFC<SetlistViewPageProps> = (props) => {
   const curTitle =
     data && data.title
       ? `${data.title}${data.leader ? `: ${data.leader}` : ""}`
-      : `Setlist ${props.id}`;
+      : `Setlist ${props._id}`;
 
   useTitle(curTitle);
   const [isSavingSettings, setIsSavingSettings] = React.useState(false);
@@ -46,7 +46,7 @@ const SetlistViewPage: React.SFC<SetlistViewPageProps> = (props) => {
     };
 
     await saveSetlist({
-      variables: { id: props.id, data: prepareValues(_data) },
+      variables: { id: props._id, data: prepareValues(_data) },
     });
 
     enqueueSnackbar(`Setlist ${data.title || data._id} has been saved.`, {
@@ -71,7 +71,7 @@ const SetlistViewPage: React.SFC<SetlistViewPageProps> = (props) => {
       index = 0;
     }
 
-    props.history.replace(`/setlist/${props.id}/${index + 1}`);
+    props.history.replace(`/setlist/${props._id}/${index + 1}`);
   };
 
   return (

@@ -6,6 +6,7 @@ import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { useTranslation } from "react-i18next";
+import { useGetSongQuery } from "app/services/songs";
 
 export interface ISetlistSongFieldRowProps {
   index;
@@ -18,9 +19,7 @@ export interface ISetlistSongFieldRowProps {
 
 export default function SetlistSongFieldRow(props: ISetlistSongFieldRowProps) {
   const { index, songId, onSwap, onRemove, settings, onSongKeyChange } = props;
-  const { data, loading } = { data: {}, loading: false };
-
-  const song = data?.song || {};
+  const { data: song, isLoading: loading } = useGetSongQuery(songId);
 
   if (loading) {
     return (

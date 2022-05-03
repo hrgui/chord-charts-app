@@ -2,8 +2,11 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import pouchDbBaseQuery, { ApiMethod } from "lib/rtk-api/pouchDbBaseQuery";
 
 export interface Setlist {
-  id: number;
-  name: string;
+  _id: string;
+  title: string;
+  date: string | Date;
+  songs: string[];
+  settings?: { [name: string]: string };
 }
 
 type SetlistsResponse = Setlist[];
@@ -24,7 +27,7 @@ export const SetlistApi = createApi({
         result
           ? // successful query
             [
-              ...result.map(({ id }) => ({ type: apiType, id } as const)),
+              ...result.map(({ _id: id }) => ({ type: apiType, id } as const)),
               { type: apiType, id: ApiMethod.list },
             ]
           : // an error occurred, but we still want to refetch this query when `{ type: 'Setlists', id: 'LIST' }` is invalidated
@@ -48,11 +51,10 @@ export const SetlistApi = createApi({
     }),
     updateSetlist: build.mutation<Setlist, Partial<Setlist>>({
       query(data) {
-        const { id, ...body } = data;
         return {
           type: apiType,
           method: ApiMethod.update,
-          body,
+          body: data,
         };
       },
       // Invalidates all queries that subscribe to this Setlist `id` only.
@@ -72,3 +74,11 @@ export const SetlistApi = createApi({
     }),
   }),
 });
+
+export const {
+  useAddSetlistMutation,
+  useGetSetlistQuery,
+  useGetSetlistsQuery,
+  useUpdateSetlistMutation,
+  useDeleteSetlistMutation,
+} = SetlistApi;

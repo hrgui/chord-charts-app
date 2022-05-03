@@ -4,6 +4,11 @@ import { getUpcomingSunday, toDomDate } from "lib/utils/date";
 import { useUserData } from "lib/hooks/useUserData";
 import { useModalRouteMode } from "lib/hooks/useModalRouteMode";
 import { useTranslation } from "react-i18next";
+import {
+  useAddSetlistMutation,
+  useGetSetlistQuery,
+  useUpdateSetlistMutation,
+} from "app/services/setlists";
 
 export interface SetlistFormPageProps {
   path?: string;
@@ -18,25 +23,17 @@ function prepareValues({ id, __typename, ...other }) {
 }
 
 const SetlistEditPage: React.FC<SetlistFormPageProps> = (props) => {
+  const { id } = props;
   const enqueueSnackbar = () => {};
-  let { loading: isLoading, error: isError, data } = { loading: false, error: null, data: {} };
-  const updateSetlist = () => {};
+  const [updateSetlist] = useUpdateSetlistMutation();
   const { t } = useTranslation();
-
-  data = data?.setlist;
+  const { isLoading, data = {}, error } = useGetSetlistQuery(id);
 
   return (
     <SetlistForm
       isModalMode={props.isModalMode}
       isLoading={isLoading}
-      onSubmit={(values) =>
-        updateSetlist({
-          variables: {
-            id: props._id,
-            data: prepareValues(values),
-          },
-        })
-      }
+      onSubmit={(values) => updateSetlist(values)}
       onSubmitSuccess={(_, values) => {
         enqueueSnackbar(
           t("setlist:message/saveSuccess", {
@@ -46,7 +43,7 @@ const SetlistEditPage: React.FC<SetlistFormPageProps> = (props) => {
             variant: "success",
           }
         );
-        props.navigate(`/setlist/${props._id}`);
+        props.navigate(`/setlist/${id}`);
       }}
       onSubmitError={(e) => {
         enqueueSnackbar(t("setlist:message/saveError"), { variant: "error" });
@@ -61,23 +58,21 @@ const SetlistEditPage: React.FC<SetlistFormPageProps> = (props) => {
   );
 };
 
-const getNewSetlistTemplate = (currentGroupId) => {
+function getNewSetlistTemplate() {
   const sunday = toDomDate(getUpcomingSunday());
   return {
     title: `Sunday Setlist - ${sunday}`,
     date: sunday,
     songs: [],
     settings: {},
-    share: {
-      [currentGroupId]: "editor",
-    },
   };
-};
+}
 
 const SetlistNewPage: React.FC<SetlistFormPageProps> = (props) => {
   const enqueueSnackbar = () => {};
-  const createSetlist = () => {};
-  const setlistTemplate = getNewSetlistTemplate(props.currentGroupId);
+  const [createSetlist] = useAddSetlistMutation();
+
+  const setlistTemplate = getNewSetlistTemplate();
   const { t } = useTranslation();
 
   return (
@@ -85,13 +80,7 @@ const SetlistNewPage: React.FC<SetlistFormPageProps> = (props) => {
       isModalMode={props.isModalMode}
       isNew
       data={setlistTemplate}
-      onSubmit={(values) =>
-        createSetlist({
-          variables: {
-            data: values,
-          },
-        })
-      }
+      onSubmit={(values) => createSetlist(values)}
       onSubmitSuccess={(_, values) => {
         enqueueSnackbar(
           t("setlist:message/saveSuccess", {

@@ -25,7 +25,11 @@ export const SongViewContainer: React.FC<SongViewContainerProps> = (props) => {
   }
 
   if (isLoading) {
-    return <Loading />;
+    return (
+      <Page title="Loading">
+        <Loading />
+      </Page>
+    );
   }
 
   function getTitle() {

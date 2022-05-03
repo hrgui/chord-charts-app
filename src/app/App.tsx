@@ -5,11 +5,7 @@ import AppLayout from "./core/AppLayout";
 import AppRootRoutes from "./AppRootRoutes";
 
 function App({ children, config }: { children?; config? }) {
-  return (
-    <AppProvider config={config}>
-      <AppLayout>{children ? children : <AppRootRoutes />}</AppLayout>
-    </AppProvider>
-  );
+  return <AppProvider config={config}>{children ? children : <AppRootRoutes />}</AppProvider>;
 }
 
 export default App;

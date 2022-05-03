@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Loading } from "./Loading";
 import Head from "app/core/Head";
+import AppLayout from "app/core/AppLayout";
 
 export interface PageProps {
   isLoading?: boolean;
@@ -17,7 +18,7 @@ const Page = (props) => {
   return (
     <>
       <Head title={title} />
-      {children}
+      <AppLayout>{children}</AppLayout>
     </>
   );
 };

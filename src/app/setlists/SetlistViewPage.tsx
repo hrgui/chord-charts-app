@@ -2,6 +2,7 @@ import * as React from "react";
 import SetlistView from "./SetlistView";
 import { Loading } from "lib/layout/Loading";
 import { useGetSetlistQuery } from "app/services/setlists";
+import Page from "lib/layout/Page";
 
 interface SetlistViewPageProps {
   path?: string;
@@ -54,7 +55,11 @@ const SetlistViewPage: React.FC<SetlistViewPageProps> = (props) => {
   }
 
   if (isLoading) {
-    return <Loading />;
+    return (
+      <Page>
+        <Loading />
+      </Page>
+    );
   }
 
   let { songIndex = 0 } = props;

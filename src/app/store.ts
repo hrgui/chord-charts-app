@@ -12,12 +12,14 @@ export const store = configureStore({
     uiState: uiStateReducer,
     [pokemonApi.reducerPath]: pokemonApi.reducer,
     [SongApi.reducerPath]: SongApi.reducer,
-    [SetlistApi.reducerPath]: SongApi.reducer,
+    [SetlistApi.reducerPath]: SetlistApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
       .prepend(darkModeMiddlware.middleware)
-      .concat(pokemonApi.middleware, SetlistApi.middleware as any, SongApi.middleware as any),
+      .concat(pokemonApi.middleware)
+      .concat(SongApi.middleware as any)
+      .concat(SetlistApi.middleware as any),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

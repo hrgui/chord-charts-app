@@ -19,14 +19,20 @@ export interface Song {
 
 type SongsResponse = Song[];
 
+type SongsQuery = { [name: string]: any } | void;
+
 export const apiType = "Song";
 export const SongApi = createApi({
   reducerPath: `${apiType}Api`,
   baseQuery: pouchDbBaseQuery,
   tagTypes: [apiType],
   endpoints: (build) => ({
-    getSongs: build.query<SongsResponse, void>({
-      query: () => ({ type: apiType, method: ApiMethod.list }),
+    getSongs: build.query<SongsResponse, SongsQuery>({
+      query: (listArgs) => ({
+        type: apiType,
+        method: ApiMethod.list,
+        listArgs: listArgs as { [name: string]: any },
+      }),
       transformResponse: (response) => (response as any).docs,
       // Provides a list of `Songs` by `id`.
       // If any mutation is executed that `invalidate`s any of these tags, this query will re-run to be always up-to-date.

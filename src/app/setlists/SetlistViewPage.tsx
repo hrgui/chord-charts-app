@@ -1,6 +1,7 @@
 import * as React from "react";
 import SetlistView from "./SetlistView";
 import { Loading } from "lib/layout/Loading";
+import { useGetSetlistQuery } from "app/services/setlists";
 
 interface SetlistViewPageProps {
   path?: string;
@@ -25,17 +26,14 @@ function prepareValues({ id, __typename, ...other }) {
 
 const SetlistViewPage: React.FC<SetlistViewPageProps> = (props) => {
   const enqueueSnackbar = () => {};
-  let { loading: isLoading, error: isError, data } = { loading: false, error: null, data: {} };
-
-  data = data?.setlist;
+  let { isLoading, error: isError, data } = useGetSetlistQuery(props.id!);
 
   const saveSetlist = () => {};
   const curTitle =
     data && data.title
       ? `${data.title}${data.leader ? `: ${data.leader}` : ""}`
-      : `Setlist ${props._id}`;
+      : `Setlist ${props.id}`;
 
-  useTitle(curTitle);
   const [isSavingSettings, setIsSavingSettings] = React.useState(false);
 
   async function handleSaveSetlistSettings(settings) {
@@ -71,7 +69,7 @@ const SetlistViewPage: React.FC<SetlistViewPageProps> = (props) => {
       index = 0;
     }
 
-    props.history.replace(`/setlist/${props._id}/${index + 1}`);
+    props.history.replace(`/setlist/${props.id}/${index + 1}`);
   };
 
   return (

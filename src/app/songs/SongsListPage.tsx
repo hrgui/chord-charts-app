@@ -39,7 +39,7 @@ export function SongListContainer({
   onAddSong?;
 }) {
   const { t } = useTranslation();
-  const { isLoading: loading, data, error } = useGetSongsQuery();
+  const { isLoading: loading, data = [], error } = useGetSongsQuery();
 
   const columns = React.useMemo(() => {
     return [
@@ -89,10 +89,6 @@ export function SongListContainer({
       </Trans>
     );
   }, []);
-
-  if (!data) {
-    return null;
-  }
 
   return (
     <Table

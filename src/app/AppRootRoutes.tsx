@@ -24,7 +24,7 @@ export function AppRootRoutes() {
         <ProtectedRoute exact component={SongFormPage} path="/song/:id/edit" />
 
         <ProtectedRoute component={SetlistFormPage} path="/setlist/new" exact />
-        <ProtectedRoute component={SetlistsListPage} path="/setlists" exact />
+        <Route component={SetlistsListPage} path="/setlists" exact />
         <ProtectedRoute component={AddToSetlistFormPage} path="/setlist/add" exact />
         <ProtectedRoute component={SetlistFormPage} path="/setlist/:id/edit" exact />
         <ProtectedRoute component={SetlistViewPage} path="/setlist/:id/:songIndex?" exact />

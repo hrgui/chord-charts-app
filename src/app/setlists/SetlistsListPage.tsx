@@ -7,6 +7,7 @@ import SetlistActions from "./SetlistActions";
 import Link from "lib/layout/Link";
 import { useTranslation } from "react-i18next";
 import { Trans } from "react-i18next";
+import { useGetSetlistsQuery } from "app/services/setlists";
 
 interface SetlistsListPageProps {
   path?: string;
@@ -150,8 +151,7 @@ export function SetlistListContainer({
   song_id?;
   onRequestClose?;
 }) {
-  const { error, loading, data } = { error: null, loading: false, data: {} };
-  const setlists = data?.setlists || [];
+  const { error, isLoading, data = [] } = useGetSetlistsQuery();
 
   return (
     <WithWidth>
@@ -161,8 +161,8 @@ export function SetlistListContainer({
           <SetlistTable
             isMobile={isMobile}
             error={error}
-            loading={loading}
-            data={setlists}
+            loading={isLoading}
+            data={data}
             song_id={song_id}
             onRequestClose={onRequestClose}
             addToSetlistMode={addToSetlistMode}

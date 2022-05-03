@@ -102,7 +102,7 @@ export const SetlistForm = (props: ISetlistFormProps) => {
           <Dialog open={open}>
             <SongListContainer
               addToSetlistMode
-              onAddSong={({ id }) => {
+              onAddSong={({ _id: id }) => {
                 setFieldValue("songs", [...values.songs, id]);
                 setDialogOpen(false);
               }}

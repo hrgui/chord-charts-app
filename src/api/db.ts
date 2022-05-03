@@ -8,9 +8,7 @@ db.createIndex({
   index: {
     fields: ["type"],
   },
-})
-  .then((x) => console.log(x))
-  .catch((e) => console.error(e));
+});
 
 export default db;
 

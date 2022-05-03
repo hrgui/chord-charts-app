@@ -9,7 +9,6 @@ import SetlistFormPage from "app/setlists/form/SetlistFormPage";
 import AddToSetlistFormPage from "app/setlists/form/AddToSetlistFormPage";
 import SetlistViewPage from "app/setlists/SetlistViewPage";
 import RouteModal from "app/core/RouteModal";
-import CounterPage from "./counter/CounterPage";
 
 export function AppRootRoutes() {
   const location = useLocation<any>();
@@ -17,7 +16,6 @@ export function AppRootRoutes() {
   return (
     <>
       <Switch location={background || location}>
-        <Route component={CounterPage} path="/counter" exact />
         <ProtectedRoute component={SongsListPage} path="/songs" exact />
         <ProtectedRoute component={SongViewPage} path="/song/:id/view" exact />
         <ProtectedRoute exact component={SongFormPage} path="/song/new" />

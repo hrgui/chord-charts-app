@@ -5,7 +5,7 @@ import { WithWidth } from "lib/layout/WithWidth";
 import ConnectedYoutubeView from "./components/YoutubeView";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
-import { AppBarTitle, AppBarSubtitle } from "app/core/AppBar";
+import { AppBarTitle } from "app/core/AppBar";
 import { getOrCreateElement } from "lib/layout/portalSelector";
 import { CurrentSongNavMenu } from "./CurrentSongNavMenu";
 import styled from "styled-components/macro";
@@ -35,12 +35,7 @@ export const SongViewKey = ({
   classes?;
 }) => {
   return (
-    <ChordSelect
-      classes={classes}
-      className={className}
-      value={overrideKey}
-      onChange={onChange}
-    />
+    <ChordSelect classes={classes} className={className} value={overrideKey} onChange={onChange} />
   );
 };
 
@@ -96,9 +91,7 @@ function Song({
   }
 
   return (
-    <div
-      className={classnames("song-view-container", { screenWrap: screenWrap })}
-    >
+    <div className={classnames("song-view-container", { screenWrap: screenWrap })}>
       {sections.map((section, i) => {
         const sectionSettings: any = sectionsSettings[i] || {};
 
@@ -132,21 +125,15 @@ const SongView = (props: SongViewProps) => {
     screenWrap: _screenWrap = false,
     onChangeSettings = () => null,
   } = props;
-  const [sectionsSettings, _setSectionSettings] = React.useState(
-    settings.sectionsSettings || {}
-  );
-  const [overrideKey, _setOverrideKey] = React.useState(
-    settings.overrideKey || (data && data.key)
-  );
+  const [sectionsSettings, _setSectionSettings] = React.useState(settings.sectionsSettings || {});
+  const [overrideKey, _setOverrideKey] = React.useState(settings.overrideKey || (data && data.key));
   const [lyricsDisabled, setLyricsDisabled] = React.useState(
     settings.lyricsDisabled || _lyricsDisabled
   );
   const [chordsDisabled, setChordsDisabled] = React.useState(
     settings.chordsDisabled || _chordsDisabled
   );
-  const [screenWrap, setScreenWrap] = React.useState(
-    settings.screenWrap || _screenWrap
-  );
+  const [screenWrap, setScreenWrap] = React.useState(settings.screenWrap || _screenWrap);
 
   React.useEffect(() => {
     if (!settings.overrideKey) {
@@ -215,10 +202,7 @@ const SongView = (props: SongViewProps) => {
 
         const wrappedYoutubeViewCpt =
           width === "xl" || width === "lg"
-            ? ReactDOM.createPortal(
-                youtubeViewCpt,
-                getOrCreateElement("#songVideo")
-              )
+            ? ReactDOM.createPortal(youtubeViewCpt, getOrCreateElement("#songVideo"))
             : youtubeViewCpt;
 
         return (
@@ -245,7 +229,6 @@ const SongView = (props: SongViewProps) => {
             {ReactDOM.createPortal(
               <>
                 <AppBarTitle>{data.title}</AppBarTitle>
-                <AppBarSubtitle>{data.artist}</AppBarSubtitle>
               </>,
               getOrCreateElement("#songTitle")!
             )}
@@ -267,11 +250,9 @@ const SongView = (props: SongViewProps) => {
               <div className="print uppercase printSongBar">
                 <AppBarTitle>
                   <div style={{ display: "flex" }}>
-                    {data.title}{" "}
-                    <div style={{ marginLeft: "auto" }}>Key: {overrideKey}</div>
+                    {data.title} <div style={{ marginLeft: "auto" }}>Key: {overrideKey}</div>
                   </div>
                 </AppBarTitle>
-                <AppBarSubtitle>{data.artist}</AppBarSubtitle>
               </div>
               <Song
                 screenWrap={screenWrap}

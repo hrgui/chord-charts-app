@@ -8,6 +8,7 @@ import Link from "lib/layout/Link";
 import { useTranslation } from "react-i18next";
 import { Trans } from "react-i18next";
 import { useGetSetlistsQuery } from "app/services/setlists";
+import Page from "lib/layout/Page";
 
 interface SetlistsListPageProps {
   path?: string;
@@ -174,7 +175,11 @@ export function SetlistListContainer({
 }
 
 const SetlistsListPage: React.FC<SetlistsListPageProps> = () => {
-  return <SetlistListContainer />;
+  return (
+    <Page title="All Setlists">
+      <SetlistListContainer />
+    </Page>
+  );
 };
 
 export default SetlistsListPage;

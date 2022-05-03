@@ -27,12 +27,10 @@ export function SetlistSongsViewer({
   onIndexChange,
   onSaveSetlistSettings,
   hasUnsavedSettings = false,
-  isLyrics = false
+  isLyrics = false,
 }: SetlistSongsViewerProps) {
   const [_settings, setSettings] = React.useState(settings || {});
-  const [_hasUnSavedSettings, setHasUnsavedSettings] = React.useState(
-    hasUnsavedSettings
-  );
+  const [_hasUnSavedSettings, setHasUnsavedSettings] = React.useState(hasUnsavedSettings);
 
   React.useEffect(() => {
     setHasUnsavedSettings(hasUnsavedSettings);
@@ -41,7 +39,7 @@ export function SetlistSongsViewer({
   function handleChangeSettings(settingsFragment, { id }) {
     const _newSettings = {
       ..._settings,
-      [id]: { ..._settings[id], ...settingsFragment }
+      [id]: { ..._settings[id], ...settingsFragment },
     };
     setHasUnsavedSettings(true);
     setSettings(_newSettings);
@@ -62,9 +60,9 @@ export function SetlistSongsViewer({
       )}
       {songs.map((song, index) => (
         <SongViewContainer
+          setlist={setlist}
           key={song}
           isActiveInSetlist={songIndex === index}
-          isInSetlist={!isLyrics}
           id={song}
           settings={_settings[song]}
           onChangeSettings={handleChangeSettings}

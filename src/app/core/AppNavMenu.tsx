@@ -69,7 +69,6 @@ const NavMenuTitle = styled.div`
 
 export function AppNavMenu(props: NavMenuProps) {
   const config = useGetAppBarData();
-  const user = useUserData();
   const { toggleNavMenu } = useAppBarActions();
 
   if (!config) {
@@ -94,7 +93,7 @@ export function AppNavMenu(props: NavMenuProps) {
         drawerHidden: navMenuHidden,
       })}
     >
-      <NavMenuTitle>TODO change me</NavMenuTitle>
+      <NavMenuTitle>{config.appName}</NavMenuTitle>
       <Divider />
       <NavMenuItems />
     </StyledDrawer>

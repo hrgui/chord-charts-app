@@ -10,7 +10,6 @@ export function useGetAppBarData() {
     appName,
     navMenuHidden,
     navBarState,
-    page: { title: "TODO change me", subtitle: "TODO change me" },
   };
 }
 

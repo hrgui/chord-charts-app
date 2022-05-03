@@ -10,9 +10,10 @@ import { useUserData } from "lib/hooks/useUserData";
 import { useTranslation } from "react-i18next";
 import PlaylistAdd from "@material-ui/icons/PlaylistAdd";
 import { useLocation } from "react-router-dom";
+import { Song } from "app/services/songs";
 
 interface SongActionsProps {
-  song?: any;
+  song?: Song;
   addToSetlistMode?: boolean;
   onAddSong: (song) => any;
 }
@@ -80,7 +81,7 @@ const SongActions: React.FC<SongActionsProps> = (props) => {
 
   return (
     <ActionsMenu>
-      <SongActionsList id={props.song.id} addToSetlistMode={props.addToSetlistMode} />
+      <SongActionsList id={props.song?._id} addToSetlistMode={props.addToSetlistMode} />
     </ActionsMenu>
   );
 };

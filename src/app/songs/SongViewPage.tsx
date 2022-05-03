@@ -3,10 +3,12 @@ import { useParams } from "react-router-dom";
 import Loading from "lib/layout/Loading";
 import SongView from "./SongView";
 import { useGetSongQuery } from "app/services/songs";
+import Page from "lib/layout/Page";
+import { Setlist } from "app/services/setlists";
 
 interface SongViewContainerProps {
   id: string;
-  isInSetlist?: boolean;
+  setlist?: Setlist;
   isActiveInSetlist?: boolean;
   settings?: any;
   onChangeSettings?: any;
@@ -16,9 +18,9 @@ export const SongViewContainer: React.FC<SongViewContainerProps> = (props) => {
   console.log("SongViewContainer", props);
   const { id } = props;
   const { isLoading, error: isError, data } = useGetSongQuery(id);
-  const { isInSetlist, isActiveInSetlist, settings, onChangeSettings = () => null } = props;
+  const { setlist, isActiveInSetlist, settings, onChangeSettings = () => null } = props;
 
-  if (isInSetlist && !isActiveInSetlist) {
+  if (setlist && !isActiveInSetlist) {
     return null;
   }
 
@@ -26,8 +28,13 @@ export const SongViewContainer: React.FC<SongViewContainerProps> = (props) => {
     return <Loading />;
   }
 
+  function getTitle() {
+    const songTitle = data?.title || `Song ${id}`;
+    return setlist ? `${setlist.title} - ${songTitle}` : songTitle;
+  }
+
   return (
-    <>
+    <Page title={getTitle()}>
       <SongView
         isLoading={isLoading}
         isError={isError}
@@ -35,7 +42,7 @@ export const SongViewContainer: React.FC<SongViewContainerProps> = (props) => {
         settings={settings}
         onChangeSettings={onChangeSettings}
       />
-    </>
+    </Page>
   );
 };
 

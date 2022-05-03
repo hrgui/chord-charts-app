@@ -30,29 +30,6 @@ export function AppBarTitle({ children }) {
   );
 }
 
-export function AppBarSubtitle({ children }) {
-  return (
-    <Typography variant="subtitle1" color="inherit">
-      {children}
-    </Typography>
-  );
-}
-
-function useIntersection(options) {
-  const [observerEntry, setEntry] = React.useState({});
-  const elRef = React.useRef(null);
-
-  React.useEffect(() => {
-    if (!elRef.current) {
-      return;
-    }
-
-    const observer = new IntersectionObserver((entries) => setEntry(entries[0]), options);
-    observer.observe(elRef.current as any);
-    return () => observer.disconnect();
-  }, [options]);
-  return { observerEntry, elRef };
-}
 const StyledAppBar = styled(MuiAppBar)`
   z-index: ${({ theme }) => theme.zIndex.drawer + 1};
 
@@ -136,16 +113,12 @@ const ConnectedAppBar = (props: NavBarProps) => {
     return null;
   }
 
-  const {
-    page: { title, subtitle },
-  } = config;
   return (
     <>
       <AppBar
         appName={config.appName}
         state={config.navBarState}
-        title={title}
-        subtitle={subtitle}
+        title={"TODO change me title in appbar"}
         navMenuHidden={config.navMenuHidden}
         onShowNavMenu={toggleNavMenu}
         onHideNavMenu={toggleNavMenu}

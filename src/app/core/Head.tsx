@@ -2,33 +2,27 @@ import * as React from "react";
 import { Helmet } from "react-helmet-async";
 import { useGetAppBarData } from "lib/hooks/useGetAppBarData";
 
-interface HeadProps {}
+interface HeadProps {
+  title?: string;
+  children?: React.ReactNode;
+}
 
-const Head: React.FC<HeadProps> = (props) => {
+const Head: React.FC<HeadProps> = ({ title, children }: HeadProps) => {
   const config = useGetAppBarData();
 
   if (!config) {
     return null;
   }
 
-  const {
-    page: { title },
-    appName,
-  } = config;
+  const { appName } = config;
 
-  const titleHead = title === appName || !title ? title : `${title} - ${appName}`;
-
-  return <HeadView title={titleHead} />;
-};
-
-// for some reason if we put Helmet up above, it has an infiite loop
-// the fibers are different
-export const HeadView = React.memo<any>(({ title }) => {
+  const overallTitle = title ? `${title} - ${appName}` : appName;
   return (
     <Helmet>
-      <title>{title}</title>
+      <title data-title={title}>{overallTitle}</title>
+      {children}
     </Helmet>
   );
-});
+};
 
 export default Head;

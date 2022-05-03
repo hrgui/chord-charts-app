@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components/macro";
-import Head from "./Head";
 import { CssBaseline } from "@material-ui/core";
 import AppNavMenu from "./AppNavMenu";
 import ContentContainer from "lib/layout/ContentContainer";
@@ -15,7 +14,6 @@ const AppContainer = styled.div`
 export function AppLayout({ children }: { children? }) {
   return (
     <>
-      <Head />
       <CssBaseline />
       <AppContainer>
         <AppNavMenu />

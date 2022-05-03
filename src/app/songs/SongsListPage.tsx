@@ -5,6 +5,7 @@ import { Trans } from "react-i18next";
 import { useTranslation } from "react-i18next";
 import SongActions from "./SongActions";
 import { useGetSongsQuery } from "app/services/songs";
+import Page from "lib/layout/Page";
 
 interface SongsListPageProps {
   path?: string;
@@ -104,7 +105,11 @@ export function SongListContainer({
 }
 
 const SongsListPage: React.FC<SongsListPageProps> = () => {
-  return <SongListContainer />;
+  return (
+    <Page title="All Songs">
+      <SongListContainer />
+    </Page>
+  );
 };
 
 export default SongsListPage;

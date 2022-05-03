@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useParams, useHistory } from "react-router-dom";
 import { useAddSongMutation, useGetSongQuery, useUpdateSongMutation } from "app/services/songs";
 import { Song } from "app/services/songs";
+import Page from "lib/layout/Page";
 
 export interface SongFormPageProps {
   path?: string;
@@ -18,28 +19,30 @@ const SongEditPage: React.FC<SongFormPageProps & { id: string }> = (props) => {
   const { t } = useTranslation();
   const enqueueSnackbar = () => {};
   const [updateSong] = useUpdateSongMutation();
-  const { isLoading, data = {}, error } = useGetSongQuery(id);
+  const { isLoading, data = {} as Song, error } = useGetSongQuery(id);
 
   return (
-    <SongForm
-      isLoading={isLoading}
-      onSubmit={(values) => updateSong(values)}
-      onSubmitSuccess={(_, values) => {
-        enqueueSnackbar(t(`song:message/saveSuccess`, { song: values.title || values.id }), {
-          variant: "success",
-        });
-        props.navigate(`/song/${id}/view`);
-      }}
-      onSubmitError={(e) => {
-        enqueueSnackbar(t(`song:message/saveError`), { variant: "error" });
-        enqueueSnackbar(<pre>{JSON.stringify(e, null, 2)}</pre>, {
-          variant: "error",
-        });
-        console.error(e);
-      }}
-      error={error}
-      data={data}
-    />
+    <Page title={`Edit ${data.title}`}>
+      <SongForm
+        isLoading={isLoading}
+        onSubmit={(values) => updateSong(values)}
+        onSubmitSuccess={(_, values) => {
+          enqueueSnackbar(t(`song:message/saveSuccess`, { song: values.title || values.id }), {
+            variant: "success",
+          });
+          props.navigate(`/song/${id}/view`);
+        }}
+        onSubmitError={(e) => {
+          enqueueSnackbar(t(`song:message/saveError`), { variant: "error" });
+          enqueueSnackbar(<pre>{JSON.stringify(e, null, 2)}</pre>, {
+            variant: "error",
+          });
+          console.error(e);
+        }}
+        error={error}
+        data={data}
+      />
+    </Page>
   );
 };
 
@@ -67,28 +70,30 @@ const SongNewPage: React.FC<SongFormPageProps> = (props) => {
   const newSongTemplate = getNewSongTemplate();
 
   return (
-    <SongForm
-      isNew
-      data={newSongTemplate}
-      onSubmit={(values) =>
-        createSong({
-          ...values,
-        })
-      }
-      onSubmitSuccess={(_, values) => {
-        enqueueSnackbar(t(`song:message/saveSuccess`, { song: values.title || values.id }), {
-          variant: "success",
-        });
-        props.navigate(`/songs`);
-      }}
-      onSubmitError={(e) => {
-        enqueueSnackbar(t(`song:message/saveError`), { variant: "error" });
-        enqueueSnackbar(<pre>{JSON.stringify(e, null, 2)}</pre>, {
-          variant: "error",
-        });
-        console.error(e);
-      }}
-    />
+    <Page title={`New Song`}>
+      <SongForm
+        isNew
+        data={newSongTemplate}
+        onSubmit={(values) =>
+          createSong({
+            ...values,
+          })
+        }
+        onSubmitSuccess={(_, values) => {
+          enqueueSnackbar(t(`song:message/saveSuccess`, { song: values.title || values.id }), {
+            variant: "success",
+          });
+          props.navigate(`/songs`);
+        }}
+        onSubmitError={(e) => {
+          enqueueSnackbar(t(`song:message/saveError`), { variant: "error" });
+          enqueueSnackbar(<pre>{JSON.stringify(e, null, 2)}</pre>, {
+            variant: "error",
+          });
+          console.error(e);
+        }}
+      />
+    </Page>
   );
 };
 

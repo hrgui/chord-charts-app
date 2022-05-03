@@ -3,4 +3,17 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import "@testing-library/jest-dom/extend-expect";
-import "./testUtils/setupi18n";
+import "./testEnv/setupi18n";
+import "./testEnv/setupDomMocks";
+
+jest.mock("pouchdb-browser", () => {
+  const instance = function () {
+    return {
+      createIndex: jest.fn().mockReturnValue(new Promise((resolve) => resolve(true))),
+    };
+  };
+
+  instance.plugin = jest.fn();
+
+  return instance;
+});

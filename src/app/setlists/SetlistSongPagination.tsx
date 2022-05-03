@@ -37,8 +37,7 @@ export const SetlistSongPagination = (props: SetlistSongPaginationProps) => {
   React.useEffect(() => {
     const buttonsHolderEl: any = buttonsHolder.current;
     const buttonToScrollTo: any =
-      buttonsHolderEl &&
-      buttonsHolderEl.querySelector(`.song-pgn-${currentIndex}`);
+      buttonsHolderEl && buttonsHolderEl.querySelector(`.song-pgn-${currentIndex}`);
 
     if (buttonToScrollTo && buttonToScrollTo.scrollIntoView) {
       buttonToScrollTo.scrollIntoView({ behavior: "smooth" });
@@ -52,7 +51,7 @@ export const SetlistSongPagination = (props: SetlistSongPaginationProps) => {
   const buttons = Array.from(new Array(length)).map((_, index) => (
     <StyledButton
       className={`song-pgn-${index}`}
-      onClick={e => {
+      onClick={(e) => {
         handleChange(index);
       }}
       key={index}
@@ -62,32 +61,19 @@ export const SetlistSongPagination = (props: SetlistSongPaginationProps) => {
     </StyledButton>
   ));
 
+  //TODO fixme
+  const width = "xl";
   return (
-    <WithWidth>
-      {({ width }) => {
-        return (
-          <Container>
-            <IconButton
-              data-testid="prev"
-              onClick={_ => handleChange(currentIndex - 1)}
-            >
-              <NavigateBeforeIcon />
-            </IconButton>
-            <div
-              ref={buttonsHolder}
-              className={classnames(`pageNumbers-${width}`)}
-            >
-              {buttons}
-            </div>
-            <IconButton
-              data-testid="next"
-              onClick={_ => handleChange(currentIndex + 1)}
-            >
-              <NavigateNextIcon />
-            </IconButton>
-          </Container>
-        );
-      }}
-    </WithWidth>
+    <Container>
+      <IconButton data-testid="prev" onClick={(_) => handleChange(currentIndex - 1)}>
+        <NavigateBeforeIcon />
+      </IconButton>
+      <div ref={buttonsHolder} className={classnames(`pageNumbers-${width}`)}>
+        {buttons}
+      </div>
+      <IconButton data-testid="next" onClick={(_) => handleChange(currentIndex + 1)}>
+        <NavigateNextIcon />
+      </IconButton>
+    </Container>
   );
 };

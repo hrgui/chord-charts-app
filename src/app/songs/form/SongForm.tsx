@@ -103,86 +103,86 @@ export const SongForm = (props: SongFormProps) => {
     return null;
   }
 
+  //TODO fix me
+  const width = "xl";
+  const isMobile = false;
+
   return (
-    <WithWidth>
-      {({ width }) => (
-        <Form
-          validationSchema={validationSchema}
-          initialValues={data}
-          onSubmit={props.onSubmit}
-          onSubmitSuccess={props.onSubmitSuccess}
-          onSubmitError={props.onSubmitError}
-        >
-          {({ values, errors, submitForm, isSubmitting }) => (
-            <>
-              <form>
-                <Container>
-                  <SongFormCard
-                    className={classnames(classes.cardFirst, {
-                      "SongFormCard-mobile": !(width === "lg" || width === "xl"),
-                    })}
-                  >
-                    <TitleAndArtistFieldSet>
-                      <TextField
-                        className={classes.field}
-                        fullWidth
-                        error={errors.title}
-                        helperText={<ErrorMessage name="title" />}
-                        label={t("song:label/title")}
-                        name="title"
-                      />
-                      <ArtistTextField
-                        error={errors.artist}
-                        helperText={<ErrorMessage name="artist" />}
-                        label={t("song:label/artist")}
-                        name="artist"
-                      />
-                    </TitleAndArtistFieldSet>
-                    <ChordSelectFieldSet>
-                      <ChordSelectField
-                        error={errors.key}
-                        helperText={<ErrorMessage name="key" />}
-                        label={t("song:label/key")}
-                        name="key"
-                      />
-                    </ChordSelectFieldSet>
-                    <StyledConnectedYoutubeView
-                      className={classnames({
-                        "ConnectedYoutubeView-tablet": width === "md",
-                        "ConnectedYoutubeView-mobile": width === "sm" || width === "xs",
-                        "ConnectedYoutubeView-breakout": !(width === "lg" || width === "xl"),
-                      })}
-                      value={values.youtube}
-                    />
-                  </SongFormCard>
-                  <Paper className={classes.card}>
-                    <TextField
-                      className={classes.field}
-                      fullWidth
-                      label={t("song:label/youtube")}
-                      name="youtube"
-                    />
-                    <ChipInputField fullWidth label={t("song:label/tags")} name="tags" />
-                  </Paper>
-                  <SongSectionsField name="sections" />
-                  <FormActions>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      type="submit"
-                      onClick={submitForm}
-                      disabled={isSubmitting}
-                    >
-                      {t("save")}
-                    </Button>
-                  </FormActions>
-                </Container>
-              </form>
-            </>
-          )}
-        </Form>
+    <Form
+      validationSchema={validationSchema}
+      initialValues={data}
+      onSubmit={props.onSubmit}
+      onSubmitSuccess={props.onSubmitSuccess}
+      onSubmitError={props.onSubmitError}
+    >
+      {({ values, errors, submitForm, isSubmitting }) => (
+        <>
+          <form>
+            <Container>
+              <SongFormCard
+                className={classnames(classes.cardFirst, {
+                  "SongFormCard-mobile": !isMobile,
+                })}
+              >
+                <TitleAndArtistFieldSet>
+                  <TextField
+                    className={classes.field}
+                    fullWidth
+                    error={errors.title}
+                    helperText={<ErrorMessage name="title" />}
+                    label={t("song:label/title")}
+                    name="title"
+                  />
+                  <ArtistTextField
+                    error={errors.artist}
+                    helperText={<ErrorMessage name="artist" />}
+                    label={t("song:label/artist")}
+                    name="artist"
+                  />
+                </TitleAndArtistFieldSet>
+                <ChordSelectFieldSet>
+                  <ChordSelectField
+                    error={errors.key}
+                    helperText={<ErrorMessage name="key" />}
+                    label={t("song:label/key")}
+                    name="key"
+                  />
+                </ChordSelectFieldSet>
+                <StyledConnectedYoutubeView
+                  className={classnames({
+                    "ConnectedYoutubeView-tablet": width === "md",
+                    "ConnectedYoutubeView-mobile": width === "sm" || width === "xs",
+                    "ConnectedYoutubeView-breakout": !(width === "lg" || width === "xl"),
+                  })}
+                  value={values.youtube}
+                />
+              </SongFormCard>
+              <Paper className={classes.card}>
+                <TextField
+                  className={classes.field}
+                  fullWidth
+                  label={t("song:label/youtube")}
+                  name="youtube"
+                />
+                <ChipInputField fullWidth label={t("song:label/tags")} name="tags" />
+              </Paper>
+              <SongSectionsField name="sections" />
+              <FormActions>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  onClick={submitForm}
+                  disabled={isSubmitting}
+                >
+                  {t("save")}
+                </Button>
+              </FormActions>
+            </Container>
+          </form>
+        </>
       )}
-    </WithWidth>
+    </Form>
   );
 };
 

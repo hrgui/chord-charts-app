@@ -187,90 +187,87 @@ const SongView = (props: SongViewProps) => {
     return null;
   }
 
+  //TODO fixme
+  const width = "xl";
+
+  const youtubeViewCpt = (
+    <StyledConnectedYoutubeView
+      className={classnames({
+        "ConnectedYoutubeView-tablet": width === "md",
+        "ConnectedYoutubeView-mobile": width === "sm" || width === "xs",
+      })}
+      value={data.youtube}
+    />
+  );
+
+  const wrappedYoutubeViewCpt =
+    width === "xl" || width === "lg"
+      ? ReactDOM.createPortal(youtubeViewCpt, getOrCreateElement("#songVideo"))
+      : youtubeViewCpt;
+
   return (
-    <WithWidth>
-      {({ width }) => {
-        const youtubeViewCpt = (
-          <StyledConnectedYoutubeView
-            className={classnames({
-              "ConnectedYoutubeView-tablet": width === "md",
-              "ConnectedYoutubeView-mobile": width === "sm" || width === "xs",
-            })}
-            value={data.youtube}
-          />
-        );
-
-        const wrappedYoutubeViewCpt =
-          width === "xl" || width === "lg"
-            ? ReactDOM.createPortal(youtubeViewCpt, getOrCreateElement("#songVideo"))
-            : youtubeViewCpt;
-
-        return (
-          <StyledWrapper
-            className={classnames({
-              "Wrapper-tablet": width === "md",
-              "Wrapper-Mobile": width === "sm" || width === "xs",
-            })}
-          >
-            {ReactDOM.createPortal(
-              <CurrentSongNavMenu
-                sectionsSettings={sectionsSettings}
-                song={data}
-                handleSetSectionSettings={setSectionSettings}
-                chordsDisabled={chordsDisabled}
-                lyricsDisabled={lyricsDisabled}
-                screenWrap={screenWrap}
-                onToggleScreenWrap={handleToggleScreenWrap}
-                onToggleLyricsVisibility={handleToggleLyricsVisibility}
-                onToggleChordsVisibility={handleToggleChordsVisibility}
-              />,
-              getOrCreateElement("#currentSongNavMenu")
-            )}
-            {ReactDOM.createPortal(
-              <>
-                <AppBarTitle>{data.title}</AppBarTitle>
-              </>,
-              getOrCreateElement("#songTitle")!
-            )}
-            {ReactDOM.createPortal(
-              <StyledSongViewKey
-                classes={{
-                  root: "SongViewKey-root",
-                  select: "SongViewKey-root",
-                  icon: "SongViewKey-icon",
-                }}
-                overrideKey={overrideKey}
-                onChange={(e) => {
-                  setOverrideKey(e.target.value);
-                }}
-              />,
-              getOrCreateElement("#songKey")!
-            )}
-            <Container className={classnames("printSong")}>
-              <div className="print uppercase printSongBar">
-                <AppBarTitle>
-                  <div style={{ display: "flex" }}>
-                    {data.title} <div style={{ marginLeft: "auto" }}>Key: {overrideKey}</div>
-                  </div>
-                </AppBarTitle>
-              </div>
-              <Song
-                screenWrap={screenWrap}
-                lyricsDisabled={lyricsDisabled}
-                chordsDisabled={chordsDisabled}
-                setSectionSettings={setSectionSettings}
-                baseKey={data.key}
-                overrideKey={overrideKey}
-                sections={data.sections}
-                sectionsSettings={sectionsSettings}
-              />
-              <ToolbarSpacer />
-            </Container>
-            {wrappedYoutubeViewCpt}
-          </StyledWrapper>
-        );
-      }}
-    </WithWidth>
+    <StyledWrapper
+      className={classnames({
+        "Wrapper-tablet": width === "md",
+        "Wrapper-Mobile": width === "sm" || width === "xs",
+      })}
+    >
+      {ReactDOM.createPortal(
+        <CurrentSongNavMenu
+          sectionsSettings={sectionsSettings}
+          song={data}
+          handleSetSectionSettings={setSectionSettings}
+          chordsDisabled={chordsDisabled}
+          lyricsDisabled={lyricsDisabled}
+          screenWrap={screenWrap}
+          onToggleScreenWrap={handleToggleScreenWrap}
+          onToggleLyricsVisibility={handleToggleLyricsVisibility}
+          onToggleChordsVisibility={handleToggleChordsVisibility}
+        />,
+        getOrCreateElement("#currentSongNavMenu")
+      )}
+      {ReactDOM.createPortal(
+        <>
+          <AppBarTitle>{data.title}</AppBarTitle>
+        </>,
+        getOrCreateElement("#songTitle")!
+      )}
+      {ReactDOM.createPortal(
+        <StyledSongViewKey
+          classes={{
+            root: "SongViewKey-root",
+            select: "SongViewKey-root",
+            icon: "SongViewKey-icon",
+          }}
+          overrideKey={overrideKey}
+          onChange={(e) => {
+            setOverrideKey(e.target.value);
+          }}
+        />,
+        getOrCreateElement("#songKey")!
+      )}
+      <Container className={classnames("printSong")}>
+        <div className="print uppercase printSongBar">
+          <AppBarTitle>
+            <div style={{ display: "flex" }}>
+              {data.title} <div style={{ marginLeft: "auto" }}>Key: {overrideKey}</div>
+            </div>
+          </AppBarTitle>
+        </div>
+        <Song
+          screenWrap={screenWrap}
+          lyricsDisabled={lyricsDisabled}
+          chordsDisabled={chordsDisabled}
+          setSectionSettings={setSectionSettings}
+          baseKey={data.key}
+          overrideKey={overrideKey}
+          sections={data.sections}
+          sectionsSettings={sectionsSettings}
+        />
+        <ToolbarSpacer />
+      </Container>
+      {wrappedYoutubeViewCpt}
+    </StyledWrapper>
   );
 };
 

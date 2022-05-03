@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Table } from "lib/table/Table";
-import { WithWidth, isWidthMobile } from "lib/layout/WithWidth";
 import SetlistTitleCell from "./cells/SetlistTitleCell";
 import MobileSetlistTitleCell from "./cells/MobileSetlistTitleCell";
 import SetlistActions from "./SetlistActions";
@@ -154,23 +153,19 @@ export function SetlistListContainer({
 }) {
   const { error, isLoading, data = [] } = useGetSetlistsQuery();
 
+  //TODO fixme
+  const isMobile = false;
+
   return (
-    <WithWidth>
-      {({ width }) => {
-        const isMobile = isWidthMobile(width);
-        return (
-          <SetlistTable
-            isMobile={isMobile}
-            error={error}
-            loading={isLoading}
-            data={data}
-            song_id={song_id}
-            onRequestClose={onRequestClose}
-            addToSetlistMode={addToSetlistMode}
-          />
-        );
-      }}
-    </WithWidth>
+    <SetlistTable
+      isMobile={isMobile}
+      error={error}
+      loading={isLoading}
+      data={data}
+      song_id={song_id}
+      onRequestClose={onRequestClose}
+      addToSetlistMode={addToSetlistMode}
+    />
   );
 }
 

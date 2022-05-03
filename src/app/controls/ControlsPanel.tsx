@@ -5,7 +5,6 @@ import { CurrentSetlistNavMenuPlaceholder } from "../setlists/CurrentSetlistNavM
 import { CurrentSongNavMenuPlaceholder } from "../songs/CurrentSongNavMenu";
 import classnames from "classnames";
 import { ToolbarSpacer } from "lib/layout/ToolbarSpacer";
-import { WithWidth } from "lib/layout/WithWidth";
 import { useGetAppBarData } from "lib/hooks/useGetAppBarData";
 import { useAppBarActions } from "lib/hooks/useAppBarActions";
 import Close from "@material-ui/icons/Close";
@@ -49,49 +48,44 @@ export const ControlsPanel = () => {
     return null;
   }
 
-  const { navBarState, controlsPanelHidden } = config;
+  const { navBarState } = config;
+
+  //TODO fixme
+  const controlsPanelHidden = true; // this came from config?
+  const shouldDrawerBeTemporary = false;
+  const variant = shouldDrawerBeTemporary ? "temporary" : "permanent";
 
   if (navBarState === "main") {
     return null;
   }
 
   return (
-    <WithWidth>
-      {({ width }) => {
-        const shouldDrawerBeTemporary =
-          width === "sm" || width === "xs" || width === "md";
-        const variant = shouldDrawerBeTemporary ? "temporary" : "permanent";
-
-        return (
-          <StyledDrawer
-            open={!controlsPanelHidden}
-            ModalProps={{ keepMounted: true }}
-            classes={{
-              paper: classnames("drawerPaper", `controlsPanel-${variant}`, {
-                // TODO: this used to be !open
-                drawerPaperHidden: controlsPanelHidden
-              })
-            }}
-            anchor="right"
-            variant={variant}
-          >
-            {!shouldDrawerBeTemporary && <ToolbarSpacer single />}
-            {shouldDrawerBeTemporary && (
-              <ToggleControlsPanelAction>
-                {toggleControlsPanel => (
-                  <StyledIconButton onClick={e => toggleControlsPanel()}>
-                    <Close />
-                  </StyledIconButton>
-                )}
-              </ToggleControlsPanelAction>
-            )}
-            <div id="songVideo" />
-            <CurrentSetlistNavMenuPlaceholder />
-            <CurrentSongNavMenuPlaceholder />
-          </StyledDrawer>
-        );
+    <StyledDrawer
+      open={!controlsPanelHidden}
+      ModalProps={{ keepMounted: true }}
+      classes={{
+        paper: classnames("drawerPaper", `controlsPanel-${variant}`, {
+          // TODO: this used to be !open
+          drawerPaperHidden: controlsPanelHidden,
+        }),
       }}
-    </WithWidth>
+      anchor="right"
+      variant={variant}
+    >
+      {!shouldDrawerBeTemporary && <ToolbarSpacer single />}
+      {shouldDrawerBeTemporary && (
+        <ToggleControlsPanelAction>
+          {(toggleControlsPanel) => (
+            <StyledIconButton onClick={(e) => toggleControlsPanel()}>
+              <Close />
+            </StyledIconButton>
+          )}
+        </ToggleControlsPanelAction>
+      )}
+      <div id="songVideo" />
+      <CurrentSetlistNavMenuPlaceholder />
+      <CurrentSongNavMenuPlaceholder />
+    </StyledDrawer>
   );
 };
 

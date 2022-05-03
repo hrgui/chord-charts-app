@@ -6,6 +6,9 @@ function getDarkModeInitialState() {
 
   const localStoragePreference = window.localStorage.getItem(CHORD_CHARTS_DARK_MODE_KEY);
 
+  console.log("prefersDarkModeInitially", prefersDarkModeInitially);
+  console.log("localStoragePreference", localStoragePreference);
+
   if (localStoragePreference !== null) {
     return localStoragePreference === "true";
   } else {

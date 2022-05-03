@@ -3,7 +3,6 @@ import { AppBar as MuiAppBar, Toolbar } from "@material-ui/core";
 import classnames from "classnames";
 import styled from "styled-components/macro";
 import { useGetAppBarData } from "lib/hooks/useGetAppBarData";
-import { WithWidth } from "lib/layout/WithWidth";
 import { NAV_MENU_WIDTH } from "app/core/AppNavMenu";
 import MoreHoriz from "@material-ui/icons/MoreHoriz";
 import { IconButton } from "@material-ui/core";
@@ -21,7 +20,7 @@ export const SongControlsBarPlaceholder = () => {
 export const AppBar = styled(MuiAppBar)`
   top: auto;
   bottom: 0;
-  z-index: ${props => props.theme.zIndex.drawer + 1};
+  z-index: ${(props) => props.theme.zIndex.drawer + 1};
   background: ${({ theme }) => theme.palette.background.paper};
 
   &.navMenuShown-desktop {
@@ -47,38 +46,32 @@ export const ControlsBar = () => {
     return null;
   }
 
-  return (
-    <WithWidth>
-      {({ width }) => {
-        const shouldDrawerBeTemporary =
-          width === "sm" || width === "xs" || width === "md";
+  //TODO FIXME
+  const shouldDrawerBeTemporary = false;
 
-        return (
-          <AppBar
-            className={classnames("print-hidden", {
-              "navMenuShown-desktop": !navMenuHidden && !shouldDrawerBeTemporary
-            })}
-            color="default"
-            position="fixed"
-          >
-            <Toolbar variant="dense">
-              <SongControlsBarPlaceholder />
-              <div id="setlistControls" />
-              <ControlsBarRightPanel>
-                <ToggleControlsPanelAction>
-                  {toggleControlsPanel => {
-                    return (
-                      <IconButton onClick={e => toggleControlsPanel()}>
-                        <MoreHoriz />
-                      </IconButton>
-                    );
-                  }}
-                </ToggleControlsPanelAction>
-              </ControlsBarRightPanel>
-            </Toolbar>
-          </AppBar>
-        );
-      }}
-    </WithWidth>
+  return (
+    <AppBar
+      className={classnames("print-hidden", {
+        "navMenuShown-desktop": !navMenuHidden && !shouldDrawerBeTemporary,
+      })}
+      color="default"
+      position="fixed"
+    >
+      <Toolbar variant="dense">
+        <SongControlsBarPlaceholder />
+        <div id="setlistControls" />
+        <ControlsBarRightPanel>
+          <ToggleControlsPanelAction>
+            {(toggleControlsPanel) => {
+              return (
+                <IconButton onClick={(e) => toggleControlsPanel()}>
+                  <MoreHoriz />
+                </IconButton>
+              );
+            }}
+          </ToggleControlsPanelAction>
+        </ControlsBarRightPanel>
+      </Toolbar>
+    </AppBar>
   );
 };

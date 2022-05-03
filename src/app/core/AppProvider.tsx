@@ -3,7 +3,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { StylesProvider } from "@material-ui/styles";
 import { BrowserRouter } from "react-router-dom";
 
-import { store } from "app/store";
+import { store as defaultStore } from "app/store";
 import { Provider } from "react-redux";
 import { AppThemeProvider } from "./AppThemeProvider";
 import PageLoading from "lib/layout/PageLoading";
@@ -21,6 +21,7 @@ interface AppControllerProps {
 export function AppProvider({
   children,
   history,
+  store = defaultStore,
   componentProviderOverrides = {},
 }: AppControllerProps) {
   // const Router: any = history ? TestRouter : BrowserRouter;

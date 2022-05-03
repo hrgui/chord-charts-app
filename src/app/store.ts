@@ -6,21 +6,25 @@ import { pokemonApi } from "./counter/pokemon";
 import { SongApi } from "./services/songs";
 import { SetlistApi } from "./services/setlists";
 
-export const store = configureStore({
-  reducer: {
-    counter: counterReducer,
-    uiState: uiStateReducer,
-    [pokemonApi.reducerPath]: pokemonApi.reducer,
-    [SongApi.reducerPath]: SongApi.reducer,
-    [SetlistApi.reducerPath]: SetlistApi.reducer,
-  },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware()
-      .prepend(darkModeMiddlware.middleware)
-      .concat(pokemonApi.middleware)
-      .concat(SongApi.middleware as any)
-      .concat(SetlistApi.middleware as any),
-});
+export function createStore() {
+  return configureStore({
+    reducer: {
+      counter: counterReducer,
+      uiState: uiStateReducer,
+      [pokemonApi.reducerPath]: pokemonApi.reducer,
+      [SongApi.reducerPath]: SongApi.reducer,
+      [SetlistApi.reducerPath]: SetlistApi.reducer,
+    },
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware()
+        .prepend(darkModeMiddlware.middleware)
+        .concat(pokemonApi.middleware)
+        .concat(SongApi.middleware as any)
+        .concat(SetlistApi.middleware as any),
+  });
+}
+
+export const store = createStore();
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;

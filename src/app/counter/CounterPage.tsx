@@ -1,6 +1,7 @@
 import React from "react";
 import { Counter } from "./Counter";
 import { useGetPokemonByNameQuery } from "app/counter/pokemon";
+import Page from "lib/layout/Page";
 
 type Props = {};
 
@@ -28,14 +29,11 @@ export function Pokemon() {
 
 const CounterPage = (props: Props) => {
   return (
-    <>
-      <Counter />
-      <Pokemon />
-      <Pokemon />
-      <Pokemon />
-      <Pokemon />
-      <Pokemon />
-    </>
+    <Page>
+      <button className="bg-red-700 text-white p-3 w-auto rounded-lg hover:bg-red-900 focus:outline-none focus:ring shadow-md hover:shadow-none transition-all duration-300 mt-5">
+        Test
+      </button>
+    </Page>
   );
 };
 

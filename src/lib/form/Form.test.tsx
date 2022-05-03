@@ -1,8 +1,7 @@
 import React from "react";
 import { Form } from "./Form";
-import { render, cleanup, fireEvent, wait } from "@testing-library/react";
-
-afterEach(cleanup);
+import { render, fireEvent, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 it("Form - onSubmit, onSubmitSuccess chain w/ default onSubmitSuccess", async () => {
   let onSubmit = jest.fn().mockReturnValue("true");
@@ -15,8 +14,7 @@ it("Form - onSubmit, onSubmitSuccess chain w/ default onSubmitSuccess", async ()
   );
 
   const submitBtn = getByText("Submit");
-  await fireEvent.click(submitBtn);
-  await wait(() => {}, { timeout: 1 });
+  await userEvent.click(submitBtn);
   expect(onSubmit).toHaveBeenCalled();
 });
 
@@ -35,9 +33,10 @@ it("Form - onSubmit, onSubmitSuccess chain w/ default onSubmit", async () => {
   );
 
   const submitBtn = getByText("Submit");
-  await fireEvent.click(submitBtn);
-  await wait(() => {}, { timeout: 1 });
-  expect(onSubmitSuccess).toHaveBeenCalled();
+  await userEvent.click(submitBtn);
+  await waitFor(() => {
+    return expect(onSubmitSuccess).toHaveBeenCalled();
+  });
 });
 
 it("Form - onSubmit, onSubmitSuccess chain", async () => {
@@ -62,10 +61,13 @@ it("Form - onSubmit, onSubmitSuccess chain", async () => {
   );
 
   const submitBtn = getByText("Submit");
-  await fireEvent.click(submitBtn);
-  await wait(() => {}, { timeout: 1 });
-  expect(onSubmit).toHaveBeenCalled();
-  expect(onSubmitSuccess).toHaveBeenCalled();
+  await userEvent.click(submitBtn);
+  await waitFor(() => {
+    return expect(onSubmit).toHaveBeenCalled();
+  });
+  await waitFor(() => {
+    return expect(onSubmitSuccess).toHaveBeenCalled();
+  });
 });
 
 it("Form - onSubmit, onSubmitError chain", async () => {
@@ -93,9 +95,12 @@ it("Form - onSubmit, onSubmitError chain", async () => {
 
   const submitBtn = getByText("Submit");
   await fireEvent.click(submitBtn);
-  await wait(() => {}, { timeout: 1 });
-  expect(onSubmit).toHaveBeenCalled();
-  expect(onSubmitError).toHaveBeenCalled();
+  await waitFor(() => {
+    return expect(onSubmit).toHaveBeenCalled();
+  });
+  await waitFor(() => {
+    return expect(onSubmitError).toHaveBeenCalled();
+  });
 });
 
 it("Form - onSubmit, onSubmitError chain w/ default onSubmitError", async () => {
@@ -115,7 +120,8 @@ it("Form - onSubmit, onSubmitError chain w/ default onSubmitError", async () => 
   );
 
   const submitBtn = getByText("Submit");
-  await fireEvent.click(submitBtn);
-  await wait(() => {}, { timeout: 1 });
-  expect(onSubmit).toHaveBeenCalled();
+  await userEvent.click(submitBtn);
+  await waitFor(() => {
+    return expect(onSubmit).toHaveBeenCalled();
+  });
 });

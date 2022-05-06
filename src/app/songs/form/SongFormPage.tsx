@@ -2,7 +2,7 @@ import * as React from "react";
 import { SongForm } from "./SongForm";
 import { useUserData } from "lib/hooks/useUserData";
 import { useTranslation } from "react-i18next";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useAddSongMutation, useGetSongQuery, useUpdateSongMutation } from "app/services/songs";
 import { Song } from "app/services/songs";
 import Page from "lib/layout/Page";
@@ -99,11 +99,11 @@ const SongNewPage: React.FC<SongFormPageProps> = (props) => {
 
 export default (props) => {
   const { id } = useParams<any>();
-  const history = useHistory();
+  const navigate = useNavigate();
   const user = useUserData() || {};
   const SongFormPage = id ? SongEditPage : SongNewPage;
 
   return (
-    <SongFormPage currentGroupId={user.currentGroupId} navigate={history.push} id={id} {...props} />
+    <SongFormPage currentGroupId={user.currentGroupId} navigate={navigate} id={id} {...props} />
   );
 };

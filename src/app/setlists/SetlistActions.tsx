@@ -9,7 +9,7 @@ import { ListItem, ListItemIcon } from "@material-ui/core";
 import { useUserData } from "lib/hooks/useUserData";
 import { useTranslation } from "react-i18next";
 import PlaylistAdd from "@material-ui/icons/PlaylistAdd";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface SetlistActionsProps {
   setlist?: any;
@@ -36,7 +36,7 @@ function SetlistActionsList({
   const { t } = useTranslation();
   const addToSetlist = () => {};
   const enqueueSnackbar = () => {};
-  const history = useHistory();
+  const navigate = useNavigate();
 
   if (addToSetlistMode) {
     return (
@@ -63,7 +63,7 @@ function SetlistActionsList({
             enqueueSnackbar(t("song:action_success/add_to_setlist", { name }), {
               variant: "success",
             });
-            history.push(`/setlist/${id}/edit`);
+            navigate(`/setlist/${id}/edit`);
           }}
         >
           <ListItemIcon>

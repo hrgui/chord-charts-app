@@ -13,12 +13,7 @@ export function SetlistsNavMenu() {
   return (
     <List dense>
       <ListSubheader>{t("setlist:plural")}</ListSubheader>
-      <ListItemLink
-        to={{
-          pathname: "/setlist/new",
-          state: { background: location },
-        }}
-      >
+      <ListItemLink to="/setlist/new" state={{ background: location }}>
         <ListItemIcon>
           <PostAdd />
         </ListItemIcon>

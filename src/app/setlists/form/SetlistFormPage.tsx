@@ -9,6 +9,7 @@ import {
   useGetSetlistQuery,
   useUpdateSetlistMutation,
 } from "app/services/setlists";
+import { useParams } from "react-router-dom";
 
 export interface SetlistFormPageProps {
   path?: string;
@@ -105,7 +106,7 @@ const SetlistNewPage: React.FC<SetlistFormPageProps> = (props) => {
 
 export default (props) => {
   const user = useUserData() || {};
-  const { id } = props.match.params;
+  const { id } = useParams();
   const SetlistFormPage = id ? SetlistEditPage : SetlistNewPage;
   const [isModalMode, navigate] = useModalRouteMode();
 

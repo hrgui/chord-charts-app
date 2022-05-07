@@ -10,7 +10,11 @@ interface ChordSelectProps {
 }
 
 const ChordSelect: React.FC<ChordSelectProps> = (props) => {
-  return <select {...props}>{getKeyAsOptions()}</select>;
+  return (
+    <select className="select" {...props}>
+      {getKeyAsOptions()}
+    </select>
+  );
 };
 
 export default ChordSelect;

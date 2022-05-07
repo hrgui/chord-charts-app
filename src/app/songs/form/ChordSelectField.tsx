@@ -1,14 +1,16 @@
 import * as React from "react";
-import { InputLabel, FormControl } from "@material-ui/core";
 import { FastField as Field } from "formik";
+
 import ChordSelect from "../components/ChordSelect";
 
 export const ChordSelectField: React.FC<any> = ({ name, label, ...props }) => {
   return (
-    <FormControl>
-      <InputLabel htmlFor={name}>{label}</InputLabel>
+    <div className="form-control">
+      <label className="label" htmlFor={name}>
+        <span className="label-text">{label}</span>
+      </label>
       <Field as={ChordSelect} label={label} name={name} {...props} />
-    </FormControl>
+    </div>
   );
 };
 

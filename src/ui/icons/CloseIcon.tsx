@@ -1,10 +1,10 @@
 import React from "react";
 import { twMerge } from "tailwind-merge";
 
-const CloseIcon = ({ className, ...props }: React.SVGProps<any>) {
+const CloseIcon = ({ className, ...props }: React.SVGProps<any>) => {
   return (
     <svg
-    className={twMerge("fill-current", className)}
+      className={twMerge("fill-current", className)}
       xmlns="http://www.w3.org/2000/svg"
       width="32"
       height="32"

@@ -1,7 +1,5 @@
 import * as React from "react";
-import { Button, IconButton } from "@material-ui/core";
 import styled from "styled-components";
-import { WithWidth } from "lib/layout/WithWidth";
 import classnames from "classnames";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
@@ -26,7 +24,7 @@ const Container = styled.div`
   }
 `;
 
-const StyledButton = styled(Button)`
+const StyledButton = styled.button`
   min-width: auto;
 `;
 
@@ -65,15 +63,15 @@ export const SetlistSongPagination = (props: SetlistSongPaginationProps) => {
   const width = "xl";
   return (
     <Container>
-      <IconButton data-testid="prev" onClick={(_) => handleChange(currentIndex - 1)}>
+      <button data-testid="prev" onClick={(_) => handleChange(currentIndex - 1)}>
         <NavigateBeforeIcon />
-      </IconButton>
+      </button>
       <div ref={buttonsHolder} className={classnames(`pageNumbers-${width}`)}>
         {buttons}
       </div>
-      <IconButton data-testid="next" onClick={(_) => handleChange(currentIndex + 1)}>
+      <button data-testid="next" onClick={(_) => handleChange(currentIndex + 1)}>
         <NavigateNextIcon />
-      </IconButton>
+      </button>
     </Container>
   );
 };

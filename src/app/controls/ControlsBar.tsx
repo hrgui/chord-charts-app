@@ -1,11 +1,8 @@
 import * as React from "react";
-import { AppBar as MuiAppBar, Toolbar } from "@material-ui/core";
 import classnames from "classnames";
 import styled from "styled-components/macro";
 import { useGetAppBarData } from "lib/hooks/useGetAppBarData";
 import { NAV_MENU_WIDTH } from "app/core/AppNavMenu";
-import MoreHoriz from "@material-ui/icons/MoreHoriz";
-import { IconButton } from "@material-ui/core";
 import { ToggleControlsPanelAction } from "./ControlsPanel";
 
 export const SongControlsBarPlaceholder = () => {
@@ -17,7 +14,7 @@ export const SongControlsBarPlaceholder = () => {
   );
 };
 
-export const AppBar = styled(MuiAppBar)`
+export const AppBar = styled.div`
   top: auto;
   bottom: 0;
   z-index: ${(props) => props.theme.zIndex.drawer + 1};
@@ -54,24 +51,18 @@ export const ControlsBar = () => {
       className={classnames("print-hidden", {
         "navMenuShown-desktop": !navMenuHidden && !shouldDrawerBeTemporary,
       })}
-      color="default"
-      position="fixed"
     >
-      <Toolbar variant="dense">
+      <div>
         <SongControlsBarPlaceholder />
         <div id="setlistControls" />
         <ControlsBarRightPanel>
           <ToggleControlsPanelAction>
             {(toggleControlsPanel) => {
-              return (
-                <IconButton onClick={(e) => toggleControlsPanel()}>
-                  <MoreHoriz />
-                </IconButton>
-              );
+              return <div>More</div>;
             }}
           </ToggleControlsPanelAction>
         </ControlsBarRightPanel>
-      </Toolbar>
+      </div>
     </AppBar>
   );
 };

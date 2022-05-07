@@ -7,7 +7,6 @@ import { ChordSelectField } from "./ChordSelectField";
 import { SongSectionsField } from "./SongSectionsField";
 import ConnectedYoutubeView from "../components/YoutubeView";
 import classnames from "classnames";
-import { WithWidth } from "lib/layout/WithWidth";
 import FormActions from "lib/form/FormActions";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";

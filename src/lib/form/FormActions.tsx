@@ -1,11 +1,10 @@
-import { AppBar, Toolbar } from "@material-ui/core";
 import React, { useLayoutEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { ToolbarSpacer } from "lib/layout/ToolbarSpacer";
 import { getOrCreateElement } from "lib/layout/portalSelector";
 import styled from "styled-components";
 
-const StyledAppBar = styled(AppBar)`
+const StyledAppBar = styled.div`
   top: auto;
   text-align: right;
   bottom: 0;
@@ -13,7 +12,7 @@ const StyledAppBar = styled(AppBar)`
   background: ${({ theme }) => theme.palette.background.paper};
 `;
 
-const StyledToolbar = styled(Toolbar)`
+const StyledToolbar = styled.div`
   flex-direction: row-reverse;
 `;
 

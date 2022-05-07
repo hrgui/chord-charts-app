@@ -4,7 +4,6 @@ import classnames from "classnames";
 import ListItemLink from "lib/layout/ListItemLink";
 import Home from "@material-ui/icons/Home";
 import styled from "styled-components/macro";
-import { useUserData } from "lib/hooks/useUserData";
 import SongsNavMenu from "app/songs/menu/SongsNavMenu";
 import SetlistsNavMenu from "app/setlists/menu/SetlistsNavMenu";
 import { useAppBarActions } from "lib/hooks/useAppBarActions";

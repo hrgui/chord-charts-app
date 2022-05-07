@@ -1,5 +1,5 @@
 import React from "react";
-import { Drawer, IconButton } from "@material-ui/core";
+import { Drawer } from "@material-ui/core";
 import styled from "styled-components/macro";
 import { CurrentSetlistNavMenuPlaceholder } from "../setlists/CurrentSetlistNavMenu";
 import { CurrentSongNavMenuPlaceholder } from "../songs/CurrentSongNavMenu";
@@ -7,7 +7,7 @@ import classnames from "classnames";
 import { ToolbarSpacer } from "lib/layout/ToolbarSpacer";
 import { useGetAppBarData } from "lib/hooks/useGetAppBarData";
 import { useAppBarActions } from "lib/hooks/useAppBarActions";
-import Close from "@material-ui/icons/Close";
+import CloseIcon from "ui/icons/CloseIcon";
 
 const CONTROL_PANEL_WIDTH = "426px";
 
@@ -28,7 +28,7 @@ const StyledDrawer = styled(Drawer)`
   }
 `;
 
-const StyledIconButton = styled(IconButton)`
+const StyledIconButton = styled.button`
   position: absolute;
   right: 8px;
   top: 6px;
@@ -77,7 +77,7 @@ export const ControlsPanel = () => {
         <ToggleControlsPanelAction>
           {(toggleControlsPanel) => (
             <StyledIconButton onClick={(e) => toggleControlsPanel()}>
-              <Close />
+              <CloseIcon />
             </StyledIconButton>
           )}
         </ToggleControlsPanelAction>

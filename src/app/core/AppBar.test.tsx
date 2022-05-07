@@ -2,9 +2,7 @@ import * as React from "react";
 import { renderWithAppController as render } from "testUtils/renderWithAppProvider";
 import AppBar from "./AppBar";
 import { fireEvent } from "@testing-library/react";
-
-//TODO: fixme
-// this is outdated
+import useGetAppBarData from "lib/hooks/useGetAppBarData";
 
 const observeMock = {
   observe: () => null,
@@ -16,18 +14,18 @@ beforeEach(() => {
 });
 
 function TestMenuStateDisplay() {
-  const navMenuHidden = false;
+  const { navMenuHidden } = useGetAppBarData();
   return <>{navMenuHidden ? "nav_menu_off" : "nav_menu_open"}</>;
 }
 
-test.skip("should at least render with a menu item which can toggle the menu state", () => {
-  const { getByTestId, getByText } = render(
+test("should at least render with a menu item which can toggle the menu state", () => {
+  const { getByLabelText, getByText } = render(
     <>
       <AppBar />
       <TestMenuStateDisplay />
     </>
   );
-  const el = getByTestId("navMenuToggle");
+  const el = getByLabelText("Menu");
   expect(el).toBeInTheDocument();
   const el2 = getByText("nav_menu_open");
   expect(el2).toBeInTheDocument();
@@ -35,24 +33,11 @@ test.skip("should at least render with a menu item which can toggle the menu sta
   expect(getByText("nav_menu_off")).toBeInTheDocument();
 });
 
-test.skip("should render the user if it is present, it should bring up a menu when clicked", () => {
+test("should show the title when passed in a title", () => {
   const { getByText } = render(
     <>
-      <AppBar />
-      <TestMenuStateDisplay />
-    </>,
-    {
-      initialState: {
-        auth: {
-          user: {
-            displayName: "Zara",
-          },
-        },
-      },
-    }
+      <AppBar title={"All Songs"} />
+    </>
   );
-  const el = getByText("Z");
-  expect(el).toBeInTheDocument();
-  fireEvent.click(el);
-  expect(getByText(/Logged in as/)).toBeInTheDocument();
+  expect(getByText("All Songs")).toBeInTheDocument();
 });

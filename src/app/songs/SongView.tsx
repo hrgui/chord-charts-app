@@ -1,13 +1,11 @@
 import * as React from "react";
 import SongSectionView from "./components/SongSectionView";
 import ChordSelect from "./components/ChordSelect";
-import { WithWidth } from "lib/layout/WithWidth";
+
 import ConnectedYoutubeView from "./components/YoutubeView";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
-import { AppBarTitle } from "app/core/AppBar";
 import { getOrCreateElement } from "lib/layout/portalSelector";
-import { CurrentSongNavMenu } from "./CurrentSongNavMenu";
 import styled from "styled-components/macro";
 import { ToolbarSpacer } from "lib/layout/ToolbarSpacer";
 
@@ -212,7 +210,7 @@ const SongView = (props: SongViewProps) => {
         "Wrapper-Mobile": width === "sm" || width === "xs",
       })}
     >
-      {ReactDOM.createPortal(
+      {/* {ReactDOM.createPortal(
         <CurrentSongNavMenu
           sectionsSettings={sectionsSettings}
           song={data}
@@ -245,14 +243,12 @@ const SongView = (props: SongViewProps) => {
           }}
         />,
         getOrCreateElement("#songKey")!
-      )}
+      )} */}
       <Container className={classnames("printSong")}>
         <div className="print uppercase printSongBar">
-          <AppBarTitle>
-            <div style={{ display: "flex" }}>
-              {data.title} <div style={{ marginLeft: "auto" }}>Key: {overrideKey}</div>
-            </div>
-          </AppBarTitle>
+          <div style={{ display: "flex" }}>
+            {data.title} <div style={{ marginLeft: "auto" }}>Key: {overrideKey}</div>
+          </div>
         </div>
         <Song
           screenWrap={screenWrap}

@@ -1,5 +1,8 @@
-import { LinearProgress } from "@material-ui/core";
+import React from "react";
+import { Progress } from "react-daisyui";
 
-export const PageLoading = LinearProgress;
+export const PageLoading = () => {
+  return <Progress />;
+};
 
 export default PageLoading;

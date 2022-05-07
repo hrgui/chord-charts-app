@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import { store as defaultStore } from "app/store";
 import { Provider } from "react-redux";
 import { AppThemeProvider } from "./AppThemeProvider";
+import { Theme, Button } from "react-daisyui";
 import PageLoading from "lib/layout/PageLoading";
 
 interface AppControllerProps {
@@ -32,15 +33,17 @@ export function AppProvider({
 
   return (
     <Suspense fallback={<PageLoading />}>
-      <StylesProvider injectFirst>
-        <Provider store={store}>
-          <HelmetProvider>
-            <Router history={history}>
-              <AppThemeProvider>{children}</AppThemeProvider>
-            </Router>
-          </HelmetProvider>
-        </Provider>
-      </StylesProvider>
+      <Theme dataTheme="dark">
+        <StylesProvider injectFirst>
+          <Provider store={store}>
+            <HelmetProvider>
+              <Router history={history}>
+                <AppThemeProvider>{children}</AppThemeProvider>
+              </Router>
+            </HelmetProvider>
+          </Provider>
+        </StylesProvider>
+      </Theme>
     </Suspense>
   );
 }

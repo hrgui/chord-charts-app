@@ -3,7 +3,7 @@ import SetlistView from "./SetlistView";
 import { Loading } from "lib/layout/Loading";
 import { useGetSetlistQuery } from "app/services/setlists";
 import Page from "lib/layout/Page";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 interface SetlistViewPageProps {
   path?: string;
@@ -22,15 +22,9 @@ export function normalizeSongIndex(songIndex) {
   return songIndex;
 }
 
-function prepareValues({ id, __typename, ...other }) {
-  return other;
-}
-
 const SetlistViewPage: React.FC<SetlistViewPageProps> = (props) => {
-  const enqueueSnackbar = () => {};
   let { isLoading, error: isError, data } = useGetSetlistQuery(props.id!);
-
-  const saveSetlist = () => {};
+  const navigate = useNavigate();
   const curTitle =
     data && data.title
       ? `${data.title}${data.leader ? `: ${data.leader}` : ""}`
@@ -76,7 +70,7 @@ const SetlistViewPage: React.FC<SetlistViewPageProps> = (props) => {
       index = 0;
     }
 
-    props.history.replace(`/setlist/${props.id}/${index + 1}`);
+    navigate(`/setlist/${props.id}/${index + 1}`, { replace: true });
   };
 
   return (

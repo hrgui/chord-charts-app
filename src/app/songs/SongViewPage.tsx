@@ -12,12 +12,19 @@ interface SongViewContainerProps {
   isActiveInSetlist?: boolean;
   settings?: any;
   onChangeSettings?: any;
+  drawerChildren?: React.ReactNode;
 }
 
 export const SongViewContainer: React.FC<SongViewContainerProps> = (props) => {
   const { id } = props;
   const { isLoading, error: isError, data } = useGetSongQuery(id);
-  const { setlist, isActiveInSetlist, settings, onChangeSettings = () => null } = props;
+  const {
+    setlist,
+    isActiveInSetlist,
+    settings,
+    onChangeSettings = () => null,
+    drawerChildren,
+  } = props;
 
   if (setlist && !isActiveInSetlist) {
     return null;
@@ -44,6 +51,7 @@ export const SongViewContainer: React.FC<SongViewContainerProps> = (props) => {
         data={data}
         settings={settings}
         onChangeSettings={onChangeSettings}
+        drawerChildren={drawerChildren}
       />
     </Page>
   );

@@ -22,6 +22,7 @@ interface SongViewProps {
   chordsDisabled?: boolean;
   onChangeSettings?: any;
   screenWrap?: boolean;
+  drawerChildren?: React.ReactNode;
 }
 
 export const SongViewKey = ({
@@ -82,6 +83,7 @@ function Song({
 const SongView = (props: SongViewProps) => {
   let {
     data,
+    drawerChildren,
     isError,
     settings = {},
     lyricsDisabled: _lyricsDisabled = false,
@@ -190,6 +192,7 @@ const SongView = (props: SongViewProps) => {
           sectionsSettings={sectionsSettings}
           onSetSectionSettings={setSectionSettings}
         />
+        {drawerChildren}
       </div>
     </div>
   );

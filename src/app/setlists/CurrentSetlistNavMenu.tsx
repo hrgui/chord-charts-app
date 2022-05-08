@@ -8,13 +8,14 @@ import { ListSubheader, ListItem, List, ListItemText, ListItemIcon } from "ui/Li
 import Divider from "ui/Divider";
 import Skeleton from "ui/Skeleton";
 import MaterialSymbol from "ui/icons/MaterialSymbol";
+import { Setlist, SetlistSong } from "app/services/setlists";
 
 export function CurrentSetlistNavMenuPlaceholder() {
   return <div id="currentSetlistNavMenu" />;
 }
 
 export interface CurrentSetlistNavMenuProps {
-  setlist;
+  setlist: Setlist;
   title?: string;
   onChangeSettings?: any;
   settings;
@@ -22,10 +23,20 @@ export interface CurrentSetlistNavMenuProps {
   onSaveSetlistSettings;
 }
 
-export function SetlistNavigation({ id, songs, settings, onChangeSettings }) {
+type SetlistNavigationProps = {
+  id: string;
+  setlistSongs: SetlistSong[];
+  onChangeSettings: (settings, song) => void;
+};
+
+export function SetlistNavigation({
+  id,
+  setlistSongs: songs,
+  onChangeSettings,
+}: SetlistNavigationProps) {
   const { t } = useTranslation();
   const { data, isLoading: loading } = useGetSongsQuery({
-    _id: { $in: songs },
+    _id: { $in: songs.map((s) => s._id) },
   });
 
   const fetchedSongs = data;
@@ -39,7 +50,7 @@ export function SetlistNavigation({ id, songs, settings, onChangeSettings }) {
       <ListSubheader>{t("setlist:menu/navigation/title")}</ListSubheader>
       {songs.map((song, idx) => {
         const hidx = idx + 1;
-        const sid = song;
+        const sid = song._id;
         const fetchedSong = fetchedSongs?.filter((song) => song._id === sid)[0];
 
         return (
@@ -51,7 +62,7 @@ export function SetlistNavigation({ id, songs, settings, onChangeSettings }) {
                 <ListItemText primary={`${hidx}. ${fetchedSong?.title}`}></ListItemText>
                 <ChordSelect
                   onChange={(e) => handleChangeSettings(e.target.value, sid)}
-                  value={(settings[sid] && settings[sid].overrideKey) || fetchedSong?.key}
+                  value={song.settings.overrideKey || fetchedSong?.key}
                 />
               </>
             )}
@@ -71,7 +82,7 @@ export function CurrentSetlistNavMenu(props: CurrentSetlistNavMenuProps) {
     hasUnsavedSettings,
   } = props;
   const { t } = useTranslation();
-  const { id, songs = [] } = props.setlist;
+  const { _id: id, songs = [] } = props.setlist;
   const user = useUserData();
   const deleteSetlist = () => {};
 
@@ -114,12 +125,7 @@ export function CurrentSetlistNavMenu(props: CurrentSetlistNavMenuProps) {
         <ListItemText primary={t("delete")} />
       </ListItem>
       <Divider />
-      <SetlistNavigation
-        id={id}
-        onChangeSettings={onChangeSettings}
-        songs={songs}
-        settings={settings}
-      />
+      <SetlistNavigation id={id!} onChangeSettings={onChangeSettings} setlistSongs={songs} />
     </List>
   );
 }

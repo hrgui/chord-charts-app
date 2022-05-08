@@ -1,10 +1,13 @@
 import * as React from "react";
-import ReactDOM from "react-dom";
 import { SongViewContainer } from "app/songs/SongViewPage";
 import { SetlistSongPagination } from "./SetlistSongPagination";
-import { getOrCreateElement } from "lib/layout/portalSelector";
 import { CurrentSetlistNavMenu } from "./CurrentSetlistNavMenu";
 import { SetlistSong } from "app/services/setlists";
+import Page from "lib/layout/Page";
+import { Alert } from "react-daisyui";
+import MaterialSymbol from "ui/icons/MaterialSymbol";
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export interface SetlistSongsViewerProps {
   title?;
@@ -31,6 +34,7 @@ export function SetlistSongsViewer({
 }: SetlistSongsViewerProps) {
   const [_settings, setSettings] = React.useState(settings || {});
   const [_hasUnSavedSettings, setHasUnsavedSettings] = React.useState(hasUnsavedSettings);
+  const { t } = useTranslation();
 
   React.useEffect(() => {
     setHasUnsavedSettings(hasUnsavedSettings);
@@ -40,19 +44,23 @@ export function SetlistSongsViewer({
     alert("THIS IS DIFFERENT NOW, TODO");
   }
 
+  if (songs.length === 0) {
+    return (
+      <Page title="No Songs in Setlist">
+        <div className="p-4">
+          <Alert icon={<MaterialSymbol icon="warning" />} status="warning">
+            {t("setlist:view/message/noSongs/header")}{" "}
+            <Link className="underline hover:font-semibold" to={`/setlist/${setlist._id}/edit`}>
+              {t("setlist:view/message/noSongs/action")}
+            </Link>
+          </Alert>
+        </div>
+      </Page>
+    );
+  }
+
   return (
     <div>
-      {ReactDOM.createPortal(
-        <CurrentSetlistNavMenu
-          onChangeSettings={handleChangeSettings}
-          title={title}
-          setlist={setlist}
-          settings={_settings}
-          hasUnsavedSettings={_hasUnSavedSettings}
-          onSaveSetlistSettings={onSaveSetlistSettings}
-        />,
-        getOrCreateElement("#currentSetlistNavMenu")
-      )}
       {songs.map((song, index) => (
         <SongViewContainer
           setlist={setlist}
@@ -61,18 +69,25 @@ export function SetlistSongsViewer({
           id={song._id}
           settings={song}
           onChangeSettings={handleChangeSettings}
+          drawerChildren={
+            <>
+              <CurrentSetlistNavMenu
+                onChangeSettings={handleChangeSettings}
+                title={title}
+                setlist={setlist}
+                settings={_settings}
+                hasUnsavedSettings={_hasUnSavedSettings}
+                onSaveSetlistSettings={onSaveSetlistSettings}
+              />
+              <SetlistSongPagination
+                length={songs.length}
+                currentIndex={songIndex}
+                onChange={onIndexChange}
+              />
+            </>
+          }
         />
       ))}
-      {ReactDOM.createPortal(
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <SetlistSongPagination
-            length={songs.length}
-            currentIndex={songIndex}
-            onChange={onIndexChange}
-          />
-        </div>,
-        getOrCreateElement("#setlistControls")
-      )}
     </div>
   );
 }

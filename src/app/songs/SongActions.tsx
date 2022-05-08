@@ -1,16 +1,16 @@
 import * as React from "react";
-import { List, ListItemText, Button } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import ListItemLink from "lib/layout/ListItemLink";
 import ActionsMenu from "lib/table/ActionsMenu";
 import Delete from "@material-ui/icons/Delete";
 import Edit from "@material-ui/icons/Edit";
 import Pageview from "@material-ui/icons/Pageview";
-import { ListItem, ListItemIcon } from "@material-ui/core";
 import { useUserData } from "lib/hooks/useUserData";
 import { useTranslation } from "react-i18next";
 import PlaylistAdd from "@material-ui/icons/PlaylistAdd";
 import { useLocation } from "react-router-dom";
 import { Song } from "app/services/songs";
+import { List, ListItem, ListItemIcon, ListItemText } from "ui/List";
 
 interface SongActionsProps {
   song?: Song;
@@ -25,7 +25,7 @@ function SongActionsList({ id, addToSetlistMode }: { id?; addToSetlistMode? }) {
   const location = useLocation();
 
   return (
-    <List dense disablePadding>
+    <List dense>
       <ListItemLink to={`/song/${id}/view`}>
         <ListItemIcon>
           <Pageview />

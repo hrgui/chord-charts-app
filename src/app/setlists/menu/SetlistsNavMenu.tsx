@@ -1,9 +1,8 @@
 import * as React from "react";
-import { List, ListItemIcon, ListItemText } from "@material-ui/core";
+import { List, ListItemIcon, ListItemText, ListSubheader } from "ui/List";
 import ListItemLink from "lib/layout/ListItemLink";
 import PostAdd from "@material-ui/icons/PostAdd";
 import QueueMusic from "@material-ui/icons/QueueMusic";
-import ListSubheader from "lib/layout/ListSubheader";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 

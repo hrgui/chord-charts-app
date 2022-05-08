@@ -1,6 +1,4 @@
 import * as React from "react";
-import { Drawer, List, ListItemIcon, ListItemText, Divider } from "@material-ui/core";
-import classnames from "classnames";
 import ListItemLink from "lib/layout/ListItemLink";
 import Home from "@material-ui/icons/Home";
 import styled from "styled-components/macro";
@@ -8,6 +6,9 @@ import SongsNavMenu from "app/songs/menu/SongsNavMenu";
 import SetlistsNavMenu from "app/setlists/menu/SetlistsNavMenu";
 import { useAppBarActions } from "lib/hooks/useAppBarActions";
 import { useGetAppBarData } from "lib/hooks/useGetAppBarData";
+import Drawer from "ui/Drawer";
+import { List, ListItemText, ListItemIcon } from "ui/List";
+import Divider from "ui/Divider";
 
 export interface NavMenuProps {
   classes?: any;
@@ -20,7 +21,7 @@ export function HomeNavMenu() {
         <ListItemIcon>
           <Home />
         </ListItemIcon>
-        <ListItemText primary={"Home"} />
+        <ListItemText>Home</ListItemText>
       </ListItemLink>
     </List>
   );
@@ -66,7 +67,7 @@ const NavMenuTitle = styled.div`
   font-weight: 500;
 `;
 
-export function AppNavMenu(props: NavMenuProps) {
+export function AppNavMenu() {
   const config = useGetAppBarData();
   const { toggleNavMenu } = useAppBarActions();
 
@@ -82,15 +83,6 @@ export function AppNavMenu(props: NavMenuProps) {
       open={!navMenuHidden}
       onClose={toggleNavMenu}
       variant={"permanent"}
-      classes={{
-        paper: classnames("drawerPaper", {
-          drawerPaperHidden: navMenuHidden,
-        }),
-      }}
-      ModalProps={{ keepMounted: true }}
-      className={classnames("print-hidden", {
-        drawerHidden: navMenuHidden,
-      })}
     >
       <NavMenuTitle>{config.appName}</NavMenuTitle>
       <Divider />

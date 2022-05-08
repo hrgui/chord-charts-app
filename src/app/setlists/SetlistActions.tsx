@@ -1,11 +1,10 @@
 import * as React from "react";
-import { List, ListItemText } from "@material-ui/core";
 import ListItemLink from "lib/layout/ListItemLink";
 import ActionsMenu from "lib/table/ActionsMenu";
 import Delete from "@material-ui/icons/Delete";
 import Edit from "@material-ui/icons/Edit";
 import Pageview from "@material-ui/icons/Pageview";
-import { ListItem, ListItemIcon } from "@material-ui/core";
+import { ListItem, ListItemIcon, List, ListItemText } from "ui/List";
 import { useUserData } from "lib/hooks/useUserData";
 import { useTranslation } from "react-i18next";
 import PlaylistAdd from "@material-ui/icons/PlaylistAdd";

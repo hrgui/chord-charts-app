@@ -1,16 +1,16 @@
 import * as React from "react";
-import { List, ListItem, ListItemText, ListItemIcon, Divider } from "@material-ui/core";
+import { List, ListItem, ListItemText, ListItemIcon, ListSubheader } from "ui/List";
 import Edit from "@material-ui/icons/Edit";
 import Delete from "@material-ui/icons/Delete";
 import ToggleOff from "@material-ui/icons/ToggleOffOutlined";
 import ToggleOn from "@material-ui/icons/ToggleOn";
 import ListItemLink from "lib/layout/ListItemLink";
-import { ListSubheader } from "lib/layout/ListSubheader";
 import { useUserData } from "lib/hooks/useUserData";
 import { useGlobalSongSettings } from "lib/hooks/useGlobalSongSettings";
 import { useGlobalSongActions } from "lib/hooks/useGlobalSongActions";
 import { useAppBarActions } from "lib/hooks/useAppBarActions";
 import { useTranslation } from "react-i18next";
+import Divider from "ui/Divider";
 
 export function CurrentSongNavMenuPlaceholder() {
   return <div id="currentSongNavMenu" />;

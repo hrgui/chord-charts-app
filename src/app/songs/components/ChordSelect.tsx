@@ -11,7 +11,7 @@ interface ChordSelectProps {
 
 export const ChordSelect = React.forwardRef<HTMLSelectElement, ChordSelectProps>((props, ref) => {
   return (
-    <select ref={ref} className="select" {...props}>
+    <select ref={ref} className="select select-bordered" {...props}>
       {getKeyAsOptions()}
     </select>
   );

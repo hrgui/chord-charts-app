@@ -2,7 +2,7 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import pouchDbBaseQuery, { ApiMethod } from "lib/rtk-api/pouchDbBaseQuery";
 
 export interface SongSection {
-  type: string;
+  type: "text" | "abc";
   title?: string;
   body?: string;
 }

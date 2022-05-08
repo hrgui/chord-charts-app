@@ -32,7 +32,6 @@ const ChordChartTextInput = ({
           color: isDarkMode ? "white" : "black",
           minWidth: "100%",
           fontFamily: '"Fira code", "Fira Mono", monospace',
-          marginTop: 20,
           marginBottom: 10,
           paddingBottom: 10,
           fontSize: 14,

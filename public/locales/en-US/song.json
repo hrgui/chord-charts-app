@@ -21,5 +21,6 @@
   "message/saveSuccess": "Song {{song}} has been saved",
   "message/saveError": "Song could not be saved. Please check for any errors and try again.",
   "label/section/title": "Section Title",
-  "label/section/body": "Body"
+  "label/section/body": "Body",
+  "label/section/add_text_chord_chart_section": "Add Text Chord Chart Section"
 }

@@ -41,9 +41,11 @@ export const TWTextField = React.forwardRef<any, FullProps>(
           <span className="label-text">{label}</span>
         </label>
         <input ref={ref} className={twMerge("input input-bordered", className)} {...props} />
-        <label className="label">
-          <span className="label-text">{helperText}</span>
-        </label>
+        {helperText && (
+          <label className="label">
+            <span className="label-text">{helperText}</span>
+          </label>
+        )}
       </div>
     );
   }

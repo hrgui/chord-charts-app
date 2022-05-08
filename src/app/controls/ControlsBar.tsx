@@ -1,8 +1,6 @@
 import * as React from "react";
 import classnames from "classnames";
-import styled from "styled-components/macro";
 import { useGetAppBarData } from "lib/hooks/useGetAppBarData";
-import { NAV_MENU_WIDTH } from "app/core/AppNavMenu";
 import { ToggleControlsPanelAction } from "./ControlsPanel";
 
 export const SongControlsBarPlaceholder = () => {
@@ -13,22 +11,6 @@ export const SongControlsBarPlaceholder = () => {
     </>
   );
 };
-
-export const AppBar = styled.div`
-  top: auto;
-  bottom: 0;
-  z-index: ${(props) => props.theme.zIndex.drawer + 1};
-  background: ${({ theme }) => theme.palette.background.paper};
-
-  &.navMenuShown-desktop {
-    left: ${NAV_MENU_WIDTH};
-    width: calc(100vw - ${NAV_MENU_WIDTH});
-  }
-`;
-
-export const ControlsBarRightPanel = styled.div`
-  margin-left: auto;
-`;
 
 export const ControlsBar = () => {
   const config = useGetAppBarData();
@@ -47,22 +29,22 @@ export const ControlsBar = () => {
   const shouldDrawerBeTemporary = false;
 
   return (
-    <AppBar
-      className={classnames("print-hidden", {
+    <div
+      className={classnames("print-hidden top-auto bottom-0 z-50 bg-base-200", {
         "navMenuShown-desktop": !navMenuHidden && !shouldDrawerBeTemporary,
       })}
     >
       <div>
         <SongControlsBarPlaceholder />
         <div id="setlistControls" />
-        <ControlsBarRightPanel>
+        <div className="ml-auto">
           <ToggleControlsPanelAction>
             {(toggleControlsPanel) => {
-              return <div>More</div>;
+              return <button onClick={toggleControlsPanel}>More</button>;
             }}
           </ToggleControlsPanelAction>
-        </ControlsBarRightPanel>
+        </div>
       </div>
-    </AppBar>
+    </div>
   );
 };

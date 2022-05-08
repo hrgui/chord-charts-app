@@ -30,10 +30,10 @@ export function HomeNavMenu() {
 export const NAV_MENU_WIDTH = "240px";
 
 const StyledDrawer = styled(Drawer)`
-  width: ${NAV_MENU_WIDTH};
   flex-shrink: 0;
+  width: ${NAV_MENU_WIDTH};
 
-  & .drawerPaper {
+  & .cc-drawer {
     width: ${NAV_MENU_WIDTH};
   }
 

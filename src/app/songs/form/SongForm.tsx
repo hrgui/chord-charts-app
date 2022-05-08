@@ -7,7 +7,6 @@ import { SongSectionsField } from "./SongSectionsField";
 import ConnectedYoutubeView from "../components/YoutubeView";
 import classnames from "classnames";
 import FormActions from "lib/form/FormActions";
-import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import { ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -24,51 +23,6 @@ export interface SongFormProps {
   onSubmitSuccess?: (res, values) => any;
   onSubmitError?: (e) => any;
 }
-
-const Container = styled.div`
-  padding: ${({ theme }) => theme.spacing(2)}px;
-`;
-
-const SongFormCard = styled(Paper)`
-  display: flex;
-  width: 100%;
-
-  &.SongFormCard-mobile {
-    flex-direction: column-reverse;
-  }
-`;
-
-const TitleAndArtistFieldSet = styled.div`
-  width: 100%;
-  padding-right: ${({ theme }) => theme.spacing(2)}px;
-`;
-
-const ArtistTextField = styled(TextField)`
-  min-width: 200px;
-`;
-
-const ChordSelectFieldSet = styled.div`
-  margin-left: auto;
-  padding-right: ${({ theme }) => theme.spacing(1)}px;
-`;
-
-const StyledConnectedYoutubeView = styled(ConnectedYoutubeView)`
-  margin-left: auto;
-
-  &.ConnectedYoutubeView-tablet,
-  &.ConnectedYoutubeView-mobile {
-    margin-left: 0;
-    & iframe {
-      width: 100% !important;
-    }
-  }
-
-  &.ConnectedYoutubeView-breakout {
-    width: calc(100% + 36px);
-    margin-left: ${({ theme }) => -theme.spacing() * 2}px;
-    margin-top: ${({ theme }) => -theme.spacing() * 2}px;
-  }
-`;
 
 export const SongForm = (props: SongFormProps) => {
   const { data, error, isLoading } = props;
@@ -103,37 +57,38 @@ export const SongForm = (props: SongFormProps) => {
       {({ values, errors, submitForm, isSubmitting }) => (
         <>
           <form>
-            <Container>
-              <SongFormCard
-                className={classnames("pl-2 pr-2 pt-2 pb-0", {
-                  "SongFormCard-mobile": !isMobile,
-                })}
+            <div className="p-4">
+              <div
+                className={classnames(
+                  "flex w-full flex-col-reverse sm:flex-col pl-2 pr-2 pt-2 pb-0",
+                  {
+                    "SongFormCard-mobile": !isMobile,
+                  }
+                )}
               >
-                <TitleAndArtistFieldSet>
-                  <TextField
-                    className={"mb-1"}
-                    fullWidth
-                    error={errors.title}
-                    helperText={<ErrorMessage name="title" />}
-                    label={t("song:label/title")}
-                    name="title"
-                  />
-                  <ArtistTextField
-                    error={errors.artist}
-                    helperText={<ErrorMessage name="artist" />}
-                    label={t("song:label/artist")}
-                    name="artist"
-                  />
-                </TitleAndArtistFieldSet>
-                <ChordSelectFieldSet>
+                <TextField
+                  className={"mb-1"}
+                  fullWidth
+                  error={errors.title}
+                  helperText={<ErrorMessage name="title" />}
+                  label={t("song:label/title")}
+                  name="title"
+                />
+                <TextField
+                  error={errors.artist}
+                  helperText={<ErrorMessage name="artist" />}
+                  label={t("song:label/artist")}
+                  name="artist"
+                />
+                <div className="ml-auto pr-1">
                   <ChordSelectField
                     error={errors.key}
                     helperText={<ErrorMessage name="key" />}
                     label={t("song:label/key")}
                     name="key"
                   />
-                </ChordSelectFieldSet>
-                <StyledConnectedYoutubeView
+                </div>
+                <ConnectedYoutubeView
                   className={classnames({
                     "ConnectedYoutubeView-tablet": width === "md",
                     "ConnectedYoutubeView-mobile": width === "sm" || width === "xs",
@@ -141,7 +96,7 @@ export const SongForm = (props: SongFormProps) => {
                   })}
                   value={values.youtube}
                 />
-              </SongFormCard>
+              </div>
               <Paper className={"p-2 mb-2"}>
                 <TextField
                   className="mb-1"
@@ -157,7 +112,7 @@ export const SongForm = (props: SongFormProps) => {
                   {t("save")}
                 </Button>
               </FormActions>
-            </Container>
+            </div>
           </form>
         </>
       )}

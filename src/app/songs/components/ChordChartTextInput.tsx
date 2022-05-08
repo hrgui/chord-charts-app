@@ -1,7 +1,7 @@
 import * as React from "react";
 import Editor from "react-simple-code-editor";
 import { wrap } from "@hrgui/chord-charts";
-import styled from "styled-components/macro";
+import { useDarkMode } from "lib/hooks/useDarkMode";
 
 interface ChordChartTextInputProps {
   value?: string;
@@ -9,33 +9,27 @@ interface ChordChartTextInputProps {
   className?: string;
 }
 
-function chordChartHighlight(input) {
-  return wrap(input, (x) => `<span class="chord">${x}</span>`);
-}
-
-const Container = styled.div`
-  display: inherit; /* pass through div */
-  .chord {
-    font-family: "Roboto Mono", monospace;
-    color: ${({ theme }) => (theme?.palette?.type === "dark" ? "#add8e6" : "#2159df")};
-    font-weight: 800;
-  }
-`;
-
 const ChordChartTextInput = ({
   value = "",
   className,
   onValueChange = (code) => null,
 }: ChordChartTextInputProps) => {
+  const isDarkMode = useDarkMode();
+  const chordClassName = `chord ${isDarkMode ? "text-[#add8e6]" : "text-[#2159df]"} font-bold`;
+
+  function chordChartHighlight(input) {
+    return wrap(input, (x) => `<span class="${chordClassName}">${x}</span>`);
+  }
+
   return (
-    <Container>
+    <div>
       <Editor
         className={className}
         value={value}
         onValueChange={(code) => onValueChange(code)}
         highlight={(code) => chordChartHighlight(code)}
         style={{
-          color: "pink",
+          color: isDarkMode ? "white" : "black",
           minWidth: "100%",
           fontFamily: '"Fira code", "Fira Mono", monospace',
           marginTop: 20,
@@ -45,7 +39,7 @@ const ChordChartTextInput = ({
           borderBottom: "1px solid #ccc",
         }}
       />
-    </Container>
+    </div>
   );
 };
 

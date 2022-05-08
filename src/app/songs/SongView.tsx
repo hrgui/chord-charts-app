@@ -44,7 +44,7 @@ const Container = styled.div`
   max-width: 100%;
 `;
 
-const StyledSongViewKey = styled(SongViewKey)``;
+const StyledSongViewKey = SongViewKey;
 
 const StyledWrapper = styled.div`
   display: flex;

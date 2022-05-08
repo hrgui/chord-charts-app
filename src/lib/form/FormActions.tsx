@@ -2,19 +2,6 @@ import React, { useLayoutEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { ToolbarSpacer } from "lib/layout/ToolbarSpacer";
 import { getOrCreateElement } from "lib/layout/portalSelector";
-import styled from "styled-components";
-
-const StyledAppBar = styled.div`
-  top: auto;
-  text-align: right;
-  bottom: 0;
-  z-index: ${({ theme }) => theme.zIndex.drawer + 1};
-  background: ${({ theme }) => theme.palette.background.paper};
-`;
-
-const StyledToolbar = styled.div`
-  flex-direction: row-reverse;
-`;
 
 const FormActions = ({ children }: any) => {
   const [el, setEl] = useState<any>(null);
@@ -36,10 +23,11 @@ const FormActions = ({ children }: any) => {
   return (
     <>
       <ToolbarSpacer />
+      <ToolbarSpacer />
       {ReactDOM.createPortal(
-        <StyledAppBar color="default" position="fixed">
-          <StyledToolbar>{children}</StyledToolbar>
-        </StyledAppBar>,
+        <div className="top-auto fixed w-full p-2 text-right bottom-0 z-50 bg-base-200">
+          <div className="flex-row-reverse">{children}</div>
+        </div>,
         getOrCreateElement("#formActions")!
       )}
     </>

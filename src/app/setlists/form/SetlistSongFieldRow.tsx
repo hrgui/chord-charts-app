@@ -1,11 +1,11 @@
 import * as React from "react";
 import ChordSelect from "app/songs/components/ChordSelect";
-import { Skeleton } from "@material-ui/lab";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { useTranslation } from "react-i18next";
 import { useGetSongQuery } from "app/services/songs";
+import Skeleton from "ui/Skeleton";
 
 export interface ISetlistSongFieldRowProps {
   index;

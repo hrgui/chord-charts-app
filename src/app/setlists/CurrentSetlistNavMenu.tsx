@@ -3,13 +3,13 @@ import Edit from "@material-ui/icons/Edit";
 import ListItemLink from "lib/layout/ListItemLink";
 import Delete from "@material-ui/icons/Delete";
 import { useUserData } from "lib/hooks/useUserData";
-import { Skeleton } from "@material-ui/lab";
 import ChordSelect from "app/songs/components/ChordSelect";
 import UntrackedSettings from "@material-ui/icons/CallMerge";
 import { useTranslation } from "react-i18next";
 import { useGetSongsQuery } from "app/services/songs";
 import { ListSubheader, ListItem, List, ListItemText, ListItemIcon } from "ui/List";
 import Divider from "ui/Divider";
+import Skeleton from "ui/Skeleton";
 
 export function CurrentSetlistNavMenuPlaceholder() {
   return <div id="currentSetlistNavMenu" />;

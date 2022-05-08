@@ -13,21 +13,17 @@ exports[`renders setlist actions given a setlist 1`] = `
         tabindex="0"
       >
         <label
+          class="btn-ghost"
           tabindex="0"
         >
           <button
             class="btn"
           >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall"
-              focusable="false"
-              viewBox="0 0 24 24"
+            <span
+              class="material-symbols-outlined"
             >
-              <path
-                d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
-              />
-            </svg>
+              more_vert
+            </span>
           </button>
         </label>
         <ul
@@ -42,16 +38,11 @@ exports[`renders setlist actions given a setlist 1`] = `
               <div
                 class="text-white inline-flex min-w-[56px] flex-shrink-0"
               >
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root"
-                  focusable="false"
-                  viewBox="0 0 24 24"
+                <span
+                  class="material-symbols-outlined"
                 >
-                  <path
-                    d="M11.5 9C10.12 9 9 10.12 9 11.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5S12.88 9 11.5 9zM20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-3.21 14.21l-2.91-2.91c-.69.44-1.51.7-2.39.7C9.01 16 7 13.99 7 11.5S9.01 7 11.5 7 16 9.01 16 11.5c0 .88-.26 1.69-.7 2.39l2.91 2.9-1.42 1.42z"
-                  />
-                </svg>
+                  pageview
+                </span>
               </div>
               <div
                 class="flex-[1_1_auto] min-w-0 mt-1 mb-1"
@@ -67,16 +58,11 @@ exports[`renders setlist actions given a setlist 1`] = `
               <div
                 class="text-white inline-flex min-w-[56px] flex-shrink-0"
               >
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root"
-                  focusable="false"
-                  viewBox="0 0 24 24"
+                <span
+                  class="material-symbols-outlined"
                 >
-                  <path
-                    d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
-                  />
-                </svg>
+                  edit
+                </span>
               </div>
               <div
                 class="flex-[1_1_auto] min-w-0 mt-1 mb-1"
@@ -91,16 +77,11 @@ exports[`renders setlist actions given a setlist 1`] = `
               <div
                 class="text-white inline-flex min-w-[56px] flex-shrink-0"
               >
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root"
-                  focusable="false"
-                  viewBox="0 0 24 24"
+                <span
+                  class="material-symbols-outlined"
                 >
-                  <path
-                    d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
-                  />
-                </svg>
+                  delete
+                </span>
               </div>
               <div
                 class="flex-[1_1_auto] min-w-0 mt-1 mb-1"

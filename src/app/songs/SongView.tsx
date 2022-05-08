@@ -6,7 +6,6 @@ import ConnectedYoutubeView from "./components/YoutubeView";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
 import { getOrCreateElement } from "lib/layout/portalSelector";
-import styled from "styled-components/macro";
 import { ToolbarSpacer } from "lib/layout/ToolbarSpacer";
 
 interface SongViewProps {
@@ -36,43 +35,6 @@ export const SongViewKey = ({
     <ChordSelect classes={classes} className={className} value={overrideKey} onChange={onChange} />
   );
 };
-
-const Container = styled.div`
-  overflow: hidden;
-  padding: ${({ theme }) => theme.spacing(2)}px;
-  margin-top: ${({ theme }) => theme.spacing()}px;
-  max-width: 100%;
-`;
-
-const StyledSongViewKey = SongViewKey;
-
-const StyledWrapper = styled.div`
-  display: flex;
-
-  &.Wrapper-tablet,
-  &.Wrapper-Mobile {
-    flex-direction: column-reverse;
-  }
-
-  .screenWrap {
-    display: flex;
-    flex-flow: column;
-    height: calc(100vh - 96px);
-    width: 100vw;
-    flex-wrap: wrap;
-  }
-`;
-
-const StyledConnectedYoutubeView = styled(ConnectedYoutubeView)`
-  margin-left: auto;
-  &.ConnectedYoutubeView-tablet,
-  &.ConnectedYoutubeView-mobile {
-    margin-left: 0;
-    & iframe {
-      width: 100% !important;
-    }
-  }
-`;
 
 function Song({
   sections,
@@ -189,7 +151,7 @@ const SongView = (props: SongViewProps) => {
   const width = "xl";
 
   const youtubeViewCpt = (
-    <StyledConnectedYoutubeView
+    <ConnectedYoutubeView
       className={classnames({
         "ConnectedYoutubeView-tablet": width === "md",
         "ConnectedYoutubeView-mobile": width === "sm" || width === "xs",
@@ -204,8 +166,8 @@ const SongView = (props: SongViewProps) => {
       : youtubeViewCpt;
 
   return (
-    <StyledWrapper
-      className={classnames({
+    <div
+      className={classnames("flex flex-col-reverse md:flex-col", {
         "Wrapper-tablet": width === "md",
         "Wrapper-Mobile": width === "sm" || width === "xs",
       })}
@@ -244,7 +206,7 @@ const SongView = (props: SongViewProps) => {
         />,
         getOrCreateElement("#songKey")!
       )} */}
-      <Container className={classnames("printSong")}>
+      <div className={classnames("printSong overflow-hidden p-2 mt-2 max-w-full")}>
         <div className="print uppercase printSongBar">
           <div style={{ display: "flex" }}>
             {data.title} <div style={{ marginLeft: "auto" }}>Key: {overrideKey}</div>
@@ -261,9 +223,9 @@ const SongView = (props: SongViewProps) => {
           sectionsSettings={sectionsSettings}
         />
         <ToolbarSpacer />
-      </Container>
+      </div>
       {wrappedYoutubeViewCpt}
-    </StyledWrapper>
+    </div>
   );
 };
 

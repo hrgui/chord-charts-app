@@ -20,18 +20,6 @@
     "prefix": "iut",
     "body": ["import { useTranslation } from \"react-i18next\""]
   },
-  "styled-components": {
-    "scope": "javascript,typescript,typescriptreact",
-    "prefix": "ims",
-    "body": ["import styled from \"styled-components/macro\""],
-    "description": "Import styled components"
-  },
-  "styled-components theme": {
-    "scope": "source.css.styled,css",
-    "prefix": "themefn",
-    "body": ["${(({theme}) => $1)}"],
-    "description": "Styled components theme function"
-  },
   "renderWithAppController": {
     "scope": "javascript,typescript,typescriptreact",
     "prefix": "irac",

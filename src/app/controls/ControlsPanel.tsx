@@ -1,39 +1,11 @@
 import React from "react";
-import styled from "styled-components/macro";
 import { CurrentSetlistNavMenuPlaceholder } from "../setlists/CurrentSetlistNavMenu";
 import { CurrentSongNavMenuPlaceholder } from "../songs/CurrentSongNavMenu";
-import classnames from "classnames";
 import { ToolbarSpacer } from "lib/layout/ToolbarSpacer";
 import { useGetAppBarData } from "lib/hooks/useGetAppBarData";
 import { useAppBarActions } from "lib/hooks/useAppBarActions";
 import CloseIcon from "ui/icons/CloseIcon";
 import Drawer from "ui/Drawer";
-
-const CONTROL_PANEL_WIDTH = "426px";
-
-const StyledDrawer = styled(Drawer)`
-  flex-shrink: 0;
-
-  .controlsPanel-permanent {
-    width: ${CONTROL_PANEL_WIDTH};
-  }
-
-  .controlsPanel-temporary {
-    width: 100vw;
-  }
-
-  &.drawerHidden,
-  & .drawerPaperHidden {
-    width: 0;
-  }
-`;
-
-const StyledIconButton = styled.button`
-  position: absolute;
-  right: 8px;
-  top: 6px;
-  z-index: 9001;
-`;
 
 export const ToggleControlsPanelAction = ({ children }: { children? }) => {
   const { toggleControlsPanel } = useAppBarActions();
@@ -60,32 +32,24 @@ export const ControlsPanel = () => {
   }
 
   return (
-    <StyledDrawer
-      open={!controlsPanelHidden}
-      ModalProps={{ keepMounted: true }}
-      classes={{
-        paper: classnames("drawerPaper", `controlsPanel-${variant}`, {
-          // TODO: this used to be !open
-          drawerPaperHidden: controlsPanelHidden,
-        }),
-      }}
-      anchor="right"
-      variant={variant}
-    >
+    <Drawer open={!controlsPanelHidden}>
       {!shouldDrawerBeTemporary && <ToolbarSpacer single />}
       {shouldDrawerBeTemporary && (
         <ToggleControlsPanelAction>
           {(toggleControlsPanel) => (
-            <StyledIconButton onClick={(e) => toggleControlsPanel()}>
+            <button
+              className="btn absolute right-0 top-[6px] z-[9001]"
+              onClick={(e) => toggleControlsPanel()}
+            >
               <CloseIcon />
-            </StyledIconButton>
+            </button>
           )}
         </ToggleControlsPanelAction>
       )}
       <div id="songVideo" />
       <CurrentSetlistNavMenuPlaceholder />
       <CurrentSongNavMenuPlaceholder />
-    </StyledDrawer>
+    </Drawer>
   );
 };
 

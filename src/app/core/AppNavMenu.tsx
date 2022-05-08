@@ -1,7 +1,6 @@
 import * as React from "react";
 import ListItemLink from "lib/layout/ListItemLink";
 import Home from "@material-ui/icons/Home";
-import styled from "styled-components/macro";
 import SongsNavMenu from "app/songs/menu/SongsNavMenu";
 import SetlistsNavMenu from "app/setlists/menu/SetlistsNavMenu";
 import { useAppBarActions } from "lib/hooks/useAppBarActions";
@@ -27,22 +26,6 @@ export function HomeNavMenu() {
   );
 }
 
-export const NAV_MENU_WIDTH = "240px";
-
-const StyledDrawer = styled(Drawer)`
-  flex-shrink: 0;
-  width: ${NAV_MENU_WIDTH};
-
-  & .cc-drawer {
-    width: ${NAV_MENU_WIDTH};
-  }
-
-  &.drawerHidden,
-  & .drawerPaperHidden {
-    width: 0;
-  }
-`;
-
 export function NavMenuItems() {
   return (
     <>
@@ -56,17 +39,6 @@ export function NavMenuItems() {
   );
 }
 
-const NavMenuTitle = styled.div`
-  padding-left: ${({ theme }) => theme.spacing(2)}px;
-  padding-right: ${({ theme }) => theme.spacing(2)}px;
-  height: 48px;
-  min-height: 48px;
-  display: flex;
-  align-items: center;
-  font-size: 1rem;
-  font-weight: 500;
-`;
-
 export function AppNavMenu() {
   const config = useGetAppBarData();
   const { toggleNavMenu } = useAppBarActions();
@@ -78,16 +50,13 @@ export function AppNavMenu() {
   const { navMenuHidden } = config;
 
   return (
-    <StyledDrawer
-      anchor={"left"}
-      open={!navMenuHidden}
-      onClose={toggleNavMenu}
-      variant={"permanent"}
-    >
-      <NavMenuTitle>{config.appName}</NavMenuTitle>
+    <Drawer className="cc-appNavMenu" open={!navMenuHidden}>
+      <div className="flex items-center font-medium h-12 text-base min-h-[48px] pl-2 pr-2">
+        {config.appName}
+      </div>
       <Divider />
       <NavMenuItems />
-    </StyledDrawer>
+    </Drawer>
   );
 }
 

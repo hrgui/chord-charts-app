@@ -16,3 +16,19 @@
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   box-sizing: inherit;
 }
+
+.cc-appNavMenu {
+  width: 240px;
+}
+
+.cc-appNavMenu .cc-drawer {
+  width: 240px;
+}
+
+.screenWrap {
+  display: flex;
+  flex-flow: column;
+  height: calc(100vh - 96px);
+  width: 100vw;
+  flex-wrap: wrap;
+}

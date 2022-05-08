@@ -1,7 +1,6 @@
 import React from "react";
 import { Modal, Button } from "react-daisyui";
 import { TextField } from "lib/form/TextField";
-import styled from "styled-components";
 import FormActions from "lib/form/FormActions";
 import { Form } from "lib/form/Form";
 import { FieldArray } from "formik";
@@ -21,20 +20,6 @@ export interface ISetlistFormProps {
   isError?;
 }
 
-const Container = styled.div`
-  padding: ${({ theme }) => theme.spacing(2)}px;
-`;
-
-const FormCard = styled(Paper)`
-  padding: ${({ theme }) => theme.spacing(2)}px;
-  margin-bottom: ${({ theme }) => theme.spacing(2)}px;
-`;
-
-const FormHeader = styled.h3`
-  font-weight: 500;
-  margin: ${({ theme }) => theme.spacing(1)}px;
-`;
-
 export const SetlistForm = (props: ISetlistFormProps) => {
   const { data, isLoading, isModalMode, isNew } = props;
   const SetlistFormActions = isModalMode ? Modal.Actions : FormActions;
@@ -53,15 +38,15 @@ export const SetlistForm = (props: ISetlistFormProps) => {
       onSubmitError={props.onSubmitError}
     >
       {({ handleSubmit, values, setFieldValue }) => (
-        <Container>
-          <FormCard>
+        <div className="p-2">
+          <div className="p-2 mb-2 bg-base-200">
             <TextField fullWidth label={t("setlist:form/label/date")} name="date" type="date" />
             <TextField fullWidth label={t("setlist:form/label/title")} name="title" />
             <TextField fullWidth label={t("setlist:form/label/leader")} name="leader" />
             <TextField multiline fullWidth label={t("setlist:form/label/notes")} name="notes" />
-          </FormCard>
-          <FormCard>
-            <FormHeader>{t("setlist:form/label/songs")}</FormHeader>
+          </div>
+          <div className="p-2 mb-2">
+            <h3 className="font-semibold m-1">{t("setlist:form/label/songs")}</h3>
             <table className="table">
               <tbody>
                 <FieldArray name="songs">
@@ -96,7 +81,7 @@ export const SetlistForm = (props: ISetlistFormProps) => {
               </tbody>
             </table>
             <Button onClick={(e) => setDialogOpen(true)}>Add Song</Button>
-          </FormCard>
+          </div>
 
           <Modal open={open}>
             <SongListContainer
@@ -117,7 +102,7 @@ export const SetlistForm = (props: ISetlistFormProps) => {
               Save
             </Button>
           </SetlistFormActions>
-        </Container>
+        </div>
       )}
     </Form>
   );

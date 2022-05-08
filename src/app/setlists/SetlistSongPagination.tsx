@@ -1,6 +1,8 @@
 import * as React from "react";
 import classnames from "classnames";
 import MaterialSymbol from "ui/icons/MaterialSymbol";
+import { twMerge } from "tailwind-merge";
+import cx from "classnames";
 
 interface SetlistSongPaginationProps {
   currentIndex;
@@ -29,7 +31,11 @@ export const SetlistSongPagination = (props: SetlistSongPaginationProps) => {
 
   const buttons = Array.from(new Array(length)).map((_, index) => (
     <button
-      className={`btn min-w-auto song-pgn-${index}`}
+      className={twMerge(
+        cx(`btn btn-ghost min-w-auto song-pgn-${index}`, {
+          ["bg-base-100"]: currentIndex === index,
+        })
+      )}
       onClick={(e) => {
         handleChange(index);
       }}
@@ -42,7 +48,7 @@ export const SetlistSongPagination = (props: SetlistSongPaginationProps) => {
   //TODO fixme
   const width = "xl";
   return (
-    <div className="h-[36px] flex items-center">
+    <div className="flex items-center">
       <button data-testid="prev" onClick={(_) => handleChange(currentIndex - 1)}>
         <MaterialSymbol icon="navigate_before" />
       </button>

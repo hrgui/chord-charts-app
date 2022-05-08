@@ -1,10 +1,9 @@
 import * as React from "react";
 import ListItemLink from "lib/layout/ListItemLink";
-import LibraryAdd from "@material-ui/icons/LibraryAdd";
-import LibraryMusic from "@material-ui/icons/LibraryMusic";
 import { useTranslation } from "react-i18next";
 import { ListItemIcon, List, ListItemText } from "ui/List";
 import ListSubheader from "ui/List/ListSubheader";
+import MaterialSymbol from "ui/icons/MaterialSymbol";
 
 export function SongsNavMenu() {
   const { t } = useTranslation();
@@ -13,13 +12,13 @@ export function SongsNavMenu() {
       <ListSubheader>{t("song:plural")}</ListSubheader>
       <ListItemLink to="/song/new">
         <ListItemIcon>
-          <LibraryAdd />
+          <MaterialSymbol icon="library_add" />
         </ListItemIcon>
         <ListItemText>{t("song:action/new_song")}</ListItemText>
       </ListItemLink>
       <ListItemLink to="/songs">
         <ListItemIcon>
-          <LibraryMusic />
+          <MaterialSymbol icon="library_music" />
         </ListItemIcon>
         <ListItemText>{t("song:action/list_song")}</ListItemText>
       </ListItemLink>

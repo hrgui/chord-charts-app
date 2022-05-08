@@ -1,14 +1,11 @@
 import * as React from "react";
 import ListItemLink from "lib/layout/ListItemLink";
 import ActionsMenu from "lib/table/ActionsMenu";
-import Delete from "@material-ui/icons/Delete";
-import Edit from "@material-ui/icons/Edit";
-import Pageview from "@material-ui/icons/Pageview";
 import { useTranslation } from "react-i18next";
-import PlaylistAdd from "@material-ui/icons/PlaylistAdd";
 import { useLocation } from "react-router-dom";
 import { Song } from "app/services/songs";
 import { List, ListItem, ListItemIcon, ListItemText } from "ui/List";
+import MaterialSymbol from "ui/icons/MaterialSymbol";
 
 interface SongActionsProps {
   song?: Song;
@@ -25,13 +22,13 @@ function SongActionsList({ id }: { id?; addToSetlistMode? }) {
     <List dense className="bg-base-200 rounded-box shadow-sm">
       <ListItemLink to={`/song/${id}/view`}>
         <ListItemIcon>
-          <Pageview />
+          <MaterialSymbol icon="pageview" />
         </ListItemIcon>
         <ListItemText primary={t("view")} />
       </ListItemLink>
       <ListItemLink to={`/song/${id}/edit`}>
         <ListItemIcon>
-          <Edit />
+          <MaterialSymbol icon="edit" />
         </ListItemIcon>
         <ListItemText primary={t("edit")} />
       </ListItemLink>
@@ -50,7 +47,7 @@ function SongActionsList({ id }: { id?; addToSetlistMode? }) {
         }}
       >
         <ListItemIcon>
-          <Delete />
+          <MaterialSymbol icon="delete" />
         </ListItemIcon>
         <ListItemText primary={t("delete")} />
       </ListItem>
@@ -63,7 +60,7 @@ function SongActionsList({ id }: { id?; addToSetlistMode? }) {
         button
       >
         <ListItemIcon>
-          <PlaylistAdd />
+          <MaterialSymbol icon="playlist_add" />
         </ListItemIcon>
         <ListItemText primary={t("song:action/add_to_setlist")} />
       </ListItemLink>

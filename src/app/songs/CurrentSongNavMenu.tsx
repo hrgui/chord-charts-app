@@ -1,9 +1,5 @@
 import * as React from "react";
 import { List, ListItem, ListItemText, ListItemIcon, ListSubheader } from "ui/List";
-import Edit from "@material-ui/icons/Edit";
-import Delete from "@material-ui/icons/Delete";
-import ToggleOff from "@material-ui/icons/ToggleOffOutlined";
-import ToggleOn from "@material-ui/icons/ToggleOn";
 import ListItemLink from "lib/layout/ListItemLink";
 import { useUserData } from "lib/hooks/useUserData";
 import { useGlobalSongSettings } from "lib/hooks/useGlobalSongSettings";
@@ -11,6 +7,7 @@ import { useGlobalSongActions } from "lib/hooks/useGlobalSongActions";
 import { useAppBarActions } from "lib/hooks/useAppBarActions";
 import { useTranslation } from "react-i18next";
 import Divider from "ui/Divider";
+import MaterialSymbol from "ui/icons/MaterialSymbol";
 
 export function CurrentSongNavMenuPlaceholder() {
   return <div id="currentSongNavMenu" />;
@@ -49,7 +46,13 @@ export function SongSectionsNavMenu({
               });
             }}
           >
-            <ListItemIcon>{!sectionSettings.hide ? <ToggleOn /> : <ToggleOff />}</ListItemIcon>
+            <ListItemIcon>
+              {!sectionSettings.hide ? (
+                <MaterialSymbol icon="toggle_on" />
+              ) : (
+                <MaterialSymbol icon="toggle_off" />
+              )}
+            </ListItemIcon>
             <ListItemText primary={title} />
           </ListItem>
         );
@@ -94,7 +97,7 @@ export function CurrentSongNavMenu(props: CurrentSongNavMenuProps) {
       <ListSubheader>Song Controls</ListSubheader>
       <ListItemLink onClick={(e) => toggleControlsPanel()} to={`/song/${id}/edit`}>
         <ListItemIcon>
-          <Edit />
+          <MaterialSymbol icon="edit" />
         </ListItemIcon>
         <ListItemText primary={t("edit")} />
       </ListItemLink>
@@ -112,7 +115,7 @@ export function CurrentSongNavMenu(props: CurrentSongNavMenuProps) {
         }}
       >
         <ListItemIcon>
-          <Delete />
+          <MaterialSymbol icon="delete" />
         </ListItemIcon>
         <ListItemText primary={t("delete")} />
       </ListItem>
@@ -123,7 +126,13 @@ export function CurrentSongNavMenu(props: CurrentSongNavMenuProps) {
           toggleYoutube();
         }}
       >
-        <ListItemIcon>{!isVideoHidden ? <ToggleOn /> : <ToggleOff />}</ListItemIcon>
+        <ListItemIcon>
+          {!isVideoHidden ? (
+            <MaterialSymbol icon="toggle_on" />
+          ) : (
+            <MaterialSymbol icon="toggle_off" />
+          )}
+        </ListItemIcon>
         <ListItemText primary={`${t("video")}: ${!isVideoHidden ? t("on") : t("off")}`} />
       </ListItem>
       <ListItem
@@ -132,7 +141,9 @@ export function CurrentSongNavMenu(props: CurrentSongNavMenuProps) {
           onToggleScreenWrap();
         }}
       >
-        <ListItemIcon>{screenWrap ? <ToggleOn /> : <ToggleOff />}</ListItemIcon>
+        <ListItemIcon>
+          {screenWrap ? <MaterialSymbol icon="toggle_on" /> : <MaterialSymbol icon="toggle_off" />}
+        </ListItemIcon>
         <ListItemText primary={`${t("screenWrap")}: ${screenWrap ? t("on") : t("off")}`} />
       </ListItem>
       <ListItem
@@ -141,7 +152,13 @@ export function CurrentSongNavMenu(props: CurrentSongNavMenuProps) {
           onToggleLyricsVisibility();
         }}
       >
-        <ListItemIcon>{!lyricsDisabled ? <ToggleOn /> : <ToggleOff />}</ListItemIcon>
+        <ListItemIcon>
+          {!lyricsDisabled ? (
+            <MaterialSymbol icon="toggle_on" />
+          ) : (
+            <MaterialSymbol icon="toggle_off" />
+          )}
+        </ListItemIcon>
         <ListItemText primary={`${t("lyrics")}: ${!lyricsDisabled ? t("on") : t("off")}`} />
       </ListItem>
       <ListItem
@@ -150,7 +167,13 @@ export function CurrentSongNavMenu(props: CurrentSongNavMenuProps) {
           onToggleChordsVisibility();
         }}
       >
-        <ListItemIcon>{!chordsDisabled ? <ToggleOn /> : <ToggleOff />}</ListItemIcon>
+        <ListItemIcon>
+          {!chordsDisabled ? (
+            <MaterialSymbol icon="toggle_on" />
+          ) : (
+            <MaterialSymbol icon="toggle_off" />
+          )}
+        </ListItemIcon>
         <ListItemText primary={`${t("chords")}: ${!chordsDisabled ? t("on") : t("off")}`} />
       </ListItem>
       <SongSectionsNavMenu

@@ -24,7 +24,6 @@
   },
   "devDependencies": {
     "@hrgui/chord-charts": "^2.1.0",
-    "@material-ui/icons": "^4.11.2",
     "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",

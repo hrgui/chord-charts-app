@@ -1,11 +1,9 @@
 import * as React from "react";
 import ChordSelect from "app/songs/components/ChordSelect";
-import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
-import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
-import DeleteIcon from "@material-ui/icons/Delete";
 import { useTranslation } from "react-i18next";
 import { useGetSongQuery } from "app/services/songs";
 import Skeleton from "ui/Skeleton";
+import MaterialSymbol from "ui/icons/MaterialSymbol";
 
 export interface ISetlistSongFieldRowProps {
   index;
@@ -43,13 +41,13 @@ export default function SetlistSongFieldRow(props: ISetlistSongFieldRowProps) {
       <td>
         <div className="btn-group">
           <button onClick={(e) => onSwap(index, index - 1)}>
-            <ArrowUpwardIcon />
+            <MaterialSymbol icon="arrow_upward" />
           </button>
           <button onClick={(e) => onSwap(index, index + 1)}>
-            <ArrowDownwardIcon />
+            <MaterialSymbol icon="arrow_downward" />
           </button>
           <button onClick={(e) => onRemove(index)}>
-            <DeleteIcon />
+            <MaterialSymbol icon="delete" />
           </button>
         </div>
       </td>

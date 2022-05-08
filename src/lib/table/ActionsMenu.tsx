@@ -1,7 +1,7 @@
 import * as React from "react";
-import MoreVert from "@material-ui/icons/MoreVert";
 import { isFunction } from "formik";
 import { Dropdown } from "react-daisyui";
+import MaterialSymbol from "ui/icons/MaterialSymbol";
 
 interface SetlistActionsProps {
   children?: any;
@@ -21,8 +21,8 @@ const ActionsMenu: React.FC<SetlistActionsProps> = (props) => {
 
   return (
     <Dropdown horizontal="left" vertical="middle" open={isOpen}>
-      <Dropdown.Toggle>
-        <MoreVert fontSize="small" />
+      <Dropdown.Toggle className="btn-ghost">
+        <MaterialSymbol icon="more_vert" />
       </Dropdown.Toggle>
       <Dropdown.Menu className="w-52">
         {isFunction(children) ? children({ ...props, onClose: handleClose }) : children}

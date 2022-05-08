@@ -1,6 +1,5 @@
 import * as React from "react";
 import ListItemLink from "lib/layout/ListItemLink";
-import Home from "@material-ui/icons/Home";
 import SongsNavMenu from "app/songs/menu/SongsNavMenu";
 import SetlistsNavMenu from "app/setlists/menu/SetlistsNavMenu";
 import { useAppBarActions } from "lib/hooks/useAppBarActions";
@@ -18,7 +17,7 @@ export function HomeNavMenu() {
     <List dense>
       <ListItemLink to="/">
         <ListItemIcon>
-          <Home />
+          <span className="material-symbols-outlined">home</span>
         </ListItemIcon>
         <ListItemText>Home</ListItemText>
       </ListItemLink>

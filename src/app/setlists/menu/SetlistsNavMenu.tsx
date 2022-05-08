@@ -1,10 +1,9 @@
 import * as React from "react";
 import { List, ListItemIcon, ListItemText, ListSubheader } from "ui/List";
 import ListItemLink from "lib/layout/ListItemLink";
-import PostAdd from "@material-ui/icons/PostAdd";
-import QueueMusic from "@material-ui/icons/QueueMusic";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
+import MaterialSymbol from "ui/icons/MaterialSymbol";
 
 export function SetlistsNavMenu() {
   const { t } = useTranslation();
@@ -14,13 +13,13 @@ export function SetlistsNavMenu() {
       <ListSubheader>{t("setlist:plural")}</ListSubheader>
       <ListItemLink to="/setlist/new" state={{ background: location }}>
         <ListItemIcon>
-          <PostAdd />
+          <MaterialSymbol icon="post_add" />
         </ListItemIcon>
         <ListItemText primary={t("setlist:action/new_setlist")} />
       </ListItemLink>
       <ListItemLink to="/setlists">
         <ListItemIcon>
-          <QueueMusic />
+          <MaterialSymbol icon="queue_music" />
         </ListItemIcon>
         <ListItemText primary={t("setlist:action/list_setlist")} />
       </ListItemLink>

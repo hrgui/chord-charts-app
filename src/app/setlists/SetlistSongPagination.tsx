@@ -1,7 +1,6 @@
 import * as React from "react";
 import classnames from "classnames";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
+import MaterialSymbol from "ui/icons/MaterialSymbol";
 
 interface SetlistSongPaginationProps {
   currentIndex;
@@ -45,13 +44,13 @@ export const SetlistSongPagination = (props: SetlistSongPaginationProps) => {
   return (
     <div className="h-[36px] flex items-center">
       <button data-testid="prev" onClick={(_) => handleChange(currentIndex - 1)}>
-        <NavigateBeforeIcon />
+        <MaterialSymbol icon="navigate_before" />
       </button>
       <div ref={buttonsHolder} className={classnames(`pageNumbers-${width}`)}>
         {buttons}
       </div>
       <button data-testid="next" onClick={(_) => handleChange(currentIndex + 1)}>
-        <NavigateNextIcon />
+        <MaterialSymbol icon="navigate_next" />
       </button>
     </div>
   );

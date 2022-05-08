@@ -2,10 +2,8 @@ import * as React from "react";
 import { TextField } from "lib/form/TextField";
 import ChordChartTextField from "./ChordChartTextField";
 import AbcTextField from "./AbcTextField";
-import ArrowDownward from "@material-ui/icons/ArrowDownward";
-import ArrowUpward from "@material-ui/icons/ArrowUpward";
-import Delete from "@material-ui/icons/Delete";
 import { useTranslation } from "react-i18next";
+import MaterialSymbol from "ui/icons/MaterialSymbol";
 
 interface SongSectionFieldPanelProps {
   onMoveDown?: () => any;
@@ -30,7 +28,7 @@ export const SongSectionFieldPanel: React.FC<SongSectionFieldPanelProps> = ({
         disabled={isDownDisabled}
         data-testid="down"
       >
-        <ArrowDownward />
+        <MaterialSymbol icon="arrow_downward" />
       </button>
       <button
         className="btn btn-square"
@@ -38,10 +36,10 @@ export const SongSectionFieldPanel: React.FC<SongSectionFieldPanelProps> = ({
         disabled={isUpDisabled}
         data-testid="up"
       >
-        <ArrowUpward />
+        <MaterialSymbol icon="arrow_upward" />
       </button>
       <button className="btn btn-square" onClick={onDelete} data-testid="delete">
-        <Delete />
+        <MaterialSymbol icon="delete" />
       </button>
     </div>
   );

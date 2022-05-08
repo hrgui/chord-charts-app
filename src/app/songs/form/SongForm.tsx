@@ -60,7 +60,7 @@ export const SongForm = (props: SongFormProps) => {
             <div className="p-4">
               <div
                 className={classnames(
-                  "flex w-full flex-col-reverse sm:flex-col pl-2 pr-2 pt-2 pb-0",
+                  "flex w-full flex-col-reverse sm:flex-col pl-2 pr-2 pt-2 pb-0 bg-base-200",
                   {
                     "SongFormCard-mobile": !isMobile,
                   }

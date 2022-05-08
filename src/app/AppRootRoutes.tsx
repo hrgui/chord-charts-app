@@ -4,6 +4,7 @@ import SongsListPage from "app/songs/SongsListPage";
 import SetlistsListPage from "app/setlists/SetlistsListPage";
 import SongViewPage from "app/songs/SongViewPage";
 import SongFormPage from "app/songs/form/SongFormPage";
+import SongFormPageV2 from "app/songs/v2/form/SongFormPage";
 import SetlistFormPage from "app/setlists/form/SetlistFormPage";
 import AddToSetlistFormPage from "app/setlists/form/AddToSetlistFormPage";
 import SetlistViewPage from "app/setlists/SetlistViewPage";
@@ -19,6 +20,8 @@ export function AppRootRoutes() {
         <Route element={<SongViewPage />} path="/song/:id/view" />
         <Route element={<SongFormPage />} path="/song/new" />
         <Route element={<SongFormPage />} path="/song/:id/edit" />
+        <Route element={<SongFormPageV2 />} path="/song/v2/new" />
+        <Route element={<SongFormPageV2 />} path="/song/v2/:id/edit" />
 
         <Route element={<SetlistFormPage />} path="/setlist/new" />
         <Route element={<SetlistsListPage />} path="/setlists" />

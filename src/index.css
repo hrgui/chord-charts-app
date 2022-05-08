@@ -32,3 +32,7 @@
   width: 100vw;
   flex-wrap: wrap;
 }
+
+.youtube-view-input iframe {
+  width: 100%;
+}

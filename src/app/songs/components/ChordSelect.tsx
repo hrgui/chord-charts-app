@@ -9,12 +9,12 @@ interface ChordSelectProps {
   classes?: any;
 }
 
-const ChordSelect: React.FC<ChordSelectProps> = (props) => {
+export const ChordSelect = React.forwardRef<HTMLSelectElement, ChordSelectProps>((props, ref) => {
   return (
-    <select className="select" {...props}>
+    <select ref={ref} className="select" {...props}>
       {getKeyAsOptions()}
     </select>
   );
-};
+});
 
 export default ChordSelect;

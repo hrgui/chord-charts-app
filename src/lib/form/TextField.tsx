@@ -31,25 +31,23 @@ type TWTextFieldProps = {
   fullWidth?: boolean;
 };
 
-export function TWTextField({
-  className,
-  label,
-  helperText,
-  fullWidth,
-  ...props
-}: React.HTMLProps<HTMLInputElement> & TWTextFieldProps) {
-  return (
-    <div className="form-control">
-      <label className="label">
-        <span className="label-text">{label}</span>
-      </label>
-      <input className={twMerge("input input-bordered", className)} {...props} />
-      <label className="label">
-        <span className="label-text">{helperText}</span>
-      </label>
-    </div>
-  );
-}
+type FullProps = React.HTMLProps<HTMLInputElement> & TWTextFieldProps;
+
+export const TWTextField = React.forwardRef<any, FullProps>(
+  ({ className, label, helperText, fullWidth, ...props }, ref) => {
+    return (
+      <div className="form-control">
+        <label className="label">
+          <span className="label-text">{label}</span>
+        </label>
+        <input ref={ref} className={twMerge("input input-bordered", className)} {...props} />
+        <label className="label">
+          <span className="label-text">{helperText}</span>
+        </label>
+      </div>
+    );
+  }
+);
 
 export const TextField: React.FC<any> = (props) => {
   return <Field as={TWTextField} {...props} />;

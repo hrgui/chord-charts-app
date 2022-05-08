@@ -1,11 +1,9 @@
 import * as React from "react";
-import { Button } from "@material-ui/core";
 import ListItemLink from "lib/layout/ListItemLink";
 import ActionsMenu from "lib/table/ActionsMenu";
 import Delete from "@material-ui/icons/Delete";
 import Edit from "@material-ui/icons/Edit";
 import Pageview from "@material-ui/icons/Pageview";
-import { useUserData } from "lib/hooks/useUserData";
 import { useTranslation } from "react-i18next";
 import PlaylistAdd from "@material-ui/icons/PlaylistAdd";
 import { useLocation } from "react-router-dom";
@@ -18,14 +16,13 @@ interface SongActionsProps {
   onAddSong: (song) => any;
 }
 
-function SongActionsList({ id, addToSetlistMode }: { id?; addToSetlistMode? }) {
-  const user = useUserData();
+function SongActionsList({ id }: { id?; addToSetlistMode? }) {
   const deleteSetlist = () => {};
   const { t } = useTranslation();
   const location = useLocation();
 
   return (
-    <List dense>
+    <List dense className="bg-base-200 rounded-box shadow-sm">
       <ListItemLink to={`/song/${id}/view`}>
         <ListItemIcon>
           <Pageview />
@@ -76,7 +73,11 @@ function SongActionsList({ id, addToSetlistMode }: { id?; addToSetlistMode? }) {
 
 const SongActions: React.FC<SongActionsProps> = (props) => {
   if (props.addToSetlistMode) {
-    return <Button onClick={(e) => props.onAddSong(props.song)}>Add</Button>;
+    return (
+      <button className="btn" onClick={(e) => props.onAddSong(props.song)}>
+        Add
+      </button>
+    );
   }
 
   return (

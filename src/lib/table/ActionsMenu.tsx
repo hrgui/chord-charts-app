@@ -1,8 +1,7 @@
 import * as React from "react";
 import MoreVert from "@material-ui/icons/MoreVert";
-import { IconButton } from "@material-ui/core";
-import { Menu } from "../layout/Menu";
 import { isFunction } from "formik";
+import { Dropdown } from "react-daisyui";
 
 interface SetlistActionsProps {
   children?: any;
@@ -10,30 +9,25 @@ interface SetlistActionsProps {
 }
 
 const ActionsMenu: React.FC<SetlistActionsProps> = (props) => {
-  const { id = "actions-menu", children } = props;
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const { children } = props;
+  const [isOpen, setIsOpen] = React.useState(false);
 
   function handleClick(event) {
-    setAnchorEl(event.currentTarget);
+    setIsOpen(true);
   }
   function handleClose() {
-    setAnchorEl(null);
+    setIsOpen(false);
   }
 
   return (
-    <>
-      <IconButton
-        size="small"
-        aria-owns={anchorEl ? id : undefined}
-        aria-haspopup="true"
-        onClick={handleClick}
-      >
+    <Dropdown horizontal="left" vertical="middle" open={isOpen}>
+      <Dropdown.Toggle>
         <MoreVert fontSize="small" />
-      </IconButton>
-      <Menu id={id} anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
+      </Dropdown.Toggle>
+      <Dropdown.Menu className="w-52">
         {isFunction(children) ? children({ ...props, onClose: handleClose }) : children}
-      </Menu>
-    </>
+      </Dropdown.Menu>
+    </Dropdown>
   );
 };
 

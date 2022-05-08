@@ -1,5 +1,4 @@
 import * as React from "react";
-import { IconButton, ButtonGroup, TableRow, TableCell, makeStyles, Theme } from "@material-ui/core";
 import ChordSelect from "app/songs/components/ChordSelect";
 import { Skeleton } from "@material-ui/lab";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
@@ -23,57 +22,48 @@ export default function SetlistSongFieldRow(props: ISetlistSongFieldRowProps) {
 
   if (loading) {
     return (
-      <TableRow>
-        <TableCell>{index + 1}.</TableCell>
-        <TableCell>{<Skeleton width={Math.floor(Math.random() * 100)} height={16} />}</TableCell>
-        <TableCell>{<Skeleton width={Math.floor(Math.random() * 75)} height={16} />}</TableCell>
-        <TableCell>{<Skeleton width={50} height={16} />}</TableCell>
-        <TableCell>{<Skeleton width={200} height={16} />}</TableCell>
-      </TableRow>
+      <tr>
+        <td>{index + 1}.</td>
+        <td>{<Skeleton width={Math.floor(Math.random() * 100)} height={16} />}</td>
+        <td>{<Skeleton width={Math.floor(Math.random() * 75)} height={16} />}</td>
+        <td>{<Skeleton width={50} height={16} />}</td>
+        <td>{<Skeleton width={200} height={16} />}</td>
+      </tr>
     );
   }
 
   return (
-    <TableRow>
-      <TableCell>{index + 1}.</TableCell>
-      <TableCell>{song?.title?.toUpperCase() || songId}</TableCell>
-      <TableCell>{song?.artist}</TableCell>
-      <TableCell>
+    <tr>
+      <td>{index + 1}.</td>
+      <td>{song?.title?.toUpperCase() || songId}</td>
+      <td>{song?.artist}</td>
+      <td>
         <ChordSelect value={settings?.overrideKey || song?.key} onChange={onSongKeyChange} />
-      </TableCell>
-      <TableCell>
-        <ButtonGroup>
-          <IconButton size="small" onClick={(e) => onSwap(index, index - 1)}>
-            <ArrowUpwardIcon fontSize="small" />
-          </IconButton>
-          <IconButton size="small" onClick={(e) => onSwap(index, index + 1)}>
-            <ArrowDownwardIcon fontSize="small" />
-          </IconButton>
-          <IconButton size="small" onClick={(e) => onRemove(index)}>
-            <DeleteIcon fontSize="small" />
-          </IconButton>
-        </ButtonGroup>
-      </TableCell>
-    </TableRow>
+      </td>
+      <td>
+        <div className="btn-group">
+          <button onClick={(e) => onSwap(index, index - 1)}>
+            <ArrowUpwardIcon />
+          </button>
+          <button onClick={(e) => onSwap(index, index + 1)}>
+            <ArrowDownwardIcon />
+          </button>
+          <button onClick={(e) => onRemove(index)}>
+            <DeleteIcon />
+          </button>
+        </div>
+      </td>
+    </tr>
   );
 }
 
-const useStyles = makeStyles((theme: Theme) => {
-  return {
-    cell: {
-      textAlign: "center",
-    },
-  };
-});
-
 export function NoSongsRow({ isNew }: { isNew? }) {
   const { t } = useTranslation();
-  const classes = useStyles();
   return (
-    <TableRow>
-      <TableCell className={classes.cell}>
+    <tr>
+      <td className={"text-center"}>
         {isNew ? t("setlist:form/no_songs_new") : t("setlist:form/no_songs")}
-      </TableCell>
-    </TableRow>
+      </td>
+    </tr>
   );
 }

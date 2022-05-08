@@ -1,7 +1,6 @@
 import * as React from "react";
 import Editor from "react-simple-code-editor";
 import { wrap } from "@hrgui/chord-charts";
-import { useTheme } from "@material-ui/core";
 import styled from "styled-components/macro";
 
 interface ChordChartTextInputProps {
@@ -28,7 +27,6 @@ const ChordChartTextInput = ({
   className,
   onValueChange = (code) => null,
 }: ChordChartTextInputProps) => {
-  const theme = useTheme();
   return (
     <Container>
       <Editor
@@ -37,7 +35,7 @@ const ChordChartTextInput = ({
         onValueChange={(code) => onValueChange(code)}
         highlight={(code) => chordChartHighlight(code)}
         style={{
-          color: theme.palette.text.primary,
+          color: "pink",
           minWidth: "100%",
           fontFamily: '"Fira code", "Fira Mono", monospace',
           marginTop: 20,

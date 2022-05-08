@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Paper, DialogActions, Table, TableBody, Dialog } from "@material-ui/core";
+import { Modal, Button } from "react-daisyui";
 import { TextField } from "lib/form/TextField";
 import styled from "styled-components";
 import FormActions from "lib/form/FormActions";
@@ -8,6 +8,7 @@ import { FieldArray } from "formik";
 import SetlistSongFieldRow, { NoSongsRow } from "./SetlistSongFieldRow";
 import { useTranslation } from "react-i18next";
 import { SongListContainer } from "app/songs/SongsListPage";
+import Paper from "ui/Paper";
 
 export interface ISetlistFormProps {
   isNew?;
@@ -36,7 +37,7 @@ const FormHeader = styled.h3`
 
 export const SetlistForm = (props: ISetlistFormProps) => {
   const { data, isLoading, isModalMode, isNew } = props;
-  const SetlistFormActions = isModalMode ? DialogActions : FormActions;
+  const SetlistFormActions = isModalMode ? Modal.Actions : FormActions;
   const { t } = useTranslation();
   const [open, setDialogOpen] = React.useState(false);
 
@@ -61,8 +62,8 @@ export const SetlistForm = (props: ISetlistFormProps) => {
           </FormCard>
           <FormCard>
             <FormHeader>{t("setlist:form/label/songs")}</FormHeader>
-            <Table size="small">
-              <TableBody>
+            <table className="table">
+              <tbody>
                 <FieldArray name="songs">
                   {({ swap, remove, form }) => {
                     if (form.values.songs.length === 0) {
@@ -92,14 +93,12 @@ export const SetlistForm = (props: ISetlistFormProps) => {
                     });
                   }}
                 </FieldArray>
-              </TableBody>
-            </Table>
-            <Button variant="outlined" onClick={(e) => setDialogOpen(true)}>
-              Add Song
-            </Button>
+              </tbody>
+            </table>
+            <Button onClick={(e) => setDialogOpen(true)}>Add Song</Button>
           </FormCard>
 
-          <Dialog open={open}>
+          <Modal open={open}>
             <SongListContainer
               addToSetlistMode
               onAddSong={({ _id: id }) => {
@@ -107,7 +106,7 @@ export const SetlistForm = (props: ISetlistFormProps) => {
                 setDialogOpen(false);
               }}
             />
-          </Dialog>
+          </Modal>
           <SetlistFormActions>
             <Button
               onClick={(e) => {

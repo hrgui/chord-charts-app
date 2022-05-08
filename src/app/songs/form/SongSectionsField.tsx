@@ -1,22 +1,13 @@
 import * as React from "react";
 import { FieldArray } from "formik";
 import { SongSectionField } from "./SongSectionField";
-import { Paper, makeStyles, Theme } from "@material-ui/core";
-
-const useStyles = makeStyles((theme: Theme) => ({
-  controlsBar: {
-    padding: theme.spacing(1),
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2),
-  },
-  songSection: {
-    padding: theme.spacing(2),
-    marginBottom: theme.spacing(2),
-  },
-}));
+import Paper from "ui/Paper";
 
 export function SongSectionsField({ name, ...otherProps }) {
-  const classes = useStyles(otherProps);
+  const classes = {
+    controlsBar: "p-1 mt-2 mb-2",
+    songSection: "p-2 mb-2",
+  };
   return (
     <FieldArray name={name} {...otherProps}>
       {({ move, remove, push, form }) => {

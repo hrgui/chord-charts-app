@@ -1,5 +1,4 @@
 import React from "react";
-import { Button, Paper, makeStyles, Theme } from "@material-ui/core";
 import { Form } from "lib/form/Form";
 import { ChipInputField } from "lib/form/ChipInputField";
 import { TextField } from "lib/form/TextField";
@@ -13,6 +12,8 @@ import { useTranslation } from "react-i18next";
 import { ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Song } from "app/services/songs";
+import Paper from "ui/Paper";
+import { Button } from "react-daisyui";
 
 export interface SongFormProps {
   isNew?: boolean;
@@ -69,24 +70,9 @@ const StyledConnectedYoutubeView = styled(ConnectedYoutubeView)`
   }
 `;
 
-const useStyles = makeStyles((theme: Theme) => ({
-  field: {
-    marginBottom: theme.spacing(1),
-  },
-  card: {
-    padding: theme.spacing(2),
-    marginBottom: theme.spacing(2),
-  },
-  cardFirst: {
-    padding: theme.spacing(2),
-    paddingBottom: 0,
-  },
-}));
-
 export const SongForm = (props: SongFormProps) => {
   const { data, error, isLoading } = props;
   const { t } = useTranslation();
-  const classes = useStyles(props);
 
   const validationSchema = Yup.object({
     title: Yup.string().required(),
@@ -119,13 +105,13 @@ export const SongForm = (props: SongFormProps) => {
           <form>
             <Container>
               <SongFormCard
-                className={classnames(classes.cardFirst, {
+                className={classnames("pl-2 pr-2 pt-2 pb-0", {
                   "SongFormCard-mobile": !isMobile,
                 })}
               >
                 <TitleAndArtistFieldSet>
                   <TextField
-                    className={classes.field}
+                    className={"mb-1"}
                     fullWidth
                     error={errors.title}
                     helperText={<ErrorMessage name="title" />}
@@ -156,9 +142,9 @@ export const SongForm = (props: SongFormProps) => {
                   value={values.youtube}
                 />
               </SongFormCard>
-              <Paper className={classes.card}>
+              <Paper className={"p-2 mb-2"}>
                 <TextField
-                  className={classes.field}
+                  className="mb-1"
                   fullWidth
                   label={t("song:label/youtube")}
                   name="youtube"
@@ -167,13 +153,7 @@ export const SongForm = (props: SongFormProps) => {
               </Paper>
               <SongSectionsField name="sections" />
               <FormActions>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  type="submit"
-                  onClick={submitForm}
-                  disabled={isSubmitting}
-                >
+                <Button type="submit" onClick={submitForm} disabled={isSubmitting}>
                   {t("save")}
                 </Button>
               </FormActions>

@@ -1,9 +1,7 @@
 import * as React from "react";
-import { Button } from "@material-ui/core";
 import { TextField } from "lib/form/TextField";
 import ChordChartTextField from "./ChordChartTextField";
 import AbcTextField from "./AbcTextField";
-import IconButton from "@material-ui/core/IconButton";
 import ArrowDownward from "@material-ui/icons/ArrowDownward";
 import ArrowUpward from "@material-ui/icons/ArrowUpward";
 import Delete from "@material-ui/icons/Delete";
@@ -25,16 +23,26 @@ export const SongSectionFieldPanel: React.FC<SongSectionFieldPanelProps> = ({
   onDelete,
 }) => {
   return (
-    <div>
-      <IconButton onClick={onMoveDown} disabled={isDownDisabled} data-testid="down">
+    <div className="btn-group">
+      <button
+        className="btn btn-square"
+        onClick={onMoveDown}
+        disabled={isDownDisabled}
+        data-testid="down"
+      >
         <ArrowDownward />
-      </IconButton>
-      <IconButton onClick={onMoveUp} disabled={isUpDisabled} data-testid="up">
+      </button>
+      <button
+        className="btn btn-square"
+        onClick={onMoveUp}
+        disabled={isUpDisabled}
+        data-testid="up"
+      >
         <ArrowUpward />
-      </IconButton>
-      <Button onClick={onDelete} data-testid="delete">
+      </button>
+      <button className="btn btn-square" onClick={onDelete} data-testid="delete">
         <Delete />
-      </Button>
+      </button>
     </div>
   );
 };

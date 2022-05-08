@@ -7,6 +7,8 @@ import { useGetAppBarData } from "lib/hooks/useGetAppBarData";
 import Drawer from "ui/Drawer";
 import { List, ListItemText, ListItemIcon } from "ui/List";
 import Divider from "ui/Divider";
+import CloseIcon from "ui/icons/CloseIcon";
+import { Button } from "react-daisyui";
 
 export interface NavMenuProps {
   classes?: any;
@@ -52,6 +54,12 @@ export function AppNavMenu() {
     <Drawer className="cc-appNavMenu" open={!navMenuHidden}>
       <div className="flex items-center font-medium h-12 text-base min-h-[48px] pl-2 pr-2">
         {config.appName}
+        <Button
+          onClick={toggleNavMenu}
+          className="ml-auto sm:hidden"
+          shape="square"
+          startIcon={<CloseIcon />}
+        ></Button>
       </div>
       <Divider />
       <NavMenuItems />

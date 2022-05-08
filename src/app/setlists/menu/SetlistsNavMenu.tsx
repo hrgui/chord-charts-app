@@ -11,7 +11,7 @@ export function SetlistsNavMenu() {
   return (
     <List dense>
       <ListSubheader>{t("setlist:plural")}</ListSubheader>
-      <ListItemLink to="/setlist/new" state={{ background: location }}>
+      <ListItemLink to="/setlist/new">
         <ListItemIcon>
           <MaterialSymbol icon="post_add" />
         </ListItemIcon>

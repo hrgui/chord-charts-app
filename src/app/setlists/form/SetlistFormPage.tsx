@@ -15,6 +15,7 @@ import { SongListContainer } from "app/songs/SongsListPage";
 import SetlistSongFieldRow from "./SetlistSongFieldRow";
 import { useNavigate, useParams } from "react-router-dom";
 import PageLoading from "lib/layout/PageLoading";
+import Page from "lib/layout/Page";
 
 function getNewSetlistTemplate(): Setlist {
   const sunday = toDomDate(getUpcomingSunday());
@@ -33,7 +34,7 @@ type SetlistFormProps = {
 };
 
 export function SetlistForm({ onSubmit, onError, data }: SetlistFormProps) {
-  const { register, handleSubmit, watch, control } = useForm<Setlist>({ defaultValues: data });
+  const { register, handleSubmit, control } = useForm<Setlist>({ defaultValues: data });
   const { t } = useTranslation();
   const { fields, append, remove, move } = useFieldArray({
     control,
@@ -58,10 +59,19 @@ export function SetlistForm({ onSubmit, onError, data }: SetlistFormProps) {
       <FormSection>
         <h3 className="font-semibold m-1">{t("setlist:form/label/songs")}</h3>
 
-        <table className="table table-zebra">
+        <table className="table table-zebra w-full">
+          <thead>
+            <th></th>
+            <th className="w-3/5">Title</th>
+            <th className="w-1/7">Artist</th>
+            <th className="w-1/7">Key</th>
+            <th className="w-1/7">Actions</th>
+          </thead>
           <tbody>
             {fields.map((field, index) => (
               <SetlistSongFieldRow
+                isMoveUpDisabled={index === 0}
+                isMoveDownDisabled={index === fields.length - 1}
                 key={field.id}
                 setlistSong={field}
                 index={index}
@@ -84,7 +94,7 @@ export function SetlistForm({ onSubmit, onError, data }: SetlistFormProps) {
         <Button type="submit">{t("save")}</Button>
       </FormSection>
 
-      <Modal open={open}>
+      <Modal open={open} className="w-full max-w-full sm:w-11/12 sm:max-w-5xl">
         <SongListContainer
           addToSetlistMode
           onAddSong={({ _id, key }) => {
@@ -112,7 +122,11 @@ export function NewSetlistFormPage() {
     console.error(error);
   };
 
-  return <SetlistForm data={data} onSubmit={handleSubmit} onError={handleError} />;
+  return (
+    <Page title={`New Setlist`}>
+      <SetlistForm data={data} onSubmit={handleSubmit} onError={handleError} />
+    </Page>
+  );
 }
 
 export function EditSetlistFormPage() {
@@ -140,5 +154,9 @@ export function EditSetlistFormPage() {
     return <pre>{JSON.stringify(error)}</pre>;
   }
 
-  return <SetlistForm data={data} onSubmit={handleSubmit} onError={handleError} />;
+  return (
+    <Page title={`Edit ${data.title}`}>
+      <SetlistForm data={data} onSubmit={handleSubmit} onError={handleError} />
+    </Page>
+  );
 }

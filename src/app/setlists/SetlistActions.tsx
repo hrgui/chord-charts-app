@@ -80,7 +80,7 @@ function SetlistActionsList({
         </ListItemIcon>
         <ListItemText primary={t("view")} />
       </ListItemLink>
-      <ListItemLink to={`/setlist/${id}/edit`} state={{ background: location }}>
+      <ListItemLink to={`/setlist/${id}/edit`}>
         <ListItemIcon>
           <MaterialSymbol icon="edit" />
         </ListItemIcon>

@@ -5,6 +5,10 @@ import { Navbar } from "react-daisyui";
 import { MenuIcon } from "ui/icons/MenuIcon";
 
 export interface AppBarProps {
+  /**
+   * Nav menu is hidden by default via CSS in Mobile, so in mobile this is the reverse
+   * In Desktop this is correct.
+   */
   navMenuHidden: boolean;
   onShowNavMenu: () => void;
   onHideNavMenu: () => void;

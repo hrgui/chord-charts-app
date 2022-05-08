@@ -1,22 +1,24 @@
 import * as React from "react";
 import ChordSelect from "app/songs/components/ChordSelect";
-import { useTranslation } from "react-i18next";
 import { useGetSongQuery } from "app/services/songs";
 import Skeleton from "ui/Skeleton";
 import MaterialSymbol from "ui/icons/MaterialSymbol";
+import { SetlistSong } from "app/services/setlists";
 
 export interface ISetlistSongFieldRowProps {
-  index;
-  songId;
-  onSwap;
-  onRemove;
-  settings;
-  onSongKeyChange;
+  index: number;
+  setlistSong: SetlistSong;
+  onSwap: (from: number, to: number) => void;
+  onRemove: (index: number) => void;
+  register: any;
+  isMoveUpDisabled?: boolean;
+  isMoveDownDisabled?: boolean;
 }
 
-export default function SetlistSongFieldRow(props: ISetlistSongFieldRowProps) {
-  const { index, songId, onSwap, onRemove, settings, onSongKeyChange } = props;
-  const { data: song, isLoading: loading } = useGetSongQuery(songId);
+export function SetlistSongFieldRow(props: ISetlistSongFieldRowProps) {
+  const { index, setlistSong, isMoveUpDisabled, isMoveDownDisabled, onSwap, onRemove, register } =
+    props;
+  const { data: song, isLoading: loading } = useGetSongQuery(setlistSong._id);
 
   if (loading) {
     return (
@@ -33,20 +35,30 @@ export default function SetlistSongFieldRow(props: ISetlistSongFieldRowProps) {
   return (
     <tr>
       <td>{index + 1}.</td>
-      <td>{song?.title?.toUpperCase() || songId}</td>
+      <td>{song?.title?.toUpperCase() || setlistSong._id}</td>
       <td>{song?.artist}</td>
       <td>
-        <ChordSelect value={settings?.overrideKey || song?.key} onChange={onSongKeyChange} />
+        <ChordSelect {...register(`songs.${index}.settings.overrideKey`)} />
       </td>
       <td>
         <div className="btn-group">
-          <button onClick={(e) => onSwap(index, index - 1)}>
+          <button
+            className="btn"
+            disabled={isMoveUpDisabled}
+            type="button"
+            onClick={(e) => onSwap(index, index - 1)}
+          >
             <MaterialSymbol icon="arrow_upward" />
           </button>
-          <button onClick={(e) => onSwap(index, index + 1)}>
+          <button
+            className="btn"
+            disabled={isMoveDownDisabled}
+            type="button"
+            onClick={(e) => onSwap(index, index + 1)}
+          >
             <MaterialSymbol icon="arrow_downward" />
           </button>
-          <button onClick={(e) => onRemove(index)}>
+          <button className="btn" type="button" onClick={(e) => onRemove(index)}>
             <MaterialSymbol icon="delete" />
           </button>
         </div>
@@ -55,13 +67,4 @@ export default function SetlistSongFieldRow(props: ISetlistSongFieldRowProps) {
   );
 }
 
-export function NoSongsRow({ isNew }: { isNew? }) {
-  const { t } = useTranslation();
-  return (
-    <tr>
-      <td className={"text-center"}>
-        {isNew ? t("setlist:form/no_songs_new") : t("setlist:form/no_songs")}
-      </td>
-    </tr>
-  );
-}
+export default SetlistSongFieldRow;

@@ -7,7 +7,7 @@ import { NewSongFormPage, EditSongFormPage } from "app/songs/form/SongFormPage";
 import AddToSetlistFormPage from "app/setlists/form/AddToSetlistFormPage";
 import SetlistViewPage from "app/setlists/SetlistViewPage";
 import RouteModal from "app/core/RouteModal";
-import { NewSetlistFormPage, EditSetlistFormPage } from "./setlists/form/v2/SetlistFormPage";
+import { NewSetlistFormPage, EditSetlistFormPage } from "./setlists/form/SetlistFormPage";
 
 export function AppRootRoutes() {
   const location = useLocation();
@@ -32,8 +32,6 @@ export function AppRootRoutes() {
         <RouteModal open>
           <Routes>
             <Route element={<AddToSetlistFormPage />} path="/setlist/add" />
-            <Route element={<NewSetlistFormPage />} path="/setlist/new" />
-            <Route element={<EditSetlistFormPage />} path="/setlist/:id/edit" />
           </Routes>
         </RouteModal>
       )}

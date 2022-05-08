@@ -43,7 +43,6 @@
     "cypress": "^9.6.0",
     "daisyui": "^2.14.3",
     "eslint-plugin-cypress": "^2.11.1",
-    "events": "^3.3.0",
     "formik": "^2.1.4",
     "i18next": "^20.3.2",
     "i18next-browser-languagedetector": "^6.1.2",
@@ -75,8 +74,6 @@
     "vite": "^2.9.6",
     "vite-tsconfig-paths": "^3.4.1",
     "whatwg-fetch": "^3.0.0",
-    "ws": "^7.5.0",
-    "xmlhttprequest": "^1.8.0",
     "yup": "^0.28.3"
   },
   "resolutions": {

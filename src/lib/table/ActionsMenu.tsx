@@ -1,5 +1,5 @@
 import * as React from "react";
-import { isFunction } from "formik";
+import { isFunction } from "utils";
 import { Dropdown } from "react-daisyui";
 import MaterialSymbol from "ui/icons/MaterialSymbol";
 

@@ -16,5 +16,6 @@
   "form/no_songs": "There are no songs in this setlist. To add a song, either click on Add Song or save the setlist and add the song from the songs list.",
   "form/no_songs_new": "To add songs, save the setlist and add songs from the songs listing.",
   "message/saveSuccess": "Setlist {{setlist}} has been saved",
-  "message/saveError": "Setlist could not be saved. Please check for any errors and try again."
+  "message/saveError": "Setlist could not be saved. Please check for any errors and try again.",
+  "action/addSong": "Add Song"
 }

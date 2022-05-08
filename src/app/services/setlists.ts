@@ -1,13 +1,19 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import pouchDbBaseQuery, { ApiMethod } from "lib/rtk-api/pouchDbBaseQuery";
 
-export interface Setlist {
+export interface SetlistSong {
   _id: string;
+  settings: { [name: string]: string };
+}
+
+export interface Setlist {
+  _id?: string;
   title: string;
   leader?: string;
   date: string | Date;
-  songs: string[];
-  settings?: { [name: string]: string };
+  // songs: string[];
+  // settings?: { [name: string]: string };
+  songs: SetlistSong[];
 }
 
 type SetlistsResponse = Setlist[];

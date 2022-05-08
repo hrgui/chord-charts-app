@@ -15,7 +15,6 @@ interface SongViewContainerProps {
 }
 
 export const SongViewContainer: React.FC<SongViewContainerProps> = (props) => {
-  console.log("SongViewContainer", props);
   const { id } = props;
   const { isLoading, error: isError, data } = useGetSongQuery(id);
   const { setlist, isActiveInSetlist, settings, onChangeSettings = () => null } = props;

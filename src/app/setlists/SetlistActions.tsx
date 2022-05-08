@@ -4,7 +4,7 @@ import ActionsMenu from "lib/table/ActionsMenu";
 import { ListItem, ListItemIcon, List, ListItemText } from "ui/List";
 import { useUserData } from "lib/hooks/useUserData";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import MaterialSymbol from "ui/icons/MaterialSymbol";
 
 interface SetlistActionsProps {
@@ -33,6 +33,7 @@ function SetlistActionsList({
   const addToSetlist = () => {};
   const enqueueSnackbar = () => {};
   const navigate = useNavigate();
+  const location = useLocation();
 
   if (addToSetlistMode) {
     return (
@@ -79,7 +80,7 @@ function SetlistActionsList({
         </ListItemIcon>
         <ListItemText primary={t("view")} />
       </ListItemLink>
-      <ListItemLink to={`/setlist/${id}/edit`}>
+      <ListItemLink to={`/setlist/${id}/edit`} state={{ background: location }}>
         <ListItemIcon>
           <MaterialSymbol icon="edit" />
         </ListItemIcon>
@@ -112,7 +113,7 @@ const SetlistActions: React.FC<SetlistActionsProps> = (props) => {
   return (
     <ActionsMenu>
       <SetlistActionsList
-        id={props.setlist.id}
+        id={props.setlist._id}
         name={props.setlist.title}
         addToSetlistMode={props.addToSetlistMode}
         song_id={props.song_id}

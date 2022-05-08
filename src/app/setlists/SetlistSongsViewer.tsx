@@ -4,11 +4,12 @@ import { SongViewContainer } from "app/songs/SongViewPage";
 import { SetlistSongPagination } from "./SetlistSongPagination";
 import { getOrCreateElement } from "lib/layout/portalSelector";
 import { CurrentSetlistNavMenu } from "./CurrentSetlistNavMenu";
+import { SetlistSong } from "app/services/setlists";
 
 export interface SetlistSongsViewerProps {
   title?;
   setlist?;
-  songs?;
+  songs: SetlistSong[];
   settings?;
   songIndex?;
   onIndexChange?;
@@ -27,7 +28,6 @@ export function SetlistSongsViewer({
   onIndexChange,
   onSaveSetlistSettings,
   hasUnsavedSettings = false,
-  isLyrics = false,
 }: SetlistSongsViewerProps) {
   const [_settings, setSettings] = React.useState(settings || {});
   const [_hasUnSavedSettings, setHasUnsavedSettings] = React.useState(hasUnsavedSettings);
@@ -37,12 +37,7 @@ export function SetlistSongsViewer({
   }, [hasUnsavedSettings]);
 
   function handleChangeSettings(settingsFragment, { id }) {
-    const _newSettings = {
-      ..._settings,
-      [id]: { ..._settings[id], ...settingsFragment },
-    };
-    setHasUnsavedSettings(true);
-    setSettings(_newSettings);
+    alert("THIS IS DIFFERENT NOW, TODO");
   }
 
   return (
@@ -61,10 +56,10 @@ export function SetlistSongsViewer({
       {songs.map((song, index) => (
         <SongViewContainer
           setlist={setlist}
-          key={song}
+          key={index}
           isActiveInSetlist={songIndex === index}
-          id={song}
-          settings={_settings[song]}
+          id={song._id}
+          settings={song}
           onChangeSettings={handleChangeSettings}
         />
       ))}

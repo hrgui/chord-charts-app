@@ -4,7 +4,7 @@ import { Table } from "lib/table/Table";
 import { Trans } from "react-i18next";
 import { useTranslation } from "react-i18next";
 import SongActions from "./SongActions";
-import { useGetSongsQuery } from "app/services/songs";
+import { Song, useGetSongsQuery } from "app/services/songs";
 import Page from "lib/layout/Page";
 
 interface SongsListPageProps {
@@ -37,7 +37,7 @@ export function SongListContainer({
   onAddSong,
 }: {
   addToSetlistMode?;
-  onAddSong?;
+  onAddSong?: (song: Song) => void;
 }) {
   const { t } = useTranslation();
   const { isLoading: loading, data = [], error } = useGetSongsQuery();

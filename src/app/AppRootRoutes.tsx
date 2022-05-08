@@ -4,10 +4,10 @@ import SongsListPage from "app/songs/SongsListPage";
 import SetlistsListPage from "app/setlists/SetlistsListPage";
 import SongViewPage from "app/songs/SongViewPage";
 import { NewSongFormPage, EditSongFormPage } from "app/songs/form/SongFormPage";
-import SetlistFormPage from "app/setlists/form/SetlistFormPage";
 import AddToSetlistFormPage from "app/setlists/form/AddToSetlistFormPage";
 import SetlistViewPage from "app/setlists/SetlistViewPage";
 import RouteModal from "app/core/RouteModal";
+import { NewSetlistFormPage, EditSetlistFormPage } from "./setlists/form/v2/SetlistFormPage";
 
 export function AppRootRoutes() {
   const location = useLocation();
@@ -20,10 +20,10 @@ export function AppRootRoutes() {
         <Route element={<NewSongFormPage />} path="/song/new" />
         <Route element={<EditSongFormPage />} path="/song/:id/edit" />
 
-        <Route element={<SetlistFormPage />} path="/setlist/new" />
+        <Route element={<NewSetlistFormPage />} path="/setlist/new" />
         <Route element={<SetlistsListPage />} path="/setlists" />
         <Route element={<AddToSetlistFormPage />} path="/setlist/add" />
-        <Route element={<SetlistFormPage />} path="/setlist/:id/edit" />
+        <Route element={<EditSetlistFormPage />} path="/setlist/:id/edit" />
         <Route element={<SetlistViewPage />} path="/setlist/:id/:songIndex" />
         <Route element={<SetlistViewPage />} path="/setlist/:id" />
         <Route path="/" element={<Navigate to="/songs" />} />
@@ -32,8 +32,8 @@ export function AppRootRoutes() {
         <RouteModal open>
           <Routes>
             <Route element={<AddToSetlistFormPage />} path="/setlist/add" />
-            <Route element={<SetlistFormPage />} path="/setlist/new" />
-            <Route element={<SetlistFormPage />} path="/setlist/:id/edit" />
+            <Route element={<NewSetlistFormPage />} path="/setlist/new" />
+            <Route element={<EditSetlistFormPage />} path="/setlist/:id/edit" />
           </Routes>
         </RouteModal>
       )}

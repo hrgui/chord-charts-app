@@ -39,20 +39,21 @@ const SetlistViewPage: React.FC<SetlistViewPageProps> = (props) => {
   const [isSavingSettings, setIsSavingSettings] = React.useState(false);
 
   async function handleSaveSetlistSettings(settings) {
-    setIsSavingSettings(true);
-    const _data = {
-      ...data,
-      settings: { ...data.settings, ...settings },
-    };
+    alert("TODO handle save setlist settings changed now");
+    // setIsSavingSettings(true);
+    // const _data = {
+    //   ...data,
+    //   settings: { ...data.settings, ...settings },
+    // };
 
-    await saveSetlist({
-      variables: { id: props._id, data: prepareValues(_data) },
-    });
+    // await saveSetlist({
+    //   variables: { id: props._id, data: prepareValues(_data) },
+    // });
 
-    enqueueSnackbar(`Setlist ${data.title || data._id} has been saved.`, {
-      variant: "success",
-    });
-    setIsSavingSettings(false);
+    // enqueueSnackbar(`Setlist ${data.title || data._id} has been saved.`, {
+    //   variant: "success",
+    // });
+    // setIsSavingSettings(false);
   }
 
   if (isLoading) {
@@ -68,10 +69,10 @@ const SetlistViewPage: React.FC<SetlistViewPageProps> = (props) => {
 
   const onIndexChange = (index) => {
     if (index < 0) {
-      index = data.songs.length - 1;
+      index = data!.songs.length - 1;
     }
 
-    if (index >= data.songs.length) {
+    if (index >= data!.songs.length) {
       index = 0;
     }
 

@@ -45,8 +45,6 @@
     "eslint-plugin-cypress": "^2.11.1",
     "events": "^3.3.0",
     "formik": "^2.1.4",
-    "fuse.js": "^5.0.7-beta",
-    "fuzzaldrin-plus": "^0.6.0",
     "i18next": "^20.3.2",
     "i18next-browser-languagedetector": "^6.1.2",
     "i18next-http-backend": "^1.2.6",

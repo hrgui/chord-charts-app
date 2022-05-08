@@ -43,6 +43,7 @@
     "cypress": "^9.6.0",
     "daisyui": "^2.14.3",
     "eslint-plugin-cypress": "^2.11.1",
+    "events": "^3.3.0",
     "formik": "^2.1.4",
     "i18next": "^20.3.2",
     "i18next-browser-languagedetector": "^6.1.2",

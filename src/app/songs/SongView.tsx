@@ -5,6 +5,12 @@ import ChordSelect from "./components/ChordSelect";
 import ConnectedYoutubeView from "./components/YoutubeView";
 import classnames from "classnames";
 import { ToolbarSpacer } from "lib/layout/ToolbarSpacer";
+import { createPortal } from "react-dom";
+import { SongSectionsNavMenu } from "./CurrentSongNavMenu";
+import { Button } from "react-daisyui";
+import MaterialSymbol from "ui/icons/MaterialSymbol";
+import { twMerge } from "tailwind-merge";
+import { getOrCreateElement } from "lib/layout/portalSelector";
 
 interface SongViewProps {
   isLoading?: boolean;
@@ -92,6 +98,8 @@ const SongView = (props: SongViewProps) => {
     settings.chordsDisabled || _chordsDisabled
   );
   const [screenWrap, setScreenWrap] = React.useState(settings.screenWrap || _screenWrap);
+  // drawer hidden in mobile by default by css, so we set it to true
+  const [drawerHidden, setDrawerVisibility] = React.useState(true);
 
   React.useEffect(() => {
     if (!settings.overrideKey) {
@@ -145,18 +153,53 @@ const SongView = (props: SongViewProps) => {
     return null;
   }
 
-  const youtubeViewCpt = (
-    <ConnectedYoutubeView className={"youtube-view-input"} value={data.youtube} />
+  const appBarEndContent = createPortal(
+    <div className="flex items-center">
+      <Button size="xs" onClick={() => setDrawerVisibility(!drawerHidden)}>
+        <MaterialSymbol icon="settings" />
+      </Button>
+      <ChordSelect
+        className="select-sm"
+        value={overrideKey}
+        onChange={(e) => setOverrideKey(e.target.value)}
+      />
+    </div>,
+    getOrCreateElement("#appBarEnd")
+  );
+
+  const printContent = (
+    <div className="print uppercase printSongBar">
+      <div style={{ display: "flex" }}>
+        {data.title} <div style={{ marginLeft: "auto" }}>Key: {overrideKey}</div>
+      </div>
+    </div>
+  );
+
+  const drawerContent = (
+    <div
+      className={twMerge(
+        classnames("bg-base-200 hidden sm:block xl:w-[426px]", {
+          ["block sm:hidden"]: !drawerHidden,
+        })
+      )}
+    >
+      <ConnectedYoutubeView className={"youtube-view-input"} value={data.youtube} />
+      <div className="pl-2 pr-2">
+        <SongSectionsNavMenu
+          sections={data.sections}
+          sectionsSettings={sectionsSettings}
+          onSetSectionSettings={setSectionSettings}
+        />
+      </div>
+    </div>
   );
 
   return (
-    <div className={classnames("flex flex-col-reverse md:flex-col")}>
-      <div className={classnames("printSong overflow-hidden p-2 mt-2 max-w-full")}>
-        <div className="print uppercase printSongBar">
-          <div style={{ display: "flex" }}>
-            {data.title} <div style={{ marginLeft: "auto" }}>Key: {overrideKey}</div>
-          </div>
-        </div>
+    <div className={classnames("flex flex-col lg:flex-row-reverse")}>
+      {appBarEndContent}
+      {drawerContent}
+      <div className={classnames("printSong overflow-hidden p-2 mt-2 max-w-full flex-grow")}>
+        {printContent}
         <Song
           screenWrap={screenWrap}
           lyricsDisabled={lyricsDisabled}
@@ -169,7 +212,6 @@ const SongView = (props: SongViewProps) => {
         />
         <ToolbarSpacer />
       </div>
-      {youtubeViewCpt}
     </div>
   );
 };

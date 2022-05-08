@@ -28,6 +28,9 @@ export function AppBar({ navMenuHidden, onShowNavMenu, onHideNavMenu, title }: A
         </button>
         <span className="text-lg font-bold">{title}</span>
       </Navbar.Start>
+      <Navbar.End>
+        <div id="appBarEnd" />
+      </Navbar.End>
     </Navbar>
   );
 }

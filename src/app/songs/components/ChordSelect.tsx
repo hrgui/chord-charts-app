@@ -1,5 +1,6 @@
 import * as React from "react";
 import getKeyAsOptions from "./utils/getKeyAsOptions";
+import { twMerge } from "tailwind-merge";
 
 interface ChordSelectProps {
   value?: string;
@@ -9,12 +10,14 @@ interface ChordSelectProps {
   classes?: any;
 }
 
-export const ChordSelect = React.forwardRef<HTMLSelectElement, ChordSelectProps>((props, ref) => {
-  return (
-    <select ref={ref} className="select select-bordered" {...props}>
-      {getKeyAsOptions()}
-    </select>
-  );
-});
+export const ChordSelect = React.forwardRef<HTMLSelectElement, ChordSelectProps>(
+  ({ className, ...props }, ref) => {
+    return (
+      <select ref={ref} className={twMerge("select select-bordered", className)} {...props}>
+        {getKeyAsOptions()}
+      </select>
+    );
+  }
+);
 
 export default ChordSelect;

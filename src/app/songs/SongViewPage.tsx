@@ -32,7 +32,7 @@ export const SongViewContainer: React.FC<SongViewContainerProps> = (props) => {
   }
 
   function getTitle() {
-    const songTitle = data?.title || `Song ${id}`;
+    const songTitle = `${data?.title} | ${data?.artist}` || `Song ${id}`;
     return setlist ? `${setlist.title} - ${songTitle}` : songTitle;
   }
 
@@ -52,7 +52,7 @@ export const SongViewContainer: React.FC<SongViewContainerProps> = (props) => {
 const SongViewPage = () => {
   const { id } = useParams<any>();
 
-  return <SongViewContainer id={id} />;
+  return <SongViewContainer id={id!} />;
 };
 
 export default SongViewPage;

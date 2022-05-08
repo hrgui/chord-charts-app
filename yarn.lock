@@ -2702,11 +2702,6 @@ clone-buffer@1.0.0:
   resolved "https://registry.yarnpkg.com/clone-buffer/-/clone-buffer-1.0.0.tgz#e3e25b207ac4e701af721e2cb5a16792cac3dc58"
   integrity sha1-4+JbIHrE5wGvch4staFnksrD3Fg=
 
-clsx@^1.0.4:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.1.0.tgz#62937c6adfea771247c34b54d320fb99624f5702"
-  integrity sha512-3avwM37fSK5oP6M5rQ9CNe99lwxhXDOeSWVPAOYF6OazUTgZCMb0yWlJpmdD74REy1gkEaFiub2ULv4fq9GUhA==
-
 co@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
@@ -4865,14 +4860,6 @@ makeerror@1.0.x:
   dependencies:
     tmpl "1.0.x"
 
-material-ui-chip-input@^2.0.0-beta.2:
-  version "2.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/material-ui-chip-input/-/material-ui-chip-input-2.0.0-beta.2.tgz#d306ccd99d7c336a279add8163551fbc9dc2378c"
-  integrity sha512-E+Jxv9FdAvYUsZIPohoqxqdW7LwFYOCunInJGh2WSDJ2IlCUdpCOEVazqgLQH6thaFarKDu44uGYpD1v3RdqDg==
-  dependencies:
-    clsx "^1.0.4"
-    prop-types "^15.6.1"
-
 merge-stream@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/merge-stream/-/merge-stream-2.0.0.tgz#52823629a14dd00c9770fb6ad47dc6310f2c1f60"
@@ -5402,7 +5389,7 @@ prop-types@15.8.1:
     object-assign "^4.1.1"
     react-is "^16.13.1"
 
-prop-types@^15.6.1, prop-types@^15.7.2:
+prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==

@@ -54,7 +54,6 @@
     "jest": "^27.0.4",
     "jest-circus": "^27.0.5",
     "jest-watch-typeahead": "^0.6.4",
-    "material-ui-chip-input": "^2.0.0-beta.2",
     "nanoid": "^3.3.3",
     "postcss": "^8.4.13",
     "pouchdb-browser": "^7.3.0",

@@ -52,7 +52,6 @@ export function getNewSongTemplate(): Song {
     key: "C",
     artist: "Untitled",
     youtube: "https://www.youtube.com/watch?v=Jbe7OruLk8I",
-    tags: ["english"],
     sections: [
       {
         type: "text",

@@ -1,6 +1,5 @@
 import React from "react";
 import { Form } from "lib/form/Form";
-import { ChipInputField } from "lib/form/ChipInputField";
 import { TextField } from "lib/form/TextField";
 import { ChordSelectField } from "./ChordSelectField";
 import { SongSectionsField } from "./SongSectionsField";
@@ -104,7 +103,6 @@ export const SongForm = (props: SongFormProps) => {
                   label={t("song:label/youtube")}
                   name="youtube"
                 />
-                <ChipInputField fullWidth label={t("song:label/tags")} name="tags" />
               </Paper>
               <SongSectionsField name="sections" />
               <FormActions>

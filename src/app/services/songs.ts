@@ -13,7 +13,6 @@ export interface Song {
   key: string;
   artist: string;
   youtube: string;
-  tags: string[];
   sections: SongSection[];
 }
 

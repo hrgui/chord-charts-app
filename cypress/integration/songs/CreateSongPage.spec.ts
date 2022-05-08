@@ -21,9 +21,7 @@ context("Waiting", () => {
     cy.get("input[name=artist]").type("My Artist");
     cy.wait(1000);
     cy.get("input[name=youtube]").clear();
-    cy.get("input[name=youtube]").type(
-      "https://www.youtube.com/watch?v=Jbe7OruLk8I"
-    );
+    cy.get("input[name=youtube]").type("https://www.youtube.com/watch?v=E7_adG0nV0E");
     cy.wait(1000);
 
     cy.route({

@@ -51,7 +51,7 @@ export function getNewSongTemplate(): Song {
     title: `Untitled Song ${new Date().toString()}`,
     key: "C",
     artist: "Untitled",
-    youtube: "https://www.youtube.com/watch?v=Jbe7OruLk8I",
+    youtube: "https://www.youtube.com/watch?v=E7_adG0nV0E",
     sections: [
       {
         type: "text",

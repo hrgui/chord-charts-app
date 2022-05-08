@@ -1,5 +1,4 @@
 import React from "react";
-import { Drawer } from "@material-ui/core";
 import styled from "styled-components/macro";
 import { CurrentSetlistNavMenuPlaceholder } from "../setlists/CurrentSetlistNavMenu";
 import { CurrentSongNavMenuPlaceholder } from "../songs/CurrentSongNavMenu";
@@ -8,6 +7,7 @@ import { ToolbarSpacer } from "lib/layout/ToolbarSpacer";
 import { useGetAppBarData } from "lib/hooks/useGetAppBarData";
 import { useAppBarActions } from "lib/hooks/useAppBarActions";
 import CloseIcon from "ui/icons/CloseIcon";
+import Drawer from "ui/Drawer";
 
 const CONTROL_PANEL_WIDTH = "426px";
 

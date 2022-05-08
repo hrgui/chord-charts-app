@@ -18,7 +18,7 @@ const Page = (props) => {
   return (
     <>
       <Head title={title} />
-      <AppLayout>{children}</AppLayout>
+      <AppLayout title={title}>{children}</AppLayout>
     </>
   );
 };

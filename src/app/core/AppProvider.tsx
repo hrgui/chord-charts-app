@@ -1,6 +1,5 @@
 import React, { Suspense } from "react";
 import { HelmetProvider } from "react-helmet-async";
-import { StylesProvider } from "@material-ui/styles";
 import { BrowserRouter } from "react-router-dom";
 
 import { store as defaultStore } from "app/store";
@@ -24,23 +23,19 @@ export function AppProvider({
   store = defaultStore,
   componentProviderOverrides = {},
 }: AppControllerProps) {
-  // const Router: any = history ? TestRouter : BrowserRouter;
-
   const Router = !componentProviderOverrides.Router
     ? BrowserRouter
     : componentProviderOverrides.Router;
 
   return (
     <Suspense fallback={<PageLoading />}>
-      <StylesProvider injectFirst>
-        <Provider store={store}>
-          <HelmetProvider>
-            <Router history={history}>
-              <AppThemeProvider>{children}</AppThemeProvider>
-            </Router>
-          </HelmetProvider>
-        </Provider>
-      </StylesProvider>
+      <Provider store={store}>
+        <HelmetProvider>
+          <Router history={history}>
+            <AppThemeProvider>{children}</AppThemeProvider>
+          </Router>
+        </HelmetProvider>
+      </Provider>
     </Suspense>
   );
 }

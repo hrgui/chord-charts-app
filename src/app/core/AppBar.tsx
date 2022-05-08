@@ -1,111 +1,34 @@
-import * as React from "react";
-import MuiAppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import classnames from "classnames";
-import styled from "styled-components/macro";
-import { useGetAppBarData } from "lib/hooks/useGetAppBarData";
 import { useAppBarActions } from "lib/hooks/useAppBarActions";
+import useGetAppBarData from "lib/hooks/useGetAppBarData";
+import React from "react";
+import { Navbar } from "react-daisyui";
+import { MenuIcon } from "ui/icons/MenuIcon";
 
-interface NavBarProps {
-  classes?: any;
-  navMenuHidden?: boolean;
+export interface AppBarProps {
+  navMenuHidden: boolean;
+  onShowNavMenu: () => void;
+  onHideNavMenu: () => void;
   title?: string;
-  subtitle?: string;
-  onShowNavMenu?: any;
-  onHideNavMenu?: any;
-  rightPanel?: any;
-  userPanel?: any;
-  state?: string;
-  appName?: string;
 }
 
-export function AppBarTitle({ children }) {
+export function AppBar({ navMenuHidden, onShowNavMenu, onHideNavMenu, title }: AppBarProps) {
   return (
-    <Typography variant="h6" color="inherit">
-      {children}
-    </Typography>
+    <Navbar className="shadow-sm bg-neutral text-neutral-content min-h-[48px]">
+      <Navbar.Start>
+        <button className="btn btn-square btn-sm mr-1">
+          <MenuIcon
+            className="cursor-pointer"
+            onClick={navMenuHidden ? onShowNavMenu : onHideNavMenu}
+            aria-label="Menu"
+          />
+        </button>
+        <span className="text-lg font-bold">{title}</span>
+      </Navbar.Start>
+    </Navbar>
   );
 }
 
-const StyledAppBar = styled(MuiAppBar)`
-  z-index: ${({ theme }) => theme.zIndex.drawer + 1};
-
-  &.AppBar-isTopBar {
-    box-shadow: none;
-  }
-`;
-
-const StyledIconButton = styled(IconButton)`
-  margin-left: -18px;
-  margin-right: 10px;
-`;
-
-const TopBarContent = styled.div`
-  display: flex;
-  width: 100%;
-  align-items: center;
-`;
-
-const LeftSide = styled.div`
-  &.LeftSide-songBarTextMobile {
-    & h6 {
-      max-width: 280px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-  }
-`;
-const RightSide = styled.div`
-  margin-left: auto;
-`;
-
-export const AppBar = (props: NavBarProps) => {
-  const { navMenuHidden = false, onShowNavMenu, onHideNavMenu, title, userPanel, state } = props;
-  const hasDualBar = state === "song" || state === "setlist";
-
-  const leftIcon = (
-    <StyledIconButton
-      data-testid={"navMenuToggle"}
-      onClick={navMenuHidden ? onShowNavMenu : onHideNavMenu}
-      color="inherit"
-      aria-label="Menu"
-    >
-      <MenuIcon />
-    </StyledIconButton>
-  );
-
-  return (
-    <>
-      <StyledAppBar
-        position={"sticky"}
-        color="primary"
-        className={classnames("print-hidden", {
-          "AppBar-isTopBar": hasDualBar,
-        })}
-      >
-        <Toolbar>
-          <TopBarContent>
-            {leftIcon}
-            <LeftSide>
-              {state === "song" || state === "setlist" ? (
-                <div id="songTitle"></div>
-              ) : (
-                <AppBarTitle>{title}</AppBarTitle>
-              )}
-            </LeftSide>
-            <RightSide>{userPanel}</RightSide>
-          </TopBarContent>
-        </Toolbar>
-      </StyledAppBar>
-    </>
-  );
-};
-
-const ConnectedAppBar = (props: NavBarProps) => {
+const ConnectedAppBar = ({ title }: { title?: string }) => {
   const config = useGetAppBarData();
   const { toggleNavMenu } = useAppBarActions();
 
@@ -116,9 +39,7 @@ const ConnectedAppBar = (props: NavBarProps) => {
   return (
     <>
       <AppBar
-        appName={config.appName}
-        state={config.navBarState}
-        title={"TODO change me title in appbar"}
+        title={title}
         navMenuHidden={config.navMenuHidden}
         onShowNavMenu={toggleNavMenu}
         onHideNavMenu={toggleNavMenu}

@@ -1,6 +1,5 @@
 import reactPlugin from "@vitejs/plugin-react";
 import viteTsConfigPathsPlugin from "vite-tsconfig-paths";
-import macrosPlugin from "vite-plugin-babel-macros";
 import { defineConfig, loadEnv } from "vite";
 
 /**
@@ -19,7 +18,7 @@ const config = defineConfig(({ mode, command }) => {
   console.log(`mode=${mode} command=${command}`);
 
   return {
-    plugins: [reactPlugin(), viteTsConfigPathsPlugin(), macrosPlugin()],
+    plugins: [reactPlugin(), viteTsConfigPathsPlugin()],
     define: {
       global: "window",
       ...envWithProcessPrefix,

@@ -1,17 +1,14 @@
 import * as React from "react";
-import { NavLink as ReactRouterNavLink } from "react-router-dom";
-import ListItem from "@material-ui/core/ListItem";
-import styled from "styled-components/macro";
+import NavLink from "lib/router/NavLink";
 
-const activeClassName = `ListItemLink-active`;
-const StyledListItem = styled(ListItem).attrs({ activeClassName })`
-  &.${activeClassName} {
-    background: ${({ theme }) => theme.palette.background.default};
-  }
-`;
-
-const ListItemLink = ({ ...props }: any) => (
-  <StyledListItem button component={ReactRouterNavLink} exact {...props} />
-);
+const ListItemLink = ({ className, ...props }: any) => {
+  return (
+    <NavLink
+      activeClassName="bg-base-300"
+      className="flex p-2 items-center hover:bg-base-100"
+      {...props}
+    ></NavLink>
+  );
+};
 
 export default ListItemLink;

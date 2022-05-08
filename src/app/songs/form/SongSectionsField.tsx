@@ -1,24 +1,13 @@
 import * as React from "react";
 import { FieldArray } from "formik";
-import Button from "@material-ui/core/Button";
 import { SongSectionField } from "./SongSectionField";
-import { Paper, makeStyles, Theme, ButtonGroup } from "@material-ui/core";
-import AddBox from "@material-ui/icons/AddBox";
-
-const useStyles = makeStyles((theme: Theme) => ({
-  controlsBar: {
-    padding: theme.spacing(1),
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2)
-  },
-  songSection: {
-    padding: theme.spacing(2),
-    marginBottom: theme.spacing(2)
-  }
-}));
+import Paper from "ui/Paper";
 
 export function SongSectionsField({ name, ...otherProps }) {
-  const classes = useStyles(otherProps);
+  const classes = {
+    controlsBar: "p-1 mt-2 mb-2",
+    songSection: "p-2 mb-2",
+  };
   return (
     <FieldArray name={name} {...otherProps}>
       {({ move, remove, push, form }) => {
@@ -26,20 +15,11 @@ export function SongSectionsField({ name, ...otherProps }) {
         return (
           <>
             <Paper className={classes.controlsBar}>
-              <ButtonGroup variant="outlined">
-                <Button
-                  onClick={e => push({ body: " " })}
-                  startIcon={<AddBox />}
-                >
+              <div className="btn-group">
+                <button type="button" className="btn" onClick={(e) => push({ body: " " })}>
                   Text Chord Chart
-                </Button>
-                <Button
-                  onClick={e => push({ type: "abc", body: " " })}
-                  startIcon={<AddBox />}
-                >
-                  ABC Chart
-                </Button>
-              </ButtonGroup>
+                </button>
+              </div>
             </Paper>
             {sections &&
               sections.map((section, i) => (

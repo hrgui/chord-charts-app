@@ -3,6 +3,7 @@ import SetlistView from "./SetlistView";
 import { Loading } from "lib/layout/Loading";
 import { useGetSetlistQuery } from "app/services/setlists";
 import Page from "lib/layout/Page";
+import { useParams } from "react-router-dom";
 
 interface SetlistViewPageProps {
   path?: string;
@@ -94,7 +95,7 @@ const SetlistViewPage: React.FC<SetlistViewPageProps> = (props) => {
 };
 
 export default (props) => {
-  const { id, songIndex } = props.match.params;
+  const { id, songIndex } = useParams();
 
   return <SetlistViewPage id={id} songIndex={songIndex} {...props} />;
 };

@@ -1,5 +1,4 @@
 import * as React from "react";
-import { NativeSelect } from "@material-ui/core";
 import getKeyAsOptions from "./utils/getKeyAsOptions";
 
 interface ChordSelectProps {
@@ -11,7 +10,11 @@ interface ChordSelectProps {
 }
 
 const ChordSelect: React.FC<ChordSelectProps> = (props) => {
-  return <NativeSelect {...props}>{getKeyAsOptions()}</NativeSelect>;
+  return (
+    <select className="select" {...props}>
+      {getKeyAsOptions()}
+    </select>
+  );
 };
 
 export default ChordSelect;

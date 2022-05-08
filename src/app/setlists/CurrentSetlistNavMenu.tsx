@@ -1,15 +1,13 @@
 import * as React from "react";
-import { List, ListItemText, ListItem, ListItemIcon, Divider } from "@material-ui/core";
-import Edit from "@material-ui/icons/Edit";
 import ListItemLink from "lib/layout/ListItemLink";
-import { ListSubheader } from "lib/layout/ListSubheader";
-import Delete from "@material-ui/icons/Delete";
 import { useUserData } from "lib/hooks/useUserData";
-import { Skeleton } from "@material-ui/lab";
 import ChordSelect from "app/songs/components/ChordSelect";
-import UntrackedSettings from "@material-ui/icons/CallMerge";
 import { useTranslation } from "react-i18next";
 import { useGetSongsQuery } from "app/services/songs";
+import { ListSubheader, ListItem, List, ListItemText, ListItemIcon } from "ui/List";
+import Divider from "ui/Divider";
+import Skeleton from "ui/Skeleton";
+import MaterialSymbol from "ui/icons/MaterialSymbol";
 
 export function CurrentSetlistNavMenuPlaceholder() {
   return <div id="currentSetlistNavMenu" />;
@@ -85,14 +83,14 @@ export function CurrentSetlistNavMenu(props: CurrentSetlistNavMenuProps) {
       {hasUnsavedSettings && (
         <ListItem button onClick={(e) => onSaveSetlistSettings(settings)}>
           <ListItemIcon>
-            <UntrackedSettings />
+            <MaterialSymbol icon="call_merge" />
           </ListItemIcon>
           {t("save_changes")}
         </ListItem>
       )}
       <ListItemLink to={`/setlist/${id}/edit`}>
         <ListItemIcon>
-          <Edit />
+          <span className="material-symbols-outlined">edit</span>
         </ListItemIcon>
         <ListItemText primary={t("edit")} />
       </ListItemLink>
@@ -111,7 +109,7 @@ export function CurrentSetlistNavMenu(props: CurrentSetlistNavMenuProps) {
         }}
       >
         <ListItemIcon>
-          <Delete />
+          <MaterialSymbol icon="delete" />
         </ListItemIcon>
         <ListItemText primary={t("delete")} />
       </ListItem>

@@ -1,15 +1,11 @@
 import * as React from "react";
-import { List, ListItemText } from "@material-ui/core";
 import ListItemLink from "lib/layout/ListItemLink";
 import ActionsMenu from "lib/table/ActionsMenu";
-import Delete from "@material-ui/icons/Delete";
-import Edit from "@material-ui/icons/Edit";
-import Pageview from "@material-ui/icons/Pageview";
-import { ListItem, ListItemIcon } from "@material-ui/core";
+import { ListItem, ListItemIcon, List, ListItemText } from "ui/List";
 import { useUserData } from "lib/hooks/useUserData";
 import { useTranslation } from "react-i18next";
-import PlaylistAdd from "@material-ui/icons/PlaylistAdd";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import MaterialSymbol from "ui/icons/MaterialSymbol";
 
 interface SetlistActionsProps {
   setlist?: any;
@@ -36,7 +32,7 @@ function SetlistActionsList({
   const { t } = useTranslation();
   const addToSetlist = () => {};
   const enqueueSnackbar = () => {};
-  const history = useHistory();
+  const navigate = useNavigate();
 
   if (addToSetlistMode) {
     return (
@@ -52,7 +48,7 @@ function SetlistActionsList({
           }}
         >
           <ListItemIcon>
-            <PlaylistAdd />
+            <MaterialSymbol icon="playlist_add" />
           </ListItemIcon>
           <ListItemText primary={t("song:action/add_to_setlist")} />
         </ListItem>
@@ -63,11 +59,11 @@ function SetlistActionsList({
             enqueueSnackbar(t("song:action_success/add_to_setlist", { name }), {
               variant: "success",
             });
-            history.push(`/setlist/${id}/edit`);
+            navigate(`/setlist/${id}/edit`);
           }}
         >
           <ListItemIcon>
-            <Edit />
+            <MaterialSymbol icon="edit" />
           </ListItemIcon>
           <ListItemText primary={t("song:action/add_to_setlist_and_edit")} />
         </ListItem>
@@ -76,16 +72,16 @@ function SetlistActionsList({
   }
 
   return (
-    <List dense disablePadding>
+    <List dense>
       <ListItemLink to={`/setlist/${id}`}>
         <ListItemIcon>
-          <Pageview />
+          <MaterialSymbol icon="pageview" />
         </ListItemIcon>
         <ListItemText primary={t("view")} />
       </ListItemLink>
       <ListItemLink to={`/setlist/${id}/edit`}>
         <ListItemIcon>
-          <Edit />
+          <MaterialSymbol icon="edit" />
         </ListItemIcon>
         <ListItemText primary={t("edit")} />
       </ListItemLink>
@@ -104,7 +100,7 @@ function SetlistActionsList({
         }}
       >
         <ListItemIcon>
-          <Delete />
+          <MaterialSymbol icon="delete" />
         </ListItemIcon>
         <ListItemText primary={t("delete")} />
       </ListItem>

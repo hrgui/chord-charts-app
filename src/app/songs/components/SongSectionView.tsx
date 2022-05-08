@@ -1,8 +1,7 @@
 import React from "react";
 import ChordChartView from "./ChordChartView";
-import Close from "@material-ui/icons/Close";
 import classnames from "classnames";
-import styled from "styled-components/macro";
+import Close from "ui/icons/CloseIcon";
 
 interface SongSectionViewProps {
   chordsDisabled?: boolean;
@@ -14,37 +13,6 @@ interface SongSectionViewProps {
   classes?: any;
   onRequestHide?: any;
 }
-
-const Section = styled.div`
-  overflow: hidden;
-`;
-
-const StyledClose = styled(Close)`
-  display: none;
-  opacity: 1;
-`;
-
-const Title = styled.div`
-  color: ${({ theme }) => theme.palette.text.primary};
-  font-family: ${({ theme }) => theme.typography.fontFamily};
-  font-weight: 500;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  &:hover {
-    & ${StyledClose} {
-      display: block;
-      opacity: 1;
-    }
-  }
-`;
-
-const SongSectionBody = styled.pre`
-  color: ${({ theme }) => theme.palette.text.primary};
-  overflow: auto;
-  border: none;
-  display: block;
-`;
 
 export default ({
   chordsDisabled,
@@ -60,12 +28,17 @@ export default ({
   }
 
   return (
-    <Section>
-      <Title>
+    <div className="overflow-hidden">
+      <div className="group cursor-pointer font-semibold flex items-center">
         {section.title && section.title.toUpperCase()}
-        <StyledClose data-testid="songsection-close" onClick={onRequestHide} fontSize={"small"} />
-      </Title>
-      <SongSectionBody className={classnames("print-cc-body")}>
+        <Close
+          className="hidden opacity-100 group-hover:block h-[24px]"
+          data-testid="songsection-close"
+          onClick={onRequestHide}
+          fontSize={"small"}
+        />
+      </div>
+      <pre className={classnames("print-cc-body", "overflow-auto border-none block")}>
         {section.type !== "tab" && (
           <ChordChartView
             overrideKey={overrideKey}
@@ -75,7 +48,7 @@ export default ({
             lyricsDisabled={lyricsDisabled}
           />
         )}
-      </SongSectionBody>
-    </Section>
+      </pre>
+    </div>
   );
 };

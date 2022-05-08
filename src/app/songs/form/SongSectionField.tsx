@@ -1,13 +1,9 @@
 import * as React from "react";
-import { Button } from "@material-ui/core";
 import { TextField } from "lib/form/TextField";
 import ChordChartTextField from "./ChordChartTextField";
 import AbcTextField from "./AbcTextField";
-import IconButton from "@material-ui/core/IconButton";
-import ArrowDownward from "@material-ui/icons/ArrowDownward";
-import ArrowUpward from "@material-ui/icons/ArrowUpward";
-import Delete from "@material-ui/icons/Delete";
 import { useTranslation } from "react-i18next";
+import MaterialSymbol from "ui/icons/MaterialSymbol";
 
 interface SongSectionFieldPanelProps {
   onMoveDown?: () => any;
@@ -25,16 +21,26 @@ export const SongSectionFieldPanel: React.FC<SongSectionFieldPanelProps> = ({
   onDelete,
 }) => {
   return (
-    <div>
-      <IconButton onClick={onMoveDown} disabled={isDownDisabled} data-testid="down">
-        <ArrowDownward />
-      </IconButton>
-      <IconButton onClick={onMoveUp} disabled={isUpDisabled} data-testid="up">
-        <ArrowUpward />
-      </IconButton>
-      <Button onClick={onDelete} data-testid="delete">
-        <Delete />
-      </Button>
+    <div className="btn-group">
+      <button
+        className="btn btn-square"
+        onClick={onMoveDown}
+        disabled={isDownDisabled}
+        data-testid="down"
+      >
+        <MaterialSymbol icon="arrow_downward" />
+      </button>
+      <button
+        className="btn btn-square"
+        onClick={onMoveUp}
+        disabled={isUpDisabled}
+        data-testid="up"
+      >
+        <MaterialSymbol icon="arrow_upward" />
+      </button>
+      <button className="btn btn-square" onClick={onDelete} data-testid="delete">
+        <MaterialSymbol icon="delete" />
+      </button>
     </div>
   );
 };

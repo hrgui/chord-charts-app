@@ -1,14 +1,12 @@
 import * as React from "react";
-import { Drawer, List, ListItemIcon, ListItemText, Divider } from "@material-ui/core";
-import classnames from "classnames";
 import ListItemLink from "lib/layout/ListItemLink";
-import Home from "@material-ui/icons/Home";
-import styled from "styled-components/macro";
-import { useUserData } from "lib/hooks/useUserData";
 import SongsNavMenu from "app/songs/menu/SongsNavMenu";
 import SetlistsNavMenu from "app/setlists/menu/SetlistsNavMenu";
 import { useAppBarActions } from "lib/hooks/useAppBarActions";
 import { useGetAppBarData } from "lib/hooks/useGetAppBarData";
+import Drawer from "ui/Drawer";
+import { List, ListItemText, ListItemIcon } from "ui/List";
+import Divider from "ui/Divider";
 
 export interface NavMenuProps {
   classes?: any;
@@ -19,29 +17,13 @@ export function HomeNavMenu() {
     <List dense>
       <ListItemLink to="/">
         <ListItemIcon>
-          <Home />
+          <span className="material-symbols-outlined">home</span>
         </ListItemIcon>
-        <ListItemText primary={"Home"} />
+        <ListItemText>Home</ListItemText>
       </ListItemLink>
     </List>
   );
 }
-
-export const NAV_MENU_WIDTH = "240px";
-
-const StyledDrawer = styled(Drawer)`
-  width: ${NAV_MENU_WIDTH};
-  flex-shrink: 0;
-
-  & .drawerPaper {
-    width: ${NAV_MENU_WIDTH};
-  }
-
-  &.drawerHidden,
-  & .drawerPaperHidden {
-    width: 0;
-  }
-`;
 
 export function NavMenuItems() {
   return (
@@ -56,18 +38,7 @@ export function NavMenuItems() {
   );
 }
 
-const NavMenuTitle = styled.div`
-  padding-left: ${({ theme }) => theme.spacing(2)}px;
-  padding-right: ${({ theme }) => theme.spacing(2)}px;
-  height: 48px;
-  min-height: 48px;
-  display: flex;
-  align-items: center;
-  font-size: 1rem;
-  font-weight: 500;
-`;
-
-export function AppNavMenu(props: NavMenuProps) {
+export function AppNavMenu() {
   const config = useGetAppBarData();
   const { toggleNavMenu } = useAppBarActions();
 
@@ -78,25 +49,13 @@ export function AppNavMenu(props: NavMenuProps) {
   const { navMenuHidden } = config;
 
   return (
-    <StyledDrawer
-      anchor={"left"}
-      open={!navMenuHidden}
-      onClose={toggleNavMenu}
-      variant={"permanent"}
-      classes={{
-        paper: classnames("drawerPaper", {
-          drawerPaperHidden: navMenuHidden,
-        }),
-      }}
-      ModalProps={{ keepMounted: true }}
-      className={classnames("print-hidden", {
-        drawerHidden: navMenuHidden,
-      })}
-    >
-      <NavMenuTitle>{config.appName}</NavMenuTitle>
+    <Drawer className="cc-appNavMenu" open={!navMenuHidden}>
+      <div className="flex items-center font-medium h-12 text-base min-h-[48px] pl-2 pr-2">
+        {config.appName}
+      </div>
       <Divider />
       <NavMenuItems />
-    </StyledDrawer>
+    </Drawer>
   );
 }
 

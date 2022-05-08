@@ -1,6 +1,5 @@
 import React from "react";
-import { ListItemText } from "@material-ui/core";
-import { ListItem } from "@material-ui/core";
+import { Button } from "react-daisyui";
 import { useDarkMode } from "lib/hooks/useDarkMode";
 import { useTranslation } from "react-i18next";
 import { useAppBarActions } from "lib/hooks/useAppBarActions";
@@ -13,9 +12,7 @@ const DarkThemeAction: React.FunctionComponent<IDarkThemeActionProps> = () => {
   const { toggleDarkMode } = useAppBarActions();
 
   return (
-    <ListItem button onClick={toggleDarkMode}>
-      <ListItemText primary={t(`action/dark_theme/${isDarkMode ? "on" : "off"}`)} />
-    </ListItem>
+    <Button onClick={toggleDarkMode}>{t(`action/dark_theme/${isDarkMode ? "on" : "off"}`)}</Button>
   );
 };
 

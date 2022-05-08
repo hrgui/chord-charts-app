@@ -1,7 +1,6 @@
 import * as React from "react";
 import { FastField as Field, FieldConfig } from "formik";
 import ChordChartTextInput from "../components/ChordChartTextInput";
-import { FormControl, InputLabel } from "@material-ui/core";
 
 interface ChordChartTextFieldProps extends FieldConfig {
   label?;
@@ -9,10 +8,10 @@ interface ChordChartTextFieldProps extends FieldConfig {
 
 const ChordChartTextField: React.FC<ChordChartTextFieldProps> = ({ name, label, ...props }) => {
   return (
-    <FormControl fullWidth>
-      <InputLabel shrink htmlFor={name}>
-        {label}
-      </InputLabel>
+    <div className="form-control">
+      <label className="label" htmlFor={name}>
+        <span className="label-text">{label}</span>
+      </label>
       <Field name={name} {...props}>
         {({ field, form }) => (
           <ChordChartTextInput
@@ -21,7 +20,7 @@ const ChordChartTextField: React.FC<ChordChartTextFieldProps> = ({ name, label, 
           />
         )}
       </Field>
-    </FormControl>
+    </div>
   );
 };
 

@@ -1,19 +1,9 @@
 import * as React from "react";
 import { Link as ReactRouterLink } from "react-router-dom";
-import MuiLink from "@material-ui/core/Link";
-import styled from "styled-components/macro";
-
-const StyledLink = styled(MuiLink)`
-  color: ${({ theme }) =>
-    theme.palette.type === "dark"
-      ? theme.palette.primary["light"]
-      : theme.palette.primary["dark"]};
-`;
+import { twMerge } from "tailwind-merge";
 
 const Link = ({ classes, className, ...props }: any) => {
-  return (
-    <StyledLink className={className} component={ReactRouterLink} {...props} />
-  );
+  return <ReactRouterLink className={twMerge("link link-accent", className)} {...props} />;
 };
 
 export default Link;

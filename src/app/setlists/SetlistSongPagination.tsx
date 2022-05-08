@@ -1,10 +1,6 @@
 import * as React from "react";
-import { Button, IconButton } from "@material-ui/core";
-import styled from "styled-components";
-import { WithWidth } from "lib/layout/WithWidth";
 import classnames from "classnames";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
+import MaterialSymbol from "ui/icons/MaterialSymbol";
 
 interface SetlistSongPaginationProps {
   currentIndex;
@@ -12,23 +8,6 @@ interface SetlistSongPaginationProps {
   onChange?;
   classes?;
 }
-
-const Container = styled.div`
-  height: 36px;
-  display: flex;
-  align-items: center;
-
-  .pageNumbers-xs {
-    max-width: 160px;
-    overflow-x: scroll;
-    display: flex;
-    flex-wrap: nowrap;
-  }
-`;
-
-const StyledButton = styled(Button)`
-  min-width: auto;
-`;
 
 export const SetlistSongPagination = (props: SetlistSongPaginationProps) => {
   const { currentIndex, length, onChange } = props;
@@ -49,31 +28,30 @@ export const SetlistSongPagination = (props: SetlistSongPaginationProps) => {
   }
 
   const buttons = Array.from(new Array(length)).map((_, index) => (
-    <StyledButton
-      className={`song-pgn-${index}`}
+    <button
+      className={`btn min-w-auto song-pgn-${index}`}
       onClick={(e) => {
         handleChange(index);
       }}
       key={index}
-      variant={currentIndex === index ? "contained" : "text"}
     >
       {index + 1}
-    </StyledButton>
+    </button>
   ));
 
   //TODO fixme
   const width = "xl";
   return (
-    <Container>
-      <IconButton data-testid="prev" onClick={(_) => handleChange(currentIndex - 1)}>
-        <NavigateBeforeIcon />
-      </IconButton>
+    <div className="h-[36px] flex items-center">
+      <button data-testid="prev" onClick={(_) => handleChange(currentIndex - 1)}>
+        <MaterialSymbol icon="navigate_before" />
+      </button>
       <div ref={buttonsHolder} className={classnames(`pageNumbers-${width}`)}>
         {buttons}
       </div>
-      <IconButton data-testid="next" onClick={(_) => handleChange(currentIndex + 1)}>
-        <NavigateNextIcon />
-      </IconButton>
-    </Container>
+      <button data-testid="next" onClick={(_) => handleChange(currentIndex + 1)}>
+        <MaterialSymbol icon="navigate_next" />
+      </button>
+    </div>
   );
 };

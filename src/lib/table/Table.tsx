@@ -1,40 +1,16 @@
 import * as React from "react";
+import { Alert, Input } from "react-daisyui";
 import { useTable, useFilters, useSortBy, usePagination } from "react-table";
-import MuiTable from "@material-ui/core/Table";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import styled from "styled-components/macro";
 import classnames from "classnames";
-import TextField from "@material-ui/core/TextField";
-import {
-  LinearProgress,
-  InputAdornment,
-  fade,
-  Theme,
-  TablePagination,
-} from "@material-ui/core";
-import FilterListIcon from "@material-ui/icons/FilterList";
-import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
-import { Alert } from "@material-ui/lab";
+import ErrorIcon from "ui/icons/ErrorIcon";
 
 function DefaultColumnFilter({ column: { filterValue, setFilter } }) {
   return (
-    <TextField
-      fullWidth
+    <Input
+      size="sm"
       value={filterValue || ""}
       onChange={(e) => {
         setFilter(e.target.value || undefined); // Set undefined to remove the filter entirely
-      }}
-      InputProps={{
-        startAdornment: (
-          <InputAdornment position="start">
-            <FilterListIcon />
-          </InputAdornment>
-        ),
       }}
     />
   );
@@ -57,8 +33,6 @@ function UnstyledTable({
   error = null,
   columns,
   data,
-  className,
-  isPageTable = false,
   emptyHeader = "There's nothing here.",
   emptyAction = "Create a new thing and it will show up here.",
   errorText = "An error occurred",
@@ -72,9 +46,7 @@ function UnstyledTable({
         return rows.filter((row) => {
           const rowValue = row.values[id];
           return rowValue !== undefined
-            ? String(rowValue)
-                .toLowerCase()
-                .startsWith(String(filterValue).toLowerCase())
+            ? String(rowValue).toLowerCase().startsWith(String(filterValue).toLowerCase())
             : true;
         });
       },
@@ -126,103 +98,96 @@ function UnstyledTable({
   // Render the UI for your table
   return (
     <>
-      <TableContainer className={className}>
-        <MuiTable
-          size={"small"}
-          classes={{
-            stickyHeader: classnames({ pageTableStickyHeader: isPageTable }),
-          }}
-          stickyHeader={isPageTable}
-          {...getTableProps()}
-        >
-          <TableHead>
-            {headerGroups.map((headerGroup) => (
-              <TableRow {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => (
-                  <TableCell
-                    className="tableHeaderCell"
-                    {...column.getHeaderProps(column.getSortByToggleProps())}
-                  >
-                    <div className="sortableHeaderContainer">
-                      <div>{column.render("Header")}</div>
-                      {column.canSort && (
-                        <div className={"sortingSwitch"}>
-                          <div
-                            className={classnames("sortingTicker", {
-                              sortingTickerActive:
-                                column.isSortedDesc === false,
-                              sortingTickerInactive: column.isSortedDesc,
-                            })}
-                          >
-                            <ArrowDropUpIcon fontSize="small" />
-                          </div>
-                          <div
-                            className={classnames("sortingTicker", {
-                              sortingTickerActive: column.isSortedDesc === true,
-                              sortingTickerInactive:
-                                column.isSortedDesc === false,
-                            })}
-                          >
-                            <ArrowDropDownIcon fontSize="small" />
-                          </div>
+      <table className="table w-full" {...getTableProps()}>
+        <thead>
+          {headerGroups.map((headerGroup) => (
+            <tr {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map((column) => (
+                <th
+                  className="tableHeaderCell"
+                  {...column.getHeaderProps(column.getSortByToggleProps())}
+                >
+                  <div className="sortableHeaderContainer">
+                    <div>{column.render("Header")}</div>
+                    {column.canSort && (
+                      <div className={"sortingSwitch"}>
+                        <div
+                          className={classnames("sortingTicker", {
+                            sortingTickerActive: column.isSortedDesc === false,
+                            sortingTickerInactive: column.isSortedDesc,
+                          })}
+                        >
+                          {/* <ArrowDropUpIcon fontSize="small" /> */}
                         </div>
-                      )}
-                    </div>
-                    <div>
-                      {column.canFilter ? column.render("Filter") : null}
-                    </div>
-                  </TableCell>
-                ))}
-              </TableRow>
-            ))}
-          </TableHead>
-          <TableBody {...getTableBodyProps()}>
-            {page.map(
-              (row) =>
-                prepareRow(row) || (
-                  <TableRow {...row.getRowProps()}>
-                    {row.cells.map((cell) => {
-                      return (
-                        <TableCell size="small" {...cell.getCellProps()}>
-                          {cell.render("Cell")}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                )
-            )}
-            {!isLoading && rows.length === 0 && !error && (
-              <TableRow>
-                <TableCell colSpan={columns?.length}>
-                  <div className={"emptyMessage"}>
-                    <h1 className="emptyHeader">{emptyHeader}</h1>
-                    <h2 className="emptyAction">{emptyAction}</h2>
+                        <div
+                          className={classnames("sortingTicker", {
+                            sortingTickerActive: column.isSortedDesc === true,
+                            sortingTickerInactive: column.isSortedDesc === false,
+                          })}
+                        >
+                          {/* <ArrowDropDownIcon fontSize="small" /> */}
+                        </div>
+                      </div>
+                    )}
                   </div>
-                </TableCell>
-              </TableRow>
-            )}
-            {isLoading && (
-              <TableRow>
-                <TableCell colSpan={columns?.length}>
-                  <LinearProgress color="secondary" />
-                </TableCell>
-              </TableRow>
-            )}
-            {error && (
-              <TableRow>
-                <TableCell colSpan={columns?.length}>
-                  <div className="emptyMessage">
-                    <Alert variant="filled" severity="error">
-                      {errorText}
-                    </Alert>
-                  </div>
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </MuiTable>
-      </TableContainer>
-      <TablePagination
+                  <div>{column.canFilter ? column.render("Filter") : null}</div>
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody {...getTableBodyProps()}>
+          {page.map(
+            (row) =>
+              prepareRow(row) || (
+                <tr {...row.getRowProps()}>
+                  {row.cells.map((cell) => {
+                    return (
+                      <td size="small" {...cell.getCellProps()}>
+                        {cell.render("Cell")}
+                      </td>
+                    );
+                  })}
+                </tr>
+              )
+          )}
+          {!isLoading && rows.length === 0 && !error && (
+            <tr>
+              <td colSpan={columns?.length}>
+                <div className={"emptyMessage"}>
+                  <h1 className="emptyHeader">{emptyHeader}</h1>
+                  <h2 className="emptyAction">{emptyAction}</h2>
+                </div>
+              </td>
+            </tr>
+          )}
+          {isLoading && (
+            <tr>
+              <td colSpan={columns?.length}>
+                <div className={"emptyMessage"}>
+                  <h1>Loading</h1>
+                </div>
+              </td>
+            </tr>
+          )}
+          {error && (
+            <tr>
+              <td colSpan={columns?.length}>
+                <div className={"emptyMessage"}>
+                  <Alert
+                    status="error"
+                    icon={<ErrorIcon className="w-6 h-6 mx-2 stroke-current" />}
+                  >
+                    {errorText}
+                  </Alert>
+                </div>
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+
+      {/* <TablePagination
         rowsPerPageOptions={[25, 50, 100]}
         component="div"
         count={rows.length}
@@ -230,44 +195,9 @@ function UnstyledTable({
         page={pageIndex}
         onChangePage={handleChangePage}
         onChangeRowsPerPage={handleChangeRowsPerPage}
-      />
+      /> */}
     </>
   );
 }
 
-const UnmemoTable: React.FunctionComponent<TableProps> = styled(UnstyledTable)`
-  max-height: calc(100vh - 100px);
-
-  & td {
-    white-space: nowrap;
-  }
-  .emptyMessage {
-    text-align: center;
-  }
-
-  .emptyHeader {
-    font-size: 3em;
-  }
-
-  .emptyAction {
-    font-weight: normal;
-  }
-
-  .sortableHeaderContainer {
-    display: flex;
-    line-height: 26px;
-  }
-
-  .sortingTicker {
-    margin-left: ${({ theme }: { theme: Theme }) => theme.spacing(1)}px;
-    height: 6px;
-    color: ${({ theme }: { theme: Theme }) =>
-      fade(theme.palette.text.primary, 0.5)};
-  }
-
-  .sortingTickerInactive {
-    color: transparent;
-  }
-`;
-
-export const Table = UnmemoTable;
+export const Table = UnstyledTable;

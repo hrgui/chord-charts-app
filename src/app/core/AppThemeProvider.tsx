@@ -3,7 +3,7 @@ import { createMuiTheme } from "@material-ui/core";
 import theme from "lib/theme/theme";
 import { ThemeProvider } from "styled-components/macro";
 import { useDarkMode } from "lib/hooks/useDarkMode";
-import { ThemeProvider as MuiThemeProvider } from "@material-ui/styles";
+import { Theme } from "react-daisyui";
 
 export function AppThemeProvider({ children }) {
   const isDarkMode = useDarkMode();
@@ -12,7 +12,7 @@ export function AppThemeProvider({ children }) {
 
   return (
     <ThemeProvider theme={__theme}>
-      <MuiThemeProvider theme={__theme}>{children}</MuiThemeProvider>
+      <Theme dataTheme={isDarkMode ? "dark" : "light"}>{children}</Theme>
     </ThemeProvider>
   );
 }

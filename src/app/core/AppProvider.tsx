@@ -6,7 +6,6 @@ import { BrowserRouter } from "react-router-dom";
 import { store as defaultStore } from "app/store";
 import { Provider } from "react-redux";
 import { AppThemeProvider } from "./AppThemeProvider";
-import { Theme } from "react-daisyui";
 import PageLoading from "lib/layout/PageLoading";
 
 interface AppControllerProps {
@@ -25,8 +24,6 @@ export function AppProvider({
   store = defaultStore,
   componentProviderOverrides = {},
 }: AppControllerProps) {
-  // const Router: any = history ? TestRouter : BrowserRouter;
-
   const Router = !componentProviderOverrides.Router
     ? BrowserRouter
     : componentProviderOverrides.Router;

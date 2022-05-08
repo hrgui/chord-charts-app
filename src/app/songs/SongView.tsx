@@ -4,8 +4,6 @@ import ChordSelect from "./components/ChordSelect";
 
 import ConnectedYoutubeView from "./components/YoutubeView";
 import classnames from "classnames";
-import ReactDOM from "react-dom";
-import { getOrCreateElement } from "lib/layout/portalSelector";
 import { ToolbarSpacer } from "lib/layout/ToolbarSpacer";
 
 interface SongViewProps {
@@ -147,65 +145,12 @@ const SongView = (props: SongViewProps) => {
     return null;
   }
 
-  //TODO fixme
-  const width = "xl";
-
   const youtubeViewCpt = (
-    <ConnectedYoutubeView
-      className={classnames({
-        "ConnectedYoutubeView-tablet": width === "md",
-        "ConnectedYoutubeView-mobile": width === "sm" || width === "xs",
-      })}
-      value={data.youtube}
-    />
+    <ConnectedYoutubeView className={"youtube-view-input"} value={data.youtube} />
   );
 
-  const wrappedYoutubeViewCpt =
-    width === "xl" || width === "lg"
-      ? ReactDOM.createPortal(youtubeViewCpt, getOrCreateElement("#songVideo"))
-      : youtubeViewCpt;
-
   return (
-    <div
-      className={classnames("flex flex-col-reverse md:flex-col", {
-        "Wrapper-tablet": width === "md",
-        "Wrapper-Mobile": width === "sm" || width === "xs",
-      })}
-    >
-      {/* {ReactDOM.createPortal(
-        <CurrentSongNavMenu
-          sectionsSettings={sectionsSettings}
-          song={data}
-          handleSetSectionSettings={setSectionSettings}
-          chordsDisabled={chordsDisabled}
-          lyricsDisabled={lyricsDisabled}
-          screenWrap={screenWrap}
-          onToggleScreenWrap={handleToggleScreenWrap}
-          onToggleLyricsVisibility={handleToggleLyricsVisibility}
-          onToggleChordsVisibility={handleToggleChordsVisibility}
-        />,
-        getOrCreateElement("#currentSongNavMenu")
-      )}
-      {ReactDOM.createPortal(
-        <>
-          <AppBarTitle>{data.title}</AppBarTitle>
-        </>,
-        getOrCreateElement("#songTitle")!
-      )}
-      {ReactDOM.createPortal(
-        <StyledSongViewKey
-          classes={{
-            root: "SongViewKey-root",
-            select: "SongViewKey-root",
-            icon: "SongViewKey-icon",
-          }}
-          overrideKey={overrideKey}
-          onChange={(e) => {
-            setOverrideKey(e.target.value);
-          }}
-        />,
-        getOrCreateElement("#songKey")!
-      )} */}
+    <div className={classnames("flex flex-col-reverse md:flex-col")}>
       <div className={classnames("printSong overflow-hidden p-2 mt-2 max-w-full")}>
         <div className="print uppercase printSongBar">
           <div style={{ display: "flex" }}>
@@ -224,7 +169,7 @@ const SongView = (props: SongViewProps) => {
         />
         <ToolbarSpacer />
       </div>
-      {wrappedYoutubeViewCpt}
+      {youtubeViewCpt}
     </div>
   );
 };

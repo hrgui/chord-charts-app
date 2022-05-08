@@ -28,11 +28,11 @@ export default ({
   }
 
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden bg-base-200 p-4 rounded-sm">
       <div className="group cursor-pointer font-semibold flex items-center">
         {section.title && section.title.toUpperCase()}
         <Close
-          className="hidden opacity-100 group-hover:block h-[24px]"
+          className="ml-auto opacity-100 sm:hidden sm:ml-2 group-hover:block h-[24px]"
           data-testid="songsection-close"
           onClick={onRequestHide}
           fontSize={"small"}

@@ -24,7 +24,8 @@ export interface TableProps {
   className?;
   isPageTable?;
   emptyHeader?;
-  emptyAction?;
+  errorText?: React.ReactNode;
+  emptyAction?: React.ReactNode;
   initialState?;
 }
 
@@ -37,7 +38,7 @@ function UnstyledTable({
   emptyAction = "Create a new thing and it will show up here.",
   errorText = "An error occurred",
   initialState,
-}) {
+}: TableProps) {
   const filterTypes = React.useMemo(
     () => ({
       // Or, override the default text filter to use

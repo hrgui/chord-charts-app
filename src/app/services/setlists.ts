@@ -69,7 +69,7 @@ export const SetlistApi = createApi({
       },
       // Invalidates all queries that subscribe to this Setlist `id` only.
       // In this case, `getSetlist` will be re-run. `getSetlists` *might*  rerun, if this id was under its results.
-      invalidatesTags: (result, error, { id }) => [{ type: apiType, id }],
+      invalidatesTags: (result, error, { _id: id }) => [{ type: apiType, id }],
     }),
     deleteSetlist: build.mutation<{ success: boolean; id: number }, number>({
       query(id) {

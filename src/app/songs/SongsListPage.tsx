@@ -73,7 +73,7 @@ export function SongListContainer({
           },
         }) => {
           return (
-            <SongActions onAddSong={onAddSong} addToSetlistMode={addToSetlistMode} song={data} />
+            <SongActions onAddSong={onAddSong!} addToSetlistMode={addToSetlistMode} song={data} />
           );
         },
       },

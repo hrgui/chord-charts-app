@@ -6,7 +6,7 @@ import Youtube from "react-youtube";
 import * as qs from "qs";
 
 export const YoutubeView = ({ value, className }: { value; className? }) => {
-  let getYoutubeId = youtubeUrl => {
+  let getYoutubeId = (youtubeUrl) => {
     if (youtubeUrl.indexOf("://youtu.be/") !== -1) {
       const parts = youtubeUrl.split("/");
       return parts[parts.length - 1];
@@ -28,32 +28,20 @@ export const YoutubeView = ({ value, className }: { value; className? }) => {
   }
 
   return (
-    <div
-      data-testid="youtube-container"
-      className={classnames(className, "print-hidden")}
-    >
+    <div data-testid="youtube-container" className={classnames(className, "print-hidden")}>
       <Youtube videoId={youtubeId} opts={{ height: "240px", width: "426px" }} />
     </div>
   );
 };
 
 export function ConnectedYoutubeView({ value, className }) {
-  const { youtubeHidden } = useGlobalSongSettings() || {};
   const { toggleYoutube } = useGlobalSongActions() || {};
 
   if (!value) {
     return null;
   }
 
-  return (
-    <YoutubeViewer
-      className={classnames(className, {
-        "youtube-view-hidden": youtubeHidden
-      })}
-      value={value}
-      onClose={toggleYoutube}
-    />
-  );
+  return <YoutubeViewer value={value} onClose={toggleYoutube} />;
 }
 
 function YoutubeViewer({ value, className }: any) {

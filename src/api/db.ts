@@ -12,4 +12,4 @@ db.createIndex({
 
 export default db;
 
-window.db = db;
+(window as any).db = db;

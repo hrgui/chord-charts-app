@@ -108,15 +108,7 @@ export function CurrentSetlistNavMenu(props: CurrentSetlistNavMenuProps) {
       <ListItem
         button
         onClick={async () => {
-          const { extensions } = await deleteSetlist({
-            variables: { id: id },
-          });
-
-          if (extensions && extensions.cancelled) {
-            return;
-          }
-
-          window.location.href = "/setlists";
+          alert("TODO delete not implemented yet");
         }}
       >
         <ListItemIcon>

@@ -5,10 +5,9 @@ import { twMerge } from "tailwind-merge";
 import cx from "classnames";
 
 interface SetlistSongPaginationProps {
-  currentIndex;
-  length;
-  onChange?;
-  classes?;
+  currentIndex: number;
+  length: number;
+  onChange?: (index: number) => void;
 }
 
 export const SetlistSongPagination = (props: SetlistSongPaginationProps) => {
@@ -26,7 +25,7 @@ export const SetlistSongPagination = (props: SetlistSongPaginationProps) => {
   }, [currentIndex, length]);
 
   function handleChange(index) {
-    onChange(index);
+    onChange?.(index);
   }
 
   const buttons = Array.from(new Array(length)).map((_, index) => (

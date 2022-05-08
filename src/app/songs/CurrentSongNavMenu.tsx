@@ -2,7 +2,6 @@ import * as React from "react";
 import { List, ListItem, ListItemText, ListItemIcon, ListSubheader } from "ui/List";
 import ListItemLink from "lib/layout/ListItemLink";
 import { useUserData } from "lib/hooks/useUserData";
-import { useGlobalSongSettings } from "lib/hooks/useGlobalSongSettings";
 import { useGlobalSongActions } from "lib/hooks/useGlobalSongActions";
 import { useAppBarActions } from "lib/hooks/useAppBarActions";
 import { useTranslation } from "react-i18next";
@@ -77,7 +76,6 @@ export function CurrentSongNavMenu(props: CurrentSongNavMenuProps) {
   const { t } = useTranslation();
   const user = useUserData() || {};
   const deleteSong = () => {};
-  const { youtubeHidden: isVideoHidden } = useGlobalSongSettings() || {};
   const { toggleYoutube } = useGlobalSongActions() || {};
   const { toggleControlsPanel } = useAppBarActions();
   const {
@@ -104,14 +102,7 @@ export function CurrentSongNavMenu(props: CurrentSongNavMenuProps) {
       <ListItem
         button
         onClick={async () => {
-          const { extensions } = await deleteSong({ variables: { id: id } });
-          toggleControlsPanel();
-
-          if (extensions && extensions.cancelled) {
-            return;
-          }
-
-          window.location.href = "/songs";
+          alert("SONG DELETE not implemented yet");
         }}
       >
         <ListItemIcon>
@@ -120,7 +111,7 @@ export function CurrentSongNavMenu(props: CurrentSongNavMenuProps) {
         <ListItemText primary={t("delete")} />
       </ListItem>
       <Divider />
-      <ListItem
+      {/* <ListItem
         button
         onClick={(e) => {
           toggleYoutube();
@@ -134,7 +125,7 @@ export function CurrentSongNavMenu(props: CurrentSongNavMenuProps) {
           )}
         </ListItemIcon>
         <ListItemText primary={`${t("video")}: ${!isVideoHidden ? t("on") : t("off")}`} />
-      </ListItem>
+      </ListItem> */}
       <ListItem
         button
         onClick={(e) => {

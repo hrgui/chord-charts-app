@@ -35,15 +35,7 @@ function SongActionsList({ id }: { id?; addToSetlistMode? }) {
       <ListItem
         button
         onClick={async () => {
-          const { extensions } = await deleteSetlist({
-            variables: { id: id },
-          });
-
-          if (extensions && extensions.cancelled) {
-            return;
-          }
-
-          window.location.href = "/songs";
+          alert("DELETE not implemented yet");
         }}
       >
         <ListItemIcon>

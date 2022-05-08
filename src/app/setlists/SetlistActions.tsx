@@ -27,13 +27,10 @@ function SetlistActionsList({
   song_id?;
   onRequestClose?;
 }) {
-  const user = useUserData();
   const deleteSetlist = () => {};
   const { t } = useTranslation();
   const addToSetlist = () => {};
-  const enqueueSnackbar = () => {};
   const navigate = useNavigate();
-  const location = useLocation();
 
   if (addToSetlistMode) {
     return (
@@ -42,9 +39,6 @@ function SetlistActionsList({
           button
           onClick={async (e) => {
             await addToSetlist();
-            enqueueSnackbar(t("song:action_success/add_to_setlist", { name }), {
-              variant: "success",
-            });
             onRequestClose();
           }}
         >
@@ -57,9 +51,6 @@ function SetlistActionsList({
           button
           onClick={async () => {
             await addToSetlist();
-            enqueueSnackbar(t("song:action_success/add_to_setlist", { name }), {
-              variant: "success",
-            });
             navigate(`/setlist/${id}/edit`);
           }}
         >
@@ -89,15 +80,7 @@ function SetlistActionsList({
       <ListItem
         button
         onClick={async () => {
-          const { extensions } = await deleteSetlist({
-            variables: { id: id },
-          });
-
-          if (extensions && extensions.cancelled) {
-            return;
-          }
-
-          window.location.href = "/setlists";
+          alert("TODO delete not implemented yet");
         }}
       >
         <ListItemIcon>

@@ -2,7 +2,7 @@ import * as React from "react";
 import { SongViewContainer } from "app/songs/SongViewPage";
 import { SetlistSongPagination } from "./SetlistSongPagination";
 import { CurrentSetlistNavMenu } from "./CurrentSetlistNavMenu";
-import { SetlistSong } from "app/services/setlists";
+import { Setlist, SetlistSong } from "app/services/setlists";
 import Page from "lib/layout/Page";
 import { Alert } from "react-daisyui";
 import MaterialSymbol from "ui/icons/MaterialSymbol";
@@ -10,16 +10,16 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 export interface SetlistSongsViewerProps {
-  title?;
-  setlist?;
+  title?: string;
+  setlist?: Setlist;
   songs: SetlistSong[];
   settings?;
-  songIndex?;
-  onIndexChange?;
-  isLoading?;
+  songIndex?: number;
+  onIndexChange?: (index: number) => void;
+  isLoading?: boolean;
   onSaveSetlistSettings?;
-  hasUnsavedSettings?;
-  isLyrics?;
+  hasUnsavedSettings?: boolean;
+  isLyrics?: boolean;
 }
 
 export function SetlistSongsViewer({
@@ -50,7 +50,7 @@ export function SetlistSongsViewer({
         <div className="p-4">
           <Alert icon={<MaterialSymbol icon="warning" />} status="warning">
             {t("setlist:view/message/noSongs/header")}{" "}
-            <Link className="underline hover:font-semibold" to={`/setlist/${setlist._id}/edit`}>
+            <Link className="underline hover:font-semibold" to={`/setlist/${setlist?._id}/edit`}>
               {t("setlist:view/message/noSongs/action")}
             </Link>
           </Alert>
@@ -74,14 +74,14 @@ export function SetlistSongsViewer({
               <CurrentSetlistNavMenu
                 onChangeSettings={handleChangeSettings}
                 title={title}
-                setlist={setlist}
+                setlist={setlist as Setlist}
                 settings={_settings}
                 hasUnsavedSettings={_hasUnSavedSettings}
                 onSaveSetlistSettings={onSaveSetlistSettings}
               />
               <SetlistSongPagination
                 length={songs.length}
-                currentIndex={songIndex}
+                currentIndex={songIndex as number}
                 onChange={onIndexChange}
               />
             </>

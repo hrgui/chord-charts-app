@@ -48,7 +48,6 @@ function SongActionsList({ id }: { id?; addToSetlistMode? }) {
           search: `?song_id=${id}`,
           state: { background: location },
         }}
-        button
       >
         <ListItemIcon>
           <MaterialSymbol icon="playlist_add" />

@@ -11,8 +11,10 @@ import { Button } from "react-daisyui";
 import MaterialSymbol from "ui/icons/MaterialSymbol";
 import { twMerge } from "tailwind-merge";
 import { getOrCreateElement } from "lib/layout/portalSelector";
+import Page from "lib/layout/Page";
 
 interface SongViewProps {
+  pageTitle: string;
   isLoading?: boolean;
   isError?: any;
   data?: any;
@@ -56,7 +58,10 @@ function Song({
   }
 
   return (
-    <div className={classnames("song-view-container", { screenWrap: screenWrap })}>
+    <div
+      data-testid="song"
+      className={classnames("song-view-container", { screenWrap: screenWrap })}
+    >
       {sections.map((section, i) => {
         const sectionSettings: any = sectionsSettings[i] || {};
 
@@ -90,6 +95,7 @@ const SongView = (props: SongViewProps) => {
     chordsDisabled: _chordsDisabled = false,
     screenWrap: _screenWrap = false,
     onChangeSettings = () => null,
+    pageTitle,
   } = props;
   const [sectionsSettings, _setSectionSettings] = React.useState(settings.sectionsSettings || {});
   const [overrideKey, _setOverrideKey] = React.useState(settings.overrideKey || (data && data.key));
@@ -155,20 +161,6 @@ const SongView = (props: SongViewProps) => {
     return null;
   }
 
-  const appBarEndContent = createPortal(
-    <div className="flex items-center">
-      <Button size="xs" onClick={() => setDrawerVisibility(!drawerHidden)}>
-        <MaterialSymbol icon="settings" />
-      </Button>
-      <ChordSelect
-        className="select-sm"
-        value={overrideKey}
-        onChange={(e) => setOverrideKey(e.target.value)}
-      />
-    </div>,
-    getOrCreateElement("#appBarEnd")
-  );
-
   const printContent = (
     <div className="print uppercase printSongBar">
       <div style={{ display: "flex" }}>
@@ -198,24 +190,39 @@ const SongView = (props: SongViewProps) => {
   );
 
   return (
-    <div className={classnames("flex flex-col lg:flex-row-reverse")}>
-      {appBarEndContent}
-      {drawerContent}
-      <div className={classnames("printSong overflow-hidden p-2 mt-2 max-w-full flex-grow")}>
-        {printContent}
-        <Song
-          screenWrap={screenWrap}
-          lyricsDisabled={lyricsDisabled}
-          chordsDisabled={chordsDisabled}
-          setSectionSettings={setSectionSettings}
-          baseKey={data.key}
-          overrideKey={overrideKey}
-          sections={data.sections}
-          sectionsSettings={sectionsSettings}
-        />
-        <ToolbarSpacer />
+    <Page
+      title={pageTitle}
+      appBarEndChildren={
+        <div className="flex items-center">
+          <Button size="xs" onClick={() => setDrawerVisibility(!drawerHidden)}>
+            <MaterialSymbol icon="settings" />
+          </Button>
+          <ChordSelect
+            className="select-sm"
+            value={overrideKey}
+            onChange={(e) => setOverrideKey(e.target.value)}
+          />
+        </div>
+      }
+    >
+      <div className={classnames("flex flex-col lg:flex-row-reverse")}>
+        {drawerContent}
+        <div className={classnames("printSong overflow-hidden p-2 mt-2 max-w-full flex-grow")}>
+          {printContent}
+          <Song
+            screenWrap={screenWrap}
+            lyricsDisabled={lyricsDisabled}
+            chordsDisabled={chordsDisabled}
+            setSectionSettings={setSectionSettings}
+            baseKey={data.key}
+            overrideKey={overrideKey}
+            sections={data.sections}
+            sectionsSettings={sectionsSettings}
+          />
+          <ToolbarSpacer />
+        </div>
       </div>
-    </div>
+    </Page>
   );
 };
 

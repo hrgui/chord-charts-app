@@ -13,7 +13,12 @@ interface ChordSelectProps {
 export const ChordSelect = React.forwardRef<HTMLSelectElement, ChordSelectProps>(
   ({ className, ...props }, ref) => {
     return (
-      <select ref={ref} className={twMerge("select select-bordered", className)} {...props}>
+      <select
+        ref={ref}
+        data-testid="chordSelect"
+        className={twMerge("select select-bordered", className)}
+        {...props}
+      >
         {getKeyAsOptions()}
       </select>
     );

@@ -44,16 +44,15 @@ export const SongViewContainer: React.FC<SongViewContainerProps> = (props) => {
   }
 
   return (
-    <Page title={getTitle()}>
-      <SongView
-        isLoading={isLoading}
-        isError={isError}
-        data={data}
-        settings={settings}
-        onChangeSettings={onChangeSettings}
-        drawerChildren={drawerChildren}
-      />
-    </Page>
+    <SongView
+      pageTitle={getTitle()}
+      isLoading={isLoading}
+      isError={isError}
+      data={data}
+      settings={settings}
+      onChangeSettings={onChangeSettings}
+      drawerChildren={drawerChildren}
+    />
   );
 };
 

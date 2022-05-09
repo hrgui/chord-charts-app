@@ -13,9 +13,16 @@ export interface AppBarProps {
   onShowNavMenu: () => void;
   onHideNavMenu: () => void;
   title?: string;
+  appBarEndChildren?: React.ReactNode;
 }
 
-export function AppBar({ navMenuHidden, onShowNavMenu, onHideNavMenu, title }: AppBarProps) {
+export function AppBar({
+  navMenuHidden,
+  onShowNavMenu,
+  onHideNavMenu,
+  title,
+  appBarEndChildren,
+}: AppBarProps) {
   return (
     <Navbar className="shadow-sm bg-neutral text-neutral-content min-h-[48px]">
       <Navbar.Start>
@@ -28,14 +35,18 @@ export function AppBar({ navMenuHidden, onShowNavMenu, onHideNavMenu, title }: A
         </button>
         <span className="text-lg font-bold">{title}</span>
       </Navbar.Start>
-      <Navbar.End>
-        <div id="appBarEnd" />
-      </Navbar.End>
+      <Navbar.End>{appBarEndChildren}</Navbar.End>
     </Navbar>
   );
 }
 
-const ConnectedAppBar = ({ title }: { title?: string }) => {
+const ConnectedAppBar = ({
+  title,
+  appBarEndChildren,
+}: {
+  title?: string;
+  appBarEndChildren?: React.ReactNode;
+}) => {
   const config = useGetAppBarData();
   const { toggleNavMenu } = useAppBarActions();
 
@@ -47,6 +58,7 @@ const ConnectedAppBar = ({ title }: { title?: string }) => {
     <>
       <AppBar
         title={title}
+        appBarEndChildren={appBarEndChildren}
         navMenuHidden={config.navMenuHidden}
         onShowNavMenu={toggleNavMenu}
         onHideNavMenu={toggleNavMenu}

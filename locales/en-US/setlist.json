@@ -1,0 +1,23 @@
+{
+  "single": "Setlist",
+  "plural": "Setlists",
+  "action/new_setlist": "New Setlist",
+  "action/list_setlist": "All Setlists",
+  "action/confirm_delete": "Are you sure you want to delete this setlist?",
+  "list/emptyAction": "<0>Create a new setlist</0> and it'll show up here.",
+  "list/emptyHeader": "Empty in setlists.",
+  "menu/navigation/title": "Setlist Navigation",
+  "menu/controls/title": "Setlist Controls",
+  "form/label/date": "Date",
+  "form/label/title": "Setlist Title",
+  "form/label/leader": "Worship Leader",
+  "form/label/notes": "Notes",
+  "form/label/songs": "Songs",
+  "form/no_songs": "There are no songs in this setlist. To add a song, either click on Add Song or save the setlist and add the song from the songs list.",
+  "form/no_songs_new": "To add songs, save the setlist and add songs from the songs listing.",
+  "message/saveSuccess": "Setlist {{setlist}} has been saved",
+  "message/saveError": "Setlist could not be saved. Please check for any errors and try again.",
+  "action/addSong": "Add Song",
+  "view/message/noSongs/header": "There are no songs in this setlist.",
+  "view/message/noSongs/action": "There are no songs in this setlist"
+}

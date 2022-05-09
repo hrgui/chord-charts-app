@@ -24,6 +24,7 @@ export function TitleColumnDef() {
   return {
     accessor: "title",
     Header: "Title",
+    className: "truncate break-all w-[calc(100%_-_100px)] sm:w-2/4",
     Cell: ({
       cell: {
         value,
@@ -60,6 +61,7 @@ export function ActionsColumnDef(
   return {
     Header: "Actions",
     id: "actions",
+    className: "w-[100px]",
     Cell: ({
       cell: {
         row: { original: data },
@@ -81,6 +83,7 @@ export function DateColumnDef() {
   return {
     Header: "Date",
     accessor: "date",
+    className: "hidden sm:table-cell sm:w-1/4",
   };
 }
 
@@ -88,6 +91,7 @@ export function LeaderColumnDef() {
   return {
     accessor: "leader",
     Header: "Leader",
+    className: "hidden sm:table-cell sm:w-1/4",
   };
 }
 

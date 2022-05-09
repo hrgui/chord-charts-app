@@ -7,6 +7,7 @@ import ErrorIcon from "ui/icons/ErrorIcon";
 function DefaultColumnFilter({ column: { filterValue, setFilter } }) {
   return (
     <Input
+      className="w-full"
       size="sm"
       value={filterValue || ""}
       onChange={(e) => {
@@ -99,14 +100,21 @@ function UnstyledTable({
   // Render the UI for your table
   return (
     <>
-      <table className="table w-full" {...getTableProps()}>
+      <table className="table table-fixed  w-full" {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
                 <th
                   className="tableHeaderCell"
-                  {...column.getHeaderProps(column.getSortByToggleProps())}
+                  {...column.getHeaderProps(
+                    {
+                      className: column.className,
+                      style: column.style,
+                    },
+
+                    column.getSortByToggleProps()
+                  )}
                 >
                   <div className="sortableHeaderContainer">
                     <div>{column.render("Header")}</div>
@@ -144,7 +152,13 @@ function UnstyledTable({
                 <tr {...row.getRowProps()}>
                   {row.cells.map((cell) => {
                     return (
-                      <td size="small" {...cell.getCellProps()}>
+                      <td
+                        size="small"
+                        {...cell.getCellProps({
+                          className: cell.column.className,
+                          style: cell.column.style,
+                        })}
+                      >
                         {cell.render("Cell")}
                       </td>
                     );

@@ -28,7 +28,11 @@ class SongTitleCell extends React.Component<any, any> {
       return null;
     }
 
-    return <Link to={`/song/${data._id}/view`}>{value}</Link>;
+    return (
+      <Link className="truncate lg:whitespace-normal" to={`/song/${data._id}/view`}>
+        {value}
+      </Link>
+    );
   }
 }
 
@@ -47,6 +51,7 @@ export function SongListContainer({
       {
         accessor: "title",
         Header: "Title",
+        className: "truncate break-all w-[calc(100%_-_100px)] sm:w-2/4",
         Cell: ({
           cell: {
             value,
@@ -59,14 +64,17 @@ export function SongListContainer({
       {
         accessor: "artist",
         Header: "Artist",
+        className: "hidden sm:table-cell sm:w-1/4",
       },
       {
         accessor: "key",
         Header: "Key",
+        className: "hidden sm:table-cell sm:w-1/4",
       },
       {
         Header: "Actions",
         id: "actions",
+        className: "w-[100px]",
         Cell: ({
           cell: {
             row: { original: data },

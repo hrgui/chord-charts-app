@@ -5,10 +5,11 @@ import SetlistsNavMenu from "app/setlists/menu/SetlistsNavMenu";
 import { useAppBarActions } from "lib/hooks/useAppBarActions";
 import { useGetAppBarData } from "lib/hooks/useGetAppBarData";
 import Drawer from "ui/Drawer";
-import { List, ListItemText, ListItemIcon } from "ui/List";
+import { List, ListItemText, ListItemIcon, ListItem } from "ui/List";
 import Divider from "ui/Divider";
 import CloseIcon from "ui/icons/CloseIcon";
 import { Button } from "react-daisyui";
+import db from "api/db";
 
 export interface NavMenuProps {
   classes?: any;
@@ -36,6 +37,24 @@ export function NavMenuItems() {
       <SongsNavMenu />
       <Divider />
       <SetlistsNavMenu />
+      <Divider />
+      <List>
+        <ListItem
+          onClick={() => {
+            const agreement = confirm(
+              "This will destroy everything you have created locally! Are you sure you want to do this?"
+            );
+            if (!agreement) {
+              return;
+            }
+
+            db.destroy();
+            window.location.href = "/";
+          }}
+        >
+          <ListItemText>Clear Local DB</ListItemText>
+        </ListItem>
+      </List>
     </>
   );
 }

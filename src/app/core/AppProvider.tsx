@@ -23,7 +23,7 @@ export function AppProvider({
   history,
   store = defaultStore,
   componentProviderOverrides = {},
-  basename = "/chord-charts-app",
+  basename = "",
 }: AppControllerProps) {
   const Router = !componentProviderOverrides.Router
     ? BrowserRouter

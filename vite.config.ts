@@ -18,7 +18,6 @@ const config = defineConfig(({ mode, command }) => {
   console.log(`mode=${mode} command=${command}`);
 
   return {
-    base: "/chord-charts-app/",
     plugins: [reactPlugin(), viteTsConfigPathsPlugin()],
     define: {
       global: "window",

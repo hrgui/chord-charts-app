@@ -33,7 +33,6 @@ function SongActionsList({ id }: { id?; addToSetlistMode? }) {
         <ListItemText primary={t("edit")} />
       </ListItemLink>
       <ListItem
-        button
         onClick={async () => {
           alert("DELETE not implemented yet");
         }}

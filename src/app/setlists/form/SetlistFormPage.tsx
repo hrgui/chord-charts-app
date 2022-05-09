@@ -61,11 +61,13 @@ export function SetlistForm({ onSubmit, onError, data }: SetlistFormProps) {
 
         <table className="table table-zebra w-full">
           <thead>
-            <th></th>
-            <th className="w-3/5">Title</th>
-            <th className="w-1/7">Artist</th>
-            <th className="w-1/7">Key</th>
-            <th className="w-1/7">Actions</th>
+            <tr>
+              <th></th>
+              <th className="w-3/5">Title</th>
+              <th className="w-1/7">Artist</th>
+              <th className="w-1/7">Key</th>
+              <th className="w-1/7">Actions</th>
+            </tr>
           </thead>
           <tbody>
             {fields.map((field, index) => (

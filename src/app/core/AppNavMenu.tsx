@@ -39,6 +39,9 @@ export function NavMenuItems() {
       <SetlistsNavMenu />
       <Divider />
       <List>
+        <ListItemLink to="/about">
+          <ListItemText>About</ListItemText>
+        </ListItemLink>
         <ListItem
           onClick={() => {
             const agreement = confirm(

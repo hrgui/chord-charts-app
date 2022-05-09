@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Navigate, useLocation, Route } from "react-router-dom";
 import SongsListPage from "app/songs/SongsListPage";
+import AboutPage from "app/about/AboutPage";
 import SetlistsListPage from "app/setlists/SetlistsListPage";
 import SongViewPage from "app/songs/SongViewPage";
 import { NewSongFormPage, EditSongFormPage } from "app/songs/form/SongFormPage";
@@ -26,6 +27,7 @@ export function AppRootRoutes() {
         <Route element={<EditSetlistFormPage />} path="/setlist/:id/edit" />
         <Route element={<SetlistViewPage />} path="/setlist/:id/:songIndex" />
         <Route element={<SetlistViewPage />} path="/setlist/:id" />
+        <Route element={<AboutPage />} path="/about" />
         <Route path="/" element={<Navigate to="/songs" />} />
       </Routes>
       {state?.background && (

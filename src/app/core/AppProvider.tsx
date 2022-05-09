@@ -15,6 +15,7 @@ interface AppControllerProps {
   history?;
   apolloProviderProps?;
   componentProviderOverrides?;
+  basename?: string;
 }
 
 export function AppProvider({
@@ -22,6 +23,7 @@ export function AppProvider({
   history,
   store = defaultStore,
   componentProviderOverrides = {},
+  basename = "/chord-charts-app",
 }: AppControllerProps) {
   const Router = !componentProviderOverrides.Router
     ? BrowserRouter
@@ -31,7 +33,7 @@ export function AppProvider({
     <Suspense fallback={<PageLoading />}>
       <Provider store={store}>
         <HelmetProvider>
-          <Router history={history}>
+          <Router basename={basename} history={history}>
             <AppThemeProvider>{children}</AppThemeProvider>
           </Router>
         </HelmetProvider>

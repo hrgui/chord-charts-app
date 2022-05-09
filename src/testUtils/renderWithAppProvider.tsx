@@ -26,6 +26,7 @@ export function renderWithAppController(
   act(() => {
     el = render(
       <AppProvider
+        basename=""
         componentProviderOverrides={TestComponentProviderOverrides}
         store={store}
         apolloProviderProps={{ mocks: gqlMocks, ...mockedProviderProps }}
@@ -43,6 +44,7 @@ export function renderWithAppController(
     rerender: (ui) => {
       return _rerender(
         <AppProvider
+          basename=""
           componentProviderOverrides={TestComponentProviderOverrides}
           store={store}
           apolloProviderProps={{ mocks: gqlMocks, ...mockedProviderProps }}

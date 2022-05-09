@@ -14,7 +14,7 @@ beforeEach(() => {
 test("renders learn react if passed in learn react", async () => {
   let el;
   act(() => {
-    el = render(<App>learn react</App>);
+    el = render(<App basename="">learn react</App>);
   });
   await waitFor(() => {
     const { getByText } = el;

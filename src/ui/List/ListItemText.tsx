@@ -1,13 +1,36 @@
+import { useAppBarActions } from "hooks/useAppBarActions";
 import React from "react";
 import { twMerge } from "tailwind-merge";
+import { isDesktop, isMobile } from "utils";
 
 export interface Props extends React.HTMLProps<HTMLDivElement> {
   primary?: any;
+  dismissMobileMenu?: boolean;
 }
 
-export const ListItemText = ({ className, primary, children, ...props }: Props) => {
+export const ListItemText = ({
+  className,
+  primary,
+  children,
+  onClick,
+  dismissMobileMenu = false,
+  ...props
+}: Props) => {
+  const { toggleNavMenu } = useAppBarActions();
+  const handleClick = (e) => {
+    onClick?.(e);
+
+    if (dismissMobileMenu && isMobile()) {
+      toggleNavMenu();
+    }
+  };
+
   return (
-    <div className={twMerge("flex-[1_1_auto] min-w-0 mt-1 mb-1", className)} {...props}>
+    <div
+      onClick={handleClick}
+      className={twMerge("flex-[1_1_auto] min-w-0 mt-1 mb-1", className)}
+      {...props}
+    >
       {children} {primary}
     </div>
   );

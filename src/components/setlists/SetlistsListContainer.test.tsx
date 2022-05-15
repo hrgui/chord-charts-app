@@ -6,7 +6,7 @@ import { SetlistTable } from "./SetlistsListContainer";
 describe("SetlistTable", () => {
   it("should be able to render an empty setlist table", () => {
     const { getByText } = render(<SetlistTable data={[]} />);
-    expect(getByText("Empty in setlists.")).toBeInTheDocument();
+    expect(getByText("There are no setlists.")).toBeInTheDocument();
   });
 
   it("should be able to render a setlist row", () => {

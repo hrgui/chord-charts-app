@@ -173,41 +173,29 @@ function UnstyledTable({
                 </tr>
               )
           )}
-          {!isLoading && rows.length === 0 && !error && (
-            <tr>
-              <td colSpan={columns?.length}>
-                <div className={"emptyMessage"}>
-                  <h1 className="emptyHeader">{emptyHeader}</h1>
-                  <h2 className="emptyAction">{emptyAction}</h2>
-                </div>
-              </td>
-            </tr>
-          )}
-          {isLoading && (
-            <tr>
-              <td colSpan={columns?.length}>
-                <div className={"emptyMessage"}>
-                  <h1>Loading</h1>
-                </div>
-              </td>
-            </tr>
-          )}
-          {error && (
-            <tr>
-              <td colSpan={columns?.length}>
-                <div className={"emptyMessage"}>
-                  <Alert
-                    status="error"
-                    icon={<ErrorIcon className="w-6 h-6 mx-2 stroke-current" />}
-                  >
-                    {errorText}
-                  </Alert>
-                </div>
-              </td>
-            </tr>
-          )}
         </tbody>
       </table>
+
+      {!isLoading && rows.length === 0 && !error && (
+        <div className={"emptyMessage p-4"}>
+          <Alert status="info" icon={<MaterialSymbol icon={"info"} />}>
+            <h1 className="font-semibold text-2xl">{emptyHeader}</h1>
+            <h2 className="emptyAction">{emptyAction}</h2>
+          </Alert>
+        </div>
+      )}
+      {isLoading && (
+        <div className={"emptyMessage p-4"}>
+          <h1>Loading</h1>
+        </div>
+      )}
+      {error && (
+        <div className={"emptyMessage p-4"}>
+          <Alert status="error" icon={<ErrorIcon className="w-6 h-6 mx-2 stroke-current" />}>
+            {errorText}
+          </Alert>
+        </div>
+      )}
 
       {/* <TablePagination
         rowsPerPageOptions={[25, 50, 100]}

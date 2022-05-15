@@ -31,3 +31,11 @@ export const isPromise = (value: any): value is PromiseLike<any> =>
 /** @private is the given object/value a type of synthetic event? */
 export const isInputEvent = (value: any): value is React.SyntheticEvent<any> =>
   value && isObject(value) && isObject(value.target);
+
+export const isDesktop = () => {
+  return window.matchMedia("(min-width: 640px)").matches;
+};
+
+export const isMobile = () => {
+  return !isDesktop();
+};

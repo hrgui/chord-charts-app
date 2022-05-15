@@ -27,11 +27,11 @@ export function AppNavMenu() {
 
   return (
     <Drawer className="cc-appNavMenu" open={!navMenuHidden}>
-      <div className="flex items-center font-medium h-12 text-base min-h-[48px] pl-2 pr-2">
+      <div className="flex items-center uppercase tracking-widest font-semibold h-12 text-base min-h-[48px] pl-2 pr-2">
         {config.appName}
         <Button
           onClick={toggleNavMenu}
-          className="ml-auto sm:hidden"
+          className="ml-auto sm:hidden btn-ghost"
           shape="square"
           startIcon={<CloseIcon />}
         ></Button>

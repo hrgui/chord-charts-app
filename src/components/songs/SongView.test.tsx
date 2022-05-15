@@ -31,7 +31,7 @@ describe("SongView", () => {
   data-testid="song"
 >
   <div
-    class="overflow-hidden bg-base-200 p-4 rounded-sm"
+    class="overflow-hidden bg-base-200 p-4 mb-2 rounded-sm"
   >
     <div
       class="group cursor-pointer font-semibold flex items-center"
@@ -134,7 +134,7 @@ describe("SongView", () => {
   data-testid="song"
 >
   <div
-    class="overflow-hidden bg-base-200 p-4 rounded-sm"
+    class="overflow-hidden bg-base-200 p-4 mb-2 rounded-sm"
   >
     <div
       class="group cursor-pointer font-semibold flex items-center"

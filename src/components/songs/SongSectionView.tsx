@@ -28,7 +28,7 @@ export const SongSectionView = ({
   }
 
   return (
-    <div className="overflow-hidden bg-base-200 p-4 rounded-sm">
+    <div className="overflow-hidden bg-base-200 p-4 mb-2 rounded-sm">
       <div className="group cursor-pointer font-semibold flex items-center">
         {section.title && section.title.toUpperCase()}
         <Close

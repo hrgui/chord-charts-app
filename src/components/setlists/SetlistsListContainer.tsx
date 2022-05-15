@@ -108,7 +108,10 @@ export function SetlistTable({
   const emptyAction = React.useMemo(
     () => (
       <Trans i18nKey="setlist:list/emptyAction">
-        <Link to="/setlist/new">Create a new setlist</Link> and it will show up here.
+        <Link to="/setlist/new" className="text-black">
+          Create a new setlist
+        </Link>{" "}
+        and it will show up here.
       </Trans>
     ),
     []

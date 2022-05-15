@@ -62,7 +62,7 @@ export function SongListContainer({
   const emptyAction = React.useMemo(() => {
     return (
       <Trans i18nKey="song:list/emptyAction">
-        <Link to="/song/new" alt="New Song">
+        <Link to="/song/new" className="text-black" alt="New Song">
           Create a new song
         </Link>{" "}
         and it'll show up here.

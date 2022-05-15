@@ -8,6 +8,7 @@ const ClearLocalDbAction = () => {
   const { t } = useTranslation();
   return (
     <ListItem
+      dismissMobileMenu={false}
       onClick={() => {
         const agreement = confirm(t("actions/clearlocaldb/confirm"));
         if (!agreement) {

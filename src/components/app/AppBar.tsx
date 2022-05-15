@@ -24,16 +24,20 @@ export function AppBar({
   appBarEndChildren,
 }: AppBarProps) {
   return (
-    <Navbar className="shadow-sm min-h-[48px]">
+    <Navbar className="shadow-sm min-h-[48px] truncate overflow-hidden max-h-[48px] appbar">
       <Navbar.Start>
-        <button className="btn btn-square btn-sm mr-1">
+        <button className="btn btn-square btn-ghost btn-sm mr-1">
           <MenuIcon
             className="cursor-pointer"
             onClick={navMenuHidden ? onShowNavMenu : onHideNavMenu}
             aria-label="Menu"
           />
         </button>
-        <span className="text-lg font-bold" data-testid="appBarTitle">
+        <span
+          className="text-lg font-bold truncate whitespace-nowrap overflow-hidden block break-words"
+          title={title}
+          data-testid="appBarTitle"
+        >
           {title}
         </span>
       </Navbar.Start>

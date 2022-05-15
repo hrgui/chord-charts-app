@@ -56,7 +56,7 @@ export function SongForm({ onSubmit, onError, data }: SongFormProps) {
       </FormSection>
 
       <FormSection>
-        <Button onClick={handleAddTextChordChartSection}>
+        <Button type="button" onClick={handleAddTextChordChartSection}>
           {t("song:label/section/add_text_chord_chart_section")}
         </Button>
       </FormSection>

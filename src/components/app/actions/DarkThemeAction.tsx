@@ -13,7 +13,7 @@ const DarkThemeAction: React.FunctionComponent<IDarkThemeActionProps> = () => {
   const { toggleDarkMode } = useAppBarActions();
 
   return (
-    <ListItem onClick={toggleDarkMode}>
+    <ListItem onClick={toggleDarkMode} dismissMobileMenu={false}>
       <ListItemIcon>
         <MaterialSymbol icon={isDarkMode ? "dark_mode" : "light_mode"} />
       </ListItemIcon>

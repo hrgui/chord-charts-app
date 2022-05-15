@@ -2,9 +2,8 @@ import * as React from "react";
 import ListItemLink from "lib/layout/ListItemLink";
 import ActionsMenu from "lib/table/ActionsMenu";
 import { ListItem, ListItemIcon, List, ListItemText } from "ui/List";
-import { useUserData } from "lib/hooks/useUserData";
 import { useTranslation } from "react-i18next";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import MaterialSymbol from "ui/icons/MaterialSymbol";
 
 interface SetlistActionsProps {

@@ -1,23 +1,19 @@
 import * as React from "react";
 import { Table } from "lib/table/Table";
 import SetlistTitleCell from "./cells/SetlistTitleCell";
-import MobileSetlistTitleCell from "./cells/MobileSetlistTitleCell";
 import SetlistActions from "./SetlistActions";
 import Link from "lib/layout/Link";
 import { useTranslation } from "react-i18next";
 import { Trans } from "react-i18next";
-import { useGetSetlistsQuery } from "app/services/setlists";
-import Page from "lib/layout/Page";
+import { Setlist, useGetSetlistsQuery } from "app/services/setlists";
 
-interface SetlistsListPageProps {
-  path?: string;
-  isAdmin?: boolean;
-}
-
-export interface SetlistsTableProps {
-  setlists;
-  isLoading?;
-  error?;
+interface SetlistTableProps {
+  loading: boolean;
+  data: Setlist[];
+  addToSetlistMode?: boolean;
+  song_id?: string;
+  onRequestClose?: () => void;
+  error: any;
 }
 
 export function TitleColumnDef() {
@@ -36,23 +32,12 @@ export function TitleColumnDef() {
   };
 }
 
-export function MobileTitleColumnDef() {
-  return {
-    accessor: "title",
-    Header: "Title",
-    Cell: ({
-      cell: {
-        value,
-        row: { original: data },
-      },
-    }) => {
-      return <MobileSetlistTitleCell value={value} data={data} />;
-    },
-  };
-}
-
 export function ActionsColumnDef(
-  { addToSetlistMode, song_id, onRequestClose } = {
+  {
+    addToSetlistMode,
+    song_id,
+    onRequestClose,
+  }: { addToSetlistMode?: boolean; song_id?: string; onRequestClose?: () => void } = {
     addToSetlistMode: false,
     song_id: undefined,
     onRequestClose: () => null,
@@ -98,24 +83,21 @@ export function LeaderColumnDef() {
 export function SetlistTable({
   loading,
   data,
-  isMobile,
   addToSetlistMode,
   song_id,
   onRequestClose,
   error,
-}) {
+}: SetlistTableProps) {
   const { t } = useTranslation();
 
   const columns = React.useMemo(() => {
-    return !isMobile
-      ? [
-          TitleColumnDef(),
-          LeaderColumnDef(),
-          DateColumnDef(),
-          ActionsColumnDef({ addToSetlistMode, song_id, onRequestClose }),
-        ]
-      : [MobileTitleColumnDef(), ActionsColumnDef({ addToSetlistMode, song_id, onRequestClose })];
-  }, [addToSetlistMode, isMobile, onRequestClose, song_id]);
+    return [
+      TitleColumnDef(),
+      LeaderColumnDef(),
+      DateColumnDef(),
+      ActionsColumnDef({ addToSetlistMode, song_id, onRequestClose }),
+    ];
+  }, [addToSetlistMode, onRequestClose, song_id]);
 
   const initialState = React.useMemo(() => {
     return {
@@ -157,12 +139,8 @@ export function SetlistListContainer({
 }) {
   const { error, isLoading, data = [] } = useGetSetlistsQuery();
 
-  //TODO fixme
-  const isMobile = false;
-
   return (
     <SetlistTable
-      isMobile={isMobile}
       error={error}
       loading={isLoading}
       data={data}
@@ -172,13 +150,3 @@ export function SetlistListContainer({
     />
   );
 }
-
-const SetlistsListPage: React.FC<SetlistsListPageProps> = () => {
-  return (
-    <Page title="All Setlists">
-      <SetlistListContainer />
-    </Page>
-  );
-};
-
-export default SetlistsListPage;

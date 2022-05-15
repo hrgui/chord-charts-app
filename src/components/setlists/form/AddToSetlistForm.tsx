@@ -1,5 +1,5 @@
 import * as React from "react";
-import { SetlistListContainer } from "../SetlistsListPage";
+import { SetlistListContainer } from "../SetlistsListContainer";
 import { useTranslation } from "react-i18next";
 
 export interface IAddToSetlistFormProps {

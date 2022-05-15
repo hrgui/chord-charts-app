@@ -1,5 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import pouchDbBaseQuery, { ApiMethod } from "lib/rtk-api/pouchDbBaseQuery";
+import { getUpcomingSunday, toDomDate } from "lib/utils/date";
 
 export interface SetlistSong {
   _id: string;
@@ -84,6 +85,15 @@ export const SetlistApi = createApi({
     }),
   }),
 });
+
+export function getNewSetlistTemplate(): Setlist {
+  const sunday = toDomDate(getUpcomingSunday());
+  return {
+    title: `Sunday Setlist - ${sunday}`,
+    date: sunday,
+    songs: [],
+  };
+}
 
 export const {
   useAddSetlistMutation,

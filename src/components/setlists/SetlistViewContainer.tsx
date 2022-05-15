@@ -3,7 +3,7 @@ import SetlistView from "./SetlistView";
 import { Loading } from "lib/layout/Loading";
 import { useGetSetlistQuery } from "app/services/setlists";
 import Page from "lib/layout/Page";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface SetlistViewPageProps {
   path?: string;
@@ -22,7 +22,7 @@ export function normalizeSongIndex(songIndex) {
   return songIndex;
 }
 
-const SetlistViewPage: React.FC<SetlistViewPageProps> = (props) => {
+export const SetlistViewContainer: React.FC<SetlistViewPageProps> = (props) => {
   let { isLoading, error: isError, data } = useGetSetlistQuery(props.id!);
   const navigate = useNavigate();
   const curTitle =
@@ -87,10 +87,4 @@ const SetlistViewPage: React.FC<SetlistViewPageProps> = (props) => {
       />
     </>
   );
-};
-
-export default (props) => {
-  const { id, songIndex } = useParams();
-
-  return <SetlistViewPage id={id} songIndex={songIndex} {...props} />;
 };

@@ -1,7 +1,11 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+import * as React from "react";
+import { renderWithAppController as render } from "testUtils/renderWithAppProvider";
+import SetlistActionsCell from "./SetlistActionsCell";
 
-exports[`renders setlist actions given a setlist 1`] = `
-<div>
+test("renders setlist actions given a setlist", () => {
+  const { asFragment } = render(<SetlistActionsCell data={{}} />);
+  expect(asFragment()).toMatchInlineSnapshot(`
+<DocumentFragment>
   <div
     data-theme="light"
   >
@@ -47,8 +51,7 @@ exports[`renders setlist actions given a setlist 1`] = `
               <div
                 class="flex-[1_1_auto] min-w-0 mt-1 mb-1"
               >
-                 
-                View
+                 View
               </div>
             </a>
             <a
@@ -67,8 +70,7 @@ exports[`renders setlist actions given a setlist 1`] = `
               <div
                 class="flex-[1_1_auto] min-w-0 mt-1 mb-1"
               >
-                 
-                Edit
+                 Edit
               </div>
             </a>
             <div
@@ -86,8 +88,7 @@ exports[`renders setlist actions given a setlist 1`] = `
               <div
                 class="flex-[1_1_auto] min-w-0 mt-1 mb-1"
               >
-                 
-                Delete
+                 Delete
               </div>
                
             </div>
@@ -99,5 +100,6 @@ exports[`renders setlist actions given a setlist 1`] = `
       />
     </div>
   </div>
-</div>
-`;
+</DocumentFragment>
+`);
+});

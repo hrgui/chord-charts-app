@@ -1,6 +1,6 @@
 import React from "react";
 import { renderWithAppController as render } from "testUtils/renderWithAppProvider";
-import SetlistsListPage from "./SetlistsListPage";
+import SetlistsListPage from "./SetlistsListContainer";
 import { waitFor } from "@testing-library/react";
 
 //TODO FIXME

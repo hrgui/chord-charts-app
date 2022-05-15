@@ -1,17 +1,19 @@
 import React from "react";
 import { Routes, Navigate, useLocation, Route } from "react-router-dom";
-import AboutPage from "app/about/AboutPage";
-import SetlistsListPage from "app/setlists/SetlistsListPage";
+import AboutPage from "pages/AboutPage";
 
 import SongsListPage from "pages/SongsListPage";
 import SongViewPage from "pages/SongViewPage";
 import NewSongFormPage from "pages/NewSongFormPage";
 import EditSongFormPage from "pages/EditSongFormPage";
 
-import AddToSetlistFormPage from "app/setlists/form/AddToSetlistFormPage";
-import SetlistViewPage from "app/setlists/SetlistViewPage";
+import AddToSetlistFormPage from "pages/AddToSetlistFormPage";
+import SetlistViewPage from "pages/SetlistViewPage";
+import SetlistsListPage from "pages/SetlistsListPage";
+import { NewSetlistFormPage } from "pages/NewSetlistFormPage";
+import { EditSetlistFormPage } from "pages/EditSetlistFormPage";
+
 import RouteModal from "app/core/RouteModal";
-import { NewSetlistFormPage, EditSetlistFormPage } from "./setlists/form/SetlistFormPage";
 
 export function AppRootRoutes() {
   const location = useLocation();

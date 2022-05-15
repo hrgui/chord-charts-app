@@ -11,7 +11,7 @@ import FormSection from "ui/form/FormSection";
 import { useTranslation } from "react-i18next";
 import FormControl from "ui/form/FormControl";
 import { Button, Input, Modal } from "react-daisyui";
-import { SongListContainer } from "app/songs/SongsListPage";
+import { SongListContainer } from "components/songs/SongsListPage";
 import SetlistSongFieldRow from "./SetlistSongFieldRow";
 import { useNavigate, useParams } from "react-router-dom";
 import PageLoading from "lib/layout/PageLoading";

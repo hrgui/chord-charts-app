@@ -1,5 +1,5 @@
 import * as React from "react";
-import ChordSelect from "app/songs/components/ChordSelect";
+import ChordSelect from "components/songs/ChordSelect";
 import { useGetSongQuery } from "app/services/songs";
 import Skeleton from "ui/Skeleton";
 import MaterialSymbol from "ui/icons/MaterialSymbol";

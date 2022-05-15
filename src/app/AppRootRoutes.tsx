@@ -1,10 +1,10 @@
 import React from "react";
 import { Routes, Navigate, useLocation, Route } from "react-router-dom";
-import SongsListPage from "app/songs/SongsListPage";
+import SongsListPage from "components/songs/SongsListPage";
 import AboutPage from "app/about/AboutPage";
 import SetlistsListPage from "app/setlists/SetlistsListPage";
-import SongViewPage from "app/songs/SongViewPage";
-import { NewSongFormPage, EditSongFormPage } from "app/songs/form/SongFormPage";
+import SongViewPage from "components/songs/SongViewPage";
+import { NewSongFormPage, EditSongFormPage } from "components/songs/form/SongFormPage";
 import AddToSetlistFormPage from "app/setlists/form/AddToSetlistFormPage";
 import SetlistViewPage from "app/setlists/SetlistViewPage";
 import RouteModal from "app/core/RouteModal";

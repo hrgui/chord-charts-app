@@ -4,8 +4,8 @@ import {
   useGetSongQuery,
   useUpdateSongMutation,
 } from "app/services/songs";
-import ChordSelect from "app/songs/components/ChordSelect";
-import { YoutubeView } from "app/songs/components/YoutubeView";
+import ChordSelect from "components/songs/ChordSelect";
+import { YoutubeView } from "components/songs/YoutubeView";
 import Page from "lib/layout/Page";
 import React from "react";
 import {
@@ -19,7 +19,7 @@ import { useTranslation } from "react-i18next";
 import { Button, Input } from "react-daisyui";
 import FormControl from "ui/form/FormControl";
 import FormSection from "ui/form/FormSection";
-import ChordChartTextInput from "app/songs/components/ChordChartTextInput";
+import ChordChartTextInput from "components/songs/ChordChartTextInput";
 import { SongSectionFieldPanel } from "./SongSectionFieldPanel";
 import { useNavigate, useParams } from "react-router-dom";
 import PageLoading from "lib/layout/PageLoading";

@@ -1,16 +1,14 @@
 import * as React from "react";
-import SongSectionView from "./components/SongSectionView";
-import ChordSelect from "./components/ChordSelect";
+import SongSectionView from "components/songs/SongSectionView";
+import ChordSelect from "components/songs/ChordSelect";
 
-import ConnectedYoutubeView from "./components/YoutubeView";
+import ConnectedYoutubeView from "components/songs/YoutubeView";
 import classnames from "classnames";
 import { ToolbarSpacer } from "lib/layout/ToolbarSpacer";
-import { createPortal } from "react-dom";
 import { SongSectionsNavMenu } from "./CurrentSongNavMenu";
 import { Button } from "react-daisyui";
 import MaterialSymbol from "ui/icons/MaterialSymbol";
 import { twMerge } from "tailwind-merge";
-import { getOrCreateElement } from "lib/layout/portalSelector";
 import Page from "lib/layout/Page";
 
 interface SongViewProps {

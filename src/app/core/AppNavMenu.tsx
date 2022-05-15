@@ -1,6 +1,6 @@
 import * as React from "react";
 import ListItemLink from "lib/layout/ListItemLink";
-import SongsNavMenu from "app/songs/menu/SongsNavMenu";
+import SongsNavMenu from "components/songs/menu/SongsNavMenu";
 import SetlistsNavMenu from "app/setlists/menu/SetlistsNavMenu";
 import { useAppBarActions } from "lib/hooks/useAppBarActions";
 import { useGetAppBarData } from "lib/hooks/useGetAppBarData";

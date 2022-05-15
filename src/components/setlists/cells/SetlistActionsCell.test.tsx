@@ -40,7 +40,7 @@ test("renders setlist actions given a setlist", () => {
               href="/setlist/undefined"
             >
               <div
-                class="text-white inline-flex min-w-[56px] flex-shrink-0"
+                class="inline-flex min-w-[56px] flex-shrink-0"
               >
                 <span
                   class="material-symbols-outlined"
@@ -59,7 +59,7 @@ test("renders setlist actions given a setlist", () => {
               href="/setlist/undefined/edit"
             >
               <div
-                class="text-white inline-flex min-w-[56px] flex-shrink-0"
+                class="inline-flex min-w-[56px] flex-shrink-0"
               >
                 <span
                   class="material-symbols-outlined"
@@ -77,7 +77,7 @@ test("renders setlist actions given a setlist", () => {
               class="flex-[1_1_auto] min-w-0 mt-1 mb-1 flex p-2 items-center hover:bg-base-100 cursor-pointer"
             >
               <div
-                class="text-white inline-flex min-w-[56px] flex-shrink-0"
+                class="inline-flex min-w-[56px] flex-shrink-0"
               >
                 <span
                   class="material-symbols-outlined"

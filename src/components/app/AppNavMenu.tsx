@@ -12,6 +12,7 @@ import { Button } from "react-daisyui";
 import ClearLocalDbAction from "./actions/ClearLocalDbAction";
 import { useTranslation } from "react-i18next";
 import DarkThemeAction from "./actions/DarkThemeAction";
+import MaterialSymbol from "ui/icons/MaterialSymbol";
 
 export function AppNavMenu() {
   const config = useGetAppBarData();
@@ -39,7 +40,7 @@ export function AppNavMenu() {
       <List dense>
         <ListItemLink to="/">
           <ListItemIcon>
-            <span className="material-symbols-outlined">home</span>
+            <MaterialSymbol icon={"home"} />
           </ListItemIcon>
           <ListItemText>{t("home")}</ListItemText>
         </ListItemLink>
@@ -52,6 +53,9 @@ export function AppNavMenu() {
       <Divider />
       <List>
         <ListItemLink to="/about">
+          <ListItemIcon>
+            <MaterialSymbol icon={"info"} />
+          </ListItemIcon>
           <ListItemText>{t("about")}</ListItemText>
         </ListItemLink>
         <ClearLocalDbAction />

@@ -24,7 +24,7 @@ export function AppBar({
   appBarEndChildren,
 }: AppBarProps) {
   return (
-    <Navbar className="shadow-sm bg-neutral text-neutral-content min-h-[48px]">
+    <Navbar className="shadow-sm min-h-[48px]">
       <Navbar.Start>
         <button className="btn btn-square btn-sm mr-1">
           <MenuIcon

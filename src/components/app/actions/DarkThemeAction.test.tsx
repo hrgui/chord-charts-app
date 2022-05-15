@@ -3,7 +3,8 @@ import { renderWithAppProvider as render } from "testUtils/renderWithAppProvider
 import DarkThemeAction from "./DarkThemeAction";
 import { fireEvent } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
-import { CHORD_CHARTS_DARK_MODE_KEY } from "store/uiStateSlice";
+import { CHORD_CHARTS_DARK_MODE_KEY, getDarkModeInitialState } from "store/uiStateSlice";
+import { createStore } from "store";
 
 afterEach(() => {
   window.localStorage.setItem(CHORD_CHARTS_DARK_MODE_KEY, "false");
@@ -21,12 +22,16 @@ it("should render the component, when clicking, should toggle the dark mode", ()
   expect(el2).toBeInTheDocument();
 });
 
-//TODO fixme
-// this is not working because the initial state is created PRIOR to this, at the import level
-// it was working previously because we didn't reset the store
-xit("should be set to whatever the local storage is saying (true === On)", () => {
+it("should be set to whatever the local storage is saying (true === On)", () => {
+  window.matchMedia = jest.fn().mockReturnValueOnce({ matches: false });
   window.localStorage.setItem(CHORD_CHARTS_DARK_MODE_KEY, "true");
-  const { getByText } = render(<DarkThemeAction />);
+  const { getByText } = render(<DarkThemeAction />, {
+    store: createStore({
+      uiState: {
+        darkMode: getDarkModeInitialState(),
+      },
+    }),
+  });
   const el = getByText(/Dark theme: On/i);
   expect(el).toBeInTheDocument();
 });

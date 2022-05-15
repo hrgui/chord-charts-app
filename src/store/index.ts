@@ -4,8 +4,9 @@ import darkModeMiddlware from "middleware/darkModeMiddleware";
 import { SongApi } from "../api/services/songs";
 import { SetlistApi } from "../api/services/setlists";
 
-export function createStore() {
+export function createStore(preloadedState = {}) {
   return configureStore({
+    preloadedState,
     reducer: {
       uiState: uiStateReducer,
       [SongApi.reducerPath]: SongApi.reducer,

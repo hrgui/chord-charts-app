@@ -9,62 +9,14 @@ import { List, ListItemText, ListItemIcon, ListItem } from "ui/List";
 import Divider from "ui/Divider";
 import CloseIcon from "ui/icons/CloseIcon";
 import { Button } from "react-daisyui";
-import db from "api/db";
-
-export interface NavMenuProps {
-  classes?: any;
-}
-
-export function HomeNavMenu() {
-  return (
-    <List dense>
-      <ListItemLink to="/">
-        <ListItemIcon>
-          <span className="material-symbols-outlined">home</span>
-        </ListItemIcon>
-        <ListItemText>Home</ListItemText>
-      </ListItemLink>
-    </List>
-  );
-}
-
-export function NavMenuItems() {
-  return (
-    <>
-      <HomeNavMenu />
-      <Divider />
-      <Divider />
-      <SongsNavMenu />
-      <Divider />
-      <SetlistsNavMenu />
-      <Divider />
-      <List>
-        <ListItemLink to="/about">
-          <ListItemText>About</ListItemText>
-        </ListItemLink>
-        <ListItem
-          onClick={() => {
-            const agreement = confirm(
-              "This will destroy everything you have created locally! Are you sure you want to do this?"
-            );
-            if (!agreement) {
-              return;
-            }
-
-            db.destroy();
-            window.location.href = "/";
-          }}
-        >
-          <ListItemText>Clear Local DB</ListItemText>
-        </ListItem>
-      </List>
-    </>
-  );
-}
+import ClearLocalDbAction from "./actions/ClearLocalDbAction";
+import { useTranslation } from "react-i18next";
+import DarkThemeAction from "./actions/DarkThemeAction";
 
 export function AppNavMenu() {
   const config = useGetAppBarData();
   const { toggleNavMenu } = useAppBarActions();
+  const { t } = useTranslation();
 
   if (!config) {
     return null;
@@ -84,7 +36,27 @@ export function AppNavMenu() {
         ></Button>
       </div>
       <Divider />
-      <NavMenuItems />
+      <List dense>
+        <ListItemLink to="/">
+          <ListItemIcon>
+            <span className="material-symbols-outlined">home</span>
+          </ListItemIcon>
+          <ListItemText>{t("home")}</ListItemText>
+        </ListItemLink>
+      </List>
+      <Divider />
+      <Divider />
+      <SongsNavMenu />
+      <Divider />
+      <SetlistsNavMenu />
+      <Divider />
+      <List>
+        <ListItemLink to="/about">
+          <ListItemText>{t("about")}</ListItemText>
+        </ListItemLink>
+        <ClearLocalDbAction />
+        <DarkThemeAction />
+      </List>
     </Drawer>
   );
 }

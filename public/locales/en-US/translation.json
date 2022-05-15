@@ -1,5 +1,6 @@
 {
-  "graphiql": "API / GraphIQL Explorer",
+  "home": "Home",
+  "about": "About",
   "edit": "Edit",
   "view": "View",
   "cancel": "Cancel",
@@ -15,6 +16,8 @@
   "actions": "Actions",
   "action/login": "Login",
   "action/logout": "Logout",
+  "actions/clearlocaldb": "Clear Local DB",
+  "actions/clearlocaldb/confirm": "This will destroy everything you have created locally! Are you sure you want to do this?",
   "user/logged_in_as": "Logged in as {{userDisplayName}}",
   "user/work_as": "Working as {{userDisplayName}}",
   "user/my_profile": "My Profile",

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 export const CHORD_CHARTS_DARK_MODE_KEY = "CHORD_CHARTS_DARK_MODE";
 
-function getDarkModeInitialState() {
+export function getDarkModeInitialState() {
   const prefersDarkModeInitially = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
   const localStoragePreference = window.localStorage.getItem(CHORD_CHARTS_DARK_MODE_KEY);

@@ -2,6 +2,7 @@ import React from "react";
 import AppNavMenu from "./AppNavMenu";
 import ContentContainer from "ui/layout/ContentContainer";
 import AppBar from "./AppBar";
+import { ToolbarSpacer } from "ui/layout/ToolbarSpacer";
 
 export function AppLayout({
   children,
@@ -18,6 +19,7 @@ export function AppLayout({
         <AppNavMenu />
         <ContentContainer>
           <AppBar appBarEndChildren={appBarEndChildren} title={title} />
+          <ToolbarSpacer />
           {children}
         </ContentContainer>
       </div>

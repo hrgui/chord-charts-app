@@ -24,7 +24,7 @@ export function AppBar({
   appBarEndChildren,
 }: AppBarProps) {
   return (
-    <Navbar className="shadow-sm min-h-[48px] truncate overflow-hidden max-h-[48px] appbar">
+    <Navbar className="shadow-sm min-h-[48px] truncate overflow-hidden max-h-[48px] appbar fixed">
       <Navbar.Start>
         <button className="btn btn-square btn-ghost btn-sm mr-1">
           <MenuIcon

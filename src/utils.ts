@@ -36,6 +36,10 @@ export const isDesktop = () => {
   return window.matchMedia("(min-width: 640px)").matches;
 };
 
+export function wait(time: number) {
+  return new Promise((resolve) => setTimeout(resolve, time));
+}
+
 export const isMobile = () => {
   return !isDesktop();
 };

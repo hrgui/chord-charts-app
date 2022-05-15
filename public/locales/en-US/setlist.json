@@ -1,4 +1,11 @@
 {
+  "action/create/submitting": "Creating setlist {{title}}",
+  "action/create/submitted": "Successfully created setlist {{title}}",
+  "action/create/error": "Unable to create setlist due to an error",
+  "action/edit/submitting": "Updating setlist {{title}}",
+  "action/edit/submitted": "Successfully updated setlist {{title}}",
+  "action/edit/error": "Unable to update setlist due to an error",
+  "load/error": "Unable to load setlist due to an error",
   "single": "Setlist",
   "plural": "Setlists",
   "action/new_setlist": "New Setlist",

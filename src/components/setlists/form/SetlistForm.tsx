@@ -10,12 +10,11 @@ import SetlistSongFieldRow from "./SetlistSongFieldRow";
 
 type SetlistFormProps = {
   onSubmit: SubmitHandler<Setlist>;
-  onError: SubmitErrorHandler<Setlist>;
   isLoading?: boolean;
   data: Setlist;
 };
 
-export function SetlistForm({ onSubmit, onError, data }: SetlistFormProps) {
+export function SetlistForm({ onSubmit, data }: SetlistFormProps) {
   const { register, handleSubmit, control } = useForm<Setlist>({ defaultValues: data });
   const { t } = useTranslation();
   const { fields, append, remove, move } = useFieldArray({
@@ -25,7 +24,7 @@ export function SetlistForm({ onSubmit, onError, data }: SetlistFormProps) {
   const [open, setDialogOpen] = React.useState(false);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit, onError)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <FormSection>
         <FormControl label={t("setlist:form/label/date")} htmlFor="date">
           <Input {...register("date")} type="date" id="date" />

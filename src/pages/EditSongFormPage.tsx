@@ -1,26 +1,32 @@
+import React from "react";
+import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
+import { SubmitHandler } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
+
 import { useGetSongQuery, Song, useUpdateSongMutation } from "api/services/songs";
 import { SongForm } from "components/songs/form/SongForm";
 import Page from "ui/layout/Page";
 import PageLoading from "ui/layout/PageLoading";
-import React from "react";
-import { SubmitHandler, SubmitErrorHandler } from "react-hook-form";
-import { useNavigate, useParams } from "react-router-dom";
+import ErrorAlert from "ui/alert/ErrorAlert";
 
 export function EditSongFormPage() {
   const [updateSong] = useUpdateSongMutation();
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const { isLoading, data = {} as Song, error } = useGetSongQuery(id!);
+  const { t } = useTranslation();
 
   const handleSubmit: SubmitHandler<Song> = async (values) => {
-    await updateSong(values);
-    navigate(`/song/${id}/view`);
-  };
+    const promise = updateSong(values);
 
-  const handleError: SubmitErrorHandler<Song> = (values, error) => {
-    alert("TODO: Unable to submit form");
-    console.error(values);
-    console.error(error);
+    await toast.promise(promise, {
+      loading: t("song:action/edit/submitting", { title: values.title }),
+      success: t("song:action/edit/submitted", { title: values.title }),
+      error: (err) => <ErrorAlert message={t("song:action/edit/error")} error={err} />,
+    });
+
+    navigate(`/song/${values._id}/view`);
   };
 
   if (isLoading) {
@@ -28,12 +34,12 @@ export function EditSongFormPage() {
   }
 
   if (error) {
-    return <pre>{JSON.stringify(error)}</pre>;
+    return <ErrorAlert message={t("song:load/error")} error={error as Error} />;
   }
 
   return (
     <Page title={`Edit ${data.title}`}>
-      <SongForm data={data} onSubmit={handleSubmit} onError={handleError} />
+      <SongForm data={data} onSubmit={handleSubmit} />
     </Page>
   );
 }

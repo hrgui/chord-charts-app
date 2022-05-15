@@ -16,6 +16,9 @@ test("renders setlist Title given a setlist", () => {
     >
       Donald Duck Setlist
     </a>
+    <div
+      style="position: fixed; z-index: 9999; top: 16px; left: 16px; right: 16px; bottom: 16px; pointer-events: none;"
+    />
   </div>
 </DocumentFragment>
 `);

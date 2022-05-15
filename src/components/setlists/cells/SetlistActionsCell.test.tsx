@@ -34,7 +34,9 @@ test("renders setlist actions given a setlist", () => {
           class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
           tabindex="0"
         >
-          <ul>
+          <ul
+            class="bg-base-200 rounded-box shadow-sm"
+          >
             <a
               class="flex p-2 items-center hover:bg-base-100"
               href="/setlist/undefined"
@@ -99,6 +101,9 @@ test("renders setlist actions given a setlist", () => {
         class="dropdown-content"
       />
     </div>
+    <div
+      style="position: fixed; z-index: 9999; top: 16px; left: 16px; right: 16px; bottom: 16px; pointer-events: none;"
+    />
   </div>
 </DocumentFragment>
 `);

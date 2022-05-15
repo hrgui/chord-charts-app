@@ -6,6 +6,7 @@ import { store as defaultStore } from "store";
 import { Provider } from "react-redux";
 import { AppThemeProvider } from "./AppThemeProvider";
 import PageLoading from "ui/layout/PageLoading";
+import { Toaster } from "react-hot-toast";
 
 interface AppControllerProps {
   children?;
@@ -34,7 +35,10 @@ export function AppProvider({
       <Provider store={store}>
         <HelmetProvider>
           <Router basename={basename} history={history}>
-            <AppThemeProvider>{children}</AppThemeProvider>
+            <AppThemeProvider>
+              {children}
+              <Toaster position="bottom-right" />
+            </AppThemeProvider>
           </Router>
         </HelmetProvider>
       </Provider>

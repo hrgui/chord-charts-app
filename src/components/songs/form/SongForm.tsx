@@ -18,12 +18,11 @@ import { SongSectionFieldPanel } from "./SongSectionFieldPanel";
 
 type SongFormProps = {
   onSubmit: SubmitHandler<Song>;
-  onError: SubmitErrorHandler<Song>;
   isLoading?: boolean;
   data: Song;
 };
 
-export function SongForm({ onSubmit, onError, data }: SongFormProps) {
+export function SongForm({ onSubmit, data }: SongFormProps) {
   const { register, handleSubmit, watch, control } = useForm<Song>({ defaultValues: data });
   const { fields, append, remove, move } = useFieldArray({
     control,
@@ -38,7 +37,7 @@ export function SongForm({ onSubmit, onError, data }: SongFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit, onError)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <YoutubeView className="youtube-view-input" value={currentYoutubeValue} />
       <FormSection>
         <FormControl htmlFor="title" label={t("song:label/title")}>

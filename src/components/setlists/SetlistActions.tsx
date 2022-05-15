@@ -34,7 +34,7 @@ function SetlistActionsList({
 
   if (addToSetlistMode) {
     return (
-      <List dense>
+      <List dense className="bg-base-200 rounded-box shadow-sm">
         <ListItem
           button
           onClick={async (e) => {
@@ -64,7 +64,7 @@ function SetlistActionsList({
   }
 
   return (
-    <List dense>
+    <List dense className="bg-base-200 rounded-box shadow-sm">
       <ListItemLink to={`/setlist/${id}`}>
         <ListItemIcon>
           <MaterialSymbol icon="pageview" />

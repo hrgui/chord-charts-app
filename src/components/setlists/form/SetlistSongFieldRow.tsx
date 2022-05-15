@@ -4,6 +4,7 @@ import { useGetSongQuery } from "api/services/songs";
 import Skeleton from "ui/Skeleton";
 import MaterialSymbol from "ui/icons/MaterialSymbol";
 import { SetlistSong } from "api/services/setlists";
+import { Dropdown } from "react-daisyui";
 
 export interface ISetlistSongFieldRowProps {
   index: number;
@@ -19,49 +20,53 @@ export function SetlistSongFieldRow(props: ISetlistSongFieldRowProps) {
   const { index, setlistSong, isMoveUpDisabled, isMoveDownDisabled, onSwap, onRemove, register } =
     props;
   const { data: song, isLoading: loading } = useGetSongQuery(setlistSong._id);
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const actions = (
+    <div className="btn-group">
+      <button
+        className="btn btn-sm"
+        disabled={isMoveUpDisabled}
+        type="button"
+        onClick={(e) => onSwap(index, index - 1)}
+      >
+        <MaterialSymbol icon="arrow_upward" />
+      </button>
+      <button
+        className="btn btn-sm"
+        disabled={isMoveDownDisabled}
+        type="button"
+        onClick={(e) => onSwap(index, index + 1)}
+      >
+        <MaterialSymbol icon="arrow_downward" />
+      </button>
+      <button className="btn btn-sm" type="button" onClick={(e) => onRemove(index)}>
+        <MaterialSymbol icon="delete" />
+      </button>
+    </div>
+  );
 
   if (loading) {
     return (
       <tr>
-        <td>{index + 1}.</td>
+        <td className="hidden sm:table-cell">{index + 1}.</td>
         <td>{<Skeleton width={Math.floor(Math.random() * 100)} height={16} />}</td>
         <td>{<Skeleton width={Math.floor(Math.random() * 75)} height={16} />}</td>
         <td>{<Skeleton width={50} height={16} />}</td>
-        <td>{<Skeleton width={200} height={16} />}</td>
       </tr>
     );
   }
 
   return (
     <tr>
-      <td>{index + 1}.</td>
-      <td>{song?.title?.toUpperCase() || setlistSong._id}</td>
-      <td>{song?.artist}</td>
+      <td className="hidden sm:table-cell">{index + 1}.</td>
+      <td className="truncate">
+        <div className="truncate">{song?.title?.toUpperCase() || setlistSong._id}</div>
+        {actions}
+      </td>
+      <td className="hidden sm:table-cell">{song?.artist}</td>
       <td>
         <ChordSelect {...register(`songs.${index}.settings.overrideKey`)} />
-      </td>
-      <td>
-        <div className="btn-group">
-          <button
-            className="btn"
-            disabled={isMoveUpDisabled}
-            type="button"
-            onClick={(e) => onSwap(index, index - 1)}
-          >
-            <MaterialSymbol icon="arrow_upward" />
-          </button>
-          <button
-            className="btn"
-            disabled={isMoveDownDisabled}
-            type="button"
-            onClick={(e) => onSwap(index, index + 1)}
-          >
-            <MaterialSymbol icon="arrow_downward" />
-          </button>
-          <button className="btn" type="button" onClick={(e) => onRemove(index)}>
-            <MaterialSymbol icon="delete" />
-          </button>
-        </div>
       </td>
     </tr>
   );

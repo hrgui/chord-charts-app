@@ -40,14 +40,13 @@ export function SetlistForm({ onSubmit, data }: SetlistFormProps) {
       <FormSection>
         <h3 className="font-semibold m-1">{t("setlist:form/label/songs")}</h3>
 
-        <table className="table table-zebra w-full">
+        <table className="table table-fixed table-zebra w-full">
           <thead>
             <tr>
-              <th></th>
-              <th className="w-3/5">Title</th>
-              <th className="w-1/7">Artist</th>
-              <th className="w-1/7">Key</th>
-              <th className="w-1/7">Actions</th>
+              <th className="hidden sm:table-cell"></th>
+              <th className="w-[calc(100%_-_(80px_+_4rem))] sm:w:3/5">Title</th>
+              <th className="hidden sm:table-cell sm:w-1/7">Artist</th>
+              <th className="w-[80px]">Key</th>
             </tr>
           </thead>
           <tbody>

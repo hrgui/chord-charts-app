@@ -89,6 +89,22 @@ export const SongApi = createApi({
   }),
 });
 
+export function getNewSongTemplate(): Song {
+  return {
+    title: `Untitled Song ${new Date().toString()}`,
+    key: "C",
+    artist: "Untitled",
+    youtube: "https://www.youtube.com/watch?v=E7_adG0nV0E",
+    sections: [
+      {
+        type: "text",
+        title: "Untitled Section",
+        body: "A B C \n Sample test",
+      },
+    ],
+  };
+}
+
 export const {
   useAddSongMutation,
   useGetSongQuery,

@@ -10,15 +10,6 @@ interface Props {
   overrideKey?: string;
 }
 
-// const Container = styled.div`
-//   display: inherit; /* pass through div */
-//   .chord {
-//     font-family: "Roboto Mono", monospace;
-//     color: ${({ theme }) => (theme.palette.type === "dark" ? "#add8e6" : "#2159df")};
-//     font-weight: 800;
-//   }
-// `;
-
 function chordChartHighlight(input, chordsDisabled, lyricsDisabled?) {
   const isDarkMode = useDarkMode();
   const chordClassName = `chord ${isDarkMode ? "text-[#add8e6]" : "text-[#2159df]"} font-bold`;
@@ -40,7 +31,13 @@ function chordChartHighlight(input, chordsDisabled, lyricsDisabled?) {
   return contents;
 }
 
-const ChordChartView = ({ value, overrideKey, songKey, chordsDisabled, lyricsDisabled }: Props) => {
+export const ChordChartView = ({
+  value,
+  overrideKey,
+  songKey,
+  chordsDisabled,
+  lyricsDisabled,
+}: Props) => {
   if (overrideKey && songKey && songKey !== overrideKey) {
     value = transpose(value!, songKey!, overrideKey!);
   }

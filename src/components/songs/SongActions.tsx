@@ -14,7 +14,6 @@ interface SongActionsProps {
 }
 
 function SongActionsList({ id }: { id?; addToSetlistMode? }) {
-  const deleteSetlist = () => {};
   const { t } = useTranslation();
   const location = useLocation();
 

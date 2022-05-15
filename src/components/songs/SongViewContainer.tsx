@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useParams } from "react-router-dom";
 import Loading from "lib/layout/Loading";
 import SongView from "./SongView";
 import { useGetSongQuery } from "app/services/songs";
@@ -55,11 +54,3 @@ export const SongViewContainer: React.FC<SongViewContainerProps> = (props) => {
     />
   );
 };
-
-const SongViewPage = () => {
-  const { id } = useParams<any>();
-
-  return <SongViewContainer id={id!} />;
-};
-
-export default SongViewPage;

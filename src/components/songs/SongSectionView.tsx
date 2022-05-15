@@ -3,7 +3,7 @@ import ChordChartView from "./ChordChartView";
 import classnames from "classnames";
 import Close from "ui/icons/CloseIcon";
 
-interface SongSectionViewProps {
+export interface SongSectionViewProps {
   chordsDisabled?: boolean;
   lyricsDisabled?: boolean;
   overrideKey?: string;
@@ -14,7 +14,7 @@ interface SongSectionViewProps {
   onRequestHide?: any;
 }
 
-export default ({
+export const SongSectionView = ({
   chordsDisabled,
   lyricsDisabled,
   overrideKey,
@@ -52,3 +52,5 @@ export default ({
     </div>
   );
 };
+
+export default SongSectionView;

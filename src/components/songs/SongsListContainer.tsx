@@ -5,36 +5,7 @@ import { Trans } from "react-i18next";
 import { useTranslation } from "react-i18next";
 import SongActions from "./SongActions";
 import { Song, useGetSongsQuery } from "app/services/songs";
-import Page from "lib/layout/Page";
-
-interface SongsListPageProps {
-  path?: string;
-  isAdmin?: boolean;
-}
-
-export interface SongsTableProps {
-  onFetch;
-  onGridReady?;
-  afterFetch?;
-  isSelectMode?: boolean;
-  onSelectionChanged?;
-}
-
-class SongTitleCell extends React.Component<any, any> {
-  render() {
-    const { value, data } = this.props;
-
-    if (!data) {
-      return null;
-    }
-
-    return (
-      <Link className="truncate lg:whitespace-normal" to={`/song/${data._id}/view`}>
-        {value}
-      </Link>
-    );
-  }
-}
+import SongTitleCell from "./table/SongTitleCell";
 
 export function SongListContainer({
   addToSetlistMode,
@@ -111,13 +82,3 @@ export function SongListContainer({
     />
   );
 }
-
-const SongsListPage: React.FC<SongsListPageProps> = () => {
-  return (
-    <Page title="All Songs">
-      <SongListContainer />
-    </Page>
-  );
-};
-
-export default SongsListPage;

@@ -9,7 +9,7 @@ interface ChordChartTextInputProps {
   className?: string;
 }
 
-const ChordChartTextInput = ({
+export const ChordChartTextInput = ({
   value = "",
   className,
   onValueChange = (code) => null,

@@ -1,12 +1,6 @@
-import {
-  Song,
-  useAddSongMutation,
-  useGetSongQuery,
-  useUpdateSongMutation,
-} from "app/services/songs";
+import { Song } from "app/services/songs";
 import ChordSelect from "components/songs/ChordSelect";
 import { YoutubeView } from "components/songs/YoutubeView";
-import Page from "lib/layout/Page";
 import React from "react";
 import {
   useForm,
@@ -21,8 +15,6 @@ import FormControl from "ui/form/FormControl";
 import FormSection from "ui/form/FormSection";
 import ChordChartTextInput from "components/songs/ChordChartTextInput";
 import { SongSectionFieldPanel } from "./SongSectionFieldPanel";
-import { useNavigate, useParams } from "react-router-dom";
-import PageLoading from "lib/layout/PageLoading";
 
 type SongFormProps = {
   onSubmit: SubmitHandler<Song>;
@@ -30,22 +22,6 @@ type SongFormProps = {
   isLoading?: boolean;
   data: Song;
 };
-
-export function getNewSongTemplate(): Song {
-  return {
-    title: `Untitled Song ${new Date().toString()}`,
-    key: "C",
-    artist: "Untitled",
-    youtube: "https://www.youtube.com/watch?v=E7_adG0nV0E",
-    sections: [
-      {
-        type: "text",
-        title: "Untitled Section",
-        body: "A B C \n Sample test",
-      },
-    ],
-  };
-}
 
 export function SongForm({ onSubmit, onError, data }: SongFormProps) {
   const { register, handleSubmit, watch, control } = useForm<Song>({ defaultValues: data });
@@ -117,61 +93,5 @@ export function SongForm({ onSubmit, onError, data }: SongFormProps) {
         <Button type="submit">{t("save")}</Button>
       </FormSection>
     </form>
-  );
-}
-
-export function NewSongFormPage() {
-  const newSongTemplate = getNewSongTemplate();
-  const [createSong] = useAddSongMutation();
-  const navigate = useNavigate();
-
-  const handleSubmit: SubmitHandler<Song> = async (values) => {
-    console.log("im called");
-    await createSong(values);
-    navigate("/songs");
-  };
-
-  const handleError: SubmitErrorHandler<Song> = (values, error) => {
-    alert("TODO: Unable to submit form");
-    console.error(values);
-    console.error(error);
-  };
-
-  return (
-    <Page title="New Song">
-      <SongForm data={newSongTemplate} onSubmit={handleSubmit} onError={handleError} />
-    </Page>
-  );
-}
-
-export function EditSongFormPage() {
-  const [updateSong] = useUpdateSongMutation();
-  const navigate = useNavigate();
-  const { id } = useParams<{ id: string }>();
-  const { isLoading, data = {} as Song, error } = useGetSongQuery(id!);
-
-  const handleSubmit: SubmitHandler<Song> = async (values) => {
-    await updateSong(values);
-    navigate(`/song/${id}/view`);
-  };
-
-  const handleError: SubmitErrorHandler<Song> = (values, error) => {
-    alert("TODO: Unable to submit form");
-    console.error(values);
-    console.error(error);
-  };
-
-  if (isLoading) {
-    return <PageLoading />;
-  }
-
-  if (error) {
-    return <pre>{JSON.stringify(error)}</pre>;
-  }
-
-  return (
-    <Page title={`Edit ${data.title}`}>
-      <SongForm data={data} onSubmit={handleSubmit} onError={handleError} />
-    </Page>
   );
 }

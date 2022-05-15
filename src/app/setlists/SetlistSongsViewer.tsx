@@ -1,5 +1,5 @@
 import * as React from "react";
-import { SongViewContainer } from "components/songs/SongViewPage";
+import { SongViewContainer } from "components/songs/SongViewContainer";
 import { SetlistSongPagination } from "./SetlistSongPagination";
 import { CurrentSetlistNavMenu } from "./CurrentSetlistNavMenu";
 import { Setlist, SetlistSong } from "app/services/setlists";

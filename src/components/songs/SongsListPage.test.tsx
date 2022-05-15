@@ -1,6 +1,6 @@
 import React from "react";
 import { renderWithAppController as render } from "testUtils/renderWithAppProvider";
-import SongsListPage from "./SongsListPage";
+import SongsListPage from "./SongsListContainer";
 import { waitFor } from "@testing-library/react";
 
 //TODO fixme

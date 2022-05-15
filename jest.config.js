@@ -1,7 +1,15 @@
 /** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 module.exports = {
   roots: ["<rootDir>/src"],
-  collectCoverageFrom: ["src/**/*.{js,jsx,ts,tsx}", "!src/**/*.d.ts"],
+  collectCoverageFrom: [
+    "src/**/*.{js,jsx,ts,tsx}",
+    "!src/**/*.d.ts",
+    "!src/i18n.ts",
+    "!src/index.tsx",
+    "!src/polyfills.ts",
+    "!src/setupDevEnv.ts",
+    "!src/components/app/AppRootRoutes.tsx",
+  ],
   setupFiles: ["react-app-polyfill/jsdom"],
   setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
   testMatch: [

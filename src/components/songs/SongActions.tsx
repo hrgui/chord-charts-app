@@ -45,8 +45,8 @@ function SongActionsList({ id }: { id?; addToSetlistMode? }) {
         to={{
           pathname: "/setlist/add",
           search: `?song_id=${id}`,
-          state: { background: location },
         }}
+        state={{ background: location }}
       >
         <ListItemIcon>
           <MaterialSymbol icon="playlist_add" />

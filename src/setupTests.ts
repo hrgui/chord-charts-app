@@ -10,6 +10,10 @@ jest.mock("pouchdb-browser", () => {
   const instance = function () {
     return {
       createIndex: jest.fn().mockReturnValue(new Promise((resolve) => resolve(true))),
+      find: jest.fn(),
+      put: jest.fn(),
+      remove: jest.fn(),
+      get: jest.fn(),
     };
   };
 

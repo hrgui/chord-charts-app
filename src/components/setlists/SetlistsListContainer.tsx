@@ -8,12 +8,12 @@ import { Trans } from "react-i18next";
 import { Setlist, useGetSetlistsQuery } from "api/services/setlists";
 
 interface SetlistTableProps {
-  loading: boolean;
+  loading?: boolean;
   data: Setlist[];
   addToSetlistMode?: boolean;
   song_id?: string;
   onRequestClose?: () => void;
-  error: any;
+  error?: any;
 }
 
 export function TitleColumnDef() {

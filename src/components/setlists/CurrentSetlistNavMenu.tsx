@@ -17,9 +17,10 @@ export interface CurrentSetlistNavMenuProps {
   setlist: Setlist;
   title?: string;
   onChangeSettings?: any;
-  settings;
-  hasUnsavedSettings;
-  onSaveSetlistSettings;
+  /** @deprecated */
+  settings?;
+  hasUnsavedSettings?;
+  onSaveSetlistSettings?;
 }
 
 type SetlistNavigationProps = {
@@ -34,9 +35,12 @@ export function SetlistNavigation({
   onChangeSettings,
 }: SetlistNavigationProps) {
   const { t } = useTranslation();
-  const { data, isLoading: loading } = useGetSongsQuery({
-    _id: { $in: songs.map((s) => s._id) },
-  });
+  const { data, isLoading: loading } = useGetSongsQuery(
+    {
+      _id: { $in: songs.map((s) => s._id) },
+    },
+    { skip: songs.length === 0 }
+  );
 
   const fetchedSongs = data;
 

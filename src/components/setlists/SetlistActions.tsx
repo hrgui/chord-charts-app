@@ -5,9 +5,10 @@ import { ListItem, ListItemIcon, List, ListItemText } from "ui/List";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import MaterialSymbol from "ui/icons/MaterialSymbol";
+import { Setlist } from "api/services/setlists";
 
 interface SetlistActionsProps {
-  setlist?: any;
+  setlist: Setlist;
   addToSetlistMode?: boolean;
   song_id?: string;
   onRequestClose?: () => any;

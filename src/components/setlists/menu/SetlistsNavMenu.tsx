@@ -2,12 +2,10 @@ import * as React from "react";
 import { List, ListItemIcon, ListItemText, ListSubheader } from "ui/List";
 import ListItemLink from "ui/layout/ListItemLink";
 import { useTranslation } from "react-i18next";
-import { useLocation } from "react-router-dom";
 import MaterialSymbol from "ui/icons/MaterialSymbol";
 
 export function SetlistsNavMenu() {
   const { t } = useTranslation();
-  const location = useLocation();
   return (
     <List dense>
       <ListSubheader>{t("setlist:plural")}</ListSubheader>

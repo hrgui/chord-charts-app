@@ -1,8 +1,8 @@
 import * as React from "react";
-import { Modal } from "react-daisyui";
+import { Modal, ModalProps } from "react-daisyui";
 import { useNavigate } from "react-router-dom";
 
-export function RouteModal(props) {
+export function RouteModal(props: ModalProps) {
   const navigate = useNavigate();
 
   return (

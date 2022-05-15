@@ -1,7 +1,7 @@
 import React from "react";
 import { fireEvent } from "@testing-library/react";
 import ChordChartTextInput from "./ChordChartTextInput";
-import { renderWithAppController as render } from "testUtils/renderWithAppProvider";
+import { renderWithAppProvider as render } from "testUtils/renderWithAppProvider";
 
 test("ChordChartTextInput - on value change", () => {
   const onValueChange = jest.fn();

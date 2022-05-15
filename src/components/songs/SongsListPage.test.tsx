@@ -1,5 +1,5 @@
 import React from "react";
-import { renderWithAppController as render } from "testUtils/renderWithAppProvider";
+import { renderWithAppProvider as render } from "testUtils/renderWithAppProvider";
 import SongsListPage from "./SongsListContainer";
 import { waitFor } from "@testing-library/react";
 

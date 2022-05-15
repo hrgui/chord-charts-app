@@ -1,5 +1,5 @@
 import * as React from "react";
-import { renderWithAppController as render } from "testUtils/renderWithAppProvider";
+import { renderWithAppProvider as render } from "testUtils/renderWithAppProvider";
 import AppNavMenu from "./AppNavMenu";
 
 //TODO fixme dark theme location

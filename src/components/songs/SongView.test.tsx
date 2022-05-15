@@ -1,7 +1,7 @@
 import React from "react";
 import SongView, { SongViewKey } from "./SongView";
 import { act } from "@testing-library/react";
-import { renderWithAppController as render } from "testUtils/renderWithAppProvider";
+import { renderWithAppProvider as render } from "testUtils/renderWithAppProvider";
 
 describe("SongView", () => {
   it("should be able to render a song if provided normally", () => {

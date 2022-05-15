@@ -1,5 +1,5 @@
 import * as React from "react";
-import { renderWithAppController as render } from "testUtils/renderWithAppProvider";
+import { renderWithAppProvider as render } from "testUtils/renderWithAppProvider";
 import DarkThemeAction from "./DarkThemeAction";
 import { fireEvent } from "@testing-library/react";
 import { act } from "react-dom/test-utils";

@@ -9,7 +9,7 @@ export interface RenderWithAppControllerProps {
   [name: string]: any;
 }
 
-export function renderWithAppController(
+export function renderWithAppProvider(
   ui,
   {
     store = createStore(),

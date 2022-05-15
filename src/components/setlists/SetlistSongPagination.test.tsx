@@ -1,7 +1,7 @@
 import React from "react";
 import { fireEvent } from "@testing-library/react";
 import { SetlistSongPagination } from "./SetlistSongPagination";
-import { renderWithAppController as render } from "testUtils/renderWithAppProvider";
+import { renderWithAppProvider as render } from "testUtils/renderWithAppProvider";
 
 test("prev clicked - onChange receives -1 to signal upstream to wrap", () => {
   const onChange = jest.fn();

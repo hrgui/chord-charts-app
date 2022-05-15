@@ -1,5 +1,5 @@
 import React from "react";
-import { useDarkMode } from "ui/hooks/useDarkMode";
+import { useDarkMode } from "hooks/useDarkMode";
 import { Theme } from "react-daisyui";
 
 export function AppThemeProvider({ children }) {

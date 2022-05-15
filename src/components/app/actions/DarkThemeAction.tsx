@@ -1,8 +1,8 @@
 import React from "react";
 import { Button } from "react-daisyui";
-import { useDarkMode } from "ui/hooks/useDarkMode";
+import { useDarkMode } from "hooks/useDarkMode";
 import { useTranslation } from "react-i18next";
-import { useAppBarActions } from "ui/hooks/useAppBarActions";
+import { useAppBarActions } from "hooks/useAppBarActions";
 
 interface IDarkThemeActionProps {}
 

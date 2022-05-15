@@ -2,7 +2,7 @@ import * as React from "react";
 import { renderWithAppController as render } from "testUtils/renderWithAppProvider";
 import AppBar from "./AppBar";
 import { fireEvent } from "@testing-library/react";
-import useGetAppBarData from "ui/hooks/useGetAppBarData";
+import useGetAppBarData from "hooks/useGetAppBarData";
 
 const observeMock = {
   observe: () => null,

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Helmet } from "react-helmet-async";
-import { useGetAppBarData } from "ui/hooks/useGetAppBarData";
+import { useGetAppBarData } from "hooks/useGetAppBarData";
 
 interface HeadProps {
   title?: string;

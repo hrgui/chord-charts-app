@@ -4,7 +4,7 @@ import { getUpcomingSunday, toDomDate } from "ui/utils/date";
 
 export interface SetlistSong {
   _id: string;
-  settings: { [name: string]: string };
+  settings: { [name: string]: any };
 }
 
 export interface Setlist {
@@ -72,16 +72,16 @@ export const SetlistApi = createApi({
       // In this case, `getSetlist` will be re-run. `getSetlists` *might*  rerun, if this id was under its results.
       invalidatesTags: (result, error, { _id: id }) => [{ type: apiType, id }],
     }),
-    deleteSetlist: build.mutation<{ success: boolean; id: number }, number>({
-      query(id) {
+    deleteSetlist: build.mutation<Setlist, Partial<Setlist>>({
+      query(data) {
         return {
           type: apiType,
           method: ApiMethod.delete,
-          id: id,
+          body: data,
         };
       },
       // Invalidates all queries that subscribe to this Setlist `id` only.
-      invalidatesTags: (result, error, id) => [{ type: apiType, id }],
+      invalidatesTags: (result, error, { _id: id }) => [{ type: apiType, id }],
     }),
   }),
 });

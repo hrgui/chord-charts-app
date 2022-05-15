@@ -7,6 +7,7 @@ export function RouteModal(props: ModalProps) {
 
   return (
     <Modal
+      className="w-11/12 max-w-6xl max-h-[90vh] h-[90vh]"
       onClickBackdrop={() => {
         navigate(-1);
       }}

@@ -1,36 +1,46 @@
 import * as React from "react";
+import toast from "react-hot-toast";
 import ListItemLink from "ui/layout/ListItemLink";
 import ActionsMenu from "ui/table/ActionsMenu";
 import { ListItem, ListItemIcon, List, ListItemText } from "ui/List";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import MaterialSymbol from "ui/icons/MaterialSymbol";
-import { Setlist } from "api/services/setlists";
+import { Setlist, useDeleteSetlistMutation, useUpdateSetlistMutation } from "api/services/setlists";
+import ErrorAlert from "ui/alert/ErrorAlert";
+import { Song } from "api/services/songs";
 
 interface SetlistActionsProps {
   setlist: Setlist;
   addToSetlistMode?: boolean;
-  song_id?: string;
+  song?: Song;
   onRequestClose?: () => any;
 }
 
 function SetlistActionsList({
-  id,
-  name,
+  song,
+  setlist,
   addToSetlistMode,
-  song_id,
   onRequestClose,
-}: {
-  id;
-  name;
-  addToSetlistMode?;
-  song_id?;
-  onRequestClose?;
-}) {
-  const deleteSetlist = () => {};
+}: SetlistActionsProps) {
+  const [deleteSetlist] = useDeleteSetlistMutation();
+  const [updateSetlist] = useUpdateSetlistMutation();
   const { t } = useTranslation();
-  const addToSetlist = () => {};
   const navigate = useNavigate();
+  const id = setlist._id;
+  const song_id = song?._id;
+  const addToSetlist = async (song_id) => {
+    const values: Setlist = {
+      ...setlist,
+      songs: [...setlist.songs, { _id: song_id, settings: { overrideKey: song?.key } }],
+    };
+    const promise = updateSetlist(values);
+    await toast.promise(promise, {
+      loading: t("setlist:action/edit/submitting", { title: values.title }),
+      success: t("setlist:action/edit/submitted", { title: values.title }),
+      error: (err) => <ErrorAlert message={t("setlist:action/edit/error")} error={err} />,
+    });
+  };
 
   if (addToSetlistMode) {
     return (
@@ -38,8 +48,8 @@ function SetlistActionsList({
         <ListItem
           button
           onClick={async (e) => {
-            await addToSetlist();
-            onRequestClose();
+            await addToSetlist(song_id);
+            onRequestClose?.();
           }}
         >
           <ListItemIcon>
@@ -50,7 +60,7 @@ function SetlistActionsList({
         <ListItem
           button
           onClick={async () => {
-            await addToSetlist();
+            await addToSetlist(song_id);
             navigate(`/setlist/${id}/edit`);
           }}
         >
@@ -80,7 +90,13 @@ function SetlistActionsList({
       <ListItem
         button
         onClick={async () => {
-          alert("TODO delete not implemented yet");
+          const promise = deleteSetlist(setlist);
+          await toast.promise(promise, {
+            loading: t("setlist:action/delete/submitting", { title: setlist.title }),
+            success: t("setlist:action/delete/submitted", { title: setlist.title }),
+            error: (err) => <ErrorAlert message={t("setlist:action/delete/error")} error={err} />,
+          });
+          onRequestClose?.();
         }}
       >
         <ListItemIcon>
@@ -95,13 +111,16 @@ function SetlistActionsList({
 const SetlistActions: React.FC<SetlistActionsProps> = (props) => {
   return (
     <ActionsMenu>
-      <SetlistActionsList
-        id={props.setlist._id}
-        name={props.setlist.title}
-        addToSetlistMode={props.addToSetlistMode}
-        song_id={props.song_id}
-        onRequestClose={props.onRequestClose}
-      />
+      {({ onClose }) => {
+        return (
+          <SetlistActionsList
+            setlist={props.setlist}
+            addToSetlistMode={props.addToSetlistMode}
+            song={props.song}
+            onRequestClose={props.onRequestClose || onClose}
+          />
+        );
+      }}
     </ActionsMenu>
   );
 };

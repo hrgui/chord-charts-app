@@ -4,7 +4,7 @@ import { Dropdown } from "react-daisyui";
 import MaterialSymbol from "ui/icons/MaterialSymbol";
 
 interface SetlistActionsProps {
-  children?: any;
+  children?: React.ReactNode | ((props: { onClose: () => void }) => React.ReactNode);
   id?: any;
 }
 

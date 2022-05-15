@@ -6,12 +6,13 @@ import Link from "ui/layout/Link";
 import { useTranslation } from "react-i18next";
 import { Trans } from "react-i18next";
 import { Setlist, useGetSetlistsQuery } from "api/services/setlists";
+import { Song } from "api/services/songs";
 
 interface SetlistTableProps {
   loading?: boolean;
   data: Setlist[];
   addToSetlistMode?: boolean;
-  song_id?: string;
+  song?: Song;
   onRequestClose?: () => void;
   error?: any;
 }
@@ -35,11 +36,11 @@ export function TitleColumnDef() {
 export function ActionsColumnDef(
   {
     addToSetlistMode,
-    song_id,
+    song,
     onRequestClose,
-  }: { addToSetlistMode?: boolean; song_id?: string; onRequestClose?: () => void } = {
+  }: { addToSetlistMode?: boolean; song?: Song; onRequestClose?: () => void } = {
     addToSetlistMode: false,
-    song_id: undefined,
+    song: undefined,
     onRequestClose: () => null,
   }
 ) {
@@ -57,7 +58,7 @@ export function ActionsColumnDef(
           setlist={data}
           onRequestClose={onRequestClose}
           addToSetlistMode={addToSetlistMode}
-          song_id={song_id}
+          song={song}
         />
       );
     },
@@ -84,7 +85,7 @@ export function SetlistTable({
   loading,
   data,
   addToSetlistMode,
-  song_id,
+  song,
   onRequestClose,
   error,
 }: SetlistTableProps) {
@@ -95,9 +96,9 @@ export function SetlistTable({
       TitleColumnDef(),
       LeaderColumnDef(),
       DateColumnDef(),
-      ActionsColumnDef({ addToSetlistMode, song_id, onRequestClose }),
+      ActionsColumnDef({ addToSetlistMode, song, onRequestClose }),
     ];
-  }, [addToSetlistMode, onRequestClose, song_id]);
+  }, [addToSetlistMode, onRequestClose, song]);
 
   const initialState = React.useMemo(() => {
     return {
@@ -133,12 +134,12 @@ export function SetlistTable({
 
 export function SetlistListContainer({
   addToSetlistMode,
-  song_id,
+  song,
   onRequestClose = () => null,
 }: {
-  addToSetlistMode?;
-  song_id?;
-  onRequestClose?;
+  addToSetlistMode?: boolean;
+  song?: Song;
+  onRequestClose?: () => void;
 }) {
   const { error, isLoading, data = [] } = useGetSetlistsQuery();
 
@@ -147,7 +148,7 @@ export function SetlistListContainer({
       error={error}
       loading={isLoading}
       data={data}
-      song_id={song_id}
+      song={song}
       onRequestClose={onRequestClose}
       addToSetlistMode={addToSetlistMode}
     />

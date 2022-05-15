@@ -1,4 +1,5 @@
 import * as React from "react";
+import toast from "react-hot-toast";
 import ListItemLink from "ui/layout/ListItemLink";
 import ChordSelect from "components/songs/ChordSelect";
 import { useTranslation } from "react-i18next";
@@ -7,7 +8,8 @@ import { ListSubheader, ListItem, List, ListItemText, ListItemIcon } from "ui/Li
 import Divider from "ui/Divider";
 import Skeleton from "ui/Skeleton";
 import MaterialSymbol from "ui/icons/MaterialSymbol";
-import { Setlist, SetlistSong } from "api/services/setlists";
+import { Setlist, SetlistSong, useDeleteSetlistMutation } from "api/services/setlists";
+import ErrorAlert from "ui/alert/ErrorAlert";
 
 export function CurrentSetlistNavMenuPlaceholder() {
   return <div id="currentSetlistNavMenu" />;
@@ -83,9 +85,11 @@ export function CurrentSetlistNavMenu(props: CurrentSetlistNavMenuProps) {
     settings = {},
     onSaveSetlistSettings,
     hasUnsavedSettings,
+    setlist,
   } = props;
   const { t } = useTranslation();
   const { _id: id, songs = [] } = props.setlist;
+  const [deleteSetlist] = useDeleteSetlistMutation();
 
   return (
     <List dense>
@@ -109,7 +113,12 @@ export function CurrentSetlistNavMenu(props: CurrentSetlistNavMenuProps) {
       <ListItem
         button
         onClick={async () => {
-          alert("TODO delete not implemented yet");
+          const promise = deleteSetlist(setlist);
+          await toast.promise(promise, {
+            loading: t("setlist:action/delete/submitting", { title: setlist.title }),
+            success: t("setlist:action/delete/submitted", { title: setlist.title }),
+            error: (err) => <ErrorAlert message={t("setlist:action/delete/error")} error={err} />,
+          });
         }}
       >
         <ListItemIcon>

@@ -4,6 +4,7 @@ import { useTable, useFilters, useSortBy, usePagination } from "react-table";
 import classnames from "classnames";
 import ErrorIcon from "ui/icons/ErrorIcon";
 import MaterialSymbol from "ui/icons/MaterialSymbol";
+import Loading from "ui/layout/Loading";
 
 function DefaultColumnFilter({ column: { filterValue, setFilter } }) {
   return (
@@ -186,7 +187,7 @@ function UnstyledTable({
       )}
       {isLoading && (
         <div className={"emptyMessage p-4"}>
-          <h1>Loading</h1>
+          <Loading />
         </div>
       )}
       {error && (

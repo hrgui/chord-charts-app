@@ -1,21 +1,26 @@
 import * as React from "react";
+import toast from "react-hot-toast";
 import ListItemLink from "ui/layout/ListItemLink";
 import ActionsMenu from "ui/table/ActionsMenu";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
-import { Song } from "api/services/songs";
+import { Song, useDeleteSongMutation } from "api/services/songs";
 import { List, ListItem, ListItemIcon, ListItemText } from "ui/List";
 import MaterialSymbol from "ui/icons/MaterialSymbol";
+import ErrorAlert from "ui/alert/ErrorAlert";
 
 interface SongActionsProps {
   song?: Song;
   addToSetlistMode?: boolean;
   onAddSong: (song) => any;
+  onRequestClose?: () => any;
 }
 
-function SongActionsList({ id }: { id?; addToSetlistMode? }) {
+function SongActionsList({ song, onRequestClose }: { song: Song; onRequestClose?: () => void }) {
+  const [deleteSong] = useDeleteSongMutation();
   const { t } = useTranslation();
   const location = useLocation();
+  const id = song._id;
 
   return (
     <List dense className="bg-base-200 rounded-box shadow-sm">
@@ -33,7 +38,13 @@ function SongActionsList({ id }: { id?; addToSetlistMode? }) {
       </ListItemLink>
       <ListItem
         onClick={async () => {
-          alert("DELETE not implemented yet");
+          const promise = deleteSong(song);
+          await toast.promise(promise, {
+            loading: t("song:action/delete/submitting", { title: song.title }),
+            success: t("song:action/delete/submitted", { title: song.title }),
+            error: (err) => <ErrorAlert message={t("song:action/delete/error")} error={err} />,
+          });
+          onRequestClose?.();
         }}
       >
         <ListItemIcon>
@@ -68,7 +79,9 @@ const SongActions: React.FC<SongActionsProps> = (props) => {
 
   return (
     <ActionsMenu>
-      <SongActionsList id={props.song?._id} addToSetlistMode={props.addToSetlistMode} />
+      {({ onClose }) => {
+        return <SongActionsList song={props.song!} onRequestClose={onClose} />;
+      }}
     </ActionsMenu>
   );
 };

@@ -75,16 +75,16 @@ export const SongApi = createApi({
       // In this case, `getSong` will be re-run. `getSongs` *might*  rerun, if this id was under its results.
       invalidatesTags: (result, error, { _id: id }) => [{ type: apiType, id }],
     }),
-    deleteSong: build.mutation<{ success: boolean; id: number }, number>({
-      query(id) {
+    deleteSong: build.mutation<Song, Partial<Song>>({
+      query(data) {
         return {
           type: apiType,
           method: ApiMethod.delete,
-          id: id,
+          body: data,
         };
       },
       // Invalidates all queries that subscribe to this Song `id` only.
-      invalidatesTags: (result, error, id) => [{ type: apiType, id }],
+      invalidatesTags: (result, error, { _id: id }) => [{ type: apiType, id }],
     }),
   }),
 });

@@ -1,10 +1,13 @@
 import * as React from "react";
+import toast from "react-hot-toast";
 import { List, ListItem, ListItemText, ListItemIcon, ListSubheader } from "ui/List";
 import ListItemLink from "ui/layout/ListItemLink";
 import { useAppBarActions } from "hooks/useAppBarActions";
 import { useTranslation } from "react-i18next";
 import Divider from "ui/Divider";
 import MaterialSymbol from "ui/icons/MaterialSymbol";
+import { useDeleteSongMutation } from "api/services/songs";
+import ErrorAlert from "ui/alert/ErrorAlert";
 
 export function CurrentSongNavMenuPlaceholder() {
   return <div id="currentSongNavMenu" />;
@@ -84,6 +87,7 @@ export function CurrentSongNavMenu(props: CurrentSongNavMenuProps) {
 
   const { song, handleSetSectionSettings, sectionsSettings } = props;
   const { id } = song;
+  const [deleteSong] = useDeleteSongMutation();
 
   return (
     <List dense>
@@ -97,7 +101,12 @@ export function CurrentSongNavMenu(props: CurrentSongNavMenuProps) {
       <ListItem
         button
         onClick={async () => {
-          alert("SONG DELETE not implemented yet");
+          const promise = deleteSong(song);
+          await toast.promise(promise, {
+            loading: t("song:action/delete/submitting", { title: song.title }),
+            success: t("song:action/delete/submitted", { title: song.title }),
+            error: (err) => <ErrorAlert message={t("song:action/delete/error")} error={err} />,
+          });
         }}
       >
         <ListItemIcon>

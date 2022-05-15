@@ -41,7 +41,7 @@ export function AppBar({
           {title}
         </span>
       </Navbar.Start>
-      <Navbar.End>{appBarEndChildren}</Navbar.End>
+      <div className="">{appBarEndChildren}</div>
     </Navbar>
   );
 }

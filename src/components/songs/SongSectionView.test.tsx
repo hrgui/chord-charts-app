@@ -48,16 +48,3 @@ test("SongSectionView - close interaction works", () => {
   fireEvent.click(el);
   expect(onRequestHide).toHaveBeenCalled();
 });
-
-test.skip("SongSectionView type = abc", () => {
-  const section = {
-    title: "Hello world",
-    type: "abc",
-    body: "CDEFGABC'D'E'F'G'A'B'C''",
-  };
-  const { queryByTestId } = render(
-    <SongSectionView songKey="C" overrideKey="D" section={section} />
-  );
-  const el = queryByTestId("abcnotationview");
-  expect(el).not.toBeNull();
-});

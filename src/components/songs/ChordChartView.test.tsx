@@ -34,7 +34,7 @@ test("chordsDisabled should delete the chords", () => {
   expect(queryByText("Test")).not.toBeNull();
 });
 
-test.only("lyricsDisabled should delete the lyrics", () => {
+test("lyricsDisabled should delete the lyrics", () => {
   const { queryByText, debug } = render(<ChordChartView lyricsDisabled value={`A B C \n Test`} />);
   expect(queryByText("A")).not.toBeNull();
   expect(queryByText("B")).not.toBeNull();

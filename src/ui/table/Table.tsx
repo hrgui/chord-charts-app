@@ -3,6 +3,7 @@ import { Alert, Input } from "react-daisyui";
 import { useTable, useFilters, useSortBy, usePagination } from "react-table";
 import classnames from "classnames";
 import ErrorIcon from "ui/icons/ErrorIcon";
+import MaterialSymbol from "ui/icons/MaterialSymbol";
 
 function DefaultColumnFilter({ column: { filterValue, setFilter } }) {
   return (
@@ -94,7 +95,13 @@ function UnstyledTable({
   };
 
   if (error) {
-    console.error(error);
+    return (
+      <div>
+        <Alert icon={<MaterialSymbol icon="error" />} status="error">
+          {error.stack}
+        </Alert>
+      </div>
+    );
   }
 
   // Render the UI for your table

@@ -5,16 +5,18 @@ type FormControlProps = {
   helperText?: React.ReactNode;
   fullWidth?: boolean;
   children?: React.ReactNode;
+  htmlFor?: string;
 };
 
 export const FormControl: React.FC<FormControlProps> = ({
   label,
   helperText,
   children,
+  htmlFor,
 }: FormControlProps) => {
   return (
     <div className="form-control">
-      <label className="label">
+      <label className="label" htmlFor={htmlFor}>
         <span className="label-text">{label}</span>
       </label>
       {children}

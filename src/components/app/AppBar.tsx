@@ -33,7 +33,9 @@ export function AppBar({
             aria-label="Menu"
           />
         </button>
-        <span className="text-lg font-bold">{title}</span>
+        <span className="text-lg font-bold" data-testid="appBarTitle">
+          {title}
+        </span>
       </Navbar.Start>
       <Navbar.End>{appBarEndChildren}</Navbar.End>
     </Navbar>

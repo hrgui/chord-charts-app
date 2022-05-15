@@ -20,12 +20,12 @@
     "prefix": "iut",
     "body": ["import { useTranslation } from \"react-i18next\""]
   },
-  "renderWithAppController": {
+  "renderWithAppProvider": {
     "scope": "javascript,typescript,typescriptreact",
     "prefix": "irac",
     "body": [
-      "import { renderWithAppController as render } from \"testUtils/renderWithAppController\";"
+      "import { renderWithAppProvider as render } from \"testUtils/renderWithAppProvider\";"
     ],
-    "description": "Render with app controller for testing util"
+    "description": "Render with app provider for testing util"
   }
 }

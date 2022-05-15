@@ -1,22 +1,12 @@
 import React from "react";
-import { getUpcomingSunday, toDomDate } from "ui/utils/date";
 import { useForm, SubmitHandler, SubmitErrorHandler, useFieldArray } from "react-hook-form";
-import {
-  getNewSetlistTemplate,
-  Setlist,
-  useAddSetlistMutation,
-  useGetSetlistQuery,
-  useUpdateSetlistMutation,
-} from "api/services/setlists";
+import { Setlist } from "api/services/setlists";
 import FormSection from "ui/form/FormSection";
 import { useTranslation } from "react-i18next";
 import FormControl from "ui/form/FormControl";
 import { Button, Input, Modal } from "react-daisyui";
 import { SongListContainer } from "components/songs/SongsListContainer";
 import SetlistSongFieldRow from "./SetlistSongFieldRow";
-import { useNavigate, useParams } from "react-router-dom";
-import PageLoading from "ui/layout/PageLoading";
-import Page from "ui/layout/Page";
 
 type SetlistFormProps = {
   onSubmit: SubmitHandler<Setlist>;
@@ -37,14 +27,14 @@ export function SetlistForm({ onSubmit, onError, data }: SetlistFormProps) {
   return (
     <form onSubmit={handleSubmit(onSubmit, onError)}>
       <FormSection>
-        <FormControl label={t("setlist:form/label/date")}>
-          <Input {...register("date")} type="date" />
+        <FormControl label={t("setlist:form/label/date")} htmlFor="date">
+          <Input {...register("date")} type="date" id="date" />
         </FormControl>
-        <FormControl label={t("setlist:form/label/title")}>
-          <Input {...register("title")} />
+        <FormControl label={t("setlist:form/label/title")} htmlFor="title">
+          <Input {...register("title")} id="title" />
         </FormControl>
-        <FormControl label={t("setlist:form/label/leader")}>
-          <Input {...register("leader")} />
+        <FormControl label={t("setlist:form/label/leader")} htmlFor="leader">
+          <Input {...register("leader")} id="leader" />
         </FormControl>
       </FormSection>
 

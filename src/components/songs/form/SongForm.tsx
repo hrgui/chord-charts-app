@@ -41,17 +41,17 @@ export function SongForm({ onSubmit, onError, data }: SongFormProps) {
     <form onSubmit={handleSubmit(onSubmit, onError)}>
       <YoutubeView className="youtube-view-input" value={currentYoutubeValue} />
       <FormSection>
-        <FormControl label={t("song:label/title")}>
-          <Input {...register("title")} />
+        <FormControl htmlFor="title" label={t("song:label/title")}>
+          <Input {...register("title")} id="title" />
         </FormControl>
-        <FormControl label={t("song:label/artist")}>
-          <Input {...register("artist")} />
+        <FormControl htmlFor="artist" label={t("song:label/artist")}>
+          <Input {...register("artist")} id="artist" />
         </FormControl>
-        <FormControl label={t("song:label/key")}>
-          <ChordSelect {...register("key")} />
+        <FormControl label={t("song:label/key")} htmlFor="key">
+          <ChordSelect id="key" {...register("key")} />
         </FormControl>
-        <FormControl label={t("song:label/youtube")}>
-          <Input {...register("youtube")} />
+        <FormControl label={t("song:label/youtube")} htmlFor="youtube">
+          <Input {...register("youtube")} id="youtube" />
         </FormControl>
       </FormSection>
 

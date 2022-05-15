@@ -2,7 +2,7 @@ import * as React from "react";
 import getKeyAsOptions from "./utils/getKeyAsOptions";
 import { twMerge } from "tailwind-merge";
 
-interface ChordSelectProps {
+interface ChordSelectProps extends React.HTMLProps<HTMLSelectElement> {
   value?: string;
   name?: string;
   onChange?: (e) => any;

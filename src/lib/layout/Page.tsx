@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Loading } from "./Loading";
-import Head from "app/core/Head";
-import AppLayout from "app/core/AppLayout";
+import Head from "components/app/Head";
+import AppLayout from "components/app/AppLayout";
 
 export interface PageProps {
   isLoading?: boolean;

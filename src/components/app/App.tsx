@@ -1,6 +1,6 @@
 import React from "react";
 import "lib/styles.css";
-import AppProvider from "./core/AppProvider";
+import AppProvider from "./AppProvider";
 import AppRootRoutes from "./AppRootRoutes";
 
 function App({ children, config, basename }: { children?; config?; basename? }) {

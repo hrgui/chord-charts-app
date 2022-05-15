@@ -1,6 +1,6 @@
 import * as React from "react";
-import ListItemLink from "lib/layout/ListItemLink";
-import ActionsMenu from "lib/table/ActionsMenu";
+import ListItemLink from "ui/layout/ListItemLink";
+import ActionsMenu from "ui/table/ActionsMenu";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import { Song } from "api/services/songs";

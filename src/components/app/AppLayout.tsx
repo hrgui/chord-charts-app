@@ -1,6 +1,6 @@
 import React from "react";
 import AppNavMenu from "./AppNavMenu";
-import ContentContainer from "lib/layout/ContentContainer";
+import ContentContainer from "ui/layout/ContentContainer";
 import AppBar from "./AppBar";
 
 export function AppLayout({

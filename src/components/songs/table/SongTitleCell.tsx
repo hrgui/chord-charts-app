@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "lib/layout/Link";
+import Link from "ui/layout/Link";
 import { Song } from "api/services/songs";
 
 type Props = {

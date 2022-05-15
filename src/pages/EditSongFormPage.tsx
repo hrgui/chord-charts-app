@@ -1,7 +1,7 @@
 import { useGetSongQuery, Song, useUpdateSongMutation } from "api/services/songs";
 import { SongForm } from "components/songs/form/SongForm";
-import Page from "lib/layout/Page";
-import PageLoading from "lib/layout/PageLoading";
+import Page from "ui/layout/Page";
+import PageLoading from "ui/layout/PageLoading";
 import React from "react";
 import { SubmitHandler, SubmitErrorHandler } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";

@@ -1,5 +1,5 @@
 import * as React from "react";
-import NavLink from "lib/router/NavLink";
+import NavLink from "ui/router/NavLink";
 
 const ListItemLink = ({ className, ...props }: any) => {
   return (

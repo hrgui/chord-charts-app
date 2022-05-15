@@ -1,5 +1,4 @@
 import React from "react";
-import "lib/styles.css";
 import AppProvider from "./AppProvider";
 import AppRootRoutes from "./AppRootRoutes";
 

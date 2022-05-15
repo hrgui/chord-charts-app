@@ -1,5 +1,5 @@
 import React from "react";
-import { getUpcomingSunday, toDomDate } from "lib/utils/date";
+import { getUpcomingSunday, toDomDate } from "ui/utils/date";
 import { useForm, SubmitHandler, SubmitErrorHandler, useFieldArray } from "react-hook-form";
 import {
   getNewSetlistTemplate,
@@ -15,8 +15,8 @@ import { Button, Input, Modal } from "react-daisyui";
 import { SongListContainer } from "components/songs/SongsListContainer";
 import SetlistSongFieldRow from "./SetlistSongFieldRow";
 import { useNavigate, useParams } from "react-router-dom";
-import PageLoading from "lib/layout/PageLoading";
-import Page from "lib/layout/Page";
+import PageLoading from "ui/layout/PageLoading";
+import Page from "ui/layout/Page";
 
 type SetlistFormProps = {
   onSubmit: SubmitHandler<Setlist>;

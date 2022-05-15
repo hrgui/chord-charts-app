@@ -1,6 +1,6 @@
 import * as React from "react";
-import ListItemLink from "lib/layout/ListItemLink";
-import ActionsMenu from "lib/table/ActionsMenu";
+import ListItemLink from "ui/layout/ListItemLink";
+import ActionsMenu from "ui/table/ActionsMenu";
 import { ListItem, ListItemIcon, List, ListItemText } from "ui/List";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";

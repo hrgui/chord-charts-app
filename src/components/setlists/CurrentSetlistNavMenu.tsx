@@ -1,5 +1,5 @@
 import * as React from "react";
-import ListItemLink from "lib/layout/ListItemLink";
+import ListItemLink from "ui/layout/ListItemLink";
 import ChordSelect from "components/songs/ChordSelect";
 import { useTranslation } from "react-i18next";
 import { useGetSongsQuery } from "api/services/songs";

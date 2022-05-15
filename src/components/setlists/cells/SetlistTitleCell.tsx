@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "lib/layout/Link";
+import Link from "ui/layout/Link";
 
 interface SetlistTitleCellProps {
   value?: string;

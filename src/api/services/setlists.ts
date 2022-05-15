@@ -1,6 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import pouchDbBaseQuery, { ApiMethod } from "lib/rtk-api/pouchDbBaseQuery";
-import { getUpcomingSunday, toDomDate } from "lib/utils/date";
+import pouchDbBaseQuery, { ApiMethod } from "api/rtk-api/pouchDbBaseQuery";
+import { getUpcomingSunday, toDomDate } from "ui/utils/date";
 
 export interface SetlistSong {
   _id: string;

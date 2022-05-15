@@ -3,7 +3,7 @@ import { SubmitHandler, SubmitErrorHandler } from "react-hook-form";
 import { getNewSetlistTemplate, Setlist, useAddSetlistMutation } from "api/services/setlists";
 
 import { useNavigate } from "react-router-dom";
-import Page from "lib/layout/Page";
+import Page from "ui/layout/Page";
 import { SetlistForm } from "components/setlists/form/SetlistForm";
 
 export function NewSetlistFormPage() {

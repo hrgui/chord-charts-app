@@ -1,8 +1,8 @@
 import React from "react";
 import { Setlist, useGetSetlistQuery, useUpdateSetlistMutation } from "api/services/setlists";
 import { SetlistForm } from "components/setlists/form/SetlistForm";
-import Page from "lib/layout/Page";
-import PageLoading from "lib/layout/PageLoading";
+import Page from "ui/layout/Page";
+import PageLoading from "ui/layout/PageLoading";
 import { SubmitErrorHandler, SubmitHandler } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 

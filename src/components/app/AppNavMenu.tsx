@@ -1,9 +1,9 @@
 import * as React from "react";
-import ListItemLink from "lib/layout/ListItemLink";
+import ListItemLink from "ui/layout/ListItemLink";
 import SongsNavMenu from "components/songs/menu/SongsNavMenu";
 import SetlistsNavMenu from "components/setlists/menu/SetlistsNavMenu";
-import { useAppBarActions } from "lib/hooks/useAppBarActions";
-import { useGetAppBarData } from "lib/hooks/useGetAppBarData";
+import { useAppBarActions } from "ui/hooks/useAppBarActions";
+import { useGetAppBarData } from "ui/hooks/useGetAppBarData";
 import Drawer from "ui/Drawer";
 import { List, ListItemText, ListItemIcon, ListItem } from "ui/List";
 import Divider from "ui/Divider";

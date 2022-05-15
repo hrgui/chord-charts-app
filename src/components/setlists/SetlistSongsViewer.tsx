@@ -3,7 +3,7 @@ import { SongViewContainer } from "components/songs/SongViewContainer";
 import { SetlistSongPagination } from "./SetlistSongPagination";
 import { CurrentSetlistNavMenu } from "./CurrentSetlistNavMenu";
 import { Setlist, SetlistSong } from "api/services/setlists";
-import Page from "lib/layout/Page";
+import Page from "ui/layout/Page";
 import { Alert } from "react-daisyui";
 import MaterialSymbol from "ui/icons/MaterialSymbol";
 import { Link } from "react-router-dom";

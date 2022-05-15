@@ -1,5 +1,5 @@
 import * as React from "react";
-import ListItemLink from "lib/layout/ListItemLink";
+import ListItemLink from "ui/layout/ListItemLink";
 import { useTranslation } from "react-i18next";
 import { ListItemIcon, List, ListItemText } from "ui/List";
 import ListSubheader from "ui/List/ListSubheader";

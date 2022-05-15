@@ -5,7 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import { store as defaultStore } from "store";
 import { Provider } from "react-redux";
 import { AppThemeProvider } from "./AppThemeProvider";
-import PageLoading from "lib/layout/PageLoading";
+import PageLoading from "ui/layout/PageLoading";
 
 interface AppControllerProps {
   children?;

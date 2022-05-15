@@ -1,6 +1,6 @@
 import { getNewSongTemplate, Song, useAddSongMutation } from "api/services/songs";
 import { SongForm } from "components/songs/form/SongForm";
-import Page from "lib/layout/Page";
+import Page from "ui/layout/Page";
 import React from "react";
 import { SubmitHandler, SubmitErrorHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";

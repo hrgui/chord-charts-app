@@ -1,8 +1,8 @@
 import * as React from "react";
-import { Table } from "lib/table/Table";
+import { Table } from "ui/table/Table";
 import SetlistTitleCell from "./cells/SetlistTitleCell";
 import SetlistActions from "./SetlistActions";
-import Link from "lib/layout/Link";
+import Link from "ui/layout/Link";
 import { useTranslation } from "react-i18next";
 import { Trans } from "react-i18next";
 import { Setlist, useGetSetlistsQuery } from "api/services/setlists";

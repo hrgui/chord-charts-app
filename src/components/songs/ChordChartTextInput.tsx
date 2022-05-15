@@ -1,7 +1,7 @@
 import * as React from "react";
 import Editor from "react-simple-code-editor";
 import { wrap } from "@hrgui/chord-charts";
-import { useDarkMode } from "lib/hooks/useDarkMode";
+import { useDarkMode } from "ui/hooks/useDarkMode";
 
 interface ChordChartTextInputProps {
   value?: string;

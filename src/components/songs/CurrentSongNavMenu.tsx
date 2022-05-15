@@ -1,7 +1,7 @@
 import * as React from "react";
 import { List, ListItem, ListItemText, ListItemIcon, ListSubheader } from "ui/List";
-import ListItemLink from "lib/layout/ListItemLink";
-import { useAppBarActions } from "lib/hooks/useAppBarActions";
+import ListItemLink from "ui/layout/ListItemLink";
+import { useAppBarActions } from "ui/hooks/useAppBarActions";
 import { useTranslation } from "react-i18next";
 import Divider from "ui/Divider";
 import MaterialSymbol from "ui/icons/MaterialSymbol";

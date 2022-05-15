@@ -1,5 +1,5 @@
-import { useAppBarActions } from "lib/hooks/useAppBarActions";
-import useGetAppBarData from "lib/hooks/useGetAppBarData";
+import { useAppBarActions } from "ui/hooks/useAppBarActions";
+import useGetAppBarData from "ui/hooks/useGetAppBarData";
 import React from "react";
 import { Navbar } from "react-daisyui";
 import { MenuIcon } from "ui/icons/MenuIcon";

@@ -1,6 +1,6 @@
 import * as React from "react";
 import classnames from "classnames";
-import { useGlobalSongActions } from "lib/hooks/useGlobalSongActions";
+import { useGlobalSongActions } from "ui/hooks/useGlobalSongActions";
 import Youtube from "react-youtube";
 import * as qs from "qs";
 

@@ -1,6 +1,6 @@
 import * as React from "react";
 import AddToSetlistForm from "../components/setlists/form/AddToSetlistForm";
-import useQueryParams from "lib/hooks/useQueryParams";
+import useQueryParams from "ui/hooks/useQueryParams";
 import { useNavigate } from "react-router-dom";
 
 export interface IAddToSetlistFormPageProps {}

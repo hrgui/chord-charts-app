@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import uiStateReducer from "./core/uiStateSlice";
-import darkModeMiddlware from "app/actions/darkModeMiddleware";
-import { SongApi } from "./services/songs";
-import { SetlistApi } from "./services/setlists";
+import uiStateReducer from "./app/core/uiStateSlice";
+import darkModeMiddlware from "middleware/darkModeMiddleware";
+import { SongApi } from "./api/services/songs";
+import { SetlistApi } from "./api/services/setlists";
 
 export function createStore() {
   return configureStore({

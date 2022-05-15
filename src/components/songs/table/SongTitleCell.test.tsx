@@ -1,5 +1,5 @@
 import React from "react";
-import { Song } from "app/services/songs";
+import { Song } from "api/services/songs";
 import { renderWithAppController } from "testUtils/renderWithAppProvider";
 import SongTitleCell from "./SongTitleCell";
 import { screen } from "@testing-library/react";

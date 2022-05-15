@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { RootState } from "app/store";
+import { RootState } from "store";
 
 export function useGetAppBarData() {
   const appName = useSelector((state: RootState) => state.uiState.appName);

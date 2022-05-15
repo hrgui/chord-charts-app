@@ -2,7 +2,7 @@ import * as React from "react";
 import { SongViewContainer } from "components/songs/SongViewContainer";
 import { SetlistSongPagination } from "./SetlistSongPagination";
 import { CurrentSetlistNavMenu } from "./CurrentSetlistNavMenu";
-import { Setlist, SetlistSong } from "app/services/setlists";
+import { Setlist, SetlistSong } from "api/services/setlists";
 import Page from "lib/layout/Page";
 import { Alert } from "react-daisyui";
 import MaterialSymbol from "ui/icons/MaterialSymbol";

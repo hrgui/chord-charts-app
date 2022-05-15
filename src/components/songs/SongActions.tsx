@@ -3,7 +3,7 @@ import ListItemLink from "lib/layout/ListItemLink";
 import ActionsMenu from "lib/table/ActionsMenu";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
-import { Song } from "app/services/songs";
+import { Song } from "api/services/songs";
 import { List, ListItem, ListItemIcon, ListItemText } from "ui/List";
 import MaterialSymbol from "ui/icons/MaterialSymbol";
 

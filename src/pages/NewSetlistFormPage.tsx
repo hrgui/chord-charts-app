@@ -1,6 +1,6 @@
 import React from "react";
 import { SubmitHandler, SubmitErrorHandler } from "react-hook-form";
-import { getNewSetlistTemplate, Setlist, useAddSetlistMutation } from "app/services/setlists";
+import { getNewSetlistTemplate, Setlist, useAddSetlistMutation } from "api/services/setlists";
 
 import { useNavigate } from "react-router-dom";
 import Page from "lib/layout/Page";

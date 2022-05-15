@@ -7,7 +7,7 @@ import {
   useAddSetlistMutation,
   useGetSetlistQuery,
   useUpdateSetlistMutation,
-} from "app/services/setlists";
+} from "api/services/setlists";
 import FormSection from "ui/form/FormSection";
 import { useTranslation } from "react-i18next";
 import FormControl from "ui/form/FormControl";

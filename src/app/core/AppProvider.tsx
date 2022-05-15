@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter } from "react-router-dom";
 
-import { store as defaultStore } from "app/store";
+import { store as defaultStore } from "store";
 import { Provider } from "react-redux";
 import { AppThemeProvider } from "./AppThemeProvider";
 import PageLoading from "lib/layout/PageLoading";

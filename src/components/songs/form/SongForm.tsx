@@ -1,4 +1,4 @@
-import { Song } from "app/services/songs";
+import { Song } from "api/services/songs";
 import ChordSelect from "components/songs/ChordSelect";
 import { YoutubeView } from "components/songs/YoutubeView";
 import React from "react";

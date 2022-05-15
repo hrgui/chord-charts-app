@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "lib/layout/Link";
-import { Song } from "app/services/songs";
+import { Song } from "api/services/songs";
 
 type Props = {
   value: string;

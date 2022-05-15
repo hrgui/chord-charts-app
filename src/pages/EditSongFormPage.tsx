@@ -1,4 +1,4 @@
-import { useGetSongQuery, Song, useUpdateSongMutation } from "app/services/songs";
+import { useGetSongQuery, Song, useUpdateSongMutation } from "api/services/songs";
 import { SongForm } from "components/songs/form/SongForm";
 import Page from "lib/layout/Page";
 import PageLoading from "lib/layout/PageLoading";

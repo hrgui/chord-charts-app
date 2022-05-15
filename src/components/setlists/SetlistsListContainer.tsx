@@ -5,7 +5,7 @@ import SetlistActions from "./SetlistActions";
 import Link from "lib/layout/Link";
 import { useTranslation } from "react-i18next";
 import { Trans } from "react-i18next";
-import { Setlist, useGetSetlistsQuery } from "app/services/setlists";
+import { Setlist, useGetSetlistsQuery } from "api/services/setlists";
 
 interface SetlistTableProps {
   loading: boolean;

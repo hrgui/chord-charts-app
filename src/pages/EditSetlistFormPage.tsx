@@ -1,5 +1,5 @@
 import React from "react";
-import { Setlist, useGetSetlistQuery, useUpdateSetlistMutation } from "app/services/setlists";
+import { Setlist, useGetSetlistQuery, useUpdateSetlistMutation } from "api/services/setlists";
 import { SetlistForm } from "components/setlists/form/SetlistForm";
 import Page from "lib/layout/Page";
 import PageLoading from "lib/layout/PageLoading";

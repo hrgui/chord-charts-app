@@ -4,7 +4,7 @@ import { Table } from "lib/table/Table";
 import { Trans } from "react-i18next";
 import { useTranslation } from "react-i18next";
 import SongActions from "./SongActions";
-import { Song, useGetSongsQuery } from "app/services/songs";
+import { Song, useGetSongsQuery } from "api/services/songs";
 import SongTitleCell from "./table/SongTitleCell";
 
 export function SongListContainer({

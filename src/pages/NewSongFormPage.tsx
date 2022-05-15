@@ -1,4 +1,4 @@
-import { getNewSongTemplate, Song, useAddSongMutation } from "app/services/songs";
+import { getNewSongTemplate, Song, useAddSongMutation } from "api/services/songs";
 import { SongForm } from "components/songs/form/SongForm";
 import Page from "lib/layout/Page";
 import React from "react";

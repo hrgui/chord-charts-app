@@ -1,8 +1,6 @@
 import * as React from "react";
 import { List, ListItem, ListItemText, ListItemIcon, ListSubheader } from "ui/List";
 import ListItemLink from "lib/layout/ListItemLink";
-import { useUserData } from "lib/hooks/useUserData";
-import { useGlobalSongActions } from "lib/hooks/useGlobalSongActions";
 import { useAppBarActions } from "lib/hooks/useAppBarActions";
 import { useTranslation } from "react-i18next";
 import Divider from "ui/Divider";
@@ -74,9 +72,6 @@ export interface CurrentSongNavMenuProps {
 
 export function CurrentSongNavMenu(props: CurrentSongNavMenuProps) {
   const { t } = useTranslation();
-  const user = useUserData() || {};
-  const deleteSong = () => {};
-  const { toggleYoutube } = useGlobalSongActions() || {};
   const { toggleControlsPanel } = useAppBarActions();
   const {
     onToggleChordsVisibility,

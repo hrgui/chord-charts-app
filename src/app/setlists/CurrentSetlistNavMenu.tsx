@@ -1,6 +1,5 @@
 import * as React from "react";
 import ListItemLink from "lib/layout/ListItemLink";
-import { useUserData } from "lib/hooks/useUserData";
 import ChordSelect from "app/songs/components/ChordSelect";
 import { useTranslation } from "react-i18next";
 import { useGetSongsQuery } from "app/services/songs";
@@ -83,8 +82,6 @@ export function CurrentSetlistNavMenu(props: CurrentSetlistNavMenuProps) {
   } = props;
   const { t } = useTranslation();
   const { _id: id, songs = [] } = props.setlist;
-  const user = useUserData();
-  const deleteSetlist = () => {};
 
   return (
     <List dense>

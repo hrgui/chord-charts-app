@@ -1,4 +1,5 @@
 import { useAppBarActions } from "hooks/useAppBarActions";
+import useGetAppBarData from "hooks/useGetAppBarData";
 import * as React from "react";
 import NavLink, { NavLinkProps } from "ui/router/NavLink";
 import { isMobile } from "utils";
@@ -10,10 +11,12 @@ const ListItemLink = ({
   ...props
 }: NavLinkProps & { dismissMobileMenu?: boolean }) => {
   const { toggleNavMenu } = useAppBarActions();
+  const { navMenuHidden } = useGetAppBarData();
   const handleClick = (e) => {
     onClick?.(e);
 
-    if (dismissMobileMenu && isMobile()) {
+    //TODO: on mobile navMenuHidden = true is actually shown
+    if (dismissMobileMenu && isMobile() && navMenuHidden) {
       toggleNavMenu();
     }
   };

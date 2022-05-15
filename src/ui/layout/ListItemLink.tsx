@@ -1,7 +1,7 @@
 import * as React from "react";
-import NavLink from "ui/router/NavLink";
+import NavLink, { NavLinkProps } from "ui/router/NavLink";
 
-const ListItemLink = ({ className, ...props }: any) => {
+const ListItemLink = ({ className, ...props }: NavLinkProps) => {
   return (
     <NavLink
       activeClassName="bg-base-300"

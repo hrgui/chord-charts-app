@@ -12,9 +12,6 @@ const ActionsMenu: React.FC<SetlistActionsProps> = (props) => {
   const { children } = props;
   const [isOpen, setIsOpen] = React.useState(false);
 
-  function handleClick(event) {
-    setIsOpen(true);
-  }
   function handleClose() {
     setIsOpen(false);
   }

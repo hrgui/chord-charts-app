@@ -2,12 +2,12 @@ import React from "react";
 import { NavLink as BaseNavLink } from "react-router-dom";
 import type { LinkProps } from "react-router-dom";
 
-interface OldNavLinkProps extends LinkProps {
+export interface NavLinkProps extends LinkProps {
   activeClassName?: string;
   activeStyle?: React.CSSProperties;
 }
 
-export const NavLink = React.forwardRef<OldNavLinkProps, any>(
+export const NavLink = React.forwardRef<NavLinkProps, any>(
   ({ activeClassName, activeStyle, ...props }, ref) => {
     return (
       <BaseNavLink

@@ -1,13 +1,11 @@
 import * as React from "react";
 
 export interface ContentContainerProps {
-  children?;
-  classes?;
+  children?: React.ReactNode;
 }
 
-export function ContentContainer(props: ContentContainerProps) {
-  const { children } = props;
-  return <div className="flex-grow min-height-[100vh] w-full">{children}</div>;
-}
+export const ContentContainer = ({ children }: ContentContainerProps) => (
+  <div className="flex-grow min-height-[100vh] w-full">{children}</div>
+);
 
 export default ContentContainer;

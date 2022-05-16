@@ -8,5 +8,3 @@ it("should work with no songs", () => {
   const { getByText } = render(<SetlistSongsViewer setlist={setlist} songs={[]} />);
   expect(getByText("There are no songs in this setlist")).toBeInTheDocument();
 });
-
-test.todo("should be able to handle at least 1 song");

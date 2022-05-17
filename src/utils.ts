@@ -43,3 +43,7 @@ export function wait(time: number) {
 export const isMobile = () => {
   return !isDesktop();
 };
+
+export function withNullAsUndefined<T>(x: T | null): T | undefined {
+  return x === null ? undefined : x;
+}

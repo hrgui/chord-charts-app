@@ -1,3 +1,5 @@
+import { triggerDownload, triggerUpload } from "./dom-file";
+
 let _fileHandle: FileSystemFileHandle | null = null;
 
 export function getCurrentFileHandle(): FileSystemFileHandle | null {
@@ -24,7 +26,20 @@ export async function getNewFileHandle() {
   return handle;
 }
 
+function isFileHandleUnsupported() {
+  return !window.showOpenFilePicker || !window.showSaveFilePicker;
+}
+
+function _unsupportedFileSave(fileContents) {
+  const filename = prompt("Save file as...") || "db.json";
+  return triggerDownload(fileContents, filename!);
+}
+
 export async function handleFileSave(fileContents: string, promptNewFilePicker) {
+  if (isFileHandleUnsupported()) {
+    return _unsupportedFileSave(fileContents);
+  }
+
   let currentFileHandle = getCurrentFileHandle();
 
   // if the file is not set, ask the user to save a file
@@ -38,6 +53,17 @@ export async function handleFileSave(fileContents: string, promptNewFilePicker) 
 }
 
 export async function handleFileOpen() {
+  if (isFileHandleUnsupported()) {
+    const file = await triggerUpload();
+
+    return new Promise((resolve, reject) => {
+      let reader = new FileReader();
+      reader.readAsText(file!);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = () => reject(reader.error);
+    });
+  }
+
   const [fileHandle] = await window.showOpenFilePicker();
   const file = await fileHandle.getFile();
   const contents = await file.text();

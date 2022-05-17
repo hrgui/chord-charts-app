@@ -1,4 +1,4 @@
-import db from "api/db";
+import { getDb } from "api/db";
 import { nanoid } from "nanoid";
 
 export enum ApiMethod {
@@ -20,14 +20,14 @@ export type PouchDbBaseQueryArgs = {
 // await db.find({selector: {type: "Song", _id: {$in: ["2022-05-02T15:29:47.390Z", "2022-05-02T04:25:40.871Z"]}}})
 
 const pouchDbAdapter = {
-  [ApiMethod.get]: (args: PouchDbBaseQueryArgs) => db.get(args.id as string),
+  [ApiMethod.get]: (args: PouchDbBaseQueryArgs) => getDb().get(args.id as string),
   [ApiMethod.list]: (args: PouchDbBaseQueryArgs) =>
-    db.find({ selector: { type: args.type, ...args.listArgs } }),
+    getDb().find({ selector: { type: args.type, ...args.listArgs } }),
   [ApiMethod.create]: (args: Required<PouchDbBaseQueryArgs>) =>
-    db.put({ _id: nanoid(), type: args.type, ...args.body }),
-  [ApiMethod.update]: (args: Required<PouchDbBaseQueryArgs>) => db.put(args.body),
+    getDb().put({ _id: nanoid(), type: args.type, ...args.body }),
+  [ApiMethod.update]: (args: Required<PouchDbBaseQueryArgs>) => getDb().put(args.body),
   [ApiMethod.delete]: (args: Required<PouchDbBaseQueryArgs>) =>
-    db.remove(args.body as { [name: string]: any; _id: string; _rev: string }),
+    getDb().remove(args.body as { [name: string]: any; _id: string; _rev: string }),
 };
 
 const pouchDbBaseQuery = async (

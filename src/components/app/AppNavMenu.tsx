@@ -5,14 +5,17 @@ import SetlistsNavMenu from "components/setlists/menu/SetlistsNavMenu";
 import { useAppBarActions } from "hooks/useAppBarActions";
 import { useGetAppBarData } from "hooks/useGetAppBarData";
 import Drawer from "ui/Drawer";
-import { List, ListItemText, ListItemIcon, ListItem } from "ui/List";
+import { List, ListItemText, ListItemIcon, ListItem, ListSubheader } from "ui/List";
 import Divider from "ui/Divider";
 import CloseIcon from "ui/icons/CloseIcon";
 import { Button } from "react-daisyui";
-import ClearLocalDbAction from "./actions/ClearLocalDbAction";
 import { useTranslation } from "react-i18next";
 import DarkThemeAction from "./actions/DarkThemeAction";
 import MaterialSymbol from "ui/icons/MaterialSymbol";
+import NewAction from "./actions/NewAction";
+import SaveAction from "./actions/SaveAction";
+import SaveAsAction from "./actions/SaveAsAction";
+import OpenAction from "./actions/OpenAction";
 
 export function AppNavMenu() {
   const config = useGetAppBarData();
@@ -45,7 +48,13 @@ export function AppNavMenu() {
           <ListItemText>{t("home")}</ListItemText>
         </ListItemLink>
       </List>
-      <Divider />
+      <List>
+        <ListSubheader>File</ListSubheader>
+        <NewAction />
+        <OpenAction />
+        <SaveAction />
+        <SaveAsAction />
+      </List>
       <Divider />
       <SongsNavMenu />
       <Divider />
@@ -58,7 +67,6 @@ export function AppNavMenu() {
           </ListItemIcon>
           <ListItemText>{t("about")}</ListItemText>
         </ListItemLink>
-        <ClearLocalDbAction />
         <DarkThemeAction />
       </List>
     </Drawer>

@@ -62,14 +62,14 @@ export async function handleFileSave(fileContents: string, promptNewFilePicker) 
   await writeFile(currentFileHandle!, fileContents);
 }
 
-export async function handleFileOpen() {
+export async function handleFileOpen(): Promise<string> {
   if (isFileHandleUnsupported()) {
     const file = await triggerUpload();
 
     return new Promise((resolve, reject) => {
       let reader = new FileReader();
       reader.readAsText(file!);
-      reader.onload = () => resolve(reader.result);
+      reader.onload = () => resolve(reader.result as string);
       reader.onerror = () => reject(reader.error);
     });
   }

@@ -1,7 +1,7 @@
 import { getDb } from "api/db";
 import { handleFileOpen, handleFileSave } from ".";
 
-export async function saveDbToFile(promptNewFilePicker) {
+export async function saveDbToFile(promptNewFilePicker = false) {
   const doc = await getDb().allDocs({ include_docs: true });
   const out = doc.rows.map(({ doc }) => doc);
   handleFileSave(JSON.stringify(out), promptNewFilePicker);

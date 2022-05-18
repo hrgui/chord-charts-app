@@ -2,6 +2,16 @@ import { triggerDownload, triggerUpload } from "./dom-file";
 
 let _fileHandle: FileSystemFileHandle | null = null;
 
+const opts: FilePickerOptions = {
+  types: [
+    {
+      description: "Chord Charts File (.json)",
+      accept: { "application/json": [".json"] },
+    },
+  ],
+  excludeAcceptAllOption: true,
+};
+
 export function getCurrentFileHandle(): FileSystemFileHandle | null {
   return _fileHandle;
 }
@@ -22,7 +32,7 @@ export async function writeFile(fileHandle: FileSystemFileHandle, contents: stri
 }
 
 export async function getNewFileHandle() {
-  const handle = await window.showSaveFilePicker();
+  const handle = await window.showSaveFilePicker(opts);
   return handle;
 }
 
@@ -64,7 +74,7 @@ export async function handleFileOpen() {
     });
   }
 
-  const [fileHandle] = await window.showOpenFilePicker();
+  const [fileHandle] = await window.showOpenFilePicker(opts);
   const file = await fileHandle.getFile();
   const contents = await file.text();
   return contents;

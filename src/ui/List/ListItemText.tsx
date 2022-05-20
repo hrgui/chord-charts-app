@@ -1,7 +1,7 @@
 import { useAppBarActions } from "hooks/useAppBarActions";
 import React from "react";
 import { twMerge } from "tailwind-merge";
-import { isDesktop, isMobile } from "utils";
+import { isMobile } from "utils";
 
 export interface Props extends React.HTMLProps<HTMLDivElement> {
   primary?: any;

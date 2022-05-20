@@ -1,5 +1,3 @@
-import { withNullAsUndefined } from "utils";
-
 export function triggerDownload(dataOrUri: Uint8Array, name: string): void {
   // If the data is provided as Buffer, we create a
   // blob URL out of it to produce a valid link

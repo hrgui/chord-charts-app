@@ -3,6 +3,7 @@ import useGetAppBarData from "hooks/useGetAppBarData";
 import React from "react";
 import { Navbar } from "react-daisyui";
 import { MenuIcon } from "ui/icons/MenuIcon";
+import classNames from "classnames";
 
 export interface AppBarProps {
   /**
@@ -23,8 +24,16 @@ export function AppBar({
   title,
   appBarEndChildren,
 }: AppBarProps) {
+  // TODO: 240px is hardcoded, width of the appmenu
   return (
-    <Navbar className="shadow-sm min-h-[48px] truncate overflow-hidden max-h-[48px] appbar fixed">
+    <Navbar
+      className={classNames(
+        `shadow-sm min-h-[48px] truncate overflow-hidden max-h-[48px] appbar fixed`,
+        {
+          [`w-[calc(100%_-_240px)]`]: !navMenuHidden,
+        }
+      )}
+    >
       <Navbar.Start>
         <button className="btn btn-square btn-ghost btn-sm mr-1">
           <MenuIcon
@@ -41,7 +50,7 @@ export function AppBar({
           {title}
         </span>
       </Navbar.Start>
-      <div className="">{appBarEndChildren}</div>
+      <Navbar.End>{appBarEndChildren}</Navbar.End>
     </Navbar>
   );
 }

@@ -1,5 +1,4 @@
 import "./polyfills";
-import "./setupDevEnv";
 import React from "react";
 import App from "components/app/App";
 import { createRoot } from "react-dom/client";

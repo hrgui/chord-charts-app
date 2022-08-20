@@ -4,10 +4,12 @@ import SongsListPage from "./SongsListPage";
 import pouchDbBaseQuery from "api/rtk-api/pouchDbBaseQuery";
 import { getNewSongTemplate } from "api/services/songs";
 import { screen, waitFor } from "@testing-library/react";
+import { vi } from "vitest";
+import type { Mock } from "vitest";
 
-jest.mock("api/rtk-api/pouchDbBaseQuery");
+vi.mock("api/rtk-api/pouchDbBaseQuery");
 
-const _pouchDbBaseQuery = pouchDbBaseQuery as jest.Mock;
+const _pouchDbBaseQuery = pouchDbBaseQuery as Mock;
 it("should render at least one song in the list w/o crashing", async () => {
   const song = getNewSongTemplate();
   song.title = "Example";

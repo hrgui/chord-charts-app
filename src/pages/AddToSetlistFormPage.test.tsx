@@ -6,12 +6,14 @@ import pouchDbBaseQuery, { PouchDbBaseQueryArgs } from "api/rtk-api/pouchDbBaseQ
 import { getNewSongTemplate } from "api/services/songs";
 import { waitFor } from "@testing-library/react";
 import { getNewSetlistTemplate } from "api/services/setlists";
+import { vi } from "vitest";
+import type { Mock } from "vitest";
 
-const _useQueryParams = useQueryParams as jest.Mock;
-const _pouchDbBaseQuery = pouchDbBaseQuery as jest.Mock;
+const _useQueryParams = useQueryParams as Mock;
+const _pouchDbBaseQuery = pouchDbBaseQuery as Mock;
 
-jest.mock("hooks/useQueryParams");
-jest.mock("api/rtk-api/pouchDbBaseQuery");
+vi.mock("hooks/useQueryParams");
+vi.mock("api/rtk-api/pouchDbBaseQuery");
 
 it("should render w/o crashing, target song defined and target setlist defined", async () => {
   _useQueryParams.mockReturnValueOnce(new URLSearchParams("?song_id=1"));

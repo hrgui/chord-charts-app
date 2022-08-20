@@ -1,7 +1,7 @@
 import React from "react";
 import SongView, { SongViewKey } from "./SongView";
-import { act } from "@testing-library/react";
 import { renderWithAppProvider as render } from "testUtils/renderWithAppProvider";
+import { vi } from "vitest";
 
 describe("SongView", () => {
   it("should be able to render a song if provided normally", () => {
@@ -192,7 +192,7 @@ describe("SongView", () => {
 
 describe("SongViewKey", () => {
   it("should be able to render without crashing, if all props provided", () => {
-    const changeEvent = jest.fn();
+    const changeEvent = vi.fn();
     const { queryByText } = render(<SongViewKey overrideKey={"A"} onChange={changeEvent} />);
     expect(queryByText("A")).not.toBeNull();
   });

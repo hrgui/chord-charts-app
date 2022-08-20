@@ -15,7 +15,8 @@
     "noEmit": true,
     "jsx": "react",
     "baseUrl": "src",
-    "isolatedModules": true
+    "isolatedModules": true,
+    "types": ["vitest/globals"]
   },
   "include": ["src"]
 }

@@ -4,10 +4,12 @@ import NewSongFormPage from "./NewSongFormPage";
 import pouchDbBaseQuery from "api/rtk-api/pouchDbBaseQuery";
 import userEvent from "@testing-library/user-event";
 import { waitFor } from "@testing-library/react";
+import { vi } from "vitest";
+import type { Mock } from "vitest";
 
-const _pouchDbBaseQuery = pouchDbBaseQuery as jest.Mock;
+const _pouchDbBaseQuery = pouchDbBaseQuery as Mock;
 
-jest.mock("api/rtk-api/pouchDbBaseQuery");
+vi.mock("api/rtk-api/pouchDbBaseQuery");
 
 it("should render w/o crashing", async () => {
   const { getByTestId, getByLabelText } = render(<NewSongFormPage />);

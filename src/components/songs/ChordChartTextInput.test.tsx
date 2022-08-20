@@ -2,9 +2,10 @@ import React from "react";
 import { fireEvent } from "@testing-library/react";
 import ChordChartTextInput from "./ChordChartTextInput";
 import { renderWithAppProvider as render } from "testUtils/renderWithAppProvider";
+import { vi } from "vitest";
 
 test("ChordChartTextInput - on value change", () => {
-  const onValueChange = jest.fn();
+  const onValueChange = vi.fn();
   const { container } = render(
     <ChordChartTextInput value={`A B C \n Test`} onValueChange={onValueChange} />
   );

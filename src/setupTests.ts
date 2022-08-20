@@ -1,23 +1,25 @@
-// jest-dom adds custom jest matchers for asserting on DOM nodes.
-// allows you to do things like:
-// expect(element).toHaveTextContent(/react/i)
-// learn more: https://github.com/testing-library/jest-dom
-import "@testing-library/jest-dom/extend-expect";
+import "@testing-library/jest-dom";
 import "./testEnv/setupi18n";
 import "./testEnv/setupDomMocks";
+import { vi } from "vitest";
 
-jest.mock("pouchdb-browser", () => {
+vi.mock("pouchdb-browser", () => {
   const instance = function () {
     return {
-      createIndex: jest.fn().mockReturnValue(new Promise((resolve) => resolve(true))),
-      find: jest.fn(),
-      put: jest.fn(),
-      remove: jest.fn(),
-      get: jest.fn(),
+      createIndex: vi.fn().mockReturnValue(new Promise((resolve) => resolve(true))),
+      find: vi.fn(),
+      put: vi.fn(),
+      remove: vi.fn(),
+      get: vi.fn(),
     };
   };
 
-  instance.plugin = jest.fn();
+  instance.plugin = vi.fn();
 
-  return instance;
+  return { default: instance };
+});
+
+// TODO: without this mock, react-youtube fails to load because it's a default import
+vi.mock("react-youtube", () => {
+  return { default: () => null };
 });

@@ -5,6 +5,7 @@ import { fireEvent } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import { CHORD_CHARTS_DARK_MODE_KEY, getDarkModeInitialState } from "store/uiStateSlice";
 import { createStore } from "store";
+import { vi } from "vitest";
 
 afterEach(() => {
   window.localStorage.setItem(CHORD_CHARTS_DARK_MODE_KEY, "false");
@@ -23,7 +24,7 @@ it("should render the component, when clicking, should toggle the dark mode", ()
 });
 
 it("should be set to whatever the local storage is saying (true === On)", () => {
-  window.matchMedia = jest.fn().mockReturnValueOnce({ matches: false });
+  window.matchMedia = vi.fn().mockReturnValueOnce({ matches: false });
   window.localStorage.setItem(CHORD_CHARTS_DARK_MODE_KEY, "true");
   const { getByText } = render(<DarkThemeAction />, {
     store: createStore({

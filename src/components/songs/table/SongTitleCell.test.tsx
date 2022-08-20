@@ -17,5 +17,5 @@ it("should be able to render a Song Link with /song/_id and name Test Song", () 
   );
   const el = screen.getByText("Test Song") as HTMLAnchorElement;
   expect(el).toBeInTheDocument();
-  expect(el.href).toMatchInlineSnapshot(`"http://localhost/song/1/view"`);
+  expect(el.href).toMatchInlineSnapshot('"http://localhost:3000/song/1/view"');
 });

@@ -22,8 +22,6 @@ const config = defineConfig(({ mode, command }) => {
     define: {
       global: "window",
       ...envWithProcessPrefix,
-      "process.env.DEV": mode === "development",
-      "process.env.PROD": mode === "production",
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || mode),
     },
   };

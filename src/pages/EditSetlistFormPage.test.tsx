@@ -6,16 +6,19 @@ import { waitFor } from "@testing-library/react";
 import { useParams } from "react-router-dom";
 import { getNewSetlistTemplate, Setlist } from "api/services/setlists";
 import userEvent from "@testing-library/user-event";
+import { vi } from "vitest";
+import type { Mock } from "vitest";
 
-const _pouchDbBaseQuery = pouchDbBaseQuery as jest.Mock;
-const _useParams = useParams as jest.Mock;
+const _pouchDbBaseQuery = pouchDbBaseQuery as Mock;
+const _useParams = useParams as Mock;
 
-jest.mock("api/rtk-api/pouchDbBaseQuery");
+vi.mock("api/rtk-api/pouchDbBaseQuery");
 
-jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"),
-  useParams: jest.fn(),
-}));
+vi.mock("react-router-dom", async () => {
+  const router = await vi.importActual<any>("react-router-dom");
+
+  return { ...router, useParams: vi.fn() };
+});
 
 it("should be able to modify the title of a setlist and save it", async () => {
   _useParams.mockReturnValue({ id: "1" });

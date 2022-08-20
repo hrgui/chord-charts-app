@@ -3,6 +3,7 @@ import { renderWithAppProvider as render } from "testUtils/renderWithAppProvider
 import AppBar from "./AppBar";
 import { fireEvent } from "@testing-library/react";
 import useGetAppBarData from "hooks/useGetAppBarData";
+import { vi } from "vitest";
 
 const observeMock = {
   observe: () => null,
@@ -10,7 +11,7 @@ const observeMock = {
 };
 
 beforeEach(() => {
-  (window as any).IntersectionObserver = jest.fn().mockImplementation(() => observeMock);
+  (window as any).IntersectionObserver = vi.fn().mockImplementation(() => observeMock);
 });
 
 function TestMenuStateDisplay() {

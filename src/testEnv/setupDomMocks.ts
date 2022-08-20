@@ -1,3 +1,5 @@
-window.matchMedia = jest.fn().mockReturnValue({ matches: false });
+import { vi } from "vitest";
+
+window.matchMedia = vi.fn().mockReturnValue({ matches: false });
 
 export {};

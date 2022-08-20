@@ -2,6 +2,7 @@ import React from "react";
 import { fireEvent } from "@testing-library/react";
 import SongSectionView from "./SongSectionView";
 import { renderWithAppProvider as render } from "testUtils/renderWithAppProvider";
+import { vi } from "vitest";
 
 test("SongSectionView - hide prop", () => {
   const { queryByTestId } = render(<SongSectionView hide />);
@@ -40,7 +41,7 @@ test("SongSectionView - close interaction works", () => {
     title: "Hello world",
     body: "A B C \n Test",
   };
-  const onRequestHide = jest.fn();
+  const onRequestHide = vi.fn();
   const { getByTestId } = render(
     <SongSectionView onRequestHide={onRequestHide} songKey="C" overrideKey="D" section={section} />
   );

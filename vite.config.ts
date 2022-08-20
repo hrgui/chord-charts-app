@@ -1,3 +1,5 @@
+/// <reference types="vitest" />
+
 import reactPlugin from "@vitejs/plugin-react";
 import viteTsConfigPathsPlugin from "vite-tsconfig-paths";
 import { defineConfig, loadEnv } from "vite";
@@ -20,9 +22,16 @@ const config = defineConfig(({ mode, command }) => {
   return {
     plugins: [reactPlugin(), viteTsConfigPathsPlugin()],
     define: {
-      global: "window",
       ...envWithProcessPrefix,
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || mode),
+    },
+    test: {
+      environment: "jsdom",
+      globals: true,
+      setupFiles: "./src/setupTests.ts",
+      coverage: {
+        reporter: ["text", "text-summary", "html"],
+      },
     },
   };
 });

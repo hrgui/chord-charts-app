@@ -1,6 +1,7 @@
 import React from "react";
 import { render, act, waitFor } from "@testing-library/react";
 import App from "./App";
+import { vi } from "vitest";
 
 const observeMock = {
   observe: () => null,
@@ -8,7 +9,7 @@ const observeMock = {
 };
 
 beforeEach(() => {
-  (window as any).IntersectionObserver = jest.fn().mockImplementation(() => observeMock);
+  (window as any).IntersectionObserver = vi.fn().mockImplementation(() => observeMock);
 });
 
 test("renders learn react if passed in learn react", async () => {

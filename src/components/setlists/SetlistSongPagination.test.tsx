@@ -2,9 +2,10 @@ import React from "react";
 import { fireEvent } from "@testing-library/react";
 import { SetlistSongPagination } from "./SetlistSongPagination";
 import { renderWithAppProvider as render } from "testUtils/renderWithAppProvider";
+import { vi } from "vitest";
 
 test("prev clicked - onChange receives -1 to signal upstream to wrap", () => {
-  const onChange = jest.fn();
+  const onChange = vi.fn();
   const { getByTestId } = render(
     <SetlistSongPagination currentIndex={0} length={10} onChange={onChange} />
   );
@@ -14,7 +15,7 @@ test("prev clicked - onChange receives -1 to signal upstream to wrap", () => {
 });
 
 test("next clicked - onChange receives 10 to signal upstream to wrap", () => {
-  const onChange = jest.fn();
+  const onChange = vi.fn();
   const { getByTestId } = render(
     <SetlistSongPagination currentIndex={9} length={10} onChange={onChange} />
   );
@@ -24,7 +25,7 @@ test("next clicked - onChange receives 10 to signal upstream to wrap", () => {
 });
 
 test("page clicked - 8 - should get 7 for upstream", () => {
-  const onChange = jest.fn();
+  const onChange = vi.fn();
   const { getByText } = render(
     <SetlistSongPagination currentIndex={9} length={10} onChange={onChange} />
   );
@@ -34,7 +35,7 @@ test("page clicked - 8 - should get 7 for upstream", () => {
 });
 
 test("page clicked - 8 - should get 7 for upstream, with rerender to 7 then user clicks Next to go to 8", () => {
-  const onChange = jest.fn();
+  const onChange = vi.fn();
   const { getByText, getByTestId, rerender } = render(
     <SetlistSongPagination currentIndex={9} length={10} onChange={onChange} />
   );

@@ -24,7 +24,7 @@
     ]
   },
   "devDependencies": {
-    "@hrgui/chord-charts": "^2.1.0",
+    "@hrgui/chord-charts": "^3.0.0",
     "@reduxjs/toolkit": "^1.8.1",
     "@tailwindcss/typography": "^0.5.2",
     "@testing-library/jest-dom": "^5.16.4",

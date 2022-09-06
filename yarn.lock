@@ -1291,10 +1291,10 @@
   resolved "https://registry.yarnpkg.com/@esbuild/linux-loong64/-/linux-loong64-0.14.54.tgz#de2a4be678bd4d0d1ffbb86e6de779cde5999028"
   integrity sha512-bZBrLAIX1kpWelV0XemxBZllyRmM6vgFQQG2GdNb+r3Fkp0FOh1NJSvekXDs7jq70k4euu1cryLMfU+mTXlEpw==
 
-"@hrgui/chord-charts@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@hrgui/chord-charts/-/chord-charts-2.1.0.tgz#3050bda1084e7a48dc58ac52432e6851df77e125"
-  integrity sha512-D3IHewUdjnq4ynKN4xiruoCgPE88S+XS4JsZQGLJWipPBpgOJQ7dw4mxD0Vhk7kecPa/NZiMW4oQdAr/hC8SJg==
+"@hrgui/chord-charts@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@hrgui/chord-charts/-/chord-charts-3.0.0.tgz#f0da9b44e1932082516a83a49fdc46d2318955b2"
+  integrity sha512-Ws8owAdZiBqgPbY6xXM8V9CEDu9xAeI8d4UCUDOuYmVbt2tm2YcplcWhh34SIlADEXILT553Px3LjGNZ7zMEhQ==
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"

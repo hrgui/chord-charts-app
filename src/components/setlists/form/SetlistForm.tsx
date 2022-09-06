@@ -80,7 +80,7 @@ export function SetlistForm({ onSubmit, data }: SetlistFormProps) {
         <SongListContainer
           addToSetlistMode
           onAddSong={({ _id, key }) => {
-            append({ _id, settings: { overrideKey: key } });
+            append({ _id: _id as string, settings: { overrideKey: key } });
             setDialogOpen(false);
           }}
         />

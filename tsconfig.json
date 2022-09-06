@@ -16,7 +16,7 @@
     "jsx": "react",
     "baseUrl": "src",
     "isolatedModules": true,
-    "types": ["vitest/globals"]
+    "types": ["vitest/globals", "wicg-file-system-access"]
   },
   "include": ["src"]
 }

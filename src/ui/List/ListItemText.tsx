@@ -1,4 +1,4 @@
-import { useAppBarActions } from "hooks/useAppBarActions";
+import { useAppBarActions } from "~/hooks/useAppBarActions";
 import React from "react";
 import { twMerge } from "tailwind-merge";
 import { isMobile } from "utils";

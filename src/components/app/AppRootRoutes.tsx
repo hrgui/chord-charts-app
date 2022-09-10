@@ -13,7 +13,7 @@ import SetlistsListPage from "pages/SetlistsListPage";
 import { NewSetlistFormPage } from "pages/NewSetlistFormPage";
 import { EditSetlistFormPage } from "pages/EditSetlistFormPage";
 
-import RouteModal from "components/app/RouteModal";
+import RouteModal from "~/components/app/RouteModal";
 
 export function AppRootRoutes() {
   const location = useLocation();

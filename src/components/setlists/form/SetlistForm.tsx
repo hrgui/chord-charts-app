@@ -1,11 +1,11 @@
 import React from "react";
 import { useForm, SubmitHandler, SubmitErrorHandler, useFieldArray } from "react-hook-form";
-import { Setlist } from "api/services/setlists";
-import FormSection from "ui/form/FormSection";
+import { Setlist } from "~/api/services/setlists";
+import FormSection from "~/ui/form/FormSection";
 import { useTranslation } from "react-i18next";
-import FormControl from "ui/form/FormControl";
+import FormControl from "~/ui/form/FormControl";
 import { Button, Input, Modal } from "react-daisyui";
-import { SongListContainer } from "components/songs/SongsListContainer";
+import { SongListContainer } from "~/components/songs/SongsListContainer";
 import SetlistSongFieldRow from "./SetlistSongFieldRow";
 
 type SetlistFormProps = {

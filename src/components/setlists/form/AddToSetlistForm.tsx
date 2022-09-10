@@ -2,8 +2,8 @@ import * as React from "react";
 import { SetlistListContainer } from "../SetlistsListContainer";
 import { useTranslation } from "react-i18next";
 import { Alert } from "react-daisyui";
-import { useGetSongQuery } from "api/services/songs";
-import Loading from "ui/layout/Loading";
+import { useGetSongQuery } from "~/api/services/songs";
+import Loading from "~/ui/layout/Loading";
 
 export interface IAddToSetlistFormProps {
   song_id?: string;

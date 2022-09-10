@@ -1,8 +1,8 @@
 import * as React from "react";
 import SetlistView from "./SetlistView";
-import { Loading } from "ui/layout/Loading";
-import { useGetSetlistQuery } from "api/services/setlists";
-import Page from "ui/layout/Page";
+import { Loading } from "~/ui/layout/Loading";
+import { useGetSetlistQuery } from "~/api/services/setlists";
+import Page from "~/ui/layout/Page";
 import { useNavigate } from "react-router-dom";
 
 interface SetlistViewPageProps {

@@ -1,6 +1,6 @@
-import { getNewSetlistTemplate } from "api/services/setlists";
+import { getNewSetlistTemplate } from "~/api/services/setlists";
 import React from "react";
-import { renderWithAppProvider as render } from "testUtils/renderWithAppProvider";
+import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
 import SetlistActions from "./SetlistActions";
 
 it("should render the list items for the setlist actions", () => {

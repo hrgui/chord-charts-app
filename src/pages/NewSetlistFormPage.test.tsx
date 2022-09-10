@@ -1,7 +1,7 @@
 import React from "react";
-import { renderWithAppProvider as render } from "testUtils/renderWithAppProvider";
+import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
 import NewSetlistFormPage from "./NewSetlistFormPage";
-import pouchDbBaseQuery from "api/rtk-api/pouchDbBaseQuery";
+import pouchDbBaseQuery from "~/api/rtk-api/pouchDbBaseQuery";
 import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";

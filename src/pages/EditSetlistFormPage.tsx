@@ -4,11 +4,11 @@ import { useTranslation } from "react-i18next";
 import { SubmitHandler } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { Setlist, useGetSetlistQuery, useUpdateSetlistMutation } from "api/services/setlists";
-import { SetlistForm } from "components/setlists/form/SetlistForm";
-import Page from "ui/layout/Page";
-import PageLoading from "ui/layout/PageLoading";
-import ErrorAlert from "ui/alert/ErrorAlert";
+import { Setlist, useGetSetlistQuery, useUpdateSetlistMutation } from "~/api/services/setlists";
+import { SetlistForm } from "~/components/setlists/form/SetlistForm";
+import Page from "~/ui/layout/Page";
+import PageLoading from "~/ui/layout/PageLoading";
+import ErrorAlert from "~/ui/alert/ErrorAlert";
 
 export function EditSetlistFormPage() {
   const { id } = useParams<{ id: string }>();

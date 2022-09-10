@@ -1,10 +1,10 @@
 import React from "react";
-import { renderWithAppProvider as render } from "testUtils/renderWithAppProvider";
+import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
 import EditSongFormPage from "./EditSongFormPage";
-import pouchDbBaseQuery from "api/rtk-api/pouchDbBaseQuery";
+import pouchDbBaseQuery from "~/api/rtk-api/pouchDbBaseQuery";
 import userEvent from "@testing-library/user-event";
 import { waitFor } from "@testing-library/react";
-import { getNewSongTemplate } from "api/services/songs";
+import { getNewSongTemplate } from "~/api/services/songs";
 import { useParams } from "react-router-dom";
 import { vi } from "vitest";
 import type { Mock } from "vitest";

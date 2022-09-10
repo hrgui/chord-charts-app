@@ -6,7 +6,7 @@ import {
   setNavBarState,
   toggleDarkMode,
   NavBarState,
-} from "store/uiStateSlice";
+} from "~/store/uiStateSlice";
 
 export function useAppBarActions() {
   const dispatch = useDispatch();

@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import React from "react";
-import { renderWithAppProvider as render } from "testUtils/renderWithAppProvider";
+import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
 import AppNavMenu from "./AppNavMenu";
 
 it("should at least have the Dark theme switch and the name of the app", () => {

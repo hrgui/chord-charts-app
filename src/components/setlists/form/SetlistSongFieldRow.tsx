@@ -1,9 +1,9 @@
 import * as React from "react";
-import ChordSelect from "components/songs/ChordSelect";
-import { useGetSongQuery } from "api/services/songs";
-import Skeleton from "ui/Skeleton";
-import MaterialSymbol from "ui/icons/MaterialSymbol";
-import { SetlistSong } from "api/services/setlists";
+import ChordSelect from "~/components/songs/ChordSelect";
+import { useGetSongQuery } from "~/api/services/songs";
+import Skeleton from "~/ui/Skeleton";
+import MaterialSymbol from "~/ui/icons/MaterialSymbol";
+import { SetlistSong } from "~/api/services/setlists";
 import { Dropdown } from "react-daisyui";
 
 export interface ISetlistSongFieldRowProps {

@@ -1,7 +1,7 @@
-import { useAppBarActions } from "hooks/useAppBarActions";
-import useGetAppBarData from "hooks/useGetAppBarData";
+import { useAppBarActions } from "~/hooks/useAppBarActions";
+import useGetAppBarData from "~/hooks/useGetAppBarData";
 import * as React from "react";
-import NavLink, { NavLinkProps } from "ui/router/NavLink";
+import NavLink, { NavLinkProps } from "~/ui/router/NavLink";
 import { isMobile } from "utils";
 
 const ListItemLink = ({

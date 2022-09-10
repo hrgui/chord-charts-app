@@ -1,4 +1,4 @@
-import { getDb } from "api/db";
+import { getDb } from "~/api/db";
 import { nanoid } from "nanoid";
 
 export enum ApiMethod {

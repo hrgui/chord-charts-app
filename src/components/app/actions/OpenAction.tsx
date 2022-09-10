@@ -1,9 +1,9 @@
 import React from "react";
-import { ListItem, ListItemIcon, ListItemText } from "ui/List";
+import { ListItem, ListItemIcon, ListItemText } from "~/ui/List";
 import { useTranslation } from "react-i18next";
-import MaterialSymbol from "ui/icons/MaterialSymbol";
-import { destroySession, hasUserInputtedData } from "api/db";
-import { importDbFromFile } from "api/file/import-export-file";
+import MaterialSymbol from "~/ui/icons/MaterialSymbol";
+import { destroySession, hasUserInputtedData } from "~/api/db";
+import { importDbFromFile } from "~/api/file/import-export-file";
 
 const OpenAction = () => {
   const { t } = useTranslation();

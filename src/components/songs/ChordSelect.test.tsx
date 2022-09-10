@@ -1,5 +1,5 @@
 import React from "react";
-import { renderWithAppProvider } from "testUtils/renderWithAppProvider";
+import { renderWithAppProvider } from "~/testUtils/renderWithAppProvider";
 import ChordSelect from "./ChordSelect";
 
 test("ChordSelect - default case - A, B, C should be an option in a ChordSelect", () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import MaterialSymbol from "ui/icons/MaterialSymbol";
+import MaterialSymbol from "~/ui/icons/MaterialSymbol";
 
 export interface SongSectionFieldPanelProps {
   onMoveDown?: () => void;

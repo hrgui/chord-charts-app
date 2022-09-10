@@ -1,15 +1,15 @@
 import * as React from "react";
 import toast from "react-hot-toast";
-import ListItemLink from "ui/layout/ListItemLink";
-import ChordSelect from "components/songs/ChordSelect";
+import ListItemLink from "~/ui/layout/ListItemLink";
+import ChordSelect from "~/components/songs/ChordSelect";
 import { useTranslation } from "react-i18next";
-import { useGetSongsQuery } from "api/services/songs";
-import { ListSubheader, ListItem, List, ListItemText, ListItemIcon } from "ui/List";
-import Divider from "ui/Divider";
-import Skeleton from "ui/Skeleton";
-import MaterialSymbol from "ui/icons/MaterialSymbol";
-import { Setlist, SetlistSong, useDeleteSetlistMutation } from "api/services/setlists";
-import ErrorAlert from "ui/alert/ErrorAlert";
+import { useGetSongsQuery } from "~/api/services/songs";
+import { ListSubheader, ListItem, List, ListItemText, ListItemIcon } from "~/ui/List";
+import Divider from "~/ui/Divider";
+import Skeleton from "~/ui/Skeleton";
+import MaterialSymbol from "~/ui/icons/MaterialSymbol";
+import { Setlist, SetlistSong, useDeleteSetlistMutation } from "~/api/services/setlists";
+import ErrorAlert from "~/ui/alert/ErrorAlert";
 
 export function CurrentSetlistNavMenuPlaceholder() {
   return <div id="currentSetlistNavMenu" />;

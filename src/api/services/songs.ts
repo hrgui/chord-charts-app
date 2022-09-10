@@ -1,5 +1,5 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import pouchDbBaseQuery, { ApiMethod } from "api/rtk-api/pouchDbBaseQuery";
+import pouchDbBaseQuery, { ApiMethod } from "~/api/rtk-api/pouchDbBaseQuery";
 
 export interface SongSection {
   type: "text" | "abc";

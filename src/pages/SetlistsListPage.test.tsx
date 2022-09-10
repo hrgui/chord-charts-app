@@ -1,9 +1,9 @@
 import React from "react";
-import { renderWithAppProvider as render } from "testUtils/renderWithAppProvider";
+import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
 import SetlistsListPage from "./SetlistsListPage";
-import pouchDbBaseQuery from "api/rtk-api/pouchDbBaseQuery";
+import pouchDbBaseQuery from "~/api/rtk-api/pouchDbBaseQuery";
 import { screen, waitFor } from "@testing-library/react";
-import { getNewSetlistTemplate } from "api/services/setlists";
+import { getNewSetlistTemplate } from "~/api/services/setlists";
 import { vi } from "vitest";
 import type { Mock } from "vitest";
 

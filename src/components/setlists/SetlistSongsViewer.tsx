@@ -1,11 +1,11 @@
 import * as React from "react";
-import { SongViewContainer } from "components/songs/SongViewContainer";
+import { SongViewContainer } from "~/components/songs/SongViewContainer";
 import { SetlistSongPagination } from "./SetlistSongPagination";
 import { CurrentSetlistNavMenu } from "./CurrentSetlistNavMenu";
-import { Setlist, SetlistSong } from "api/services/setlists";
-import Page from "ui/layout/Page";
+import { Setlist, SetlistSong } from "~/api/services/setlists";
+import Page from "~/ui/layout/Page";
 import { Alert } from "react-daisyui";
-import MaterialSymbol from "ui/icons/MaterialSymbol";
+import MaterialSymbol from "~/ui/icons/MaterialSymbol";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 

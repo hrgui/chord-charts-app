@@ -4,10 +4,10 @@ import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
-import { getNewSetlistTemplate, Setlist, useAddSetlistMutation } from "api/services/setlists";
-import Page from "ui/layout/Page";
-import { SetlistForm } from "components/setlists/form/SetlistForm";
-import ErrorAlert from "ui/alert/ErrorAlert";
+import { getNewSetlistTemplate, Setlist, useAddSetlistMutation } from "~/api/services/setlists";
+import Page from "~/ui/layout/Page";
+import { SetlistForm } from "~/components/setlists/form/SetlistForm";
+import ErrorAlert from "~/ui/alert/ErrorAlert";
 
 export function NewSetlistFormPage() {
   const navigate = useNavigate();

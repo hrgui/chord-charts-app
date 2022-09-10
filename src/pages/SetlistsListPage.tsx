@@ -1,6 +1,6 @@
 import React from "react";
-import { SetlistListContainer } from "components/setlists/SetlistsListContainer";
-import Page from "ui/layout/Page";
+import { SetlistListContainer } from "~/components/setlists/SetlistsListContainer";
+import Page from "~/ui/layout/Page";
 
 export interface SetlistsListPageProps {
   path?: string;

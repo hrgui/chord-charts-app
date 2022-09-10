@@ -1,6 +1,6 @@
 import React from "react";
 import SongView, { SongViewKey } from "./SongView";
-import { renderWithAppProvider as render } from "testUtils/renderWithAppProvider";
+import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
 import { vi } from "vitest";
 
 describe("SongView", () => {

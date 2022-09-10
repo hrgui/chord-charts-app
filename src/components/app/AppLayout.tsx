@@ -1,8 +1,8 @@
 import React from "react";
 import AppNavMenu from "./AppNavMenu";
-import ContentContainer from "ui/layout/ContentContainer";
+import ContentContainer from "~/ui/layout/ContentContainer";
 import AppBar from "./AppBar";
-import { ToolbarSpacer } from "ui/layout/ToolbarSpacer";
+import { ToolbarSpacer } from "~/ui/layout/ToolbarSpacer";
 
 export function AppLayout({
   children,

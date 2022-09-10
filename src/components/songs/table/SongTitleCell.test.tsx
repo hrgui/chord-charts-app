@@ -1,6 +1,6 @@
 import React from "react";
-import { Song } from "api/services/songs";
-import { renderWithAppProvider } from "testUtils/renderWithAppProvider";
+import { Song } from "~/api/services/songs";
+import { renderWithAppProvider } from "~/testUtils/renderWithAppProvider";
 import SongTitleCell from "./SongTitleCell";
 import { screen } from "@testing-library/react";
 

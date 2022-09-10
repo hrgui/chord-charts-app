@@ -1,6 +1,6 @@
 import * as React from "react";
 import classnames from "classnames";
-import MaterialSymbol from "ui/icons/MaterialSymbol";
+import MaterialSymbol from "~/ui/icons/MaterialSymbol";
 import { twMerge } from "tailwind-merge";
 import cx from "classnames";
 

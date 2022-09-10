@@ -1,9 +1,9 @@
 import React from "react";
-import { useDarkMode } from "hooks/useDarkMode";
+import { useDarkMode } from "~/hooks/useDarkMode";
 import { useTranslation } from "react-i18next";
-import { useAppBarActions } from "hooks/useAppBarActions";
-import { ListItem, ListItemText, ListItemIcon } from "ui/List";
-import MaterialSymbol from "ui/icons/MaterialSymbol";
+import { useAppBarActions } from "~/hooks/useAppBarActions";
+import { ListItem, ListItemText, ListItemIcon } from "~/ui/List";
+import MaterialSymbol from "~/ui/icons/MaterialSymbol";
 
 interface IDarkThemeActionProps {}
 

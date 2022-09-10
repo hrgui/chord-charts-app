@@ -1,7 +1,7 @@
 import React from "react";
 import { fireEvent } from "@testing-library/react";
 import { SetlistSongPagination } from "./SetlistSongPagination";
-import { renderWithAppProvider as render } from "testUtils/renderWithAppProvider";
+import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
 import { vi } from "vitest";
 
 test("prev clicked - onChange receives -1 to signal upstream to wrap", () => {

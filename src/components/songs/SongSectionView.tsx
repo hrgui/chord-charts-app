@@ -1,7 +1,7 @@
 import React from "react";
 import ChordChartView from "./ChordChartView";
 import classnames from "classnames";
-import Close from "ui/icons/CloseIcon";
+import Close from "~/ui/icons/CloseIcon";
 
 export interface SongSectionViewProps {
   chordsDisabled?: boolean;

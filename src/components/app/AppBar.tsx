@@ -1,8 +1,8 @@
-import { useAppBarActions } from "hooks/useAppBarActions";
-import useGetAppBarData from "hooks/useGetAppBarData";
+import { useAppBarActions } from "~/hooks/useAppBarActions";
+import useGetAppBarData from "~/hooks/useGetAppBarData";
 import React from "react";
 import { Navbar } from "react-daisyui";
-import { MenuIcon } from "ui/icons/MenuIcon";
+import { MenuIcon } from "~/ui/icons/MenuIcon";
 import classNames from "classnames";
 
 export interface AppBarProps {

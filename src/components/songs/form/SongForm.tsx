@@ -1,6 +1,6 @@
-import { Song } from "api/services/songs";
-import ChordSelect from "components/songs/ChordSelect";
-import { YoutubeView } from "components/songs/YoutubeView";
+import { Song } from "~/api/services/songs";
+import ChordSelect from "~/components/songs/ChordSelect";
+import { YoutubeView } from "~/components/songs/YoutubeView";
 import React from "react";
 import {
   useForm,
@@ -11,9 +11,9 @@ import {
 } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Button, Input } from "react-daisyui";
-import FormControl from "ui/form/FormControl";
-import FormSection from "ui/form/FormSection";
-import ChordChartTextInput from "components/songs/ChordChartTextInput";
+import FormControl from "~/ui/form/FormControl";
+import FormSection from "~/ui/form/FormSection";
+import ChordChartTextInput from "~/components/songs/ChordChartTextInput";
 import { SongSectionFieldPanel } from "./SongSectionFieldPanel";
 
 type SongFormProps = {

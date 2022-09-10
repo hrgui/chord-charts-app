@@ -4,10 +4,10 @@ import { SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import { getNewSongTemplate, Song, useAddSongMutation } from "api/services/songs";
-import { SongForm } from "components/songs/form/SongForm";
-import Page from "ui/layout/Page";
-import ErrorAlert from "ui/alert/ErrorAlert";
+import { getNewSongTemplate, Song, useAddSongMutation } from "~/api/services/songs";
+import { SongForm } from "~/components/songs/form/SongForm";
+import Page from "~/ui/layout/Page";
+import ErrorAlert from "~/ui/alert/ErrorAlert";
 
 export function NewSongFormPage() {
   const newSongTemplate = getNewSongTemplate();

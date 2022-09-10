@@ -1,9 +1,9 @@
 import { screen } from "@testing-library/react";
 import React from "react";
-import { renderWithAppProvider as render } from "testUtils/renderWithAppProvider";
+import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
 import NewAction from "./NewAction";
 import userEvent from "@testing-library/user-event";
-import { hasUserInputtedData, destroySession } from "api/db";
+import { hasUserInputtedData, destroySession } from "~/api/db";
 import { vi } from "vitest";
 import type { Mock } from "vitest";
 

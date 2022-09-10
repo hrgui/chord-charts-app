@@ -1,6 +1,6 @@
 import React from "react";
 import { transpose, wrap, allChords } from "@hrgui/chord-charts";
-import { useDarkMode } from "hooks/useDarkMode";
+import { useDarkMode } from "~/hooks/useDarkMode";
 
 interface Props {
   value?: string;

@@ -16,7 +16,10 @@
     "jsx": "react",
     "baseUrl": "src",
     "isolatedModules": true,
-    "types": ["vitest/globals", "wicg-file-system-access"]
+    "types": ["vitest/globals", "wicg-file-system-access"],
+    "paths": {
+      "~/*": ["./*"]
+    }
   },
   "include": ["src"]
 }

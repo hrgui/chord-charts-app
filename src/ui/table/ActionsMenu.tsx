@@ -1,7 +1,7 @@
 import * as React from "react";
 import { isFunction } from "utils";
 import { Dropdown } from "react-daisyui";
-import MaterialSymbol from "ui/icons/MaterialSymbol";
+import MaterialSymbol from "~/ui/icons/MaterialSymbol";
 
 interface SetlistActionsProps {
   children?: React.ReactNode | ((props: { onClose: () => void }) => React.ReactNode);

@@ -1600,6 +1600,14 @@
     react-refresh "^0.13.0"
     resolve "^1.22.0"
 
+"@vitest/coverage-c8@^0.23.1":
+  version "0.23.1"
+  resolved "https://registry.yarnpkg.com/@vitest/coverage-c8/-/coverage-c8-0.23.1.tgz#6834f8ec5e35be56c03039276be83fd1580ab68c"
+  integrity sha512-si3vK1h3BHdoGfb5J2jXstthROHwDW+yqVNGO/NOPG8642+d1RO/jFFvF3OSSYFEsxxcDL0uywEVcXCjGuPYdA==
+  dependencies:
+    c8 "^7.12.0"
+    vitest "0.23.1"
+
 abab@^2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/abab/-/abab-2.0.6.tgz#41b80f2c871d19686216b82309231cfd3cb3d291"
@@ -2186,7 +2194,7 @@ csstype@^3.0.2:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.0.tgz#4ddcac3718d787cf9df0d1b7d15033925c8f29f2"
   integrity sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==
 
-daisyui@^2.14.3:
+daisyui@^2.25.0:
   version "2.25.0"
   resolved "https://registry.yarnpkg.com/daisyui/-/daisyui-2.25.0.tgz#9a7931cf1d8776a43ab24a41262c82af433bb283"
   integrity sha512-tv2sFHMOCEr+3A2JOFMaFjV6O/tkXYrytCSptXU8GRS7FDCR0pUmHA/o6K+3nydor7rQ06gMyVbCDHE9WdMW0Q==
@@ -3769,7 +3777,7 @@ react-app-polyfill@^2.0.0:
     regenerator-runtime "^0.13.7"
     whatwg-fetch "^3.4.1"
 
-react-daisyui@^2.0.1:
+react-daisyui@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/react-daisyui/-/react-daisyui-2.4.0.tgz#0fc0ab3b28aca22be025b4de558f675c468c9ce5"
   integrity sha512-LNGVi24ak8ZpHOb8NjxH4d9mjoUt24G5XZsNWi4j5uY4M2VqWc8c7wRBIactfdHpu88tbgsspBBIJXBl67kH1w==
@@ -4187,6 +4195,13 @@ strip-indent@^3.0.0:
   dependencies:
     min-indent "^1.0.0"
 
+strip-literal@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/strip-literal/-/strip-literal-0.4.0.tgz#0f90e86daecc1eb23c61c62d25238ffad4524634"
+  integrity sha512-ql/sBDoJOybTKSIOWrrh8kgUEMjXMwRAkZTD0EwiwxQH/6tTPkZvMIEjp0CRlpi6V5FMiJyvxeRkEi1KrGISoA==
+  dependencies:
+    acorn "^8.7.1"
+
 supports-color@^5.3.0:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.5.0.tgz#e2e69a44ac8772f78a1ec0b35b689df6530efc8f"
@@ -4264,6 +4279,11 @@ test-exclude@^6.0.0:
     "@istanbuljs/schema" "^0.1.2"
     glob "^7.1.4"
     minimatch "^3.0.4"
+
+tinybench@^2.1.3:
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/tinybench/-/tinybench-2.1.5.tgz#6864341415ff0f912ed160cfd90b7f833ece674c"
+  integrity sha512-ak+PZZEuH3mw6CCFOgf5S90YH0MARnZNhxjhjguAmoJimEMAJuNip/rJRd6/wyylHItomVpKTzZk9zrhTrQCoQ==
 
 tinypool@^0.2.4:
   version "0.2.4"
@@ -4461,10 +4481,10 @@ vite-tsconfig-paths@^3.4.1:
   optionalDependencies:
     fsevents "~2.3.2"
 
-vitest@^0.22.1:
-  version "0.22.1"
-  resolved "https://registry.yarnpkg.com/vitest/-/vitest-0.22.1.tgz#3122e6024bf782ee9aca53034017af7adb009c32"
-  integrity sha512-+x28YTnSLth4KbXg7MCzoDAzPJlJex7YgiZbUh6YLp0/4PqVZ7q7/zyfdL0OaPtKTpNiQFPpMC8Y2MSzk8F7dw==
+vitest@0.23.1, vitest@^0.23.1:
+  version "0.23.1"
+  resolved "https://registry.yarnpkg.com/vitest/-/vitest-0.23.1.tgz#da3f79a88a6570e4d8c1fe8cf5e2d997be2dc3bd"
+  integrity sha512-kn9pG+h6VA3yj/xRvwgLKEd33rOlzMqJEg3tl5HSm3WUPlkY1Lr1FK8RN1uIqVKvFxmz6HGU3EQW+xW2kazRkQ==
   dependencies:
     "@types/chai" "^4.3.3"
     "@types/chai-subset" "^1.3.3"
@@ -4472,6 +4492,8 @@ vitest@^0.22.1:
     chai "^4.3.6"
     debug "^4.3.4"
     local-pkg "^0.4.2"
+    strip-literal "^0.4.0"
+    tinybench "^2.1.3"
     tinypool "^0.2.4"
     tinyspy "^1.0.2"
     vite "^2.9.12 || ^3.0.0-0"

@@ -1,6 +1,8 @@
 import * as React from "react";
-import { SetlistSongsViewer } from "./SetlistSongsViewer";
+
 import { Loading } from "~/ui/layout/Loading";
+
+import { SetlistSongsViewer } from "./SetlistSongsViewer";
 
 interface SetlistViewProps {
   isLoading?: boolean;

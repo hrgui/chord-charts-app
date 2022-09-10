@@ -1,10 +1,11 @@
 import * as React from "react";
+import { Trans, useTranslation } from "react-i18next";
+
+import { Song, useGetSongsQuery } from "~/api/services/songs";
 import Link from "~/ui/layout/Link";
 import { Table } from "~/ui/table/Table";
-import { Trans } from "react-i18next";
-import { useTranslation } from "react-i18next";
+
 import SongActions from "./SongActions";
-import { Song, useGetSongsQuery } from "~/api/services/songs";
 import SongTitleCell from "./table/SongTitleCell";
 
 export function SongListContainer({

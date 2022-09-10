@@ -1,7 +1,8 @@
-import AppNavMenu from "./AppNavMenu";
 import ContentContainer from "~/ui/layout/ContentContainer";
-import AppBar from "./AppBar";
 import { ToolbarSpacer } from "~/ui/layout/ToolbarSpacer";
+
+import AppBar from "./AppBar";
+import AppNavMenu from "./AppNavMenu";
 
 export function AppLayout({
   children,

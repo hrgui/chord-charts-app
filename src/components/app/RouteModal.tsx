@@ -1,4 +1,5 @@
-import { Modal, ModalProps } from "react-daisyui";
+import { Modal } from "react-daisyui";
+import type { ModalProps } from "react-daisyui";
 import { useNavigate } from "react-router-dom";
 
 export function RouteModal(props: ModalProps) {

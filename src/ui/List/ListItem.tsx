@@ -1,5 +1,6 @@
-import ListItemText, { Props } from "./ListItemText";
 import { twMerge } from "tailwind-merge";
+
+import ListItemText, { Props } from "./ListItemText";
 
 export const ListItem = ({
   className,

@@ -1,9 +1,11 @@
 import * as React from "react";
-import SetlistView from "./SetlistView";
-import { Loading } from "~/ui/layout/Loading";
-import { useGetSetlistQuery } from "~/api/services/setlists";
-import Page from "~/ui/layout/Page";
 import { useNavigate } from "react-router-dom";
+
+import { useGetSetlistQuery } from "~/api/services/setlists";
+import { Loading } from "~/ui/layout/Loading";
+import Page from "~/ui/layout/Page";
+
+import SetlistView from "./SetlistView";
 
 interface SetlistViewPageProps {
   path?: string;

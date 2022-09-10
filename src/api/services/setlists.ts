@@ -1,4 +1,5 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
+
 import pouchDbBaseQuery, { ApiMethod } from "~/api/rtk-api/pouchDbBaseQuery";
 import { getUpcomingSunday, toDomDate } from "~/ui/utils/date";
 

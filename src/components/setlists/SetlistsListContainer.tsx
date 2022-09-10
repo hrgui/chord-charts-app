@@ -1,12 +1,13 @@
 import * as React from "react";
-import { Table } from "~/ui/table/Table";
-import SetlistTitleCell from "./cells/SetlistTitleCell";
-import SetlistActions from "./SetlistActions";
-import Link from "~/ui/layout/Link";
-import { useTranslation } from "react-i18next";
-import { Trans } from "react-i18next";
+import { useTranslation, Trans } from "react-i18next";
+
 import { Setlist, useGetSetlistsQuery } from "~/api/services/setlists";
 import { Song } from "~/api/services/songs";
+import Link from "~/ui/layout/Link";
+import { Table } from "~/ui/table/Table";
+
+import SetlistTitleCell from "./cells/SetlistTitleCell";
+import SetlistActions from "./SetlistActions";
 
 interface SetlistTableProps {
   loading?: boolean;

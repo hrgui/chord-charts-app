@@ -1,4 +1,12 @@
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
+
+import { useDeleteSongMutation } from "~/api/services/songs";
+import { useAppBarActions } from "~/hooks/useAppBarActions";
+import ErrorAlert from "~/ui/alert/ErrorAlert";
+import Divider from "~/ui/Divider";
+import MaterialSymbol from "~/ui/icons/MaterialSymbol";
+import ListItemLink from "~/ui/layout/ListItemLink";
 import {
   List,
   ListItem,
@@ -6,13 +14,6 @@ import {
   ListItemIcon,
   ListSubheader,
 } from "~/ui/List";
-import ListItemLink from "~/ui/layout/ListItemLink";
-import { useAppBarActions } from "~/hooks/useAppBarActions";
-import { useTranslation } from "react-i18next";
-import Divider from "~/ui/Divider";
-import MaterialSymbol from "~/ui/icons/MaterialSymbol";
-import { useDeleteSongMutation } from "~/api/services/songs";
-import ErrorAlert from "~/ui/alert/ErrorAlert";
 
 export function CurrentSongNavMenuPlaceholder() {
   return <div id="currentSongNavMenu" />;

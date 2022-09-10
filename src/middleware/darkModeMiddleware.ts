@@ -1,9 +1,10 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
+
+import type { RootState } from "~/store";
 import {
   CHORD_CHARTS_DARK_MODE_KEY,
   toggleDarkMode,
 } from "~/store/uiStateSlice";
-import type { RootState } from "~/store";
 
 const listenerMiddleware = createListenerMiddleware();
 

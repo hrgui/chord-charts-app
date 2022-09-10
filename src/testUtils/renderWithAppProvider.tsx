@@ -1,6 +1,7 @@
 import { render, act, RenderResult } from "@testing-library/react";
-import { AppProvider } from "~/components/app/AppProvider";
 import { Router as TestRouter } from "react-router-dom";
+
+import { AppProvider } from "~/components/app/AppProvider";
 import { createStore } from "~/store";
 
 export interface RenderWithAppControllerProps {

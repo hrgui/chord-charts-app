@@ -1,6 +1,6 @@
+import classnames from "classnames";
 import React from "react";
 import { twMerge } from "tailwind-merge";
-import classnames from "classnames";
 
 type SkeletonProps = React.HTMLProps<HTMLDivElement>;
 

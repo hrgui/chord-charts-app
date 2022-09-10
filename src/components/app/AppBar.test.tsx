@@ -1,8 +1,10 @@
-import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
-import AppBar from "./AppBar";
 import { fireEvent } from "@testing-library/react";
-import useGetAppBarData from "~/hooks/useGetAppBarData";
 import { vi } from "vitest";
+
+import useGetAppBarData from "~/hooks/useGetAppBarData";
+import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
+
+import AppBar from "./AppBar";
 
 const observeMock = {
   observe: () => null,

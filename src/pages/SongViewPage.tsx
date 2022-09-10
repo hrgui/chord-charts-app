@@ -1,5 +1,6 @@
-import { SongViewContainer } from "~/components/songs/SongViewContainer";
 import { useParams } from "react-router-dom";
+
+import { SongViewContainer } from "~/components/songs/SongViewContainer";
 
 export const SongViewPage = () => {
   const { id } = useParams<any>();

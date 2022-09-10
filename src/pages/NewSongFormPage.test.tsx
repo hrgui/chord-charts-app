@@ -1,10 +1,12 @@
-import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
-import NewSongFormPage from "./NewSongFormPage";
-import pouchDbBaseQuery from "~/api/rtk-api/pouchDbBaseQuery";
-import userEvent from "@testing-library/user-event";
 import { waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 import type { Mock } from "vitest";
+
+import pouchDbBaseQuery from "~/api/rtk-api/pouchDbBaseQuery";
+import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
+
+import NewSongFormPage from "./NewSongFormPage";
 
 const _pouchDbBaseQuery = pouchDbBaseQuery as Mock;
 

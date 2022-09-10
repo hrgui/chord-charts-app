@@ -1,7 +1,8 @@
 import classnames from "classnames";
-import { useGlobalSongActions } from "~/hooks/useGlobalSongActions";
-import Youtube from "react-youtube";
 import * as qs from "qs";
+import Youtube from "react-youtube";
+
+import { useGlobalSongActions } from "~/hooks/useGlobalSongActions";
 
 export const YoutubeView = ({ value, className }: { value; className? }) => {
   const getYoutubeId = (youtubeUrl) => {

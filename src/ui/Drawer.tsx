@@ -1,6 +1,6 @@
+import classnames from "classnames";
 import React from "react";
 import { twMerge } from "tailwind-merge";
-import classnames from "classnames";
 
 interface DrawerProps extends React.HTMLProps<HTMLDivElement> {
   open?: boolean;

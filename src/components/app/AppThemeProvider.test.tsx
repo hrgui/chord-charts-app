@@ -1,5 +1,6 @@
-import AppThemeProvider from "./AppThemeProvider";
 import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
+
+import AppThemeProvider from "./AppThemeProvider";
 
 test("should render exactly what you pass in since its a provider", async () => {
   const { getByText } = await render(

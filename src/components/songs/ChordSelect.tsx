@@ -1,6 +1,7 @@
 import * as React from "react";
-import getKeyAsOptions from "./utils/getKeyAsOptions";
 import { twMerge } from "tailwind-merge";
+
+import getKeyAsOptions from "./utils/getKeyAsOptions";
 
 interface ChordSelectProps extends React.HTMLProps<HTMLSelectElement> {
   value?: string;

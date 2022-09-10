@@ -1,10 +1,12 @@
-import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
-import SongsListPage from "./SongsListPage";
-import pouchDbBaseQuery from "~/api/rtk-api/pouchDbBaseQuery";
-import { getNewSongTemplate } from "~/api/services/songs";
 import { screen, waitFor } from "@testing-library/react";
 import { vi } from "vitest";
 import type { Mock } from "vitest";
+
+import pouchDbBaseQuery from "~/api/rtk-api/pouchDbBaseQuery";
+import { getNewSongTemplate } from "~/api/services/songs";
+import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
+
+import SongsListPage from "./SongsListPage";
 
 vi.mock("api/rtk-api/pouchDbBaseQuery");
 

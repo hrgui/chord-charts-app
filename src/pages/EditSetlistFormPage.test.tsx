@@ -1,12 +1,14 @@
-import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
-import EditSetlistFormPage from "./EditSetlistFormPage";
-import pouchDbBaseQuery from "~/api/rtk-api/pouchDbBaseQuery";
 import { waitFor } from "@testing-library/react";
-import { useParams } from "react-router-dom";
-import { getNewSetlistTemplate, Setlist } from "~/api/services/setlists";
 import userEvent from "@testing-library/user-event";
+import { useParams } from "react-router-dom";
 import { vi } from "vitest";
 import type { Mock } from "vitest";
+
+import pouchDbBaseQuery from "~/api/rtk-api/pouchDbBaseQuery";
+import { getNewSetlistTemplate, Setlist } from "~/api/services/setlists";
+import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
+
+import EditSetlistFormPage from "./EditSetlistFormPage";
 
 const _pouchDbBaseQuery = pouchDbBaseQuery as Mock;
 const _useParams = useParams as Mock;

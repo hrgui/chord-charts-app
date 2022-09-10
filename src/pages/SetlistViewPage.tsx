@@ -1,5 +1,6 @@
-import { SetlistViewContainer } from "~/components/setlists/SetlistViewContainer";
 import { useParams } from "react-router-dom";
+
+import { SetlistViewContainer } from "~/components/setlists/SetlistViewContainer";
 
 type Props = {};
 

@@ -1,5 +1,6 @@
-import ChordChartView from "./ChordChartView";
 import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
+
+import ChordChartView from "./ChordChartView";
 
 test("basic usage", () => {
   const { queryByText } = render(<ChordChartView value={`A B C \n Test`} />);

@@ -1,6 +1,8 @@
-import AddToSetlistForm from "../components/setlists/form/AddToSetlistForm";
-import useQueryParams from "~/hooks/useQueryParams";
 import { useNavigate } from "react-router-dom";
+
+import useQueryParams from "~/hooks/useQueryParams";
+
+import AddToSetlistForm from "../components/setlists/form/AddToSetlistForm";
 
 export default function AddToSetlistFormPage() {
   const navigate = useNavigate();

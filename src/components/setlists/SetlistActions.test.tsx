@@ -1,5 +1,6 @@
 import { getNewSetlistTemplate } from "~/api/services/setlists";
 import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
+
 import SetlistActions from "./SetlistActions";
 
 it("should render the list items for the setlist actions", () => {

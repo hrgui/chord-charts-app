@@ -1,7 +1,8 @@
-import { ListItem, ListItemIcon, ListItemText } from "~/ui/List";
 import { useTranslation } from "react-i18next";
-import MaterialSymbol from "~/ui/icons/MaterialSymbol";
+
 import { hasUserInputtedData, destroySession } from "~/api/db";
+import MaterialSymbol from "~/ui/icons/MaterialSymbol";
+import { ListItem, ListItemIcon, ListItemText } from "~/ui/List";
 
 const NewAction = () => {
   const { t } = useTranslation();

@@ -1,8 +1,8 @@
-import * as React from "react";
 import classnames from "classnames";
-import MaterialSymbol from "~/ui/icons/MaterialSymbol";
+import * as React from "react";
 import { twMerge } from "tailwind-merge";
-import cx from "classnames";
+
+import MaterialSymbol from "~/ui/icons/MaterialSymbol";
 
 interface SetlistSongPaginationProps {
   currentIndex: number;

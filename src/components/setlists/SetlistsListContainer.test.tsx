@@ -1,5 +1,6 @@
 import { getNewSetlistTemplate } from "~/api/services/setlists";
 import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
+
 import { SetlistTable } from "./SetlistsListContainer";
 
 describe("SetlistTable", () => {

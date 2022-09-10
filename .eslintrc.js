@@ -8,12 +8,17 @@ module.exports = {
     react: {
       version: "detect",
     },
+    "import/resolver": {
+      typescript: true,
+      node: true,
+    },
   },
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/jsx-runtime",
+    "plugin:import/recommended",
   ],
   overrides: [],
   parser: "@typescript-eslint/parser",
@@ -28,5 +33,24 @@ module.exports = {
     "@typescript-eslint/no-explicit-any": [0],
     "@typescript-eslint/ban-types": [0],
     "@typescript-eslint/no-non-null-assertion": [0],
+    "import/order": [
+      1,
+      {
+        "newlines-between": "always",
+        alphabetize: {
+          order:
+            "asc" /* sort in ascending order. Options: ['ignore', 'asc', 'desc'] */,
+          caseInsensitive: true /* ignore case. Options: [true, false] */,
+        },
+        groups: [
+          "external",
+          "builtin",
+          "internal",
+          "sibling",
+          "parent",
+          "index",
+        ],
+      },
+    ],
   },
 };

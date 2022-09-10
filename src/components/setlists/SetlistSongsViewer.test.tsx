@@ -1,6 +1,7 @@
 import { getNewSetlistTemplate } from "~/api/services/setlists";
-import { SetlistSongsViewer } from "./SetlistSongsViewer";
 import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
+
+import { SetlistSongsViewer } from "./SetlistSongsViewer";
 
 it("should work with no songs", () => {
   const setlist = getNewSetlistTemplate();

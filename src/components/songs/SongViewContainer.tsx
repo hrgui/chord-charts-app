@@ -1,9 +1,11 @@
 import * as React from "react";
-import Loading from "~/ui/layout/Loading";
-import SongView from "./SongView";
-import { useGetSongQuery } from "~/api/services/songs";
-import Page from "~/ui/layout/Page";
+
 import { Setlist } from "~/api/services/setlists";
+import { useGetSongQuery } from "~/api/services/songs";
+import Loading from "~/ui/layout/Loading";
+import Page from "~/ui/layout/Page";
+
+import SongView from "./SongView";
 
 interface SongViewContainerProps {
   id: string;

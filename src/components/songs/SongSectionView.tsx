@@ -1,6 +1,8 @@
-import ChordChartView from "./ChordChartView";
 import classnames from "classnames";
+
 import Close from "~/ui/icons/CloseIcon";
+
+import ChordChartView from "./ChordChartView";
 
 export interface SongSectionViewProps {
   chordsDisabled?: boolean;

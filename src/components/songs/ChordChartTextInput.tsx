@@ -1,5 +1,6 @@
-import Editor from "react-simple-code-editor";
 import { wrap } from "@hrgui/chord-charts";
+import Editor from "react-simple-code-editor";
+
 import { useDarkMode } from "~/hooks/useDarkMode";
 
 interface ChordChartTextInputProps {

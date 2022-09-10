@@ -8,9 +8,9 @@ import {
   Setlist,
   useAddSetlistMutation,
 } from "~/api/services/setlists";
-import Page from "~/ui/layout/Page";
 import { SetlistForm } from "~/components/setlists/form/SetlistForm";
 import ErrorAlert from "~/ui/alert/ErrorAlert";
+import Page from "~/ui/layout/Page";
 
 export function NewSetlistFormPage() {
   const navigate = useNavigate();

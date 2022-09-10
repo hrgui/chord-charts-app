@@ -1,14 +1,16 @@
-import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
-import SetlistViewPage from "./SetlistViewPage";
+import { waitFor } from "@testing-library/react";
+import { useParams } from "react-router-dom";
+import { vi } from "vitest";
+import type { Mock } from "vitest";
+
 import pouchDbBaseQuery, {
   PouchDbBaseQueryArgs,
 } from "~/api/rtk-api/pouchDbBaseQuery";
-import { waitFor } from "@testing-library/react";
-import { getNewSongTemplate } from "~/api/services/songs";
-import { useParams } from "react-router-dom";
 import { getNewSetlistTemplate } from "~/api/services/setlists";
-import { vi } from "vitest";
-import type { Mock } from "vitest";
+import { getNewSongTemplate } from "~/api/services/songs";
+import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
+
+import SetlistViewPage from "./SetlistViewPage";
 
 const _pouchDbBaseQuery = pouchDbBaseQuery as Mock;
 const _useParams = useParams as Mock;

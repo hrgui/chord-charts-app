@@ -1,6 +1,6 @@
+import { SubmitHandler } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
-import { SubmitHandler } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 
 import {
@@ -9,9 +9,9 @@ import {
   useUpdateSongMutation,
 } from "~/api/services/songs";
 import { SongForm } from "~/components/songs/form/SongForm";
+import ErrorAlert from "~/ui/alert/ErrorAlert";
 import Page from "~/ui/layout/Page";
 import PageLoading from "~/ui/layout/PageLoading";
-import ErrorAlert from "~/ui/alert/ErrorAlert";
 
 export function EditSongFormPage() {
   const [updateSong] = useUpdateSongMutation();

@@ -1,6 +1,7 @@
+import React from "react";
+
 import { SongListContainer } from "~/components/songs/SongsListContainer";
 import Page from "~/ui/layout/Page";
-import React from "react";
 
 type Props = {};
 

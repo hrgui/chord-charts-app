@@ -1,12 +1,13 @@
 import { Suspense } from "react";
 import { HelmetProvider } from "react-helmet-async";
+import { Toaster } from "react-hot-toast";
+import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 
 import { store as defaultStore } from "~/store";
-import { Provider } from "react-redux";
-import { AppThemeProvider } from "./AppThemeProvider";
 import PageLoading from "~/ui/layout/PageLoading";
-import { Toaster } from "react-hot-toast";
+
+import { AppThemeProvider } from "./AppThemeProvider";
 
 interface AppControllerProps {
   children?;

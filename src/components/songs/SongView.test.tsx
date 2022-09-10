@@ -1,6 +1,8 @@
-import SongView, { SongViewKey } from "./SongView";
-import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
 import { vi } from "vitest";
+
+import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
+
+import SongView, { SongViewKey } from "./SongView";
 
 describe("SongView", () => {
   it("should be able to render a song if provided normally", () => {

@@ -1,6 +1,7 @@
 import * as React from "react";
-import { isFunction } from "utils";
 import { Dropdown } from "react-daisyui";
+
+import { isFunction } from "utils";
 import MaterialSymbol from "~/ui/icons/MaterialSymbol";
 
 interface SetlistActionsProps {

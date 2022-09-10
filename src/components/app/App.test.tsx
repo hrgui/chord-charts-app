@@ -1,6 +1,7 @@
 import { render, act, waitFor } from "@testing-library/react";
-import App from "./App";
 import { vi } from "vitest";
+
+import App from "./App";
 
 const observeMock = {
   observe: () => null,

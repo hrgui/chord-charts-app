@@ -1,10 +1,12 @@
 import { screen } from "@testing-library/react";
-import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
-import NewAction from "./NewAction";
 import userEvent from "@testing-library/user-event";
-import { hasUserInputtedData, destroySession } from "~/api/db";
 import { vi } from "vitest";
 import type { Mock } from "vitest";
+
+import { hasUserInputtedData, destroySession } from "~/api/db";
+import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
+
+import NewAction from "./NewAction";
 
 const _hasUserInputtedData = hasUserInputtedData as Mock;
 const _destroySession = destroySession as Mock;

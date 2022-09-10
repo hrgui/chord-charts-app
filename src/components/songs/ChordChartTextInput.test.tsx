@@ -1,7 +1,9 @@
 import { fireEvent } from "@testing-library/react";
-import ChordChartTextInput from "./ChordChartTextInput";
-import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
 import { vi } from "vitest";
+
+import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
+
+import ChordChartTextInput from "./ChordChartTextInput";
 
 test("ChordChartTextInput - on value change", () => {
   const onValueChange = vi.fn();

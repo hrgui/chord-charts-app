@@ -1,7 +1,8 @@
+import classnames from "classnames";
 import * as React from "react";
 import { Alert, Input } from "react-daisyui";
 import { useTable, useFilters, useSortBy, usePagination } from "react-table";
-import classnames from "classnames";
+
 import ErrorIcon from "~/ui/icons/ErrorIcon";
 import MaterialSymbol from "~/ui/icons/MaterialSymbol";
 import Loading from "~/ui/layout/Loading";

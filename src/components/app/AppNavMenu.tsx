@@ -1,20 +1,22 @@
-import ListItemLink from "~/ui/layout/ListItemLink";
-import SongsNavMenu from "~/components/songs/menu/SongsNavMenu";
-import SetlistsNavMenu from "~/components/setlists/menu/SetlistsNavMenu";
-import { useAppBarActions } from "~/hooks/useAppBarActions";
-import { useGetAppBarData } from "~/hooks/useGetAppBarData";
-import Drawer from "~/ui/Drawer";
-import { List, ListItemText, ListItemIcon, ListSubheader } from "~/ui/List";
-import Divider from "~/ui/Divider";
-import CloseIcon from "~/ui/icons/CloseIcon";
 import { Button } from "react-daisyui";
 import { useTranslation } from "react-i18next";
-import DarkThemeAction from "./actions/DarkThemeAction";
+
+import SetlistsNavMenu from "~/components/setlists/menu/SetlistsNavMenu";
+import SongsNavMenu from "~/components/songs/menu/SongsNavMenu";
+import { useAppBarActions } from "~/hooks/useAppBarActions";
+import { useGetAppBarData } from "~/hooks/useGetAppBarData";
+import Divider from "~/ui/Divider";
+import Drawer from "~/ui/Drawer";
+import CloseIcon from "~/ui/icons/CloseIcon";
 import MaterialSymbol from "~/ui/icons/MaterialSymbol";
+import ListItemLink from "~/ui/layout/ListItemLink";
+import { List, ListItemText, ListItemIcon, ListSubheader } from "~/ui/List";
+
+import DarkThemeAction from "./actions/DarkThemeAction";
 import NewAction from "./actions/NewAction";
+import OpenAction from "./actions/OpenAction";
 import SaveAction from "./actions/SaveAction";
 import SaveAsAction from "./actions/SaveAsAction";
-import OpenAction from "./actions/OpenAction";
 
 export function AppNavMenu() {
   const config = useGetAppBarData();

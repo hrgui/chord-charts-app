@@ -1,7 +1,7 @@
-import toast from "react-hot-toast";
 import { SubmitHandler } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 import {
   getNewSongTemplate,
@@ -9,8 +9,8 @@ import {
   useAddSongMutation,
 } from "~/api/services/songs";
 import { SongForm } from "~/components/songs/form/SongForm";
-import Page from "~/ui/layout/Page";
 import ErrorAlert from "~/ui/alert/ErrorAlert";
+import Page from "~/ui/layout/Page";
 
 export function NewSongFormPage() {
   const newSongTemplate = getNewSongTemplate();

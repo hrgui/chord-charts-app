@@ -1,7 +1,9 @@
 import { fireEvent } from "@testing-library/react";
-import SongSectionView from "./SongSectionView";
-import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
 import { vi } from "vitest";
+
+import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
+
+import SongSectionView from "./SongSectionView";
 
 test("SongSectionView - hide prop", () => {
   const { queryByTestId } = render(<SongSectionView hide />);

@@ -1,4 +1,3 @@
-import React from "react";
 import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
 import SongViewPage from "./SongViewPage";
 import pouchDbBaseQuery from "~/api/rtk-api/pouchDbBaseQuery";
@@ -29,6 +28,8 @@ it("should be able to view the song", async () => {
   });
 
   const { getByText } = render(<SongViewPage />);
-  await waitFor(() => expect(getByText("Example | Untitled")).toBeInTheDocument());
+  await waitFor(() =>
+    expect(getByText("Example | Untitled")).toBeInTheDocument()
+  );
   expect(getByText("Sample test")).toBeInTheDocument();
 });

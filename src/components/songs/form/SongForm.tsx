@@ -1,11 +1,9 @@
 import { Song } from "~/api/services/songs";
 import ChordSelect from "~/components/songs/ChordSelect";
 import { YoutubeView } from "~/components/songs/YoutubeView";
-import React from "react";
 import {
   useForm,
   SubmitHandler,
-  SubmitErrorHandler,
   useFieldArray,
   Controller,
 } from "react-hook-form";
@@ -23,7 +21,9 @@ type SongFormProps = {
 };
 
 export function SongForm({ onSubmit, data }: SongFormProps) {
-  const { register, handleSubmit, watch, control } = useForm<Song>({ defaultValues: data });
+  const { register, handleSubmit, watch, control } = useForm<Song>({
+    defaultValues: data,
+  });
   const { fields, append, remove, move } = useFieldArray({
     control,
     name: "sections",
@@ -33,7 +33,11 @@ export function SongForm({ onSubmit, data }: SongFormProps) {
   const { t } = useTranslation();
 
   function handleAddTextChordChartSection() {
-    append({ title: "Untitled Section " + (fields.length + 1), body: "", type: "text" });
+    append({
+      title: "Untitled Section " + (fields.length + 1),
+      body: "",
+      type: "text",
+    });
   }
 
   return (
@@ -81,7 +85,10 @@ export function SongForm({ onSubmit, data }: SongFormProps) {
               control={control}
               name={`sections.${index}.body`}
               render={({ field: { onChange, value } }) => (
-                <ChordChartTextInput value={value || ""} onValueChange={onChange} />
+                <ChordChartTextInput
+                  value={value || ""}
+                  onValueChange={onChange}
+                />
               )}
             />
           </FormControl>

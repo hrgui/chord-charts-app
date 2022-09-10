@@ -34,7 +34,11 @@ export const SongSectionFieldPanel: React.FC<SongSectionFieldPanelProps> = ({
       >
         <MaterialSymbol icon="arrow_upward" />
       </button>
-      <button className="btn btn-square" onClick={onDelete} data-testid="delete">
+      <button
+        className="btn btn-square"
+        onClick={onDelete}
+        data-testid="delete"
+      >
         <MaterialSymbol icon="delete" />
       </button>
     </div>

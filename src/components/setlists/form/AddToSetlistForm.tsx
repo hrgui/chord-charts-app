@@ -1,4 +1,3 @@
-import * as React from "react";
 import { SetlistListContainer } from "../SetlistsListContainer";
 import { useTranslation } from "react-i18next";
 import { Alert } from "react-daisyui";
@@ -12,7 +11,7 @@ export interface IAddToSetlistFormProps {
 
 export default function AddToSetlistForm(props: IAddToSetlistFormProps) {
   const { song_id, navigate } = props;
-  const { data, isLoading, error } = useGetSongQuery(song_id!);
+  const { data, isLoading } = useGetSongQuery(song_id!);
   const { t } = useTranslation();
 
   if (isLoading) {

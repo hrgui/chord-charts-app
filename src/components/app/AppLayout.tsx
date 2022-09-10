@@ -1,4 +1,3 @@
-import React from "react";
 import AppNavMenu from "./AppNavMenu";
 import ContentContainer from "~/ui/layout/ContentContainer";
 import AppBar from "./AppBar";

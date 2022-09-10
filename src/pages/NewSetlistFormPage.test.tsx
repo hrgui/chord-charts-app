@@ -1,4 +1,3 @@
-import React from "react";
 import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
 import NewSetlistFormPage from "./NewSetlistFormPage";
 import pouchDbBaseQuery from "~/api/rtk-api/pouchDbBaseQuery";
@@ -15,19 +14,25 @@ it("should be able to render a setlist form without crashing even if there are n
   _pouchDbBaseQuery.mockImplementation(() => {
     return { data: { docs: [] } };
   });
-  const { getByTestId, getByLabelText, getByText } = render(<NewSetlistFormPage />);
+  const { getByTestId, getByLabelText, getByText } = render(
+    <NewSetlistFormPage />
+  );
   expect(getByTestId("appBarTitle")).toBeInTheDocument();
   expect(getByLabelText("Setlist Title")).toBeInTheDocument();
   expect(getByLabelText("Setlist Owner")).toBeInTheDocument();
 
-  (await waitFor(() => expect(getByText("There are no songs.")))).toBeInTheDocument();
+  (
+    await waitFor(() => expect(getByText("There are no songs.")))
+  ).toBeInTheDocument();
 });
 
 it("should be able to create a setlist", async () => {
   _pouchDbBaseQuery.mockImplementation(() => {
     return { data: { docs: [] } };
   });
-  const { getByTestId, getByLabelText, getByText } = render(<NewSetlistFormPage />);
+  const { getByTestId, getByLabelText, getByText } = render(
+    <NewSetlistFormPage />
+  );
   expect(getByTestId("appBarTitle")).toBeInTheDocument();
   const setlistTitleInput = getByLabelText("Setlist Title");
   expect(setlistTitleInput).toBeInTheDocument();
@@ -37,6 +42,8 @@ it("should be able to create a setlist", async () => {
 
   await userEvent.click(getByText("Save"));
   await waitFor(() =>
-    expect(getByText("Successfully created setlist Example")).toBeInTheDocument()
+    expect(
+      getByText("Successfully created setlist Example")
+    ).toBeInTheDocument()
   );
 });

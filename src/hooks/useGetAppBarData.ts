@@ -3,8 +3,12 @@ import { RootState } from "~/store";
 
 export function useGetAppBarData() {
   const appName = useSelector((state: RootState) => state.uiState.appName);
-  const navMenuHidden = useSelector((state: RootState) => state.uiState.navMenuHidden);
-  const navBarState = useSelector((state: RootState) => state.uiState.navBarState);
+  const navMenuHidden = useSelector(
+    (state: RootState) => state.uiState.navMenuHidden
+  );
+  const navBarState = useSelector(
+    (state: RootState) => state.uiState.navBarState
+  );
 
   return {
     appName,

@@ -52,7 +52,11 @@ export function SongListContainer({
           },
         }) => {
           return (
-            <SongActions onAddSong={onAddSong!} addToSetlistMode={addToSetlistMode} song={data} />
+            <SongActions
+              onAddSong={onAddSong!}
+              addToSetlistMode={addToSetlistMode}
+              song={data}
+            />
           );
         },
       },
@@ -65,7 +69,7 @@ export function SongListContainer({
         <Link to="/song/new" className="text-black" alt="New Song">
           Create a new song
         </Link>{" "}
-        and it'll show up here.
+        and it will show up here.
       </Trans>
     );
   }, []);

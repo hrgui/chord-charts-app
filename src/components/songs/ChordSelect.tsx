@@ -10,19 +10,21 @@ interface ChordSelectProps extends React.HTMLProps<HTMLSelectElement> {
   classes?: any;
 }
 
-export const ChordSelect = React.forwardRef<HTMLSelectElement, ChordSelectProps>(
-  ({ className, ...props }, ref) => {
-    return (
-      <select
-        ref={ref}
-        data-testid="chordSelect"
-        className={twMerge("select select-bordered", className)}
-        {...props}
-      >
-        {getKeyAsOptions()}
-      </select>
-    );
-  }
-);
+export const ChordSelect = React.forwardRef<
+  HTMLSelectElement,
+  ChordSelectProps
+>(({ className, ...props }, ref) => {
+  return (
+    <select
+      ref={ref}
+      data-testid="chordSelect"
+      className={twMerge("select select-bordered", className)}
+      {...props}
+    >
+      {getKeyAsOptions()}
+    </select>
+  );
+});
+ChordSelect.displayName = "ChordSelect";
 
 export default ChordSelect;

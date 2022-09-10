@@ -1,14 +1,23 @@
-import * as React from "react";
 import toast from "react-hot-toast";
 import ListItemLink from "~/ui/layout/ListItemLink";
 import ChordSelect from "~/components/songs/ChordSelect";
 import { useTranslation } from "react-i18next";
 import { useGetSongsQuery } from "~/api/services/songs";
-import { ListSubheader, ListItem, List, ListItemText, ListItemIcon } from "~/ui/List";
+import {
+  ListSubheader,
+  ListItem,
+  List,
+  ListItemText,
+  ListItemIcon,
+} from "~/ui/List";
 import Divider from "~/ui/Divider";
 import Skeleton from "~/ui/Skeleton";
 import MaterialSymbol from "~/ui/icons/MaterialSymbol";
-import { Setlist, SetlistSong, useDeleteSetlistMutation } from "~/api/services/setlists";
+import {
+  Setlist,
+  SetlistSong,
+  useDeleteSetlistMutation,
+} from "~/api/services/setlists";
 import ErrorAlert from "~/ui/alert/ErrorAlert";
 
 export function CurrentSetlistNavMenuPlaceholder() {
@@ -64,9 +73,11 @@ export function SetlistNavigation({
               <Skeleton width={Math.floor(Math.random() * 426)} height={16} />
             ) : (
               <>
-                <ListItemText primary={`${hidx}. ${fetchedSong?.title}`}></ListItemText>
+                <ListItemText
+                  primary={`${hidx}. ${fetchedSong?.title}`}
+                ></ListItemText>
                 <ChordSelect
-                  onChange={(e) => handleChangeSettings(e.target.value, sid)}
+                  onChange={() => handleChangeSettings(e.target.value, sid)}
                   value={song.settings.overrideKey || fetchedSong?.key}
                 />
               </>
@@ -97,7 +108,7 @@ export function CurrentSetlistNavMenu(props: CurrentSetlistNavMenuProps) {
       <Divider />
       <ListSubheader>{t("setlist:menu/controls/title")}</ListSubheader>
       {hasUnsavedSettings && (
-        <ListItem button onClick={(e) => onSaveSetlistSettings(settings)}>
+        <ListItem button onClick={() => onSaveSetlistSettings(settings)}>
           <ListItemIcon>
             <MaterialSymbol icon="call_merge" />
           </ListItemIcon>
@@ -115,9 +126,18 @@ export function CurrentSetlistNavMenu(props: CurrentSetlistNavMenuProps) {
         onClick={async () => {
           const promise = deleteSetlist(setlist);
           await toast.promise(promise, {
-            loading: t("setlist:action/delete/submitting", { title: setlist.title }),
-            success: t("setlist:action/delete/submitted", { title: setlist.title }),
-            error: (err) => <ErrorAlert message={t("setlist:action/delete/error")} error={err} />,
+            loading: t("setlist:action/delete/submitting", {
+              title: setlist.title,
+            }),
+            success: t("setlist:action/delete/submitted", {
+              title: setlist.title,
+            }),
+            error: (err) => (
+              <ErrorAlert
+                message={t("setlist:action/delete/error")}
+                error={err}
+              />
+            ),
           });
         }}
       >
@@ -127,7 +147,11 @@ export function CurrentSetlistNavMenu(props: CurrentSetlistNavMenuProps) {
         <ListItemText primary={t("delete")} />
       </ListItem>
       <Divider />
-      <SetlistNavigation id={id!} onChangeSettings={onChangeSettings} setlistSongs={songs} />
+      <SetlistNavigation
+        id={id!}
+        onChangeSettings={onChangeSettings}
+        setlistSongs={songs}
+      />
     </List>
   );
 }

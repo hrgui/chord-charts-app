@@ -1,4 +1,3 @@
-import React from "react";
 import { keys } from "@hrgui/chord-charts";
 
 export default function getKeyAsOptions() {

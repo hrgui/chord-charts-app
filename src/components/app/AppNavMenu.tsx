@@ -1,11 +1,10 @@
-import * as React from "react";
 import ListItemLink from "~/ui/layout/ListItemLink";
 import SongsNavMenu from "~/components/songs/menu/SongsNavMenu";
 import SetlistsNavMenu from "~/components/setlists/menu/SetlistsNavMenu";
 import { useAppBarActions } from "~/hooks/useAppBarActions";
 import { useGetAppBarData } from "~/hooks/useGetAppBarData";
 import Drawer from "~/ui/Drawer";
-import { List, ListItemText, ListItemIcon, ListItem, ListSubheader } from "~/ui/List";
+import { List, ListItemText, ListItemIcon, ListSubheader } from "~/ui/List";
 import Divider from "~/ui/Divider";
 import CloseIcon from "~/ui/icons/CloseIcon";
 import { Button } from "react-daisyui";

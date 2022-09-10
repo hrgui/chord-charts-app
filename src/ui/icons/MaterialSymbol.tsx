@@ -12,7 +12,6 @@ const MaterialSymbol = ({
   height,
   style,
   icon,
-  children,
   ...props
 }: MaterialSymbolProps) => {
   return (

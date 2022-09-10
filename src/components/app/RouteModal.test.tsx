@@ -1,4 +1,3 @@
-import React from "react";
 import { RouteModal } from "./RouteModal";
 import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
 

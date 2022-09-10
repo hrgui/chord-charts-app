@@ -1,4 +1,3 @@
-import React from "react";
 import { render, act, RenderResult } from "@testing-library/react";
 import { AppProvider } from "~/components/app/AppProvider";
 import { Router as TestRouter } from "react-router-dom";

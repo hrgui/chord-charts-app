@@ -1,4 +1,3 @@
-import React from "react";
 import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
 import EditSongFormPage from "./EditSongFormPage";
 import pouchDbBaseQuery from "~/api/rtk-api/pouchDbBaseQuery";
@@ -27,7 +26,9 @@ it("should be able to edit the song's title and save it", async () => {
     return { data: getNewSongTemplate() };
   });
 
-  const { getByTestId, getByText, getByLabelText } = render(<EditSongFormPage />);
+  const { getByTestId, getByText, getByLabelText } = render(
+    <EditSongFormPage />
+  );
   await waitFor(() => expect(getByTestId("appBarTitle")).toBeInTheDocument());
   const titleInput = getByLabelText("Title");
   expect(titleInput).toBeInTheDocument();
@@ -39,5 +40,7 @@ it("should be able to edit the song's title and save it", async () => {
   await userEvent.type(titleInput, "Example");
 
   await userEvent.click(getByText("Save"));
-  await waitFor(() => expect(getByText("Successfully updated song Example")).toBeInTheDocument());
+  await waitFor(() =>
+    expect(getByText("Successfully updated song Example")).toBeInTheDocument()
+  );
 });

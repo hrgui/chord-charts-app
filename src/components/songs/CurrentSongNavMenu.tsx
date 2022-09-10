@@ -1,6 +1,11 @@
-import * as React from "react";
 import toast from "react-hot-toast";
-import { List, ListItem, ListItemText, ListItemIcon, ListSubheader } from "~/ui/List";
+import {
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon,
+  ListSubheader,
+} from "~/ui/List";
 import ListItemLink from "~/ui/layout/ListItemLink";
 import { useAppBarActions } from "~/hooks/useAppBarActions";
 import { useTranslation } from "react-i18next";
@@ -39,7 +44,7 @@ export function SongSectionsNavMenu({
           <ListItem
             key={i}
             button
-            onClick={(e) => {
+            onClick={() => {
               onSetSectionSettings({
                 index: i,
                 hide: !sectionSettings.hide,
@@ -92,7 +97,10 @@ export function CurrentSongNavMenu(props: CurrentSongNavMenuProps) {
   return (
     <List dense>
       <ListSubheader>Song Controls</ListSubheader>
-      <ListItemLink onClick={(e) => toggleControlsPanel()} to={`/song/${id}/edit`}>
+      <ListItemLink
+        onClick={() => toggleControlsPanel()}
+        to={`/song/${id}/edit`}
+      >
         <ListItemIcon>
           <MaterialSymbol icon="edit" />
         </ListItemIcon>
@@ -105,7 +113,9 @@ export function CurrentSongNavMenu(props: CurrentSongNavMenuProps) {
           await toast.promise(promise, {
             loading: t("song:action/delete/submitting", { title: song.title }),
             success: t("song:action/delete/submitted", { title: song.title }),
-            error: (err) => <ErrorAlert message={t("song:action/delete/error")} error={err} />,
+            error: (err) => (
+              <ErrorAlert message={t("song:action/delete/error")} error={err} />
+            ),
           });
         }}
       >
@@ -115,35 +125,26 @@ export function CurrentSongNavMenu(props: CurrentSongNavMenuProps) {
         <ListItemText primary={t("delete")} />
       </ListItem>
       <Divider />
-      {/* <ListItem
+      <ListItem
         button
-        onClick={(e) => {
-          toggleYoutube();
+        onClick={() => {
+          onToggleScreenWrap();
         }}
       >
         <ListItemIcon>
-          {!isVideoHidden ? (
+          {screenWrap ? (
             <MaterialSymbol icon="toggle_on" />
           ) : (
             <MaterialSymbol icon="toggle_off" />
           )}
         </ListItemIcon>
-        <ListItemText primary={`${t("video")}: ${!isVideoHidden ? t("on") : t("off")}`} />
-      </ListItem> */}
-      <ListItem
-        button
-        onClick={(e) => {
-          onToggleScreenWrap();
-        }}
-      >
-        <ListItemIcon>
-          {screenWrap ? <MaterialSymbol icon="toggle_on" /> : <MaterialSymbol icon="toggle_off" />}
-        </ListItemIcon>
-        <ListItemText primary={`${t("screenWrap")}: ${screenWrap ? t("on") : t("off")}`} />
+        <ListItemText
+          primary={`${t("screenWrap")}: ${screenWrap ? t("on") : t("off")}`}
+        />
       </ListItem>
       <ListItem
         button
-        onClick={(e) => {
+        onClick={() => {
           onToggleLyricsVisibility();
         }}
       >
@@ -154,11 +155,13 @@ export function CurrentSongNavMenu(props: CurrentSongNavMenuProps) {
             <MaterialSymbol icon="toggle_off" />
           )}
         </ListItemIcon>
-        <ListItemText primary={`${t("lyrics")}: ${!lyricsDisabled ? t("on") : t("off")}`} />
+        <ListItemText
+          primary={`${t("lyrics")}: ${!lyricsDisabled ? t("on") : t("off")}`}
+        />
       </ListItem>
       <ListItem
         button
-        onClick={(e) => {
+        onClick={() => {
           onToggleChordsVisibility();
         }}
       >
@@ -169,7 +172,9 @@ export function CurrentSongNavMenu(props: CurrentSongNavMenuProps) {
             <MaterialSymbol icon="toggle_off" />
           )}
         </ListItemIcon>
-        <ListItemText primary={`${t("chords")}: ${!chordsDisabled ? t("on") : t("off")}`} />
+        <ListItemText
+          primary={`${t("chords")}: ${!chordsDisabled ? t("on") : t("off")}`}
+        />
       </ListItem>
       <SongSectionsNavMenu
         sectionsSettings={sectionsSettings}

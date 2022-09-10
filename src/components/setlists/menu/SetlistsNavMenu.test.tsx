@@ -1,4 +1,3 @@
-import * as React from "react";
 import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
 import SetlistNavMenu from "./SetlistsNavMenu";
 

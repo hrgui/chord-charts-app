@@ -23,31 +23,17 @@ export function normalizeSongIndex(songIndex) {
 }
 
 export const SetlistViewContainer: React.FC<SetlistViewPageProps> = (props) => {
-  let { isLoading, error: isError, data } = useGetSetlistQuery(props.id!);
+  const { isLoading, error: isError, data } = useGetSetlistQuery(props.id!);
   const navigate = useNavigate();
   const curTitle =
     data && data.title
       ? `${data.title}${data.leader ? `: ${data.leader}` : ""}`
       : `Setlist ${props.id}`;
 
-  const [isSavingSettings, setIsSavingSettings] = React.useState(false);
+  const [isSavingSettings] = React.useState(false);
 
-  async function handleSaveSetlistSettings(settings) {
+  async function handleSaveSetlistSettings() {
     alert("TODO handle save setlist settings changed now");
-    // setIsSavingSettings(true);
-    // const _data = {
-    //   ...data,
-    //   settings: { ...data.settings, ...settings },
-    // };
-
-    // await saveSetlist({
-    //   variables: { id: props._id, data: prepareValues(_data) },
-    // });
-
-    // enqueueSnackbar(`Setlist ${data.title || data._id} has been saved.`, {
-    //   variant: "success",
-    // });
-    // setIsSavingSettings(false);
   }
 
   if (isLoading) {

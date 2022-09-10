@@ -1,5 +1,4 @@
 import { screen } from "@testing-library/react";
-import React from "react";
 import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
 import AppNavMenu from "./AppNavMenu";
 

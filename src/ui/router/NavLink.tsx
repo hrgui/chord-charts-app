@@ -14,7 +14,9 @@ export const NavLink = React.forwardRef<NavLinkProps, any>(
         ref={ref}
         {...props}
         className={({ isActive }) =>
-          [props.className, isActive ? activeClassName : null].filter(Boolean).join(" ")
+          [props.className, isActive ? activeClassName : null]
+            .filter(Boolean)
+            .join(" ")
         }
         style={({ isActive }) => ({
           ...props.style,
@@ -24,5 +26,7 @@ export const NavLink = React.forwardRef<NavLinkProps, any>(
     );
   }
 );
+
+NavLink.displayName = "NavLink";
 
 export default NavLink;

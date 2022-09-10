@@ -36,13 +36,18 @@ function SetlistActionsList({
   const addToSetlist = async (song_id) => {
     const values: Setlist = {
       ...setlist,
-      songs: [...setlist.songs, { _id: song_id, settings: { overrideKey: song?.key } }],
+      songs: [
+        ...setlist.songs,
+        { _id: song_id, settings: { overrideKey: song?.key } },
+      ],
     };
     const promise = updateSetlist(values);
     await toast.promise(promise, {
       loading: t("setlist:action/edit/submitting", { title: values.title }),
       success: t("setlist:action/edit/submitted", { title: values.title }),
-      error: (err) => <ErrorAlert message={t("setlist:action/edit/error")} error={err} />,
+      error: (err) => (
+        <ErrorAlert message={t("setlist:action/edit/error")} error={err} />
+      ),
     });
   };
 
@@ -51,7 +56,7 @@ function SetlistActionsList({
       <List dense className="bg-base-200 rounded-box shadow-sm">
         <ListItem
           button
-          onClick={async (e) => {
+          onClick={async () => {
             await addToSetlist(song_id);
             onRequestClose?.();
           }}
@@ -96,9 +101,18 @@ function SetlistActionsList({
         onClick={async () => {
           const promise = deleteSetlist(setlist);
           await toast.promise(promise, {
-            loading: t("setlist:action/delete/submitting", { title: setlist.title }),
-            success: t("setlist:action/delete/submitted", { title: setlist.title }),
-            error: (err) => <ErrorAlert message={t("setlist:action/delete/error")} error={err} />,
+            loading: t("setlist:action/delete/submitting", {
+              title: setlist.title,
+            }),
+            success: t("setlist:action/delete/submitted", {
+              title: setlist.title,
+            }),
+            error: (err) => (
+              <ErrorAlert
+                message={t("setlist:action/delete/error")}
+                error={err}
+              />
+            ),
           });
           onRequestClose?.();
         }}

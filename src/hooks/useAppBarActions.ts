@@ -14,7 +14,8 @@ export function useAppBarActions() {
   return {
     toggleNavMenu: () => dispatch(toggleNavMenu()),
     toggleControlsPanel: () => dispatch(toggleControlsPanel()),
-    setNavBarState: (newState: NavBarState) => dispatch(setNavBarState(newState)),
+    setNavBarState: (newState: NavBarState) =>
+      dispatch(setNavBarState(newState)),
     toggleDarkMode: () => dispatch(toggleDarkMode()),
     toggleYoutube: () => dispatch(toggleYoutube()),
   };

@@ -18,7 +18,9 @@ const Drawer = ({ className, open, ...props }: DrawerProps) => {
       )}
     >
       <div
-        className={twMerge(classnames("bg-base-200 cc-drawer", { ["hidden"]: !open }))}
+        className={twMerge(
+          classnames("bg-base-200 cc-drawer", { ["hidden"]: !open })
+        )}
         {...props}
       />
     </div>

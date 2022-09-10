@@ -1,7 +1,8 @@
-import React from "react";
 import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
 import SetlistViewPage from "./SetlistViewPage";
-import pouchDbBaseQuery, { PouchDbBaseQueryArgs } from "~/api/rtk-api/pouchDbBaseQuery";
+import pouchDbBaseQuery, {
+  PouchDbBaseQueryArgs,
+} from "~/api/rtk-api/pouchDbBaseQuery";
 import { waitFor } from "@testing-library/react";
 import { getNewSongTemplate } from "~/api/services/songs";
 import { useParams } from "react-router-dom";
@@ -47,7 +48,9 @@ it("should be able to view the setlist with at least 1 song", async () => {
   });
 
   const { getByText } = render(<SetlistViewPage />);
-  await waitFor(() => expect(getByText("Setlist A - Example | Untitled")).toBeInTheDocument());
+  await waitFor(() =>
+    expect(getByText("Setlist A - Example | Untitled")).toBeInTheDocument()
+  );
   expect(getByText("Sample test")).toBeInTheDocument();
 
   await waitFor(() => expect(getByText("1. Example")).toBeInTheDocument());

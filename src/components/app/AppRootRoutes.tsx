@@ -1,4 +1,3 @@
-import React from "react";
 import { Routes, Navigate, useLocation, Route } from "react-router-dom";
 import AboutPage from "pages/AboutPage";
 

@@ -1,9 +1,8 @@
 export function triggerDownload(dataOrUri: Uint8Array, name: string): void {
   // If the data is provided as Buffer, we create a
   // blob URL out of it to produce a valid link
-  let url: string;
   const blob = new Blob([dataOrUri]);
-  url = URL.createObjectURL(blob);
+  const url = URL.createObjectURL(blob);
 
   // Ensure to free the data from DOM eventually
   setTimeout(() => URL.revokeObjectURL(url));
@@ -33,7 +32,7 @@ export function triggerUpload(): Promise<File | undefined> {
     input.multiple = true;
 
     input.onchange = () => {
-      let file = (input as any).files[0];
+      const file = (input as any).files[0];
       resolve(file);
     };
 

@@ -1,4 +1,3 @@
-import * as React from "react";
 import SetlistActions from "../SetlistActions";
 
 interface SetlistActionsCellProps {

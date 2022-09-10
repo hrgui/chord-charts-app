@@ -1,4 +1,3 @@
-import React from "react";
 import { Song } from "~/api/services/songs";
 import { renderWithAppProvider } from "~/testUtils/renderWithAppProvider";
 import SongTitleCell from "./SongTitleCell";

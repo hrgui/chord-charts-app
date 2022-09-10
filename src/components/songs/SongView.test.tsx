@@ -1,4 +1,3 @@
-import React from "react";
 import SongView, { SongViewKey } from "./SongView";
 import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
 import { vi } from "vitest";
@@ -100,7 +99,9 @@ describe("SongView", () => {
       />
     );
 
-    const chordSelect: HTMLSelectElement = getByTestId("chordSelect") as HTMLSelectElement;
+    const chordSelect: HTMLSelectElement = getByTestId(
+      "chordSelect"
+    ) as HTMLSelectElement;
     expect(chordSelect).toBeInTheDocument();
     expect(chordSelect.value).toEqual("B");
   });
@@ -193,7 +194,9 @@ describe("SongView", () => {
 describe("SongViewKey", () => {
   it("should be able to render without crashing, if all props provided", () => {
     const changeEvent = vi.fn();
-    const { queryByText } = render(<SongViewKey overrideKey={"A"} onChange={changeEvent} />);
+    const { queryByText } = render(
+      <SongViewKey overrideKey={"A"} onChange={changeEvent} />
+    );
     expect(queryByText("A")).not.toBeNull();
   });
 });

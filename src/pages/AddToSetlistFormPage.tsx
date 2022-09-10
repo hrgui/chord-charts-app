@@ -1,11 +1,8 @@
-import * as React from "react";
 import AddToSetlistForm from "../components/setlists/form/AddToSetlistForm";
 import useQueryParams from "~/hooks/useQueryParams";
 import { useNavigate } from "react-router-dom";
 
-export interface IAddToSetlistFormPageProps {}
-
-export default function AddToSetlistFormPage(props: IAddToSetlistFormPageProps) {
+export default function AddToSetlistFormPage() {
   const navigate = useNavigate();
   const query = useQueryParams();
   const song_id = query.get("song_id");

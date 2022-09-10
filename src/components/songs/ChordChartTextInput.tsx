@@ -1,4 +1,3 @@
-import * as React from "react";
 import Editor from "react-simple-code-editor";
 import { wrap } from "@hrgui/chord-charts";
 import { useDarkMode } from "~/hooks/useDarkMode";
@@ -12,10 +11,12 @@ interface ChordChartTextInputProps {
 export const ChordChartTextInput = ({
   value = "",
   className,
-  onValueChange = (code) => null,
+  onValueChange = () => null,
 }: ChordChartTextInputProps) => {
   const isDarkMode = useDarkMode();
-  const chordClassName = `chord ${isDarkMode ? "text-[#add8e6]" : "text-[#2159df]"} font-bold`;
+  const chordClassName = `chord ${
+    isDarkMode ? "text-[#add8e6]" : "text-[#2159df]"
+  } font-bold`;
 
   function chordChartHighlight(input) {
     return wrap(input, (x) => `<span class="${chordClassName}">${x}</span>`);

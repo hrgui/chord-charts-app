@@ -4,7 +4,9 @@ import { Dropdown } from "react-daisyui";
 import MaterialSymbol from "~/ui/icons/MaterialSymbol";
 
 interface SetlistActionsProps {
-  children?: React.ReactNode | ((props: { onClose: () => void }) => React.ReactNode);
+  children?:
+    | React.ReactNode
+    | ((props: { onClose: () => void }) => React.ReactNode);
   id?: any;
 }
 
@@ -22,7 +24,9 @@ const ActionsMenu: React.FC<SetlistActionsProps> = (props) => {
         <MaterialSymbol icon="more_vert" />
       </Dropdown.Toggle>
       <Dropdown.Menu className="w-52">
-        {isFunction(children) ? children({ ...props, onClose: handleClose }) : children}
+        {isFunction(children)
+          ? children({ ...props, onClose: handleClose })
+          : children}
       </Dropdown.Menu>
     </Dropdown>
   );

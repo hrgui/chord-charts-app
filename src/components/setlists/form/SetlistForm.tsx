@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm, SubmitHandler, SubmitErrorHandler, useFieldArray } from "react-hook-form";
+import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
 import { Setlist } from "~/api/services/setlists";
 import FormSection from "~/ui/form/FormSection";
 import { useTranslation } from "react-i18next";
@@ -15,7 +15,9 @@ type SetlistFormProps = {
 };
 
 export function SetlistForm({ onSubmit, data }: SetlistFormProps) {
-  const { register, handleSubmit, control } = useForm<Setlist>({ defaultValues: data });
+  const { register, handleSubmit, control } = useForm<Setlist>({
+    defaultValues: data,
+  });
   const { t } = useTranslation();
   const { fields, append, remove, move } = useFieldArray({
     control,

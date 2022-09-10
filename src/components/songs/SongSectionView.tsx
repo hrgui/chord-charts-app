@@ -1,4 +1,3 @@
-import React from "react";
 import ChordChartView from "./ChordChartView";
 import classnames from "classnames";
 import Close from "~/ui/icons/CloseIcon";
@@ -38,7 +37,12 @@ export const SongSectionView = ({
           fontSize={"small"}
         />
       </div>
-      <pre className={classnames("print-cc-body", "overflow-auto border-none block")}>
+      <pre
+        className={classnames(
+          "print-cc-body",
+          "overflow-auto border-none block"
+        )}
+      >
         {section.type !== "tab" && (
           <ChordChartView
             overrideKey={overrideKey}

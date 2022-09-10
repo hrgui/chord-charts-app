@@ -1,4 +1,3 @@
-import React from "react";
 import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
 import AboutPage from "./AboutPage";
 it("should render w/o crashing", async () => {

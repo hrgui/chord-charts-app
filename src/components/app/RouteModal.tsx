@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Modal, ModalProps } from "react-daisyui";
 import { useNavigate } from "react-router-dom";
 

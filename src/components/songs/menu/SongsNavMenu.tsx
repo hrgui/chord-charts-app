@@ -1,4 +1,3 @@
-import * as React from "react";
 import ListItemLink from "~/ui/layout/ListItemLink";
 import { useTranslation } from "react-i18next";
 import { ListItemIcon, List, ListItemText } from "~/ui/List";

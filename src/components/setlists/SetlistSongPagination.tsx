@@ -17,7 +17,8 @@ export const SetlistSongPagination = (props: SetlistSongPaginationProps) => {
   React.useEffect(() => {
     const buttonsHolderEl: any = buttonsHolder.current;
     const buttonToScrollTo: any =
-      buttonsHolderEl && buttonsHolderEl.querySelector(`.song-pgn-${currentIndex}`);
+      buttonsHolderEl &&
+      buttonsHolderEl.querySelector(`.song-pgn-${currentIndex}`);
 
     if (buttonToScrollTo && buttonToScrollTo.scrollIntoView) {
       buttonToScrollTo.scrollIntoView({ behavior: "smooth" });
@@ -35,7 +36,7 @@ export const SetlistSongPagination = (props: SetlistSongPaginationProps) => {
           ["bg-base-100"]: currentIndex === index,
         })
       )}
-      onClick={(e) => {
+      onClick={() => {
         handleChange(index);
       }}
       key={index}
@@ -48,13 +49,13 @@ export const SetlistSongPagination = (props: SetlistSongPaginationProps) => {
   const width = "xl";
   return (
     <div className="flex items-center">
-      <button data-testid="prev" onClick={(_) => handleChange(currentIndex - 1)}>
+      <button data-testid="prev" onClick={() => handleChange(currentIndex - 1)}>
         <MaterialSymbol icon="navigate_before" />
       </button>
       <div ref={buttonsHolder} className={classnames(`pageNumbers-${width}`)}>
         {buttons}
       </div>
-      <button data-testid="next" onClick={(_) => handleChange(currentIndex + 1)}>
+      <button data-testid="next" onClick={() => handleChange(currentIndex + 1)}>
         <MaterialSymbol icon="navigate_next" />
       </button>
     </div>

@@ -1,9 +1,11 @@
-import * as React from "react";
 import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
 import DarkThemeAction from "./DarkThemeAction";
 import { fireEvent } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
-import { CHORD_CHARTS_DARK_MODE_KEY, getDarkModeInitialState } from "~/store/uiStateSlice";
+import {
+  CHORD_CHARTS_DARK_MODE_KEY,
+  getDarkModeInitialState,
+} from "~/store/uiStateSlice";
 import { createStore } from "~/store";
 import { vi } from "vitest";
 

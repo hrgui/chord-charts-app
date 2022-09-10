@@ -20,7 +20,10 @@ export function setFileHandle(fileHandle: FileSystemFileHandle | null) {
   _fileHandle = fileHandle;
 }
 
-export async function writeFile(fileHandle: FileSystemFileHandle, contents: string) {
+export async function writeFile(
+  fileHandle: FileSystemFileHandle,
+  contents: string
+) {
   // Create a FileSystemWritableFileStream to write to.
   const writable = await fileHandle.createWritable();
 
@@ -45,7 +48,10 @@ function _unsupportedFileSave(fileContents) {
   return triggerDownload(fileContents, filename!);
 }
 
-export async function handleFileSave(fileContents: string, promptNewFilePicker) {
+export async function handleFileSave(
+  fileContents: string,
+  promptNewFilePicker
+) {
   if (isFileHandleUnsupported()) {
     return _unsupportedFileSave(fileContents);
   }
@@ -67,7 +73,7 @@ export async function handleFileOpen(): Promise<string> {
     const file = await triggerUpload();
 
     return new Promise((resolve, reject) => {
-      let reader = new FileReader();
+      const reader = new FileReader();
       reader.readAsText(file!);
       reader.onload = () => resolve(reader.result as string);
       reader.onerror = () => reject(reader.error);

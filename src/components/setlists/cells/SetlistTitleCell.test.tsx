@@ -1,4 +1,3 @@
-import * as React from "react";
 import SetlistTitleCell from "./SetlistTitleCell";
 import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
 test("renders setlist Title given a setlist", () => {

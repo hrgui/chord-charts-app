@@ -1,4 +1,3 @@
-import React from "react";
 import { fireEvent } from "@testing-library/react";
 import SongSectionView from "./SongSectionView";
 import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
@@ -23,7 +22,9 @@ test("SongSectionView - normal usage - used with key", () => {
     title: "Hello world",
     body: "A B C \n Test",
   };
-  const { queryByText } = render(<SongSectionView songKey="C" section={section} />);
+  const { queryByText } = render(
+    <SongSectionView songKey="C" section={section} />
+  );
   expect(queryByText("A")).not.toBeNull();
 });
 
@@ -32,7 +33,9 @@ test("SongSectionView - normal usage - used with key and override", () => {
     title: "Hello world",
     body: "A B C \n Test",
   };
-  const { queryByText } = render(<SongSectionView songKey="C" overrideKey="D" section={section} />);
+  const { queryByText } = render(
+    <SongSectionView songKey="C" overrideKey="D" section={section} />
+  );
   expect(queryByText("C#")).not.toBeNull();
 });
 
@@ -43,7 +46,12 @@ test("SongSectionView - close interaction works", () => {
   };
   const onRequestHide = vi.fn();
   const { getByTestId } = render(
-    <SongSectionView onRequestHide={onRequestHide} songKey="C" overrideKey="D" section={section} />
+    <SongSectionView
+      onRequestHide={onRequestHide}
+      songKey="C"
+      overrideKey="D"
+      section={section}
+    />
   );
   const el = getByTestId("songsection-close");
   fireEvent.click(el);

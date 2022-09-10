@@ -1,4 +1,3 @@
-import React from "react";
 import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
 import EditSetlistFormPage from "./EditSetlistFormPage";
 import pouchDbBaseQuery from "~/api/rtk-api/pouchDbBaseQuery";
@@ -29,16 +28,22 @@ it("should be able to modify the title of a setlist and save it", async () => {
     return { data: setlist };
   });
 
-  const { getByTestId, getByLabelText, getByText } = render(<EditSetlistFormPage />);
+  const { getByTestId, getByLabelText, getByText } = render(
+    <EditSetlistFormPage />
+  );
 
   await waitFor(() => expect(getByTestId("appBarTitle")).toBeInTheDocument());
   const titleInput = getByLabelText("Setlist Title");
   expect(titleInput).toBeInTheDocument();
   expect(getByLabelText("Setlist Owner")).toBeInTheDocument();
 
-  await waitFor(() => expect(getByText("There are no songs.")).toBeInTheDocument());
+  await waitFor(() =>
+    expect(getByText("There are no songs.")).toBeInTheDocument()
+  );
   await userEvent.type(titleInput, "2");
   await userEvent.click(getByText("Save"));
 
-  await waitFor(() => expect(getByText("Successfully updated setlist Meow2")).toBeInTheDocument());
+  await waitFor(() =>
+    expect(getByText("Successfully updated setlist Meow2")).toBeInTheDocument()
+  );
 });

@@ -38,7 +38,11 @@ export function ActionsColumnDef(
     addToSetlistMode,
     song,
     onRequestClose,
-  }: { addToSetlistMode?: boolean; song?: Song; onRequestClose?: () => void } = {
+  }: {
+    addToSetlistMode?: boolean;
+    song?: Song;
+    onRequestClose?: () => void;
+  } = {
     addToSetlistMode: false,
     song: undefined,
     onRequestClose: () => null,

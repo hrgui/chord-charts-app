@@ -37,7 +37,12 @@ export const SongViewKey = ({
   classes?;
 }) => {
   return (
-    <ChordSelect classes={classes} className={className} value={overrideKey} onChange={onChange} />
+    <ChordSelect
+      classes={classes}
+      className={className}
+      value={overrideKey}
+      onChange={onChange}
+    />
   );
 };
 
@@ -84,8 +89,9 @@ function Song({
 }
 
 const SongView = (props: SongViewProps) => {
-  let {
-    data,
+  let { data } = props;
+
+  const {
     drawerChildren,
     isError,
     settings = {},
@@ -95,15 +101,20 @@ const SongView = (props: SongViewProps) => {
     onChangeSettings = () => null,
     pageTitle,
   } = props;
-  const [sectionsSettings, _setSectionSettings] = React.useState(settings.sectionsSettings || {});
-  const [overrideKey, _setOverrideKey] = React.useState(settings.overrideKey || (data && data.key));
-  const [lyricsDisabled, setLyricsDisabled] = React.useState(
+
+  const [sectionsSettings, _setSectionSettings] = React.useState(
+    settings.sectionsSettings || {}
+  );
+  const [overrideKey, _setOverrideKey] = React.useState(
+    settings.overrideKey || (data && data.key)
+  );
+  const [lyricsDisabled] = React.useState(
     settings.lyricsDisabled || _lyricsDisabled
   );
-  const [chordsDisabled, setChordsDisabled] = React.useState(
+  const [chordsDisabled] = React.useState(
     settings.chordsDisabled || _chordsDisabled
   );
-  const [screenWrap, setScreenWrap] = React.useState(settings.screenWrap || _screenWrap);
+  const [screenWrap] = React.useState(settings.screenWrap || _screenWrap);
   // drawer hidden in mobile by default by css, so we set it to true
   const [drawerHidden, setDrawerVisibility] = React.useState(true);
 
@@ -132,24 +143,6 @@ const SongView = (props: SongViewProps) => {
     onChangeSettings({ sectionsSettings: _sectionsSettings }, data);
   }
 
-  function handleToggleLyricsVisibility() {
-    const newLyricsState = !lyricsDisabled;
-    setLyricsDisabled(newLyricsState);
-    onChangeSettings({ lyricsDisabled: newLyricsState }, data);
-  }
-
-  function handleToggleChordsVisibility() {
-    const newChordsState = !chordsDisabled;
-    setChordsDisabled(newChordsState);
-    onChangeSettings({ chordsDisabled: newChordsState }, data);
-  }
-
-  function handleToggleScreenWrap() {
-    const newScreenWrapState = !screenWrap;
-    setScreenWrap(newScreenWrapState);
-    onChangeSettings({ screenWrap: newScreenWrapState }, data);
-  }
-
   if (!data) {
     data = {};
   }
@@ -162,7 +155,8 @@ const SongView = (props: SongViewProps) => {
   const printContent = (
     <div className="print uppercase printSongBar">
       <div style={{ display: "flex" }}>
-        {data.title} <div style={{ marginLeft: "auto" }}>Key: {overrideKey}</div>
+        {data.title}{" "}
+        <div style={{ marginLeft: "auto" }}>Key: {overrideKey}</div>
       </div>
     </div>
   );
@@ -175,7 +169,10 @@ const SongView = (props: SongViewProps) => {
         })
       )}
     >
-      <ConnectedYoutubeView className={"youtube-view-input"} value={data.youtube} />
+      <ConnectedYoutubeView
+        className={"youtube-view-input"}
+        value={data.youtube}
+      />
       <div className="pl-2 pr-2">
         <SongSectionsNavMenu
           sections={data.sections}
@@ -205,7 +202,11 @@ const SongView = (props: SongViewProps) => {
     >
       <div className={classnames("flex flex-col lg:flex-row-reverse")}>
         {drawerContent}
-        <div className={classnames("printSong overflow-hidden p-2 mt-2 max-w-full flex-grow")}>
+        <div
+          className={classnames(
+            "printSong overflow-hidden p-2 mt-2 max-w-full flex-grow"
+          )}
+        >
           {printContent}
           <Song
             screenWrap={screenWrap}

@@ -1,4 +1,3 @@
-import * as React from "react";
 import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
 import AppBar from "./AppBar";
 import { fireEvent } from "@testing-library/react";
@@ -11,7 +10,9 @@ const observeMock = {
 };
 
 beforeEach(() => {
-  (window as any).IntersectionObserver = vi.fn().mockImplementation(() => observeMock);
+  (window as any).IntersectionObserver = vi
+    .fn()
+    .mockImplementation(() => observeMock);
 });
 
 function TestMenuStateDisplay() {

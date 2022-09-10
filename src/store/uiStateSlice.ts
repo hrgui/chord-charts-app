@@ -2,9 +2,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 export const CHORD_CHARTS_DARK_MODE_KEY = "CHORD_CHARTS_DARK_MODE";
 
 export function getDarkModeInitialState() {
-  const prefersDarkModeInitially = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const prefersDarkModeInitially = window.matchMedia(
+    "(prefers-color-scheme: dark)"
+  ).matches;
 
-  const localStoragePreference = window.localStorage.getItem(CHORD_CHARTS_DARK_MODE_KEY);
+  const localStoragePreference = window.localStorage.getItem(
+    CHORD_CHARTS_DARK_MODE_KEY
+  );
 
   if (localStoragePreference !== null) {
     return localStoragePreference === "true";
@@ -60,7 +64,12 @@ export const uiStateSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { toggleNavMenu, toggleYoutube, toggleControlsPanel, setNavBarState, toggleDarkMode } =
-  uiStateSlice.actions;
+export const {
+  toggleNavMenu,
+  toggleYoutube,
+  toggleControlsPanel,
+  setNavBarState,
+  toggleDarkMode,
+} = uiStateSlice.actions;
 
 export default uiStateSlice.reducer;

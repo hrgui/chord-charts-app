@@ -1,4 +1,3 @@
-import * as React from "react";
 import toast from "react-hot-toast";
 import ListItemLink from "~/ui/layout/ListItemLink";
 import ActionsMenu from "~/ui/table/ActionsMenu";
@@ -16,7 +15,13 @@ interface SongActionsProps {
   onRequestClose?: () => any;
 }
 
-function SongActionsList({ song, onRequestClose }: { song: Song; onRequestClose?: () => void }) {
+function SongActionsList({
+  song,
+  onRequestClose,
+}: {
+  song: Song;
+  onRequestClose?: () => void;
+}) {
   const [deleteSong] = useDeleteSongMutation();
   const { t } = useTranslation();
   const location = useLocation();
@@ -42,7 +47,9 @@ function SongActionsList({ song, onRequestClose }: { song: Song; onRequestClose?
           await toast.promise(promise, {
             loading: t("song:action/delete/submitting", { title: song.title }),
             success: t("song:action/delete/submitted", { title: song.title }),
-            error: (err) => <ErrorAlert message={t("song:action/delete/error")} error={err} />,
+            error: (err) => (
+              <ErrorAlert message={t("song:action/delete/error")} error={err} />
+            ),
           });
           onRequestClose?.();
         }}
@@ -71,7 +78,7 @@ function SongActionsList({ song, onRequestClose }: { song: Song; onRequestClose?
 const SongActions: React.FC<SongActionsProps> = (props) => {
   if (props.addToSetlistMode) {
     return (
-      <button className="btn" onClick={(e) => props.onAddSong(props.song)}>
+      <button className="btn" onClick={() => props.onAddSong(props.song)}>
         Add
       </button>
     );

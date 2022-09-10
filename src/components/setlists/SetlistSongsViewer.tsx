@@ -32,16 +32,17 @@ export function SetlistSongsViewer({
   onSaveSetlistSettings,
   hasUnsavedSettings = false,
 }: SetlistSongsViewerProps) {
-  const [_settings, setSettings] = React.useState(settings || {});
-  const [_hasUnSavedSettings, setHasUnsavedSettings] = React.useState(hasUnsavedSettings);
+  const [_settings] = React.useState(settings || {});
+  const [_hasUnSavedSettings, setHasUnsavedSettings] =
+    React.useState(hasUnsavedSettings);
   const { t } = useTranslation();
 
   React.useEffect(() => {
     setHasUnsavedSettings(hasUnsavedSettings);
   }, [hasUnsavedSettings]);
 
-  function handleChangeSettings(settingsFragment, { id }) {
-    alert("THIS IS DIFFERENT NOW, TODO");
+  function handleChangeSettings() {
+    // TODO: settingsFragment, { id }
   }
 
   if (songs.length === 0) {
@@ -50,7 +51,10 @@ export function SetlistSongsViewer({
         <div className="p-4">
           <Alert icon={<MaterialSymbol icon="warning" />} status="warning">
             {t("setlist:view/message/noSongs/header")}{" "}
-            <Link className="underline hover:font-semibold" to={`/setlist/${setlist?._id}/edit`}>
+            <Link
+              className="underline hover:font-semibold"
+              to={`/setlist/${setlist?._id}/edit`}
+            >
               {t("setlist:view/message/noSongs/action")}
             </Link>
           </Alert>

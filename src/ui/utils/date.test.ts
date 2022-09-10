@@ -12,7 +12,7 @@ describe("getUpcomingSunday", () => {
     ["2019-03-08T00:00:00.000Z", thisSunday],
     ["2019-03-09T00:00:00.000Z", thisSunday],
     // ["2019-03-10T00:00:00.000Z", thisSunday],
-    ["2019-03-11T00:00:00.000Z", nextSunday]
+    ["2019-03-11T00:00:00.000Z", nextSunday],
   ])("getUpcomingSunday(%s)", (input, expected) => {
     const nextSundayDate = getUpcomingSunday(new Date(input));
     expect(nextSundayDate.toISOString()).toEqual(expected);
@@ -31,7 +31,7 @@ describe("toDomDate", () => {
     ["2019-03-08T00:00:00.000Z", thisSundayDomDate],
     ["2019-03-09T00:00:00.000Z", thisSundayDomDate],
     // ["2019-03-10T00:00:00.000Z", thisSundayDomDate],
-    ["2019-03-11T00:00:00.000Z", nextSundayDomDate]
+    ["2019-03-11T00:00:00.000Z", nextSundayDomDate],
   ])("toDomDate(%s) w/ date as input", (input, expected) => {
     const nextSundayDate = getUpcomingSunday(new Date(input));
     expect(toDomDate(nextSundayDate)).toEqual(expected);
@@ -45,7 +45,7 @@ describe("toDomDate", () => {
     ["2019-03-08T00:00:00.000Z", thisSundayDomDate],
     ["2019-03-09T00:00:00.000Z", thisSundayDomDate],
     // ["2019-03-10T00:00:00.000Z", thisSundayDomDate],
-    ["2019-03-11T00:00:00.000Z", nextSundayDomDate]
+    ["2019-03-11T00:00:00.000Z", nextSundayDomDate],
   ])("toDomDate(%s) w/ string as input", (input, expected) => {
     const nextSundayDate = getUpcomingSunday(new Date(input));
     expect(toDomDate(nextSundayDate.toISOString())).toEqual(expected);

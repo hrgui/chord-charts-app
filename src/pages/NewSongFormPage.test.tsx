@@ -1,4 +1,3 @@
-import React from "react";
 import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
 import NewSongFormPage from "./NewSongFormPage";
 import pouchDbBaseQuery from "~/api/rtk-api/pouchDbBaseQuery";
@@ -25,7 +24,9 @@ it("should be able to create a song", async () => {
     return { data: {} };
   });
 
-  const { getByTestId, getByText, getByLabelText } = render(<NewSongFormPage />);
+  const { getByTestId, getByText, getByLabelText } = render(
+    <NewSongFormPage />
+  );
   expect(getByTestId("appBarTitle")).toBeInTheDocument();
   const titleInput = getByLabelText("Title");
   expect(titleInput).toBeInTheDocument();
@@ -37,5 +38,7 @@ it("should be able to create a song", async () => {
   await userEvent.type(titleInput, "Example");
 
   await userEvent.click(getByText("Save"));
-  await waitFor(() => expect(getByText("Successfully created song Example")).toBeInTheDocument());
+  await waitFor(() =>
+    expect(getByText("Successfully created song Example")).toBeInTheDocument()
+  );
 });

@@ -1,10 +1,13 @@
-import React from "react";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import { SubmitHandler } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { useGetSongQuery, Song, useUpdateSongMutation } from "~/api/services/songs";
+import {
+  useGetSongQuery,
+  Song,
+  useUpdateSongMutation,
+} from "~/api/services/songs";
 import { SongForm } from "~/components/songs/form/SongForm";
 import Page from "~/ui/layout/Page";
 import PageLoading from "~/ui/layout/PageLoading";
@@ -23,7 +26,9 @@ export function EditSongFormPage() {
     await toast.promise(promise, {
       loading: t("song:action/edit/submitting", { title: values.title }),
       success: t("song:action/edit/submitted", { title: values.title }),
-      error: (err) => <ErrorAlert message={t("song:action/edit/error")} error={err} />,
+      error: (err) => (
+        <ErrorAlert message={t("song:action/edit/error")} error={err} />
+      ),
     });
 
     navigate(`/song/${values._id}/view`);

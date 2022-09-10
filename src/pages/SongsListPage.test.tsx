@@ -1,4 +1,3 @@
-import React from "react";
 import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
 import SongsListPage from "./SongsListPage";
 import pouchDbBaseQuery from "~/api/rtk-api/pouchDbBaseQuery";

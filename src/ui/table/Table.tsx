@@ -50,7 +50,9 @@ function UnstyledTable({
         return rows.filter((row) => {
           const rowValue = row.values[id];
           return rowValue !== undefined
-            ? String(rowValue).toLowerCase().startsWith(String(filterValue).toLowerCase())
+            ? String(rowValue)
+                .toLowerCase()
+                .startsWith(String(filterValue).toLowerCase())
             : true;
         });
       },
@@ -73,9 +75,6 @@ function UnstyledTable({
     rows,
     prepareRow,
     page,
-    state: { pageIndex, pageSize },
-    gotoPage,
-    setPageSize,
   } = useTable(
     {
       columns,
@@ -88,12 +87,6 @@ function UnstyledTable({
     useSortBy,
     usePagination
   );
-
-  const handleChangePage = (_, page) => gotoPage(page);
-  const handleChangeRowsPerPage = (event) => {
-    setPageSize(+event.target.value);
-    gotoPage(0);
-  };
 
   if (error) {
     return (
@@ -110,10 +103,11 @@ function UnstyledTable({
     <>
       <table className="table table-fixed  w-full" {...getTableProps()}>
         <thead>
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
+          {headerGroups.map((headerGroup, i) => (
+            <tr key={i} {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map((column, i) => (
                 <th
+                  key={i}
                   className="tableHeaderCell"
                   {...column.getHeaderProps(
                     {
@@ -139,7 +133,8 @@ function UnstyledTable({
                         <div
                           className={classnames("sortingTicker", {
                             sortingTickerActive: column.isSortedDesc === true,
-                            sortingTickerInactive: column.isSortedDesc === false,
+                            sortingTickerInactive:
+                              column.isSortedDesc === false,
                           })}
                         >
                           {/* <ArrowDropDownIcon fontSize="small" /> */}
@@ -158,9 +153,10 @@ function UnstyledTable({
             (row) =>
               prepareRow(row) || (
                 <tr {...row.getRowProps()}>
-                  {row.cells.map((cell) => {
+                  {row.cells.map((cell, i) => {
                     return (
                       <td
+                        key={i}
                         size="small"
                         {...cell.getCellProps({
                           className: cell.column.className,
@@ -192,21 +188,14 @@ function UnstyledTable({
       )}
       {error && (
         <div className={"emptyMessage p-4"}>
-          <Alert status="error" icon={<ErrorIcon className="w-6 h-6 mx-2 stroke-current" />}>
+          <Alert
+            status="error"
+            icon={<ErrorIcon className="w-6 h-6 mx-2 stroke-current" />}
+          >
             {errorText}
           </Alert>
         </div>
       )}
-
-      {/* <TablePagination
-        rowsPerPageOptions={[25, 50, 100]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={pageSize}
-        page={pageIndex}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-      /> */}
     </>
   );
 }

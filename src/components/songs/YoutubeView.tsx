@@ -1,17 +1,16 @@
-import * as React from "react";
 import classnames from "classnames";
 import { useGlobalSongActions } from "~/hooks/useGlobalSongActions";
 import Youtube from "react-youtube";
 import * as qs from "qs";
 
 export const YoutubeView = ({ value, className }: { value; className? }) => {
-  let getYoutubeId = (youtubeUrl) => {
+  const getYoutubeId = (youtubeUrl) => {
     if (youtubeUrl.indexOf("://youtu.be/") !== -1) {
       const parts = youtubeUrl.split("/");
       return parts[parts.length - 1];
     }
 
-    var params = qs.parse(youtubeUrl.split("?")[1]);
+    const params = qs.parse(youtubeUrl.split("?")[1]);
 
     if (params.v) {
       return params.v;
@@ -20,14 +19,17 @@ export const YoutubeView = ({ value, className }: { value; className? }) => {
     return null;
   };
 
-  let youtubeId = value ? getYoutubeId(value) : null;
+  const youtubeId = value ? getYoutubeId(value) : null;
 
   if (!youtubeId) {
     return null;
   }
 
   return (
-    <div data-testid="youtube-container" className={classnames(className, "print-hidden")}>
+    <div
+      data-testid="youtube-container"
+      className={classnames(className, "print-hidden")}
+    >
       <Youtube videoId={youtubeId} opts={{ height: "240px", width: "426px" }} />
     </div>
   );
@@ -40,7 +42,13 @@ export function ConnectedYoutubeView({ value, className }) {
     return null;
   }
 
-  return <YoutubeViewer value={value} onClose={toggleYoutube} />;
+  return (
+    <YoutubeViewer
+      value={value}
+      onClose={toggleYoutube}
+      className={className}
+    />
+  );
 }
 
 function YoutubeViewer({ value, className }: any) {

@@ -1,8 +1,9 @@
-import React from "react";
 import { renderWithAppProvider as render } from "~/testUtils/renderWithAppProvider";
 import AddToSetlistFormPage from "./AddToSetlistFormPage";
 import useQueryParams from "~/hooks/useQueryParams";
-import pouchDbBaseQuery, { PouchDbBaseQueryArgs } from "~/api/rtk-api/pouchDbBaseQuery";
+import pouchDbBaseQuery, {
+  PouchDbBaseQueryArgs,
+} from "~/api/rtk-api/pouchDbBaseQuery";
 import { getNewSongTemplate } from "~/api/services/songs";
 import { waitFor } from "@testing-library/react";
 import { getNewSetlistTemplate } from "~/api/services/setlists";
@@ -34,5 +35,7 @@ it("should render w/o crashing, target song defined and target setlist defined",
 
   const { getByText } = render(<AddToSetlistFormPage />);
   await waitFor(() => expect(getByText(targetSong.title)).toBeInTheDocument());
-  await waitFor(() => expect(getByText(targetSetlist.title)).toBeInTheDocument());
+  await waitFor(() =>
+    expect(getByText(targetSetlist.title)).toBeInTheDocument()
+  );
 });

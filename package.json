@@ -7,7 +7,8 @@
     "dev": "vite --port 3000",
     "build": "vite build",
     "test": "vitest",
-    "lint": "eslint src/**/*"
+    "lint": "eslint src/**/*",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -52,10 +53,12 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.1",
     "events": "^3.3.0",
+    "husky": "^8.0.0",
     "i18next": "^20.3.2",
     "i18next-browser-languagedetector": "^6.1.2",
     "i18next-http-backend": "^1.2.6",
     "jsdom": "^20.0.0",
+    "lint-staged": "^13.0.3",
     "nanoid": "^3.3.3",
     "postcss": "^8.4.13",
     "pouchdb-browser": "^7.3.0",

@@ -32,7 +32,7 @@ export const SetlistSongPagination = (props: SetlistSongPaginationProps) => {
   const buttons = Array.from(new Array(length)).map((_, index) => (
     <button
       className={twMerge(
-        cx(`btn btn-ghost min-w-auto song-pgn-${index}`, {
+        classnames(`btn btn-ghost min-w-auto song-pgn-${index}`, {
           ["bg-base-100"]: currentIndex === index,
         })
       )}

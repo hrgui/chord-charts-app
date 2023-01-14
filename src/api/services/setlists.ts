@@ -3,6 +3,8 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import pouchDbBaseQuery, { ApiMethod } from "~/api/rtk-api/pouchDbBaseQuery";
 import { getUpcomingSunday, toDomDate } from "~/ui/utils/date";
 
+import { SongApi } from "./songs";
+
 export interface SetlistSong {
   _id: string;
   settings: { [name: string]: any };
@@ -58,8 +60,32 @@ export const SetlistApi = createApi({
       invalidatesTags: [{ type: apiType, id: ApiMethod.list }],
     }),
     getSetlist: build.query<Setlist, string>({
-      query: (id) => ({ type: apiType, method: ApiMethod.get, id }),
       providesTags: (result, error, id) => [{ type: apiType, id }],
+      queryFn: async (id, api, extraOptions, fetchWithBQ) => {
+        const res = await fetchWithBQ({
+          type: apiType,
+          method: ApiMethod.get,
+          id,
+        });
+
+        const setlist = res.data as unknown as Setlist;
+
+        const { data: songs } = await api.dispatch(
+          SongApi.endpoints.getSongs.initiate({
+            _id: { $in: setlist.songs.map((s) => s._id) },
+          })
+        );
+
+        const setlistSongs: SetlistSong[] =
+          songs?.map((song) => ({
+            ...song,
+            ...(setlist.songs.find(
+              (setlistSong) => setlistSong._id === song._id
+            ) as SetlistSong),
+          })) || [];
+
+        return { data: { ...setlist, songs: setlistSongs } };
+      },
     }),
     updateSetlist: build.mutation<Setlist, Partial<Setlist>>({
       query(data) {
